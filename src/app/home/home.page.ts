@@ -20,7 +20,7 @@ export class HomePage {
   incoming: any;
   pending: any;
   confirm: any;
-  filteredpayments: any;
+  filteredPayments: any;
 
   constructor() {
     this.outgoing = true;
@@ -45,6 +45,6 @@ export class HomePage {
   }
 
   viewPayment(payment: any) {
-    
+
   }
 }

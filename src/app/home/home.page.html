@@ -18,33 +18,34 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button expand="full" fill="outline">
-          <ion-text>36 austehende Zahlungen</ion-text>
-        </ion-button>
+    <ion-row class="ion-justify-content-evenly">
+      <ion-col class="ion-no-padding">
+        <ion-card class="ion-no-margin">
+          <ion-card-content>asdew</ion-card-content>
+        </ion-card>
       </ion-col>
-      <ion-col>
-        <ion-button expand="full" fill="outline">
-          <ion-text>36 austehende Zahlungen</ion-text>
-        </ion-button>
+      <ion-col class="ion-no-padding">
+        <ion-card class="ion-no-margin">
+          <ion-card-content>asdew</ion-card-content>
+        </ion-card>
       </ion-col>
-      <ion-col>
-        <ion-button expand="full" fill="outline">
-          <ion-text>36 austehende Zahlungen</ion-text>
-        </ion-button>
+      <ion-col class="ion-no-padding">
+        <ion-card class="ion-no-margin">
+          <ion-card-content>asdew</ion-card-content>
+        </ion-card>
       </ion-col>
-      <ion-col>
-        <ion-button expand="full" fill="outline">
-          <ion-text>36 austehende Zahlungen</ion-text>
-        </ion-button>
+      <ion-col class="ion-no-padding">
+        <ion-card class="ion-no-margin">
+          <ion-card-content>asdew</ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 
   <ion-list>
     <div *ngIf="outgoing">
-      <ion-item button *ngFor="let payment of filteredpayments" (click)="viewPayment(payment)">
+      <ion-item button *ngFor="let payment of filteredPayments" (click)="viewPayment(payment)">
         {{payment.Zweck}} {{payment.Preis}}
       </ion-item>
     </div>
