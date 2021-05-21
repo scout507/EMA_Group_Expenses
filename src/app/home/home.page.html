@@ -44,9 +44,9 @@
   </ion-grid>
 
   <ion-list>
-    <div *ngIf="outgoing">
-      <ion-item button *ngFor="let payment of filteredPayments" (click)="viewPayment(payment)">
-        {{payment.Zweck}} {{payment.Preis}}
+    <div>
+      <ion-item button *ngFor="let transaction of filteredTransactions" (click)="viewTransaction(transaction)">
+        {{transaction.purpose}} {{transaction.amount}}
       </ion-item>
     </div>
   </ion-list>
@@ -94,7 +94,3 @@
 
 </ion-content>
 
-
-<ion-footer>
-
-</ion-footer>

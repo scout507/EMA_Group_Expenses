@@ -1,9 +1,6 @@
 import { Component} from '@angular/core';
-
-
-
-
-
+import {Transaction} from '../transaction.model';
+import {TransactionService} from "../transaction.service";
 
 
 @Component({
@@ -12,7 +9,7 @@ import { Component} from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 
-export class HomePage {
+export class HomePage{
 
   searchbarVisible: Boolean;
   search: any;
@@ -20,10 +17,14 @@ export class HomePage {
   incoming: any;
   pending: any;
   confirm: any;
-  filteredPayments: any;
+  testing: boolean;
+  transactions: Transaction[];
+  filteredTransactions: Transaction[];
 
-  constructor() {
+  constructor(private transactionService: TransactionService) {
     this.outgoing = true;
+    this.transactions = transactionService.findAll();
+    this.filterTransactions();
   }
 
 
@@ -44,7 +45,12 @@ export class HomePage {
     this.searchbarVisible = true;
   }
 
-  viewPayment(payment: any) {
+  filterTransactions(){
+      console.log(this.transactions);
+      this.filteredTransactions = this.transactions;
+  }
+
+  viewTransaction(transaction: Transaction) {
 
   }
 }
