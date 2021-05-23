@@ -13,7 +13,7 @@ import {TransactionService} from "../transaction.service";
 export class HomePage{
 
   searchbarVisible: Boolean;
-  search: any;
+  search: string;
 
   outgoingView: boolean;
   confirmView: boolean;
@@ -35,14 +35,14 @@ export class HomePage{
   constructor(private transactionService: TransactionService) {
     this.outgoingView = true;
     this.transactions = transactionService.findAll();
-    this.filterTransactions();
+    this.filterTransactions("");
     this.updateInfo();
   }
 
 
 
   doSearch() {
-
+      this.filterTransactions(this.search)
   }
 
   cancelSearch() {
@@ -57,20 +57,26 @@ export class HomePage{
     this.searchbarVisible = true;
   }
 
-  filterTransactions(){
+  filterTransactions(searchTerm: string){
+
       this.filteredTransactions = [];
+      //TODO add search option for search by user/group
       this.transactions.forEach(transaction => {
           if(this.outgoingView){
-              if(transaction.type == "outgoing" && !transaction.pending) this.filteredTransactions.push(transaction);
+              if(transaction.type == "outgoing" && !transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+                this.filteredTransactions.push(transaction);
           }
           else if(this.incomingView){
-              if(transaction.type == "incoming" && !transaction.pending) this.filteredTransactions.push(transaction);
+              if(transaction.type == "incoming" && !transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+                this.filteredTransactions.push(transaction);
           }
           else if(this.pendingView){
-            if(transaction.type == "outgoing" && transaction.pending) this.filteredTransactions.push(transaction);
+            if(transaction.type == "outgoing" && transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+              this.filteredTransactions.push(transaction);
           }
           else{
-            if(transaction.type == "incoming" && transaction.pending) this.filteredTransactions.push(transaction);
+            if(transaction.type == "incoming" && transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+              this.filteredTransactions.push(transaction);
           }
       })
   }
