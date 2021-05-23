@@ -46,11 +46,13 @@ export class HomePage{
   }
 
   cancelSearch() {
+    this.clearSearch();
+    this.filterTransactions("");
     this.searchbarVisible = false;
   }
 
   clearSearch() {
-
+      this.search = "";
   }
 
   startSearch() {
