@@ -15,11 +15,11 @@ export class TransactionService{
     this.testing = true;
     if(this.testing){
       this.Transactions = [
-        new Transaction(0,100, "Taschengeld","incoming", "once"),
-        new Transaction(1,200,"Einkauf","incoming", "once"),
-        new Transaction(2,300,"Friseur","incoming", "once"),
-        new Transaction(3,400,"Miete","outgoing", "once"),
-        new Transaction(4,500,"Katzenfutter","outgoing", "once")
+        new Transaction(0,100, "Taschengeld","incoming", false, "once"),
+        new Transaction(1,200,"Einkauf","incoming", false,"once"),
+        new Transaction(2,300,"Friseur","incoming", true, "once"),
+        new Transaction(3,400,"Miete","outgoing", false,"once"),
+        new Transaction(4,500,"Katzenfutter","outgoing", true, "once")
       ]
     }
 

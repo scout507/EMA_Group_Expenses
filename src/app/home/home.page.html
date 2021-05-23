@@ -20,24 +20,19 @@
   <ion-grid>
     <ion-row class="ion-justify-content-evenly">
       <ion-col class="ion-no-padding">
-        <ion-card class="ion-no-margin">
-          <ion-card-content>asdew</ion-card-content>
-        </ion-card>
+          <ion-button expand="full" (click)="buttonHandler(0); filterTransactions()">
+            <ion-text id="outgoing-text"></ion-text>
+            <ion-text>Ausgaben</ion-text>
+          </ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-        <ion-card class="ion-no-margin">
-          <ion-card-content>asdew</ion-card-content>
-        </ion-card>
+          <ion-button expand="full" (click)="buttonHandler(1); filterTransactions()">Einnahmen</ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-        <ion-card class="ion-no-margin">
-          <ion-card-content>asdew</ion-card-content>
-        </ion-card>
+          <ion-button expand="full" (click)="buttonHandler(2); filterTransactions()">Ausstehend</ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-        <ion-card class="ion-no-margin">
-          <ion-card-content>asdew</ion-card-content>
-        </ion-card>
+          <ion-button expand="full" (click)="buttonHandler(3); filterTransactions()">Bestätigen</ion-button>
       </ion-col>
     </ion-row>
 
@@ -51,6 +46,14 @@
     </div>
   </ion-list>
 
+
+
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
   <ion-tabs>
 
     <ion-tab tab="tab-home">
@@ -69,7 +72,7 @@
       <ion-nav></ion-nav>
     </ion-tab>
 
-    <ion-tab-bar slot="bottom">
+    <ion-tab-bar slot="top">
       <ion-tab-button tab="tab-home">
         <ion-icon name="home-outline"></ion-icon>
         <ion-badge>6</ion-badge>
@@ -89,7 +92,5 @@
     </ion-tab-bar>
 
   </ion-tabs>
-
-
-
-</ion-content>
+  </ion-toolbar>
+</ion-footer>

@@ -3,6 +3,7 @@ export class Transaction{
   amount: number;
   purpose: String;
   type: string;
+  pending: boolean;
   purchaseDate: Date;
   dueDate: Date;
   rhythm: string;
@@ -11,11 +12,12 @@ export class Transaction{
 
   //TODO figure out photo & person
 
-  constructor(id, amount, purpose, type, rhythm, purchaseDate?, dueDate?, photo?, person?){
+  constructor(id, amount, purpose, type, pending, rhythm, purchaseDate?, dueDate?, photo?, person?){
     this.id = id;
     this.amount = amount;
     this.purpose = purpose;
     this.type = type;
+    this.pending = pending;
     this.purchaseDate = purchaseDate;
     this.dueDate = dueDate;
     this.rhythm = rhythm;

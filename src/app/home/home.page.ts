@@ -16,12 +16,13 @@ export class HomePage{
   search: any;
 
   outgoingView: boolean;
-  private outgoing: any;
-  incomingView: boolean;
-  private incoming: number;
-  pendingView: boolean;
-  private pending: number;
   confirmView: boolean;
+  incomingView: boolean;
+  pendingView: boolean;
+
+  private outgoing: number;
+  private incoming: number;
+  private pending: number;
   private confirm: number;
 
 
@@ -57,9 +58,35 @@ export class HomePage{
   }
 
   filterTransactions(){
-      console.log(this.transactions);
-      this.filteredTransactions = this.transactions;
+      this.filteredTransactions = [];
+      this.transactions.forEach(transaction => {
+          if(this.outgoingView){
+              if(transaction.type == "outgoing" && !transaction.pending) this.filteredTransactions.push(transaction);
+          }
+          else if(this.incomingView){
+              if(transaction.type == "incoming" && !transaction.pending) this.filteredTransactions.push(transaction);
+          }
+          else if(this.pendingView){
+            if(transaction.type == "outgoing" && transaction.pending) this.filteredTransactions.push(transaction);
+          }
+          else{
+            if(transaction.type == "incoming" && transaction.pending) this.filteredTransactions.push(transaction);
+          }
+      })
   }
+
+  buttonHandler(type: number) {
+    this.incomingView = false;
+    this.outgoingView = false;
+    this.pendingView = false;
+    this.confirmView = false;
+
+    if (type == 0) this.outgoingView = true;
+    else if (type == 1) this.incomingView = true;
+    else if (type == 2) this.pendingView = true;
+    else this.confirmView = true;
+  }
+
 
   viewTransaction(transaction: Transaction) {
 
@@ -81,5 +108,6 @@ export class HomePage{
           }
         }
       )
+     //document.getElementById("outgoing-text").innerText = this.outgoing.toString();
   }
 }
