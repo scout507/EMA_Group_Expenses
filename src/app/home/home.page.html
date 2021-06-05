@@ -13,8 +13,37 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <button (click)="add()">ADD</button>
+  <ion-list>
+    <h2>Open Bill</h2>
+    <ion-item *ngFor="let person of openBill">
+      <p>UID: {{person.id}}</p>
+      <p>TID: {{person.tid}}</p>
+      <button (click)="delete(person)">delete</button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <h2>pending Bill</h2>
+    <ion-item *ngFor="let person of pendingBill">
+      <p>UID: {{person.id}}</p>
+      <p>TID: {{person.tid}}</p>
+      <button (click)="delete(person)">delete</button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <h2>not Confirmed</h2>
+    <ion-item *ngFor="let person of notConfirmed">
+      <p>UID: {{person.id}}</p>
+      <p>TID: {{person.tid}}</p>
+      <button (click)="delete(person)">delete</button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <h2>to Confirm</h2>
+    <ion-item *ngFor="let person of toConfirm">
+      <p>UID: {{person.id}}</p>
+      <p>TID: {{person.tid}}</p>
+      <button (click)="delete(person)">delete</button>
+    </ion-item>
+  </ion-list>
 </ion-content>
