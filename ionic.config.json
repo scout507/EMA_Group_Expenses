@@ -1,5 +1,7 @@
 {
   "name": "group-expenses",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

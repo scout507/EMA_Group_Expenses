@@ -47,6 +47,14 @@ const routes: Routes = [
     path: 'transaction-details',
     loadChildren: () => import('./transaction/transaction-details/transaction-details.module').then( m => m.TransactionDetailsPageModule)
   },
+  {
+    path: 'transaction-participants',
+    loadChildren: () => import('./transaction/transaction-participants/transaction-participants.module').then( m => m.TransactionParticipantsPageModule)
+  },
+  {
+    path: 'transaction-stakes',
+    loadChildren: () => import('./transaction/transaction-stakes/transaction-stakes.module').then( m => m.TransactionStakesPageModule)
+  },
 ];
 
 @NgModule({

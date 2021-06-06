@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Geld aufteilen</ion-title>
+    <ion-button slot="end">
+      <ion-icon name="search"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-text class="ion-text-right">{{currentStakes()}}€ von {{costs}}€</ion-text>
+  <ion-list>
+    <ion-item *ngFor="let stake in stakes">
+      <ion-avatar>
+        <img src="">
+      </ion-avatar>
+      <ion-text>{{stake.user.name}}</ion-text>
+      <ion-input type="number" [(ngModel)]="stake.stake"></ion-input>
+      <ion-text>€</ion-text>
+    </ion-item>
+  </ion-list>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

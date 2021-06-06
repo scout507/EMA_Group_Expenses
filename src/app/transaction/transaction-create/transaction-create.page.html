@@ -1,9 +1,63 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>transaction-create</ion-title>
+    <ion-title>Neue Transaktion</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-select [(ngModel)]="transaction.group" placeholder="Gruppe auswählen" class="ion-text-center">
+    <ion-select-option *ngFor="let groupChoice of groups"
+                       value="{{groupChoice}}">{{groupChoice.name}}</ion-select-option>
+  </ion-select>
+  <ion-select [(ngModel)]="transaction.type" class="ion-text-center">
+    <ion-select-option value="income">Einnahme</ion-select-option>
+    <ion-select-option value="cost">Ausgabe</ion-select-option>
+  </ion-select>
+  <ion-item>
+    <ion-label>Zweck</ion-label>
+    <ion-input [(ngModel)]="transaction.purpose" class="ion-text-right"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Preis</ion-label>
+    <ion-input type="number" [(ngModel)]="transaction.costs" class="ion-text-right"></ion-input>
+    <ion-text>€</ion-text>
+  </ion-item>
+  <ion-item>
+    <ion-label>Rechnungsdatum</ion-label>
+    <ion-datetime [(ngModel)]="transaction.billingDate" displayFormat="DD.MM.YYYY"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Fälligkeitsdatum</ion-label>
+    <ion-datetime [(ngModel)]="transaction.dueDate" displayFormat="DD.MM.YYYY"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Rhythmus</ion-label>
+    <ion-select [(ngModel)]="transaction.rhythm">
+      <ion-select-option value="once">Einmalig</ion-select-option>
+      <ion-select-option value="daily">Täglich</ion-select-option>
+      <ion-select-option value="weekly">Wöchentlich</ion-select-option>
+      <ion-select-option value="monthly">Monatlich</ion-select-option>
+      <ion-select-option value="yearly">Jährlich</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Alle auswählen</ion-label>
+    <ion-toggle [(ngModel)]="selectAllUsers"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <ion-label>Fair aufteilen</ion-label>
+    <ion-toggle [(ngModel)]="fairlyDistributedPrice"></ion-toggle>
+  </ion-item>
+  <ion-button>Bild hinzufügen</ion-button>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+  <ion-fab-button (click)="nextPage()">
+    <ion-icon *ngIf="fairlyDistributedPrice && selectAllUsers" name="checkmark"></ion-icon>
+    <ion-icon *ngIf="!selectAllUsers || !fairlyDistributedPrice" name="arrow-forward"></ion-icon>
+  </ion-fab-button>
+  </ion-fab>
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+  <ion-fab-button (click)="cancel()">
+    <ion-icon name="close"></ion-icon>
+  </ion-fab-button>
+  </ion-fab>
 </ion-content>
