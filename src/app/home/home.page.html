@@ -22,17 +22,17 @@
       <ion-col class="ion-no-padding">
           <ion-button expand="full" (click)="buttonHandler(0); filterTransactions('')">
             <ion-text></ion-text>
-            <ion-text>Ausgaben</ion-text>
+            <ion-text>{{outgoing}}€ Ausgaben</ion-text>
           </ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-          <ion-button expand="full" (click)="buttonHandler(1); filterTransactions('')">Einnahmen</ion-button>
+          <ion-button expand="full" (click)="buttonHandler(1); filterTransactions('')">{{incoming}}€ Einnahmen</ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-          <ion-button expand="full" (click)="buttonHandler(2); filterTransactions('')">Ausstehend</ion-button>
+          <ion-button expand="full" (click)="buttonHandler(2); filterTransactions('')">{{pending}} Ausstehend</ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-          <ion-button expand="full" (click)="buttonHandler(3); filterTransactions('')">Bestätigen</ion-button>
+          <ion-button expand="full" (click)="buttonHandler(3); filterTransactions('')">{{confirm}} Bestätigen</ion-button>
       </ion-col>
     </ion-row>
 

@@ -10,7 +10,7 @@ import {TransactionService} from "../transaction.service";
   styleUrls: ['home.page.scss'],
 })
 
-export class HomePage{
+export class HomePage {
 
   searchbarVisible: Boolean;
   search: string;
@@ -20,11 +20,10 @@ export class HomePage{
   incomingView: boolean;
   pendingView: boolean;
 
-  private outgoing: number;
+  outgoing: number;
   private incoming: number;
   private pending: number;
   private confirm: number;
-
 
 
   testing: boolean;
@@ -40,9 +39,8 @@ export class HomePage{
   }
 
 
-
   doSearch() {
-      this.filterTransactions(this.search)
+    this.filterTransactions(this.search)
   }
 
   cancelSearch() {
@@ -52,36 +50,34 @@ export class HomePage{
   }
 
   clearSearch() {
-      this.search = "";
+    this.search = "";
   }
 
   startSearch() {
     this.searchbarVisible = true;
   }
 
-  filterTransactions(searchTerm: string){
-
-      this.filteredTransactions = [];
-      //TODO add search option for search by user/group
-      this.transactions.forEach(transaction => {
-          if(this.outgoingView){
-              if(transaction.type == "outgoing" && !transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
-                this.filteredTransactions.push(transaction);
-          }
-          else if(this.incomingView){
-              if(transaction.type == "incoming" && !transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
-                this.filteredTransactions.push(transaction);
-          }
-          else if(this.pendingView){
-            if(transaction.type == "outgoing" && transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
-              this.filteredTransactions.push(transaction);
-          }
-          else{
-            if(transaction.type == "incoming" && transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
-              this.filteredTransactions.push(transaction);
-          }
-      })
+  filterTransactions(searchTerm: string) {
+    this.filteredTransactions = [];
+    //TODO add search option for search by user/group
+    this.transactions.forEach(transaction => {
+      if (this.outgoingView) {
+        if (transaction.type == "outgoing" && !transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+          this.filteredTransactions.push(transaction);
+      } else if (this.incomingView) {
+        if (transaction.type == "incoming" && !transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+          this.filteredTransactions.push(transaction);
+      } else if (this.pendingView) {
+        if (transaction.type == "outgoing" && transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+          this.filteredTransactions.push(transaction);
+      } else {
+        if (transaction.type == "incoming" && transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+          this.filteredTransactions.push(transaction);
+      }
+    })
   }
+
+
 
   buttonHandler(type: number) {
     this.incomingView = false;
@@ -100,22 +96,25 @@ export class HomePage{
 
   }
 
-  updateInfo(){
-      this.transactions.forEach(transaction => {
-          if (transaction.type == "outgoing") {
-            this.outgoing += transaction.amount;
-          }
-          if (transaction.type == "incoming") {
-            this.incoming += transaction.amount;
-          }
-          if (transaction.type == "pending") {
-            this.pending ++;
-          }
-          if (transaction.type == "confirm") {
-            this.confirm ++;
-          }
-        }
-      )
-     //document.getElementById("outgoing-text").innerText = this.outgoing.toString();
+  updateInfo() {
+    this.outgoing = 0;
+    this.incoming = 0;
+    this.pending = 0;
+    this.confirm = 0;
+    this.transactions.forEach(transaction => {
+        if (transaction.type == "outgoing" && !transaction.pending)
+        this.outgoing += transaction.amount;
+
+        else if (transaction.type == "incoming" && !transaction.pending)
+        this.incoming += transaction.amount;
+
+        else if (transaction.type == "outgoing" && transaction.pending)
+        this.pending++;
+
+        else if (transaction.type == "incoming" && transaction.pending)
+        this.confirm++;
+    })
   }
+
+
 }
