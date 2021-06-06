@@ -9,10 +9,11 @@ export class Transaction{
   rhythm: string;
   photo: any;
   person: any;
+  group: string;
 
   //TODO figure out photo & person
 
-  constructor(id, amount, purpose, type, pending, rhythm, purchaseDate?, dueDate?, photo?, person?){
+  constructor(id, amount, purpose, type, pending, rhythm, group, purchaseDate?, dueDate?, photo?, person?){
     this.id = id;
     this.amount = amount;
     this.purpose = purpose;
@@ -23,6 +24,7 @@ export class Transaction{
     this.rhythm = rhythm;
     this.photo = photo;
     this.person = person;
+    this.group = group;
   }
 
 

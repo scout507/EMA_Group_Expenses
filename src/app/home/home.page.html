@@ -39,11 +39,18 @@
   </ion-grid>
 
   <ion-list>
-    <div>
-      <ion-item button *ngFor="let transaction of filteredTransactions" (click)="viewTransaction(transaction)">
-        {{transaction.purpose}} {{transaction.amount}}
+      <ion-item button *ngFor="let transaction of filteredTransactions" (click)="viewTransaction(transaction)" lines="full">
+        <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
+          <ion-row>
+          <ion-col align="left"><ion-img src="transaction.user.img"></ion-img></ion-col>
+          <ion-col>
+            <div>{{transaction.purpose}}</div>
+            <div style="font-size: small">{{transaction.group}}</div>
+          </ion-col>
+          <ion-col align="right" >{{transaction.amount}}€</ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
-    </div>
   </ion-list>
 
 
