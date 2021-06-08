@@ -5,13 +5,13 @@
 
 .profileImgCol{
     max-width: 160px;
-    margin-left: auto;
+    //margin-left: auto;
 }
 
 .profileDescriptionCol{
     max-width: 300px;
     margin-left: 10px;
-    margin-right: auto;
+    //margin-right: auto;
 }
 
 .grid{
@@ -29,6 +29,10 @@
 
 .iconsCol{
     margin-top: 10px;
+}
+
+.row{
+    justify-content: center;
 }
 
 ion-title{

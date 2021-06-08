@@ -11,7 +11,7 @@
 
 <ion-content class="global">
   <ion-grid class="grid">
-    <ion-row>
+    <ion-row class="row">
       <ion-col class="profileImgCol">
         <img class="profileImg" src={{profileImage}}>
       </ion-col>
@@ -28,7 +28,7 @@
         </ion-row>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row class="row">
       <ion-col class="iconsCol icons" *ngFor="let i of badges">
         <img class="icons" (click)="badgeDescription(i[0])" src={{i[1]}}>
       </ion-col>
