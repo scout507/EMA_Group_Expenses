@@ -1,5 +1,6 @@
 export class Transaction{
-  id: number;
+  id: string;
+  gid: string;
   amount: number;
   purpose: String;
   type: string;
@@ -8,12 +9,10 @@ export class Transaction{
   dueDate: Date;
   rhythm: string;
   photo: any;
-  person: any;
-  group: string;
+  creator: string;
 
-  //TODO figure out photo & person
-
-  constructor(id, amount, purpose, type, pending, rhythm, group, purchaseDate?, dueDate?, photo?, person?){
+  constructor(gid, amount, purpose, type, pending, rhythm, creator, purchaseDate?, dueDate?, photo?, id?){
+    this.gid = gid;
     this.id = id;
     this.amount = amount;
     this.purpose = purpose;
@@ -23,10 +22,6 @@ export class Transaction{
     this.dueDate = dueDate;
     this.rhythm = rhythm;
     this.photo = photo;
-    this.person = person;
-    this.group = group;
+    this.creator = creator;
   }
-
-
-
 }
