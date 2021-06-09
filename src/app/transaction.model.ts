@@ -1,7 +1,6 @@
-import {Transaction_User} from "./Transaction_User.model";
-
 export class Transaction{
   id: string;
+  gid: string;
   amount: number;
   purpose: String;
   type: string;
@@ -11,11 +10,9 @@ export class Transaction{
   rhythm: string;
   photo: any;
   creator: string;
-  people: Transaction_User[];
 
-  //TODO figure out photo & person
-
-  constructor(amount, purpose, type, pending, rhythm, creator, people?, purchaseDate?, dueDate?, photo?, id?){
+  constructor(gid, amount, purpose, type, pending, rhythm, creator, purchaseDate?, dueDate?, photo?, id?){
+    this.gid = gid;
     this.id = id;
     this.amount = amount;
     this.purpose = purpose;
@@ -26,9 +23,5 @@ export class Transaction{
     this.rhythm = rhythm;
     this.photo = photo;
     this.creator = creator;
-    this.people = people;
   }
-
-
-
 }
