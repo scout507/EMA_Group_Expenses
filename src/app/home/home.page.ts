@@ -53,12 +53,16 @@ export class HomePage {
         this.notConfirmed = [];
         this.toConfirm = [];
         this.transactions.forEach(transaction => {
-          this.transactionService.getAllTransactionUser(transaction.id, "tid").then(transactionUser => {
-            transaction.people = transactionUser;
-            if (!transaction.pending) {
-              this.setArrays(transaction);
-            }
-          })
+          if(transaction.pending){
+            this.transactionService.getAllTransactionUser(transaction.id, "tid").then(transactionUser => {
+              transactionUser.forEach(tu => {
+                if(!tu.accepted){
+                  this.groupService.getGroupById(transaction.gid).then(g => tu.groupName = g.name);
+                  this.pushTransactionUser(tu, transaction.type, transaction.creator);
+                }
+              })
+            })
+          }
         });
       });
   }
@@ -133,7 +137,7 @@ export class HomePage {
         if (transaction.type == "incoming" && transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
           this.filteredTransactions.push(transaction);
       }
-    })
+    });
   }
 
 
