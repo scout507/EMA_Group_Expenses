@@ -1,9 +1,55 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>options</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="backBtn()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Einstellungen</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="backBtn()">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="profileImgCol">
+        <img (click)="profileImageChange()" class="profileImg" src={{profileImage}}>
+      </ion-col>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input value={{firstname}}></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input value={{lastname}}></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-textarea class="description" rows=5 value={{description}}></ion-textarea>
+  
+  <ion-list lines="full">
+    <ion-item>
+      <ion-input placeholder="Passwort eingeben" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Passwort wiederholen" type="password"></ion-input>
+    </ion-item>
+    <ion-item button (click)="payment()">Zahlungsmittel</ion-item>
+  </ion-list>
+
 
 </ion-content>
