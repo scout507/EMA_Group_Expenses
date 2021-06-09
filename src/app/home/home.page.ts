@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
-import {TransactionService} from "../transaction.service";
+import { Component } from '@angular/core';
+import { TransactionService } from "../transaction.service";
 import firebase from "firebase";
-import {Transaction} from "../Transaction.model";
-import {Transaction_User} from "../Transaction_User.model";
-import {Subscription} from "rxjs";
+import { Transaction } from "../Transaction.model";
+import { Transaction_User } from "../Transaction_User.model";
+import { Subscription } from "rxjs";
+import { userInfo } from 'os';
 
 
 @Component({
@@ -11,41 +12,38 @@ import {Subscription} from "rxjs";
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage {
 
-  transactions: Transaction[] = [];
-  private subTransactions: Subscription;
-  openBill: Transaction_User[] = [];
-  pendingBill: Transaction_User[] = [];
-  notConfirmed: Transaction_User[] = [];
-  toConfirm: Transaction_User[] = [];
-  currentUser = {id: "10"};
+  searchbarVisible: Boolean;
+  search: string;
 
-  constructor(public transactionService: TransactionService) {
+  outgoingView: boolean;
+  confirmView: boolean;
+  incomingView: boolean;
+  pendingView: boolean;
+
+  outgoing: number;
+  private incoming: number;
+  private pending: number;
+  private confirm: number;
+
+  currentUser: User;
+  private subTransactions: Subscription;
+  testing: boolean;
+  transactions: Transaction[];
+  filteredTransactions: Transaction[];
+
+
+  constructor(private transactionService: TransactionService) {
+    this.outgoingView = true;
+    this.transactions = transactionService.findAll();
+    this.filterTransactions("");
+    this.updateInfo();
     this.transactions = [];
   }
 
-  add() {
-    this.transactionService.newTransaction(new Transaction(
-      12,
-      "Grillen",
-      "Ausgabe",
-      false,
-      "einmalig",
-      "arnlew34",
-      [
-        new Transaction_User(6, "2"),
-        new Transaction_User(6, "3")
-      ]))
-
-  }
-
-  delete(person: Transaction_User) {
-    this.transactionService.findTransactionWithID(person.tid).then(transaction => {
-      this.transactionService.deleteTransaction(transaction.id);
-    });
-  }
-
+  /*
   ionViewWillEnter() {
     this.subTransactions = this.transactionService.getAllTransactions()
       .subscribe(transactions => {
@@ -65,6 +63,7 @@ export class HomePage {
       });
   }
 
+  
   setArrays(transaction: Transaction) {
     transaction.people.forEach(person => {
       if ((
@@ -92,12 +91,87 @@ export class HomePage {
         person.pending
       ) {
         this.toConfirm.push(person)
+
+        ionViewDidLeave() {
+    this.subTransactions.unsubscribe();
+  }
+
+  */
+
+  doSearch() {
+    this.filterTransactions(this.search)
+  }
+
+  cancelSearch() {
+    this.clearSearch();
+    this.filterTransactions("");
+    this.searchbarVisible = false;
+  }
+
+  clearSearch() {
+    this.search = "";
+  }
+
+  startSearch() {
+    this.searchbarVisible = true;
+  }
+
+  filterTransactions(searchTerm: string) {
+    this.filteredTransactions = [];
+    //TODO add search option for search by user/group
+    this.transactions.forEach(transaction => {
+      if (this.outgoingView) {
+        if (transaction.type == "outgoing" && !transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+          this.filteredTransactions.push(transaction);
+      } else if (this.incomingView) {
+        if (transaction.type == "incoming" && !transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+          this.filteredTransactions.push(transaction);
+      } else if (this.pendingView) {
+        if (transaction.type == "outgoing" && transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+          this.filteredTransactions.push(transaction);
+      } else {
+        if (transaction.type == "incoming" && transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
+          this.filteredTransactions.push(transaction);
       }
     })
   }
 
 
-  ionViewDidLeave() {
-    this.subTransactions.unsubscribe();
+
+  buttonHandler(type: number) {
+    this.incomingView = false;
+    this.outgoingView = false;
+    this.pendingView = false;
+    this.confirmView = false;
+
+    if (type == 0) this.outgoingView = true;
+    else if (type == 1) this.incomingView = true;
+    else if (type == 2) this.pendingView = true;
+    else this.confirmView = true;
+  }
+
+
+  viewTransaction(transaction: Transaction) {
+
+  }
+
+  updateInfo() {
+    this.outgoing = 0;
+    this.incoming = 0;
+    this.pending = 0;
+    this.confirm = 0;
+    this.transactions.forEach(transaction => {
+      if (transaction.type == "outgoing" && !transaction.pending)
+        this.outgoing += transaction.amount;
+
+      else if (transaction.type == "incoming" && !transaction.pending)
+        this.incoming += transaction.amount;
+
+      else if (transaction.type == "outgoing" && transaction.pending)
+        this.pending++;
+
+      else if (transaction.type == "incoming" && transaction.pending)
+        this.confirm++;
+    })
   }
 }
