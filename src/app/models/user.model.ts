@@ -1,6 +1,6 @@
 export class User{
   name : string;
-  avatar : string;
+  avatar : any;
 
   constructor(name : string){
     this.name = name;

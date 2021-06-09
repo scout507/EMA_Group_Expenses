@@ -13,12 +13,12 @@
     <ion-toggle [(ngModel)]="allSelected"></ion-toggle>
   </ion-item>
   <ion-list>
-    <ion-item *ngFor="let participation of participations">
+    <ion-item *ngFor="let user of transaction.group.users">
       <ion-avatar slot="start">
-        <img src="{{participation.user.avatar}}">
+        <img src="{{user.avatar}}">
       </ion-avatar>
-      <ion-text>{{participation.user.name}}</ion-text>
-      <ion-toggle [(ngModel)]="participation.selected"></ion-toggle>
+      <ion-text>{{user.name}}</ion-text>
+      <ion-toggle (click)="toggleSelected(user)"></ion-toggle>
     </ion-item>
   </ion-list>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">

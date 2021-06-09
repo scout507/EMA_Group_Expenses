@@ -2,6 +2,7 @@ import {Group} from "./group.model";
 import {User} from "./user.model";
 
 export class Transaction{
+  id : string;
   group : Group;
   type : string;
   purpose : string;
@@ -10,6 +11,6 @@ export class Transaction{
   billingDate : Date;
   dueDate : Date;
   rhythm : string;
-  stakes : {participant : User, stake : number}[];
+  stakes : Map<User, number>;
   attachment : File;
 }

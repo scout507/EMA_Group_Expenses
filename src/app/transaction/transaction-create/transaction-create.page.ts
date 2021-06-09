@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Group} from "../../models/group.model";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NavController} from "@ionic/angular";
 import {User} from "../../models/user.model";
 import {Transaction} from "../../models/transaction.model";
-
+import {TransactionService} from "../../services/transaction.service";
 
 @Component({
   selector: 'app-transaction-create',
@@ -13,68 +13,80 @@ import {Transaction} from "../../models/transaction.model";
 })
 export class TransactionCreatePage implements OnInit {
   transaction : Transaction;
-  group : Group;
   groups : Group[] = [];
-  participants : User[] = [];
   stakes : {user : User, stake: number}[] = [];
-  purpose : string;
-  transactionType : string = "cost";
-  billingDate : Date = new Date();
-  dueDate : Date = new Date();
-  rhythm : string = "once";
-  price : number = 0;
   selectAllUsers : boolean = true;
   fairlyDistributedPrice : boolean = true;
 
-  constructor(private router: Router, private navCtrl : NavController) {
+  errors: Map<string, string> = new Map<string, string>();
+
+  constructor(private router: Router,
+              private navCtrl : NavController,
+              private route: ActivatedRoute,
+              private transactionService : TransactionService,
+              /*private groupService : GroupService*/) {
     this.transaction = new Transaction();
-
-    //Sample Data
-    let user1 = new User("Karl");
-    let user2 = new User("Gustav");
-    let user3 = new User("Hans");
-
-    this.participants.push(user1);
-    this.participants.push(user2);
-    this.participants.push(user3);
+    this.transaction.rhythm = "once";
+    this.transaction.type = "cost";
+    this.transaction.dueDate = new Date();
+    this.transaction.billingDate = new Date();
+    const testGroup = new Group("Test");
+    testGroup.users.push(new User("Tester"));
+    this.groups.push(testGroup);
+    //this.groups = groupService.findAll();
+    const groupId = this.route.snapshot.paramMap.get('group');
+    if (groupId) {
+      //this.transaction.group = this.groupService.findById(groupId);
+    }
   }
 
   calculateStakes() {
-    if(this.fairlyDistributedPrice){
-      if (this.participants.length > 0) {
-        let stake: number = this.price / this.participants.length;
-        for (let user of this.participants){
-          let stakeEntry = {user, stake};
-          this.stakes.push(stakeEntry)
+    if (this.transaction.group){
+      if (this.transaction.costs) {
+        if (this.fairlyDistributedPrice) {
+          let stake: number = this.transaction.costs / this.transaction.group.users.length;
+          for (let user of this.transaction.group.users) {
+            let stakeEntry = {user, stake};
+            this.stakes.push(stakeEntry)
+          }
         }
+      } else {
+        this.errors.set('costs', 'Bitte Betrag angeben.');
       }
+    } else {
+      this.errors.set('group', 'Bitte Gruppe auswählen.');
     }
   }
 
   nextPage(): void {
-    if (this.selectAllUsers && this.fairlyDistributedPrice){
-      this.calculateStakes();
-      this.save();
-      this.navCtrl.pop();
-      return;
-    }
-    if (!this.selectAllUsers) {
-      this.router.navigate(['transaction-participants', {fairlyDistributedPrice : this.fairlyDistributedPrice, users : this.participants}]);
-      return;
-    }
-    if (!this.fairlyDistributedPrice) {
-      this.router.navigate(['transaction-stakes', {participants : this.participants}]);
-      return;
+    if (this.transaction.purpose) {
+      if (this.transaction.costs) {
+        if (this.selectAllUsers && this.fairlyDistributedPrice) {
+          this.calculateStakes();
+          this.transactionService.persist(this.transaction);
+          this.navCtrl.pop();
+          return;
+        }
+        if (!this.selectAllUsers) {
+          this.transactionService.saveLocally(this.transaction);
+          this.router.navigate(['transaction-participants']);
+          return;
+        }
+        if (!this.fairlyDistributedPrice) {
+          this.transactionService.saveLocally(this.transaction);
+          this.router.navigate(['transaction-stakes']);
+          return;
+        }
+      } else {
+        this.errors.set('costs', 'Bitte Betrag angeben.');
+      }
+    } else {
+      this.errors.set('purpose', 'Bitte geben Sie einen Zweck an.');
     }
   }
 
   cancel() : void {
     this.navCtrl.pop();
-  }
-
-  save(): void {
-    //ToDo: save transaction
-    return
   }
 
   ngOnInit() {
