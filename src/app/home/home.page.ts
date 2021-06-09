@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
 import {TransactionService} from "../transaction.service";
-import firebase from "firebase";
-import {Transaction} from "../Transaction.model";
-import {Transaction_User} from "../Transaction_User.model";
+import {Transaction} from "../models/transaction.model";
+import {Transaction_User} from "../models/transactionUser.model";
 import {Subscription} from "rxjs";
+import {AuthService} from "../auth/auth.service";
+import {User} from "../models/user.model";
+import {GroupService} from "../group.service";
 
 
 @Component({
@@ -19,24 +21,24 @@ export class HomePage {
   pendingBill: Transaction_User[] = [];
   notConfirmed: Transaction_User[] = [];
   toConfirm: Transaction_User[] = [];
-  currentUser = {id: "10"};
+  currentUser: User;
 
-  constructor(public transactionService: TransactionService) {
-    this.transactions = [];
+  constructor(public transactionService: TransactionService, public authService: AuthService, public groupService: GroupService) {
+    this.currentUser = this.authService.currentUser;
   }
 
   add() {
     this.transactionService.newTransaction(new Transaction(
+      "gP8AW5UiVorhqX9Cp9FL",
       12,
       "Grillen",
       "Ausgabe",
-      false,
+      true,
       "einmalig",
-      "arnlew34",
-      [
-        new Transaction_User(6, "2"),
-        new Transaction_User(6, "3")
-      ]))
+      "qf4XQRDvbUJm9dVEZ0BT",
+    ), [
+      new Transaction_User(6, "FJD2mpSZ6PLDXDC3dNja")
+    ])
 
   }
 
@@ -44,6 +46,14 @@ export class HomePage {
     this.transactionService.findTransactionWithID(person.tid).then(transaction => {
       this.transactionService.deleteTransaction(transaction.id);
     });
+  }
+
+  async getGroupName(gid: string): Promise<string> {
+    let name;
+    await this.groupService.getGroupById(gid).then(g => {
+      name = g.name;
+    });
+    return name;
   }
 
   ionViewWillEnter() {
@@ -55,45 +65,49 @@ export class HomePage {
         this.notConfirmed = [];
         this.toConfirm = [];
         this.transactions.forEach(transaction => {
-          this.transactionService.getAllTransactionUser(transaction.id, "tid").then(transactionUser => {
-            transaction.people = transactionUser;
-            if (!transaction.pending) {
-              this.setArrays(transaction);
-            }
-          })
+          if(transaction.pending){
+            this.transactionService.getAllTransactionUser(transaction.id, "tid").then(transactionUser => {
+              transactionUser.forEach(tu => {
+                if(!tu.accepted){
+                  this.groupService.getGroupById(transaction.gid).then(g => tu.groupName = g.name);
+                  this.pushTransactionUser(tu, transaction.type, transaction.creator);
+                }
+              })
+            })
+          }
         });
       });
   }
 
-  setArrays(transaction: Transaction) {
-    transaction.people.forEach(person => {
-      if ((
-        (transaction.type === "Ausgabe" && person.uid === this.currentUser.id) ||
-        (transaction.type === "Einnahme" && transaction.creator === this.currentUser.id)
-      ) && !person.pending
-      ) {
-        this.openBill.push(person)
+  pushTransactionUser(transactionUser: Transaction_User, transactionType: string, transactionCreator: string) {
+      let userHasToPay: boolean;
+      if (transactionType === "Ausgabe" && transactionUser.uid === this.currentUser.id){
+        this.authService.getUserById(transactionCreator).then(u => transactionUser.displayName = u.displayName);
+        userHasToPay = true;
+      }else if(transactionType === "Einnahme" && transactionCreator === this.currentUser.id){
+        this.authService.getUserById(transactionUser.uid).then(u => transactionUser.displayName = u.displayName);
+        userHasToPay = true;
+      }else if(transactionType === "Einnahme" && transactionUser.uid === this.currentUser.id){
+        this.authService.getUserById(transactionCreator).then(u => transactionUser.displayName = u.displayName);
+        userHasToPay = false;
+      }else if(transactionType === "Ausgabe" && transactionCreator === this.currentUser.id){
+        this.authService.getUserById(transactionUser.uid).then(u => transactionUser.displayName = u.displayName);
+        userHasToPay = false;
       }
-      if ((
-        (transaction.type === "Einnahme" && person.uid === this.currentUser.id) ||
-        (transaction.type === "Ausgabe" && transaction.creator === this.currentUser.id)
-      ) && !person.pending
-      ) {
-        this.pendingBill.push(person)
+
+      if(userHasToPay){
+        if(transactionUser.pending){
+          this.notConfirmed.push(transactionUser);
+        }else{
+          this.openBill.push(transactionUser);
+        }
+      }else{
+        if(transactionUser.pending){
+          this.toConfirm.push(transactionUser);
+        }else{
+          this.pendingBill.push(transactionUser);
+        }
       }
-      if (
-        (transaction.type === "Einnahme" && person.uid === this.currentUser.id) &&
-        person.pending
-      ) {
-        this.notConfirmed.push(person);
-      }
-      if (
-        (transaction.type === "Ausgabe" && transaction.creator === this.currentUser.id) &&
-        person.pending
-      ) {
-        this.toConfirm.push(person)
-      }
-    })
   }
 
 

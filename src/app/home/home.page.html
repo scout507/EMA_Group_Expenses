@@ -9,41 +9,50 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
+
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <button (click)="add()">ADD</button>
+  <ion-button (click)="this.authService.logout()">logout</ion-button>
+  <ion-button (click)="add()">ADD</ion-button>
   <ion-list>
     <h2>Open Bill</h2>
-    <ion-item *ngFor="let person of openBill">
-      <p>UID: {{person.id}}</p>
-      <p>TID: {{person.tid}}</p>
-      <button (click)="delete(person)">delete</button>
+    <ion-item *ngFor="let tu of openBill">
+      <ion-label>
+        <h2>{{tu.displayName}}</h2>
+        <p>{{tu.groupName}}</p>
+        <p>{{tu.tid}}</p>
+      </ion-label>
     </ion-item>
   </ion-list>
   <ion-list>
     <h2>pending Bill</h2>
-    <ion-item *ngFor="let person of pendingBill">
-      <p>UID: {{person.id}}</p>
-      <p>TID: {{person.tid}}</p>
-      <button (click)="delete(person)">delete</button>
+    <ion-item *ngFor="let tu of pendingBill">
+      <ion-label>
+        <h2>{{tu.displayName}}</h2>
+        <p>{{tu.groupName}}</p>
+        <p>{{tu.tid}}</p>
+      </ion-label>
     </ion-item>
   </ion-list>
   <ion-list>
     <h2>not Confirmed</h2>
-    <ion-item *ngFor="let person of notConfirmed">
-      <p>UID: {{person.id}}</p>
-      <p>TID: {{person.tid}}</p>
-      <button (click)="delete(person)">delete</button>
+    <ion-item *ngFor="let tu of notConfirmed">
+      <ion-label>
+        <h2>{{tu.displayName}}</h2>
+        <p>{{tu.groupName}}</p>
+        <p>{{tu.tid}}</p>
+      </ion-label>
     </ion-item>
   </ion-list>
   <ion-list>
     <h2>to Confirm</h2>
-    <ion-item *ngFor="let person of toConfirm">
-      <p>UID: {{person.id}}</p>
-      <p>TID: {{person.tid}}</p>
-      <button (click)="delete(person)">delete</button>
+    <ion-item *ngFor="let tu of toConfirm">
+      <ion-label>
+        <h2>{{tu.displayName}}</h2>
+        <p>{{tu.groupName}}</p>
+        <p>{{tu.tid}}</p>
+      </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
