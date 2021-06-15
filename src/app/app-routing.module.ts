@@ -48,13 +48,18 @@ const routes: Routes = [
     loadChildren: () => import('./transaction/transaction-details/transaction-details.module').then( m => m.TransactionDetailsPageModule)
   },
   {
-    path: 'transaction-participants',
-    loadChildren: () => import('./transaction/transaction-participants/transaction-participants.module').then( m => m.TransactionParticipantsPageModule)
+    path: 'register',
+    loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'transaction-stakes',
-    loadChildren: () => import('./transaction/transaction-stakes/transaction-stakes.module').then( m => m.TransactionStakesPageModule)
+    path: 'login',
+    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'change-password',
+    loadChildren: () => import('./auth/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+  },
+
 ];
 
 @NgModule({

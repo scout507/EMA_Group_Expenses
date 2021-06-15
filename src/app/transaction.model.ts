@@ -11,9 +11,7 @@ export class Transaction{
   photo: any;
   creator: string;
 
-  //TODO figure out photo & person
-
-  constructor(gid, amount, purpose, type, pending, rhythm, creator, people?, purchaseDate?, dueDate?, photo?, id?){
+  constructor(gid, amount, purpose, type, pending, rhythm, creator, purchaseDate?, dueDate?, photo?, id?){
     this.gid = gid;
     this.id = id;
     this.amount = amount;
@@ -26,7 +24,4 @@ export class Transaction{
     this.photo = photo;
     this.creator = creator;
   }
-
-
-
 }

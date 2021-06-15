@@ -1,9 +1,4 @@
-export class User{
-  name : string;
-  avatar : any;
-
-  constructor(name : string){
-    this.name = name;
-
+export class User {
+  constructor(public userName: string, public displayName: string, public email: string, public id?: string) {
   }
 }
