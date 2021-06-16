@@ -20,32 +20,32 @@
   <ion-grid>
     <ion-row class="ion-justify-content-evenly">
       <ion-col class="ion-no-padding">
-          <ion-button expand="full" (click)="buttonHandler(0); filterTransactions('')">
+          <ion-button expand="full" (click)="buttonHandler(0); filterTransaction('')">
             <ion-text></ion-text>
             <ion-text>{{outgoing}}€ Ausgaben</ion-text>
           </ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-          <ion-button expand="full" (click)="buttonHandler(1); filterTransactions('')">{{incoming}}€ Einnahmen</ion-button>
+          <ion-button expand="full" (click)="buttonHandler(1); filterTransaction('')">{{incoming}}€ Einnahmen</ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-          <ion-button expand="full" (click)="buttonHandler(2); filterTransactions('')">{{pending}} Ausstehend</ion-button>
+          <ion-button expand="full" (click)="buttonHandler(2); filterTransaction('')">{{pending}} Ausstehend</ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-          <ion-button expand="full" (click)="buttonHandler(3); filterTransactions('')">{{confirm}} Bestätigen</ion-button>
+          <ion-button expand="full" (click)="buttonHandler(3); filterTransaction('')">{{confirm}} Bestätigen</ion-button>
       </ion-col>
     </ion-row>
 
   </ion-grid>
 
   <ion-list>
-      <ion-item button *ngFor="let transaction of filteredTransactions" (click)="viewTransaction(transaction)" lines="full">
+      <ion-item button *ngFor="let transaction of transactionUserArray" (click)="viewTransaction(transaction.tid)" lines="full">
         <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
           <ion-row>
           <ion-col align="left"><ion-img src="transaction.user.img"></ion-img></ion-col>
           <ion-col>
-            <div>{{transaction.purpose}}</div>
-            <div style="font-size: small">{{transaction.group}}</div>
+            <div>{{transaction.groupName}}</div>
+            <div style="font-size: small">{{transaction.displayName}}</div>
           </ion-col>
           <ion-col align="right" >{{transaction.amount}}€</ion-col>
           </ion-row>

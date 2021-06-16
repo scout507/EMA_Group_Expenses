@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { TransactionService } from "../transaction.service";
-import firebase from "firebase";
-import { Transaction } from "../Transaction.model";
-import { Transaction_User } from "../Transaction_User.model";
-import { Subscription } from "rxjs";
-import { userInfo } from 'os';
+import {Component} from '@angular/core';
+import {TransactionService} from "../transaction.service";
+import {Transaction} from "../models/transaction.model";
+import {Transaction_User} from "../models/transactionUser.model";
+import {Subscription} from "rxjs";
+import {User} from "../models/user.model";
+import {AuthService} from "../auth.service";
+import {GroupService} from "../group.service";
 
 
 @Component({
@@ -31,84 +32,97 @@ export class HomePage {
   currentUser: User;
   private subTransactions: Subscription;
   testing: boolean;
-  transactions: Transaction[];
-  filteredTransactions: Transaction[];
+  transactions: Transaction[] = [];
+  transactionUserArray: Transaction_User[] = [];
 
 
-  constructor(private transactionService: TransactionService) {
-    this.outgoingView = true;
-    this.transactions = transactionService.findAll();
-    this.filterTransactions("");
-    this.updateInfo();
-    this.transactions = [];
+  constructor(private transactionService: TransactionService, private authService: AuthService, private groupService: GroupService) {
   }
 
-  /*
   ionViewWillEnter() {
     this.subTransactions = this.transactionService.getAllTransactions()
       .subscribe(transactions => {
         this.transactions.splice(0, this.transactions.length, ...transactions);
-        this.openBill = [];
-        this.pendingBill = [];
-        this.notConfirmed = [];
-        this.toConfirm = [];
-        this.transactions.forEach(transaction => {
-          if(transaction.pending){
-            this.transactionService.getAllTransactionUser(transaction.id, "tid").then(transactionUser => {
-              transactionUser.forEach(tu => {
-                if(!tu.accepted){
-                  this.groupService.getGroupById(transaction.gid).then(g => tu.groupName = g.name);
-                  this.pushTransactionUser(tu, transaction.type, transaction.creator);
-                }
-              })
-            })
-          }
-        });
+        this.currentUser = this.authService.currentUser;
+        this.outgoingView = true;
+        this.filterTransaction("");
       });
   }
 
-  
-  setArrays(transaction: Transaction) {
-    transaction.people.forEach(person => {
-      if ((
-        (transaction.type === "Ausgabe" && person.uid === this.currentUser.id) ||
-        (transaction.type === "Einnahme" && transaction.creator === this.currentUser.id)
-      ) && !person.pending
-      ) {
-        this.openBill.push(person)
+  filterTransaction(searchTerm: string) {
+    this.transactionUserArray = [];
+    this.outgoing = 0;
+    this.incoming = 0;
+    this.pending = 0;
+    this.confirm = 0;
+    this.transactions.forEach(transaction => {
+      if (transaction.pending) {
+        this.transactionService.getAllTransactionUser(transaction.id, "tid").then(transactionUser => {
+          transactionUser.forEach(tu => {
+            if (transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) && !tu.accepted) {
+              this.groupService.getGroupById(transaction.gid).then(g => tu.groupName = g.name);
+              this.pushTransactionUser(tu, transaction.type, transaction.creator);
+            }
+          })
+        })
       }
-      if ((
-        (transaction.type === "Einnahme" && person.uid === this.currentUser.id) ||
-        (transaction.type === "Ausgabe" && transaction.creator === this.currentUser.id)
-      ) && !person.pending
-      ) {
-        this.pendingBill.push(person)
-      }
-      if (
-        (transaction.type === "Einnahme" && person.uid === this.currentUser.id) &&
-        person.pending
-      ) {
-        this.notConfirmed.push(person);
-      }
-      if (
-        (transaction.type === "Ausgabe" && transaction.creator === this.currentUser.id) &&
-        person.pending
-      ) {
-        this.toConfirm.push(person)
+    });
+  }
 
-        ionViewDidLeave() {
+  pushTransactionUser(transactionUser: Transaction_User, transactionType: string, transactionCreator: string) {
+    let outgoing: boolean;
+    if (transactionType === "Ausgabe" && transactionUser.uid === this.currentUser.id) {
+      this.authService.getUserById(transactionCreator).then(u => transactionUser.displayName = u.displayName);
+      outgoing = true;
+    } else if (transactionType === "Einnahme" && transactionCreator === this.currentUser.id) {
+      this.authService.getUserById(transactionUser.uid).then(u => transactionUser.displayName = u.displayName);
+      outgoing = true;
+    } else if (transactionType === "Einnahme" && transactionUser.uid === this.currentUser.id) {
+      this.authService.getUserById(transactionCreator).then(u => transactionUser.displayName = u.displayName);
+      outgoing = false;
+    } else if (transactionType === "Ausgabe" && transactionCreator === this.currentUser.id) {
+      this.authService.getUserById(transactionUser.uid).then(u => transactionUser.displayName = u.displayName);
+      outgoing = false;
+    }
+
+    if(outgoing){
+      if(transactionUser.pending){
+        this.pending++;
+        if(this.pendingView){
+          this.transactionUserArray.push(transactionUser);
+        }
+      }else{
+        this.outgoing += transactionUser.amount;
+        if(this.outgoingView){
+          this.transactionUserArray.push(transactionUser);
+        }
+      }
+    }else{
+      if(transactionUser.pending){
+        this.confirm++;
+        if(this.confirmView){
+          this.transactionUserArray.push(transactionUser);
+        }
+      }else{
+        this.incoming += transactionUser.amount;
+        if(this.incomingView){
+          this.transactionUserArray.push(transactionUser);
+        }
+      }
+    }
+  }
+
+  ionViewDidLeave() {
     this.subTransactions.unsubscribe();
   }
 
-  */
-
   doSearch() {
-    this.filterTransactions(this.search)
+    this.filterTransaction(this.search)
   }
 
   cancelSearch() {
     this.clearSearch();
-    this.filterTransactions("");
+    this.filterTransaction("");
     this.searchbarVisible = false;
   }
 
@@ -119,27 +133,6 @@ export class HomePage {
   startSearch() {
     this.searchbarVisible = true;
   }
-
-  filterTransactions(searchTerm: string) {
-    this.filteredTransactions = [];
-    //TODO add search option for search by user/group
-    this.transactions.forEach(transaction => {
-      if (this.outgoingView) {
-        if (transaction.type == "outgoing" && !transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
-          this.filteredTransactions.push(transaction);
-      } else if (this.incomingView) {
-        if (transaction.type == "incoming" && !transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
-          this.filteredTransactions.push(transaction);
-      } else if (this.pendingView) {
-        if (transaction.type == "outgoing" && transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
-          this.filteredTransactions.push(transaction);
-      } else {
-        if (transaction.type == "incoming" && transaction.pending && transaction.purpose.toLocaleLowerCase().includes(searchTerm))
-          this.filteredTransactions.push(transaction);
-      }
-    });
-  }
-
 
 
   buttonHandler(type: number) {
@@ -155,27 +148,8 @@ export class HomePage {
   }
 
 
-  viewTransaction(transaction: Transaction) {
+  viewTransaction(tid: string) {
 
   }
 
-  updateInfo() {
-    this.outgoing = 0;
-    this.incoming = 0;
-    this.pending = 0;
-    this.confirm = 0;
-    this.transactions.forEach(transaction => {
-      if (transaction.type == "outgoing" && !transaction.pending)
-        this.outgoing += transaction.amount;
-
-      else if (transaction.type == "incoming" && !transaction.pending)
-        this.incoming += transaction.amount;
-
-      else if (transaction.type == "outgoing" && transaction.pending)
-        this.pending++;
-
-      else if (transaction.type == "incoming" && transaction.pending)
-        this.confirm++;
-    })
-  }
 }

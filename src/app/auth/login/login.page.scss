@@ -1,0 +1,26 @@
+ion-content {
+  text-align: center;
+  .title {
+    margin-top: 50px;
+    font-size: 50px;
+  }
+  .forgotPassword {
+    color: #4c8dff;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  ion-label {
+    font-size: 20px;
+  }
+
+  ion-input {
+    border: solid 1px #0d0d0d;
+    border-radius: 10px;
+    width: 60%;
+    margin: 10px auto;
+    .hidePassword {
+      position: absolute;
+      right: 0
+    }
+  }
+}
