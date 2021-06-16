@@ -24,14 +24,16 @@ export class TransactionCreatePage implements OnInit {
               private navCtrl : NavController,
               private route: ActivatedRoute,
               private transactionService : TransactionService,
-              /*private groupService : GroupService*/) {
-    this.transaction = new Transaction();
+              private groupService : GroupService) {
+    const testGroup = new Group("abc", "Test");
+    const testUser = new User("Tester", "Max Mustermann", "max@muster.de")
+
+    this.transaction = new Transaction(testGroup.id, 0, "", "cost", true, "once", testUser);
     this.transaction.rhythm = "once";
     this.transaction.type = "cost";
     this.transaction.dueDate = new Date();
-    this.transaction.billingDate = new Date();
-    const testGroup = new Group("Test");
-    testGroup.users.push(new User("Tester"));
+    this.transaction.purchaseDate = new Date();
+    testGroup.users.push(testUser);
     this.groups.push(testGroup);
     //this.groups = groupService.findAll();
     const groupId = this.route.snapshot.paramMap.get('group');
@@ -41,11 +43,12 @@ export class TransactionCreatePage implements OnInit {
   }
 
   calculateStakes() {
-    if (this.transaction.group){
-      if (this.transaction.costs) {
+    if (this.transaction.gid){
+      let group = this.groupService.findById(this.transaction.gid);
+      if (this.transaction.amount) {
         if (this.fairlyDistributedPrice) {
-          let stake: number = this.transaction.costs / this.transaction.group.users.length;
-          for (let user of this.transaction.group.users) {
+          let stake: number = this.transaction.amount / group.users.length;
+          for (let user of group.users) {
             let stakeEntry = {user, stake};
             this.stakes.push(stakeEntry)
           }
@@ -60,7 +63,7 @@ export class TransactionCreatePage implements OnInit {
 
   nextPage(): void {
     if (this.transaction.purpose) {
-      if (this.transaction.costs) {
+      if (this.transaction.amount) {
         if (this.selectAllUsers && this.fairlyDistributedPrice) {
           this.calculateStakes();
           this.transactionService.persist(this.transaction);

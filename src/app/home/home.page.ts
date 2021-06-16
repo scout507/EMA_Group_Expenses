@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { TransactionService } from "../transaction.service";
 import firebase from "firebase";
 import { Transaction } from "../Transaction.model";
-import { Transaction_User } from "../Transaction_User.model";
+//import { Transaction_User } from "../Transaction_User.model";
 import { Subscription } from "rxjs";
-import { userInfo } from 'os';
+//import { userInfo } from 'os';
+import {User} from "../models/user.model";
 
 
 @Component({

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Transaction} from "../../models/transaction.model";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-transaction-details',
@@ -6,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transaction-details.page.scss'],
 })
 export class TransactionDetailsPage implements OnInit {
+  transaction : Transaction;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
+
+  ionViewWillEnter(){
+    this.transaction = JSON.parse(this.route.snapshot.paramMap.get('transaction'));
+  }
 
   ngOnInit() {
   }

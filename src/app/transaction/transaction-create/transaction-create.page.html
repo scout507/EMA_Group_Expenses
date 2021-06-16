@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-select [(ngModel)]="transaction.group" placeholder="Gruppe auswählen" class="ion-text-center">
+  <ion-select [(ngModel)]="transaction.gid" placeholder="Gruppe auswählen" class="ion-text-center">
     <ion-select-option *ngFor="let groupChoice of groups"
                        value="{{groupChoice}}">{{groupChoice.name}}</ion-select-option>
   </ion-select>
@@ -19,12 +19,12 @@
   </ion-item>
   <ion-item>
     <ion-label>Preis</ion-label>
-    <ion-input type="number" [(ngModel)]="transaction.costs" class="ion-text-right"></ion-input>
+    <ion-input type="number" [(ngModel)]="transaction.amount" class="ion-text-right"></ion-input>
     <ion-text>€</ion-text>
   </ion-item>
   <ion-item>
     <ion-label>Rechnungsdatum</ion-label>
-    <ion-datetime [(ngModel)]="transaction.billingDate" displayFormat="DD.MM.YYYY"></ion-datetime>
+    <ion-datetime [(ngModel)]="transaction.purchaseDate" displayFormat="DD.MM.YYYY"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label>Fälligkeitsdatum</ion-label>
