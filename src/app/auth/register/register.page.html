@@ -1,0 +1,36 @@
+<ion-content>
+  <p>Registrieren</p>
+  <br>
+
+  <ion-label>Benutzername</ion-label>
+  <ion-input [(ngModel)]="username"
+             placeholder="Benutzername"
+             type="text">
+  </ion-input>
+
+  <ion-label>E-mail</ion-label>
+  <ion-input [(ngModel)]="email"
+             placeholder="e-mail adresse"
+             type="text">
+  </ion-input>
+
+  <ion-label>Password</ion-label>
+  <ion-input type="password"
+             placeholder="password"
+             [(ngModel)]="password">
+  </ion-input>
+
+  <ion-label>Password wiederholen</ion-label>
+  <ion-input type="password"
+             placeholder="password"
+             [(ngModel)]="secondPassword">
+  </ion-input>
+
+  <ion-buttons class="ion-justify-content-center ion-margin">
+    <ion-button (click)="this.register()" fill="solid" color="primary">Registrieren</ion-button>
+  </ion-buttons>
+  <ion-buttons class="ion-justify-content-center ">
+    <ion-button (click)="router.navigate(['login'])" fill="solid" color="secondary">zurück zu Login</ion-button>
+  </ion-buttons>
+
+</ion-content>

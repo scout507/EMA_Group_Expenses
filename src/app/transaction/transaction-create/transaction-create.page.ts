@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Group} from "../../models/group.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NavController} from "@ionic/angular";
 import {User} from "../../models/user.model";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
+import {GroupService} from "../../services/group.service";
 
 @Component({
   selector: 'app-transaction-create',
@@ -12,23 +13,23 @@ import {TransactionService} from "../../services/transaction.service";
   styleUrls: ['./transaction-create.page.scss'],
 })
 export class TransactionCreatePage implements OnInit {
-  transaction : Transaction;
-  groups : Group[] = [];
-  stakes : {user : User, stake: number}[] = [];
-  selectAllUsers : boolean = true;
-  fairlyDistributedPrice : boolean = true;
+  transaction: Transaction;
+  groups: Group[] = [];
+  stakes: { user: User, stake: number }[] = [];
+  selectAllUsers: boolean = true;
+  fairlyDistributedPrice: boolean = true;
 
   errors: Map<string, string> = new Map<string, string>();
 
   constructor(private router: Router,
-              private navCtrl : NavController,
+              private navCtrl: NavController,
               private route: ActivatedRoute,
-              private transactionService : TransactionService,
-              private groupService : GroupService) {
+              private transactionService: TransactionService,
+              private groupService: GroupService) {
     const testGroup = new Group("abc", "Test");
     const testUser = new User("Tester", "Max Mustermann", "max@muster.de")
 
-    this.transaction = new Transaction(testGroup.id, 0, "", "cost", true, "once", testUser);
+    this.transaction = new Transaction(testGroup, 0, "", "cost", "once", testUser);
     this.transaction.rhythm = "once";
     this.transaction.type = "cost";
     this.transaction.dueDate = new Date();
@@ -43,26 +44,26 @@ export class TransactionCreatePage implements OnInit {
   }
 
   calculateStakes() {
-    if (this.transaction.gid){
-      let group = this.groupService.findById(this.transaction.gid);
-      if (this.transaction.amount) {
-        if (this.fairlyDistributedPrice) {
-          let stake: number = this.transaction.amount / group.users.length;
-          for (let user of group.users) {
-            let stakeEntry = {user, stake};
-            this.stakes.push(stakeEntry)
+    if (this.transaction.group) {
+        if (this.transaction.amount) {
+          if (this.fairlyDistributedPrice) {
+            let stake: number = this.transaction.amount / this.transaction.group.users.length;
+            for (let user of this.transaction.group.users) {
+              let stakeEntry = {user, stake};
+              this.stakes.push(stakeEntry)
+            }
           }
+        } else {
+          this.errors.set('costs', 'Bitte Betrag angeben.');
         }
-      } else {
-        this.errors.set('costs', 'Bitte Betrag angeben.');
-      }
     } else {
       this.errors.set('group', 'Bitte Gruppe auswählen.');
     }
   }
 
   nextPage(): void {
-    if (this.transaction.purpose) {
+    if (this.transaction.purpose
+    ) {
       if (this.transaction.amount) {
         if (this.selectAllUsers && this.fairlyDistributedPrice) {
           this.calculateStakes();
@@ -88,7 +89,9 @@ export class TransactionCreatePage implements OnInit {
     }
   }
 
-  cancel() : void {
+  cancel()
+    :
+    void {
     this.navCtrl.pop();
   }
 

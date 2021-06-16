@@ -1,32 +1,35 @@
+import {User} from "./user.model";
+import {Group} from "./group.model";
+
 export class Transaction{
   id: string;
-  gid: string;
+  group : Group;
   amount: number;
-  purpose: String;
+  purpose: string;
   type: string;
-  pending: boolean;
   purchaseDate: Date;
   dueDate: Date;
   rhythm: string;
   photo: any;
-  creator: string;
+  creator: User;
+
+  participation : Map<User, number>;
+  accepted : Map<User, boolean>;
+  paid : Map<User, boolean>;
 
   //TODO figure out photo & person
 
-  constructor(gid, amount, purpose, type, pending, rhythm, creator, people?, purchaseDate?, dueDate?, photo?, id?){
-    this.gid = gid;
+  constructor(group : Group, amount : number, purpose : string, type : string, rhythm : string, creator : User, purchaseDate?, dueDate?, photo?, id?){
+    this.group = group;
     this.id = id;
     this.amount = amount;
     this.purpose = purpose;
     this.type = type;
-    this.pending = pending;
     this.purchaseDate = purchaseDate;
     this.dueDate = dueDate;
     this.rhythm = rhythm;
     this.photo = photo;
     this.creator = creator;
   }
-
-
 
 }
