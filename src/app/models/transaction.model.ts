@@ -2,7 +2,7 @@ export class Transaction{
   id: string;
   gid: string;
   amount: number;
-  purpose: String;
+  purpose: string;
   type: string;
   pending: boolean;
   purchaseDate: Date;
