@@ -47,6 +47,19 @@ const routes: Routes = [
     path: 'transaction-details',
     loadChildren: () => import('./transaction/transaction-details/transaction-details.module').then( m => m.TransactionDetailsPageModule)
   },
+  {
+    path: 'password',
+    loadChildren: () => import('./profile/password/password.module').then( m => m.PasswordPageModule)
+  },
+  {
+    path: 'payment',
+    loadChildren: () => import('./profile/payment/payment.module').then( m => m.PaymentPageModule)
+  },  {
+    path: 'privacy',
+    loadChildren: () => import('./profile/privacy/privacy.module').then( m => m.PrivacyPageModule)
+  },
+
+
 ];
 
 @NgModule({
