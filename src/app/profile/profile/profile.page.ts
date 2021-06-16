@@ -21,9 +21,10 @@ export class ProfilePage implements OnInit {
   lastname = "Mustermann";
   profileImage = "https://bit.ly/2S904CS";
   description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et uptua. Atdolores etat.";
+  // TODO: Daten in Modal
 
   constructor(private router: Router) {
-
+    // TODO: Daten Laden aus Service
   }
 
   ngOnInit() {
@@ -44,7 +45,7 @@ export class ProfilePage implements OnInit {
   async badgeDescription(badgename) {
     const alert = document.createElement('ion-alert');
     alert.header = 'Auszeichnung';
-    alert.message = badgename;
+    alert.message = badgename; // TODO: Name der Ausszeichnung
     alert.buttons = [{ text: "schließen" }];
 
     document.body.appendChild(alert);
