@@ -1,9 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>payment</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="backBtn()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Zahlungsmittel Option</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="saveBtn()">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label class="ion-text-center">Zahlungsmittel vorhanden</ion-label>
+    </ion-item>
 
+    <ion-item>
+      <ion-label>Bar</ion-label>
+      <ion-toggle [(ngModel)]="cash"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>EC-Karte</ion-label>
+      <ion-toggle [(ngModel)]="ec_card"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Kreditkarte</ion-label>
+      <ion-toggle [(ngModel)]="kreditcard"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Paypal</ion-label>
+      <ion-toggle [(ngModel)]="paypal"></ion-toggle>
+    </ion-item>
+  </ion-list>
 </ion-content>
