@@ -3,6 +3,7 @@ import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/firest
 import {Group} from "../models/group.model";
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
+import {User} from "../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,14 @@ export class GroupService {
       doc.forEach(g => {
         g.data().members.forEach(member => {
           if(member.toString() === id){
+            let members: User[] = [];
+            g.data().members.forEach(m => {
+              this.authService.getUserById(m.toString()).then(u => {
+                members.push(u);
+              })
+            });
             let group = g.data();
+            group.members = members;
             group.id = g.id;
             groups.push(group);
           }

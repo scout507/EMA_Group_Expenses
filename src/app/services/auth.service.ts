@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private auth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
     this.userCollection = afs.collection<User>('User');
     //TESTING
-    this.currentUser = new User("ralf", "ralf", "ralf2@web.de", "FJD2mpSZ6PLDXDC3dNja", ["qf4XQRDvbUJm9dVEZ0BT"])
+    //this.currentUser = new User("ralf", "ralf", "ralf2@web.de", "FJD2mpSZ6PLDXDC3dNja", ["qf4XQRDvbUJm9dVEZ0BT"])
     //TESTING
   }
 
@@ -34,9 +34,11 @@ export class AuthService {
 
   login(email: string, password: string){
     this.auth.signInWithEmailAndPassword(email, password)
-      .then(async (result) => {
-        this.currentUser = await this.getUser(email);
-        await this.router.navigate(['home'])
+      .then((result) => {
+        this.getUser(email).then(user => {
+          this.currentUser = user;
+          this.router.navigate(['home']);
+        });
       })
       .catch((error) => {
         console.log(error.message);
@@ -77,6 +79,7 @@ export class AuthService {
       col.forEach(doc => {
         if(doc.data().email === email){
           user = doc.data();
+          user.id = doc.id;
         }
       });
       return user;
@@ -86,6 +89,8 @@ export class AuthService {
   copyAndPrepareUser(user: User): User{
     const copy = {...user};
     delete copy.id;
+    delete copy.friends;
+    delete copy.profilePic;
     return copy;
   }
 
