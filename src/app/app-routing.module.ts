@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'group-list',
     pathMatch: 'full'
   },
   {
@@ -70,7 +70,11 @@ const routes: Routes = [
   {
     path: 'change-password',
     loadChildren: () => import('./auth/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+  },  {
+    path: 'add-members',
+    loadChildren: () => import('./group/add-members/add-members.module').then( m => m.AddMembersPageModule)
   },
+
 
 
 ];
