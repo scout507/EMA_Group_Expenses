@@ -22,6 +22,12 @@ export class TransactionCreatePage implements OnInit {
 
   errors: Map<string, string> = new Map<string, string>();
 
+  ionViewWillEnter(){
+    this.groupService.getGroupsByUserId(this.authService.currentUser.id).then(groups => {
+      this.groups = groups;
+    });
+  }
+
   constructor(private router: Router,
               private navCtrl: NavController,
               private route: ActivatedRoute,
@@ -30,9 +36,6 @@ export class TransactionCreatePage implements OnInit {
               private authService : AuthService) {
 
     this.transaction = new Transaction(0, "", "cost", "once", authService.currentUser, new Date(), new Date());
-    this.groupService.getGroupsByUserId(authService.currentUser.id).then(groups => {
-      this.groups = groups;
-    });
     const groupId = this.route.snapshot.paramMap.get('group');
     if (groupId) {
       this.groupService.getGroupById(groupId).then(group => {
@@ -45,8 +48,9 @@ export class TransactionCreatePage implements OnInit {
     if (this.transaction.group) {
         if (this.transaction.amount) {
           if (this.fairlyDistributedPrice) {
-            let stake: number = this.transaction.amount / this.transaction.group.users.length;
-            for (let user of this.transaction.group.users) {
+            console.log(this.transaction);
+            let stake: number = this.transaction.amount / this.transaction.group.members.length;
+            for (let user of this.transaction.group.members) {
               let stakeEntry = {user, stake};
               this.stakes.push(stakeEntry)
             }
@@ -65,6 +69,7 @@ export class TransactionCreatePage implements OnInit {
       if (this.transaction.amount) {
         if (this.selectAllUsers && this.fairlyDistributedPrice) {
           this.calculateStakes();
+          console.log(this.transaction);
           this.transactionService.persist(this.transaction);
           this.navCtrl.pop();
           return;

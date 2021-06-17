@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private auth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
     this.userCollection = afs.collection<User>('User');
     //TESTING
-    this.currentUser = new User("ralf", "ralf", "ralf2@web.de", "FJD2mpSZ6PLDXDC3dNja")
+    this.currentUser = new User("ralf", "ralf", "ralf2@web.de", "FJD2mpSZ6PLDXDC3dNja", ["qf4XQRDvbUJm9dVEZ0BT"])
     //TESTING
   }
 
@@ -55,8 +55,10 @@ export class AuthService {
   }
 
   getUserById(id: string){
-    return this.userCollection.doc(id).get().toPromise().then(user => {
-      return user.data();
+    return this.userCollection.doc(id).get().toPromise().then(u => {
+      let user = u.data();
+      user.id = u.id;
+      return user;
     })
   }
 

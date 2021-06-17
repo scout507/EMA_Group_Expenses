@@ -19,6 +19,7 @@ export class TransactionService {
     delete copy.id;
     delete copy.group;
     delete copy.creator;
+    copy.photo = transaction.photo || null;
     copy.group = transaction.group.id;
     copy.creator = transaction.creator.id;
     return copy;

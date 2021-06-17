@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../models/user.model";
 import {Transaction} from "../../models/transaction.model";
+import {TransactionService} from "../../services/transaction.service";
 
 @Component({
   selector: 'app-transaction-participants',
@@ -13,7 +14,11 @@ export class TransactionParticipantsPage implements OnInit {
   fairlyDistributedCosts : boolean;
   transaction : Transaction;
 
-  constructor() {
+  ionViewWillEnter(){
+    this.transaction = this.transactionService.getLocally();
+  }
+
+  constructor(private transactionService : TransactionService) {
     this.transaction = JSON.parse(localStorage.getItem('transaction'));
   }
 

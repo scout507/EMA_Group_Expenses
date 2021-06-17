@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-select [(ngModel)]="transaction.gid" placeholder="Gruppe auswählen" class="ion-text-center">
+  <ion-select [(ngModel)]="transaction.group" placeholder="Gruppe auswählen" class="ion-text-center">
     <ion-select-option *ngFor="let groupChoice of groups"
-                       value="{{groupChoice}}">{{groupChoice.name}}</ion-select-option>
+                       [value]="groupChoice">{{groupChoice.name}}</ion-select-option>
   </ion-select>
   <ion-select [(ngModel)]="transaction.type" class="ion-text-center">
     <ion-select-option value="income">Einnahme</ion-select-option>
