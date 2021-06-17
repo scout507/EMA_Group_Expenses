@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Transaction} from "../../models/transaction.model";
 import {ActivatedRoute} from "@angular/router";
+import {TransactionService} from "../../services/transaction.service";
 
 @Component({
   selector: 'app-transaction-details',
@@ -10,10 +11,14 @@ import {ActivatedRoute} from "@angular/router";
 export class TransactionDetailsPage implements OnInit {
   transaction : Transaction;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private transactionService : TransactionService) { }
 
   ionViewWillEnter(){
+
     this.transaction = JSON.parse(this.route.snapshot.paramMap.get('transaction'));
+    if (!this.transaction) {
+      this.transaction = this.transactionService.getLocally();
+    }
   }
 
   ngOnInit() {

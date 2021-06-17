@@ -11,7 +11,7 @@ export class TransactionService {
   transactionCollection: AngularFirestoreCollection<Transaction>;
 
   constructor(private afs: AngularFirestore) {
-    this.transactionCollection = afs.collection<Transaction>('transactions');
+    this.transactionCollection = afs.collection<Transaction>('Transaction');
   }
 
   private copyAndPrepare(transaction: Transaction) {
@@ -41,8 +41,13 @@ export class TransactionService {
     this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
-  getAllTransactions(): Promise<QuerySnapshot<Transaction>> {
-    return this.transactionCollection.get().toPromise();
+  getAllTransactions(){
+    return this.transactionCollection.get().toPromise().then( result =>
+        result.docs.map(doc => {
+        const transaction = doc.data();
+        transaction.id = doc.id;
+        return transaction;
+      }));
   }
 
   findTransactionByUser(user: User): Transaction[] {
@@ -81,29 +86,19 @@ export class TransactionService {
     });
   }
 
-  findAllSync()
-    :
-    Observable<Transaction[]> {
+  findAllSync(): Observable<Transaction[]> {
     return this.transactionCollection.valueChanges({idField: 'id'});
   }
 
-  delete(id
-           :
-           string
-  ) {
+  delete(id: string) {
     this.transactionCollection.doc(id).delete();
   }
 
-  saveLocally(transaction
-                :
-                Transaction
-  ) {
+  saveLocally(transaction : Transaction){
     localStorage.setItem('transaction', JSON.stringify(transaction))
   }
 
-  getLocally()
-    :
-    Transaction {
+  getLocally(): Transaction{
     return JSON.parse(localStorage.getItem('transaction'));
   }
 }
