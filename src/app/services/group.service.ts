@@ -18,4 +18,21 @@ export class GroupService {
       return group.data();
     })
   }
+
+  getGroupsByUserId(id: string): Promise<Group[]>{
+    return this.groupCollection.get().toPromise().then(doc => {
+      let groups: Group[] = [];
+      doc.forEach(g => {
+        g.data().users.forEach(member => {
+          if(member.toString() === id){
+            let group = g.data();
+            group.id = g.id;
+            groups.push(group);
+          }
+        })
+      });
+      return groups;
+    })
+  }
+
 }

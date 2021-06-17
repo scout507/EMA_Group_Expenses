@@ -6,6 +6,7 @@ import {User} from "../../models/user.model";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
 import {GroupService} from "../../services/group.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-transaction-create',
@@ -25,21 +26,18 @@ export class TransactionCreatePage implements OnInit {
               private navCtrl: NavController,
               private route: ActivatedRoute,
               private transactionService: TransactionService,
-              private groupService: GroupService) {
-    const testGroup = new Group("abc", "Test");
-    const testUser = new User("Tester", "Max Mustermann", "max@muster.de")
+              private groupService: GroupService,
+              private authService : AuthService) {
 
-    this.transaction = new Transaction(testGroup, 0, "", "cost", "once", testUser);
-    this.transaction.rhythm = "once";
-    this.transaction.type = "cost";
-    this.transaction.dueDate = new Date();
-    this.transaction.purchaseDate = new Date();
-    testGroup.users.push(testUser);
-    this.groups.push(testGroup);
-    //this.groups = groupService.findAll();
+    this.transaction = new Transaction(0, "", "cost", "once", authService.currentUser, new Date(), new Date());
+    this.groupService.getGroupsByUserId(authService.currentUser.id).then(groups => {
+      this.groups = groups;
+    });
     const groupId = this.route.snapshot.paramMap.get('group');
     if (groupId) {
-      //this.transaction.group = this.groupService.findById(groupId);
+      this.groupService.getGroupById(groupId).then(group => {
+        this.transaction.group = group;
+      });
     }
   }
 

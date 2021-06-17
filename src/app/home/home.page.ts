@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {TransactionService} from "../services/transaction.service";
 import {Transaction} from "../models/transaction.model";
-import {Transaction_User} from "../models/transactionUser.model";
 import {Subscription} from "rxjs";
 import {User} from "../models/user.model";
 import {AuthService} from "../services/auth.service";
@@ -33,7 +32,6 @@ export class HomePage {
   private subTransactions: Subscription;
   testing: boolean;
   transactions: Transaction[] = [];
-  transactionUserArray: Transaction_User[] = [];
 
 
   constructor(private transactionService: TransactionService, private authService: AuthService, private groupService: GroupService) {
@@ -50,13 +48,12 @@ export class HomePage {
   }
 
   filterTransaction(searchTerm: string) {
-    this.transactionUserArray = [];
     this.outgoing = 0;
     this.incoming = 0;
     this.pending = 0;
     this.confirm = 0;
     this.transactions.forEach(transaction => {
-      if (transaction.pending) {
+      if (this.transactionService.isTransactionPending(transaction)) {
         this.transactionService.getAllTransactionUser(transaction.id).then(transactionUser => {
           transactionUser.forEach(tu => {
             if (transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) && !tu.accepted) {

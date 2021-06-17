@@ -19,7 +19,7 @@ export class Transaction{
 
   //TODO figure out photo & person
 
-  constructor(group : Group, amount : number, purpose : string, type : string, rhythm : string, creator : User, purchaseDate?, dueDate?, photo?, id?){
+  constructor(amount : number, purpose : string, type : string, rhythm : string, creator : User, purchaseDate? : Date, dueDate? : Date, photo? : any, id? : string, group? : Group){
     this.group = group;
     this.id = id;
     this.amount = amount;
