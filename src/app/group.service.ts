@@ -35,25 +35,25 @@ export class GroupService {
     })
   }
 
-
+  getGroupsByUserId(id: string): Promise<Group[]>{
+    return this.groupCollection.get().toPromise().then(doc => {
+      let groups: Group[] = [];
+      doc.forEach(g => {
+        g.data().members.forEach(member => {
+          if(member.toString() === id){
+            let group = g.data();
+            group.id = g.id;
+            groups.push(group);
+          }
+        })
+      });
+      return groups;
+    })
+  }
 
   copyAndPrepare(group: Group): Group{
     const copy: any = {...group};
-    delete copy.id;getGroupsByUserId(id: string): Promise<Group[]>{
-      return this.groupCollection.get().toPromise().then(doc => {
-        let groups: Group[] = [];
-        doc.forEach(g => {
-          g.data().members.forEach(member => {
-            if(member.toString() === id){
-              let group = g.data();
-              group.id = g.id;
-              groups.push(group);
-            }
-          })
-        });
-        return groups;
-      })
-    }
+    delete copy.id;
     copy.members = [];
     group.members.forEach(member => {
       copy.members.push(member.id);
