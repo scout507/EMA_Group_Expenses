@@ -13,7 +13,7 @@ export class TransactionService{
   //ToDo: Filter Methode zur Suche einer Transaktion(return wert) anhand eines Users (Parameter). Suche innerhalb von Creator + Participation.
 
   constructor(private afs: AngularFirestore) {
-    this.transactionCollection = afs.collection<Transaction>('transactions');
+    this.transactionCollection = afs.collection<Transaction>('Transaction');
   }
 
   private copyAndPrepare(transaction : Transaction){
@@ -31,16 +31,21 @@ export class TransactionService{
     return true;
   }
 
-  persist(transaction : Transaction): void{
+  persist(transaction: Transaction): void{
     this.transactionCollection.add(this.copyAndPrepare(transaction));
   }
 
-  update(transaction : Transaction): void{
+  update(transaction: Transaction): void{
     this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
-  getAllTransactions(): Promise<QuerySnapshot<Transaction>>{
-    return this.transactionCollection.get().toPromise();
+  getAllTransactions(){
+    return this.transactionCollection.get().toPromise().then( result =>
+        result.docs.map(doc => {
+        const transaction = doc.data();
+        transaction.id = doc.id;
+        return transaction;
+      }));
   }
 
   getAllTransactionUser(id : string): Promise<User[]>{
