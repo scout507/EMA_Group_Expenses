@@ -130,8 +130,9 @@ export class HomePage {
   }
 
 
-  viewTransaction(tid: Transaction) {
-    this.router.navigate(['transaction-details', {transaction: JSON.stringify(tid)}])
+  viewTransaction(transaction: Transaction) {
+    console.log(transaction);
+    this.router.navigate(['transaction-details', {transaction: JSON.stringify(transaction)}]);
   }
 
   updateTransactions(){

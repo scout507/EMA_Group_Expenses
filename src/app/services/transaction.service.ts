@@ -96,7 +96,7 @@ export class TransactionService {
   }
 
   saveLocally(transaction : Transaction){
-    localStorage.setItem('transaction', JSON.stringify(transaction))
+    localStorage.setItem('transaction', JSON.stringify(transaction));
   }
 
   getLocally(): Transaction{
