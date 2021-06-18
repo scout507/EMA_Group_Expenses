@@ -131,7 +131,8 @@ export class HomePage {
 
 
   viewTransaction(tid: Transaction) {
-    this.router.navigate(['transaction-details', {transaction: JSON.stringify(tid)}])
+    this.transactionService.saveLocally(tid);
+    this.router.navigate(['transaction-details'])
   }
 
   updateTransactions(){

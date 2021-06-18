@@ -28,9 +28,11 @@ export class GroupService {
   }
 
   getGroupById(id: string): Promise<Group>{
-    return this.groupCollection.doc(id).get().toPromise().then(g => {
+    return this.groupCollection.doc(id).get().toPromise().then((g: any) => {
       let group = g.data();
       group.id = g.id;
+      group.members = [];
+      g.data().members.forEach(uid => group.members.push(this.authService.getUserById(uid)));
       return group;
     })
   }

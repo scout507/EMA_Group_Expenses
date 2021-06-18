@@ -3,6 +3,8 @@ import {Observable} from "rxjs";
 import {AngularFirestore, AngularFirestoreCollection, QuerySnapshot} from "@angular/fire/firestore";
 import {Injectable} from "@angular/core";
 import {User} from "../models/user.model";
+import {AuthService} from "./auth.service";
+import {GroupService} from "./group.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ import {User} from "../models/user.model";
 export class TransactionService {
   transactionCollection: AngularFirestoreCollection<Transaction>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private authService : AuthService, private groupService : GroupService) {
     this.transactionCollection = afs.collection<Transaction>('Transaction');
   }
 
@@ -42,11 +44,13 @@ export class TransactionService {
     this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
-  getAllTransactions(){
+  getAllTransactions() : Promise<Transaction[]> {
     return this.transactionCollection.get().toPromise().then( result =>
-        result.docs.map(doc => {
+        result.docs.map((doc : any) => {
         const transaction = doc.data();
         transaction.id = doc.id;
+        transaction.creator = this.authService.getUserById(doc.data().creator);
+        transaction.group = this.groupService.getGroupById(doc.data().gid);
         return transaction;
       }));
   }

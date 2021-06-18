@@ -16,9 +16,7 @@ export class TransactionDetailsPage implements OnInit {
   ionViewWillEnter(){
 
     this.transaction = JSON.parse(this.route.snapshot.paramMap.get('transaction'));
-    if (!this.transaction) {
-      this.transaction = this.transactionService.getLocally();
-    }
+
   }
 
   ngOnInit() {
