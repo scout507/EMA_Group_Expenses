@@ -48,7 +48,6 @@ export class TransactionService {
       this.authService.getUserById(transaction.creator).then(user => transaction.creator = user);
       this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
     });
-    console.log(transactions);
     return transactions;
   }
 

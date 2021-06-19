@@ -94,10 +94,6 @@ export class HomePage {
   }
 
 
-  ionViewDidLeave() {
-    this.subTransactions.unsubscribe();
-  }
-
   doSearch() {
     this.filterTransaction(this.search);
   }
@@ -130,6 +126,10 @@ export class HomePage {
     else this.confirmView = true;
   }
 
+
+  viewTransaction(transaction: Transaction) {
+    this.router.navigate(['transaction-details', {transaction: JSON.stringify(transaction)}]);
+  }
 
   updateTransactions(){
     //for the counter
