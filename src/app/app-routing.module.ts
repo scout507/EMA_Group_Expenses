@@ -58,6 +58,10 @@ const routes: Routes = [
     path: 'privacy',
     loadChildren: () => import('./profile/privacy/privacy.module').then( m => m.PrivacyPageModule)
   },
+  {
+    path: 'friend-profile',
+    loadChildren: () => import('./profile/friend-profile/friend-profile.module').then( m => m.FriendProfilePageModule)
+  },
 
 
 ];
