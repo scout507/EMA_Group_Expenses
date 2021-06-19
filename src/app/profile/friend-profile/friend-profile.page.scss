@@ -1,0 +1,36 @@
+.profileImg {
+    border-radius: 50%;
+    display: block;
+}
+
+.profileImgCol{
+    max-width: 160px;
+    //margin-left: auto;
+}
+
+.profileDescriptionCol{
+    max-width: 300px;
+    margin-left: 10px;
+    //margin-right: auto;
+}
+
+.grid{
+    margin-top: 20px;
+}
+
+.name{
+    font-weight: bold;
+}
+
+.icons{
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.iconsCol{
+    margin-top: 10px;
+}
+
+.row{
+    justify-content: center;
+}
