@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../user.model';
+import { ProfileService } from './profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,10 +23,15 @@ export class ProfilePage implements OnInit {
   lastname = "Mustermann";
   profileImage = "https://bit.ly/2S904CS";
   description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et uptua. Atdolores etat.";
-  // TODO: Daten in Modal
+  user: User;
+  private subUser;
 
-  constructor(private router: Router) {
-    // TODO: Daten Laden aus Service
+  constructor(private router: Router, private profileService: ProfileService) {
+    //profileService.findById("w2Zc9cjVRA21Os8ELOh5").then(item => this.user = item);
+    //this.firstname = this.user.firstname;
+    //this.lastname = this.user.lastname;
+    //this.profileImage = this.user.image;
+    //this.description = this.user.description;
   }
 
   ngOnInit() {
