@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../user.model';
-import { ProfileService } from './profile.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,22 +19,23 @@ export class ProfilePage implements OnInit {
   [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
   [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"]];
 
-  firstname = "Max";
-  lastname = "Mustermann";
-  profileImage = "https://bit.ly/2S904CS";
-  description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et uptua. Atdolores etat.";
-  user: User;
-  private subUser;
+  user: User = new User();
 
-  constructor(private router: Router, private profileService: ProfileService) {
-    //profileService.findById("w2Zc9cjVRA21Os8ELOh5").then(item => this.user = item);
-    //this.firstname = this.user.firstname;
-    //this.lastname = this.user.lastname;
-    //this.profileImage = this.user.image;
-    //this.description = this.user.description;
+  constructor(private router: Router, private userService: UserService) {
+    this.loadData();
+  }
+
+  ionViewWillEnter() {
+    this.loadData();
   }
 
   ngOnInit() {
+  }
+
+  async loadData() {
+    await this.userService.findById("w2Zc9cjVRA21Os8ELOh5").then(value => {
+      this.user = { ...value };
+    });
   }
 
   friendlist() {
