@@ -18,20 +18,20 @@
   <ion-grid>
     <ion-row>
       <ion-col class="profileImgCol">
-        <img (click)="profileImageChange()" class="profileImg" src={{profileImage}}>
+        <img (click)="profileImageChange()" class="profileImg" src={{user.image}}>
       </ion-col>
       <ion-col>
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-input maxlength=20 [(ngModel)]="firstname"></ion-input>
+              <ion-input maxlength=20 [(ngModel)]="user.firstname"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-input maxlength=20 [(ngModel)]="lastname"></ion-input>
+              <ion-input maxlength=20 [(ngModel)]="user.lastname"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -39,7 +39,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-textarea class="description" maxlength=160 rows=5 [(ngModel)]="description"></ion-textarea>
+  <ion-textarea class="description" maxlength=160 rows=5 [(ngModel)]="user.description"></ion-textarea>
   
   <ion-list lines="full">
     <ion-item button (click)="payment()">Zahlungsmittel</ion-item>

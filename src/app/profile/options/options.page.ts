@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-options',
@@ -7,46 +9,40 @@ import { Router } from '@angular/router';
   styleUrls: ['./options.page.scss'],
 })
 export class OptionsPage implements OnInit {
-  // TODO: Daten in Modal
-  firstname: String;
-  lastname: String;
-  profileImage: String;
-  description: String;
-  firstnameOld: String;
-  lastnameOld: String;
-  profileImageOld: String;
-  descriptionOld: String;
+  user: User = new User();
+  userOld: User = new User();
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
+    this.loadData();
   }
 
   ngOnInit() {
   }
 
   ionViewWillEnter() {
-    // TODO: Daten Laden aus Service
-    this.firstnameOld = "Max";
-    this.lastnameOld = "Mustermann";
-    this.profileImageOld = "https://bit.ly/2S904CS";
-    this.descriptionOld = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et uptua. Atdolores etat.";
-    
-    this.firstname = this.firstnameOld;
-    this.lastname = this.lastnameOld;
-    this.profileImage = this.profileImageOld;
-    this.description = this.descriptionOld;
+    this.loadData();
+  }
+
+  async loadData() {
+    await this.userService.findById("w2Zc9cjVRA21Os8ELOh5").then(value => {
+      this.userOld = { ...value };
+      this.user = { ...value };
+    });
   }
 
   async backBtn() {
-    if (this.firstname != this.firstnameOld || this.lastname != this.lastnameOld || this.profileImage != this.profileImageOld || this.description != this.descriptionOld) {
-    const alert = document.createElement('ion-alert');
-    alert.header = 'Änderungen verwefen?';
-    alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
+    if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
+      const alert = document.createElement('ion-alert');
+      alert.header = 'Änderungen verwefen?';
+      alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
 
-    document.body.appendChild(alert);
-    await alert.present();
-    var rsl = await alert.onDidDismiss();
-    if (rsl.role == "yes")
-      this.router.navigate(['profile']);
+      document.body.appendChild(alert);
+      await alert.present();
+      var rsl = await alert.onDidDismiss();
+      if (rsl.role == "yes") {
+        this.user = this.userOld;
+        this.router.navigate(['profile']);
+      }
     }
     else {
       this.router.navigate(['profile']);
@@ -54,17 +50,23 @@ export class OptionsPage implements OnInit {
   }
 
   async saveBtn() {
-    const alert = document.createElement('ion-alert');
-    alert.header = 'Änderungen speichern?';
-    alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
+    if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
+      const alert = document.createElement('ion-alert');
+      alert.header = 'Änderungen speichern?';
+      alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
 
-    document.body.appendChild(alert);
-    await alert.present();
-    var rsl = await alert.onDidDismiss();
+      document.body.appendChild(alert);
+      await alert.present();
+      var rsl = await alert.onDidDismiss();
 
-    if (rsl.role == "yes")
+      if (rsl.role == "yes") {
+        this.userService.update(this.user);
+        this.router.navigate(['profile']);
+      }
+    }
+    else {
       this.router.navigate(['profile']);
-    // TODO: Über Service speichern
+    }
   }
 
   profileImageChange() {
