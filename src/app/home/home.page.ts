@@ -27,6 +27,7 @@ export class HomePage {
   outgoing: number;
 
   testing: boolean;
+  rawTransactions: Transaction[] = [];
   transactions: Transaction[] = [];
   filteredTransactions: Transaction[] = [];
   currentUser: User;
@@ -37,23 +38,22 @@ export class HomePage {
   private subTransactions: Subscription;
 
 
+
   constructor(private transactionService: TransactionService, private authService: AuthService, private groupService: GroupService, private router : Router) {
   }
 
   ionViewWillEnter() {
+    this.transactions = [];
     this.search = '';
     this.outgoingView = true;
     this.currentUser = this.authService.currentUser;
     this.transactionService.getAllTransactions().then( result => {
       this.transactions.push(...result);
+      this.filterTransaction(this.search);
+      this.updateTransactions();
     });
-    this.subTransactions = this.transactionService.findAllSync()
-      .subscribe(transactions => {
-        this.updateTransactions();
-        this.transactions.splice(0, this.transactions.length, ...transactions);
-        this.filterTransaction(this.search);
-      });
   }
+
 
 
   filterTransaction(searchTerm: string) {
@@ -62,29 +62,29 @@ export class HomePage {
       //TODO: add pending & add multiple search options
       if(transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())) {
         if (this.outgoingView) {
-          if (transaction.type === "Ausgabe" && transaction.creator !== this.currentUser) {
+          if (transaction.type === "cost" && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "Einnahme" && transaction.creator === this.currentUser){
+          } else if (transaction.type === "income" && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }else if (this.incomingView) {
-          if (transaction.type === "Einnahme" && transaction.creator !== this.currentUser) {
+          if (transaction.type === "income" && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "Ausgabe" && transaction.creator === this.currentUser){
+          } else if (transaction.type === "cost" && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }
         else if (this.pendingView) {
-          if (transaction.type === "Ausgabe" && transaction.creator !== this.currentUser) {
+          if (transaction.type === "cost" && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "Einnahme" && transaction.creator === this.currentUser){
+          } else if (transaction.type === "income" && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }
         else if (this.confirmView) {
-          if (transaction.type === "Einnahme" && transaction.creator !== this.currentUser) {
+          if (transaction.type === "income" && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "Ausgabe" && transaction.creator === this.currentUser){
+          } else if (transaction.type === "cost" && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }
@@ -114,6 +114,7 @@ export class HomePage {
 
   startSearch() {
     this.searchbarVisible = true;
+    console.log(this.transactions);
   }
 
 
@@ -130,11 +131,6 @@ export class HomePage {
   }
 
 
-  viewTransaction(transaction: Transaction) {
-    console.log(transaction);
-    this.router.navigate(['transaction-details', {transaction: JSON.stringify(transaction)}]);
-  }
-
   updateTransactions(){
     //for the counter
     this.outgoing = 0;
@@ -143,28 +139,28 @@ export class HomePage {
     this.confirm = 0;
     //TODO: add pending
     this.transactions.forEach(transaction => {
-      if (transaction.type === 'Ausgabe') {
+      if (transaction.type === 'cost') {
         if (transaction.creator !== this.currentUser) {
           this.outgoing += transaction.amount;
         } else {
           this.incoming += transaction.amount;
         }
       }
-      else if(transaction.type === 'Einnahme'){
+      else if(transaction.type === 'income'){
         if (transaction.creator !== this.currentUser) {
           this.incoming += transaction.amount;
         } else {
           this.outgoing += transaction.amount;
         }
       }
-      else if(transaction.type === 'Ausgabe'){
+      else if(transaction.type === 'cost'){
         if (transaction.creator !== this.currentUser) {
           this.pending ++;
         } else {
           this.confirm ++;
         }
       }
-      else if(transaction.type === 'Einnahme'){
+      else if(transaction.type === 'income'){
         if(transaction.creator !== this.currentUser) {
           this.pending ++;
         } else {

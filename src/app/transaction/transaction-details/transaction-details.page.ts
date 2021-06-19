@@ -13,7 +13,6 @@ export class TransactionDetailsPage implements OnInit {
 
   constructor(private route: ActivatedRoute, private transactionService : TransactionService) {
     this.transaction = JSON.parse(this.route.snapshot.paramMap.get('transaction'));
-    console.log(this.transaction);
   }
 
   ionViewWillEnter(){
