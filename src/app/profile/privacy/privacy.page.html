@@ -22,22 +22,17 @@
 
     <ion-item>
       <ion-label>Profilbild</ion-label>
-      <ion-toggle [(ngModel)]="profileImage"></ion-toggle>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Vorname</ion-label>
-      <ion-toggle [(ngModel)]="firstname"></ion-toggle>
+      <ion-toggle [(ngModel)]="user.imagePublic"></ion-toggle>
     </ion-item>
 
     <ion-item>
       <ion-label>Nachname</ion-label>
-      <ion-toggle [(ngModel)]="lastname"></ion-toggle>
+      <ion-toggle [(ngModel)]="user.lastnamePublic"></ion-toggle>
     </ion-item>
 
     <ion-item>
       <ion-label>Auszeichnungen</ion-label>
-      <ion-toggle [(ngModel)]="awards"></ion-toggle>
+      <ion-toggle [(ngModel)]="user.awardsPublic"></ion-toggle>
     </ion-item>
   </ion-list>
 </ion-content>

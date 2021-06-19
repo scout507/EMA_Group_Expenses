@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-privacy',
@@ -7,37 +9,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./privacy.page.scss'],
 })
 export class PrivacyPage implements OnInit {
-  profileImage: boolean;
-  firstname: boolean;
-  lastname: boolean;
-  awards: boolean;
-
-  profileImageOld: boolean;
-  firstnameOld: boolean;
-  lastnameOld: boolean;
-  awardsOld: boolean;
+  user: User = new User();
+  userOld: User = new User();
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) {
+    this.loadData();
+  }
 
   ngOnInit() {
   }
 
   ionViewWillEnter() {
-    // TODO: Daten Laden aus Service
-    this.profileImageOld = true;
-    this.firstnameOld = true;
-    this.lastnameOld = false;
-    this.awardsOld = false;
+    this.loadData();
+  }
 
-    this.profileImage = this.profileImageOld;
-    this.firstname = this.firstnameOld;
-    this.lastname = this.lastnameOld;
-    this.awards = this.awardsOld;
+  async loadData() {
+    await this.userService.findById("w2Zc9cjVRA21Os8ELOh5").then(value => {
+      this.userOld = { ...value };
+      this.user = { ...value };
+    });
   }
 
   async backBtn() {
-    if (this.profileImage != this.profileImageOld || this.firstname != this.firstnameOld || this.lastname != this.lastnameOld || this.awards != this.awardsOld) {
+    if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
       const alert = document.createElement('ion-alert');
       alert.header = 'Änderungen verwefen?';
       alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
@@ -45,8 +40,10 @@ export class PrivacyPage implements OnInit {
       document.body.appendChild(alert);
       await alert.present();
       var rsl = await alert.onDidDismiss();
-      if (rsl.role == "yes")
+      if (rsl.role == "yes") {
+        this.user = { ...this.userOld };
         this.router.navigate(['options']);
+      }
     }
     else {
       this.router.navigate(['options']);
@@ -54,17 +51,23 @@ export class PrivacyPage implements OnInit {
   }
 
   async saveBtn() {
-    const alert = document.createElement('ion-alert');
-    alert.header = 'Änderungen speichern?';
-    alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
+    if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
+      const alert = document.createElement('ion-alert');
+      alert.header = 'Änderungen speichern?';
+      alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
 
-    document.body.appendChild(alert);
-    await alert.present();
-    var rsl = await alert.onDidDismiss();
+      document.body.appendChild(alert);
+      await alert.present();
+      var rsl = await alert.onDidDismiss();
 
-    if (rsl.role == "yes")
+      if (rsl.role == "yes") {
+        this.userService.update(this.user);
+        this.router.navigate(['options']);
+      }
+    }
+    else {
       this.router.navigate(['options']);
-    // TODO: Über Service speichern
+    }
   }
 
 }
