@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,12 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./password.page.scss'],
 })
 export class PasswordPage implements OnInit {
-  oldPassword: String;
-  newPassword1: String;
-  newPassword2: String;
+  oldPassword: string;
+  newPassword1: string;
+  newPassword2: string;
   errors: Map<string, string> = new Map<string, string>();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
   }
@@ -25,15 +26,15 @@ export class PasswordPage implements OnInit {
 
   async backBtn() {
     if (this.oldPassword != "" || this.newPassword1 != "" || this.newPassword2 != "") {
-    const alert = document.createElement('ion-alert');
-    alert.header = 'Änderungen verwefen?';
-    alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
+      const alert = document.createElement('ion-alert');
+      alert.header = 'Änderungen verwefen?';
+      alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
 
-    document.body.appendChild(alert);
-    await alert.present();
-    var rsl = await alert.onDidDismiss();
-    if (rsl.role == "yes")
-      this.router.navigate(['options']);
+      document.body.appendChild(alert);
+      await alert.present();
+      var rsl = await alert.onDidDismiss();
+      if (rsl.role == "yes")
+        this.router.navigate(['options']);
     }
     else {
       this.router.navigate(['options']);
@@ -47,11 +48,6 @@ export class PasswordPage implements OnInit {
       this.errors.set('oldPassword', 'Altes Passwort eingeben!');
     }
 
-    // TODO: Über Service altes Passwort abgleichen
-    //if (this.oldPassword != ) {
-    //  this.errors.set('oldPassword', 'Altes Passwort falsch!');
-    //}
-
     if (this.newPassword1.length == 0) {
       this.errors.set('newPassword1', 'Neues Passwort eingeben!');
     }
@@ -63,6 +59,12 @@ export class PasswordPage implements OnInit {
     if (this.newPassword1 != this.newPassword2) {
       this.errors.set('newPassword2', 'Stimmt nicht überein!');
     }
+    else if (this.newPassword1.length < 6) {
+      this.errors.set('newPassword1', 'Passwort zu kurz mind. 6 Zeichen!');
+    }
+
+    await this.afAuth.signInWithEmailAndPassword((await this.afAuth.currentUser).email, this.oldPassword)
+      .catch(error => this.errors.set('oldPassword', 'Altes Passwort falsch!'));
 
     if (this.errors.size === 0) {
       const alert = document.createElement('ion-alert');
@@ -73,9 +75,10 @@ export class PasswordPage implements OnInit {
       await alert.present();
       var rsl = await alert.onDidDismiss();
 
-      if (rsl.role == "yes")
+      if (rsl.role == "yes") {
+        (await this.afAuth.currentUser).updatePassword(this.newPassword1);
         this.router.navigate(['options']);
-      // TODO: Über Service speichern
+      }
     }
   }
 
