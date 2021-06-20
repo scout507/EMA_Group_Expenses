@@ -41,8 +41,6 @@ export class GroupService {
     group.creator = await this.authService.getUserById(temp.creator);
     group.members = members;
     group.name = temp.name;
-    console.log("Created following group:");
-    console.log(group);
     return group;
   }
 

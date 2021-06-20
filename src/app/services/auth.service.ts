@@ -56,7 +56,7 @@ export class AuthService {
 
   getUserById(id: string){
     return this.userCollection.doc(id).get().toPromise().then(u => {
-      let user = u.data();
+      let user: User = u.data();
       user.id = u.id;
       return user;
     })

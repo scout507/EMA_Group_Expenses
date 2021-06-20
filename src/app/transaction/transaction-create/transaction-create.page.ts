@@ -35,7 +35,7 @@ export class TransactionCreatePage implements OnInit {
               private groupService: GroupService,
               private authService : AuthService) {
 
-    this.transaction = new Transaction(0, "", "cost", "once", authService.currentUser, new Date(), new Date());
+    this.transaction = new Transaction("",0, "", "cost", "once", authService.currentUser, new Date(), new Date());
     const groupId = this.route.snapshot.paramMap.get('group');
     if (groupId) {
       this.groupService.getGroupById(groupId).then(group => {

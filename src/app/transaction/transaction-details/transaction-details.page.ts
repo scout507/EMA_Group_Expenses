@@ -12,18 +12,9 @@ export class TransactionDetailsPage implements OnInit {
   transaction: Transaction;
 
   constructor(private route: ActivatedRoute, private transactionService : TransactionService) {
-    this.transaction = JSON.parse(this.route.snapshot.paramMap.get('transaction'));
+    this.transaction = this.transactionService.getLocally();
   }
 
-  ionViewWillEnter(){
-    /* this should be in the constructor
-    this.transaction = JSON.parse(this.route.snapshot.paramMap.get('transaction'));
-    console.log(this.transaction);
-    if (!this.transaction) {
-      this.transaction = this.transactionService.getLocally();
-    }
-    */
-  }
 
   ngOnInit() {
   }

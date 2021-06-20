@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
-import {TransactionService} from "../services/transaction.service";
-import {Transaction} from "../models/transaction.model";
-import {Subscription} from "rxjs";
-import {User} from "../models/user.model";
-import {AuthService} from "../services/auth.service";
-import {GroupService} from "../services/group.service";
-import {Router} from "@angular/router";
+import {TransactionService} from '../services/transaction.service';
+import {Transaction} from '../models/transaction.model';
+import {Subscription} from 'rxjs';
+import {User} from '../models/user.model';
+import {AuthService} from '../services/auth.service';
+import {GroupService} from '../services/group.service';
+import {Router} from '@angular/router';
+import {SimpleTransaction} from '../models/simpleTransaction.model';
 
 
 @Component({
@@ -27,8 +28,8 @@ export class HomePage {
   outgoing: number;
 
   testing: boolean;
-  rawTransactions: Transaction[] = [];
   transactions: Transaction[] = [];
+  simpleTransactions: SimpleTransaction[] = [];
   filteredTransactions: Transaction[] = [];
   currentUser: User;
 
@@ -39,52 +40,57 @@ export class HomePage {
 
 
 
-  constructor(private transactionService: TransactionService, private authService: AuthService, private groupService: GroupService, private router : Router) {
+  // eslint-disable-next-line max-len
+  constructor(private transactionService: TransactionService, private authService: AuthService, private groupService: GroupService, private router: Router) {
+
   }
 
   ionViewWillEnter() {
     this.transactions = [];
+    this.simpleTransactions = [];
     this.search = '';
     this.outgoingView = true;
     this.currentUser = this.authService.currentUser;
     this.transactionService.getAllTransactions().then( result => {
+      result.forEach( transaction => {
+        this.createSimpleTransaction(transaction);
+      });
       this.transactions.push(...result);
       this.filterTransaction(this.search);
       this.updateTransactions();
     });
   }
 
-
-
   filterTransaction(searchTerm: string) {
+
     this.filteredTransactions = [];
     this.transactions.forEach(transaction =>{
       //TODO: add pending & add multiple search options
       if(transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())) {
         if (this.outgoingView) {
-          if (transaction.type === "cost" && transaction.creator !== this.currentUser) {
+          if (transaction.type === 'cost' && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "income" && transaction.creator === this.currentUser){
+          } else if (transaction.type === 'income' && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }else if (this.incomingView) {
-          if (transaction.type === "income" && transaction.creator !== this.currentUser) {
+          if (transaction.type === 'income' && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "cost" && transaction.creator === this.currentUser){
+          } else if (transaction.type === 'cost' && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }
         else if (this.pendingView) {
-          if (transaction.type === "cost" && transaction.creator !== this.currentUser) {
+          if (transaction.type === 'cost' && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "income" && transaction.creator === this.currentUser){
+          } else if (transaction.type === 'income' && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }
         else if (this.confirmView) {
-          if (transaction.type === "income" && transaction.creator !== this.currentUser) {
+          if (transaction.type === 'income' && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "cost" && transaction.creator === this.currentUser){
+          } else if (transaction.type === 'cost' && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }
@@ -105,12 +111,11 @@ export class HomePage {
   }
 
   clearSearch() {
-    this.search = "";
+    this.search = '';
   }
 
   startSearch() {
     this.searchbarVisible = true;
-    console.log(this.transactions);
   }
 
 
@@ -120,15 +125,16 @@ export class HomePage {
     this.pendingView = false;
     this.confirmView = false;
 
-    if (type == 0) this.outgoingView = true;
-    else if (type == 1) this.incomingView = true;
-    else if (type == 2) this.pendingView = true;
-    else this.confirmView = true;
+    if (type === 0) {this.outgoingView = true;}
+    else if (type === 1) {this.incomingView = true;}
+    else if (type === 2) {this.pendingView = true;}
+    else {this.confirmView = true;}
   }
 
 
   viewTransaction(transaction: Transaction) {
-    this.router.navigate(['transaction-details', {transaction: JSON.stringify(transaction)}]);
+    this.transactionService.saveLocally(transaction);
+    this.router.navigate(['transaction-details']);
   }
 
   updateTransactions(){
@@ -171,13 +177,31 @@ export class HomePage {
 
   }
 
-  redirect(target : string){
+
+  createSimpleTransaction(transaction: Transaction){
+    let otherUser: User;
+    let outgoing: boolean;
+    let cost: number;
+    //THIS IS NOT WORKING RIGHT NOW; NEED TO WAIT FOR THE DB to contain participation
+    //TODO: add pending
+    if(transaction.creator !== this.currentUser){
+      otherUser = transaction.creator;
+      if(transaction.type === "cost") outgoing = true;
+      else outgoing = false;
+      // cost = transaction.participation.get(this.currentUser); <--- use instead of transaction.amount
+      // eslint-disable-next-line max-len
+      this.simpleTransactions.push(new SimpleTransaction(transaction.id,transaction.amount,transaction.purpose,true,transaction.creator,transaction.group.name,transaction.dueDate));
+    }
+    console.log(this.simpleTransactions);
+  }
+
+  redirect(target: string){
     switch (target) {
-      case "transaction": {
+      case 'transaction': {
         this.router.navigate(['transaction-create']);
         break;
       }
-      case "group":{
+      case 'group':{
         this.router.navigate(['group-list']);
         break;
       }

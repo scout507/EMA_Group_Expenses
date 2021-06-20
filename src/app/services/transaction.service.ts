@@ -6,7 +6,7 @@ import {User} from '../models/user.model';
 import {GroupService} from './group.service';
 import {AuthService} from './auth.service';
 import {Group} from '../models/group.model';
-import {conditionallyCreateMapObjectLiteral} from "@angular/compiler/src/render3/view/util";
+
 
 
 
@@ -42,12 +42,16 @@ export class TransactionService {
 
   async getAllTransactions(): Promise<Transaction[]> {
     const snapshot = await this.transactionCollection.get().toPromise();
-    let transactions = [];
-    await snapshot.docs.map(doc => doc.data()).forEach(document => transactions.push(document));
-    await transactions.forEach(transaction => {
-      this.authService.getUserById(transaction.creator).then(user => transaction.creator = user);
-      this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
-    });
+    const transactions = [];
+    await snapshot.docs.map(doc => {
+      const transaction =  doc.data();
+      transaction.id = doc.id;
+      return transaction;
+    }).forEach(document => {transactions.push(document);});
+    await Promise.all(transactions.map(async (transaction) => {
+        await this.authService.getUserById(transaction.creator).then(user => transaction.creator = user);
+        await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
+    }));
     return transactions;
   }
 
@@ -103,23 +107,6 @@ export class TransactionService {
   }
 
 
-   async prepareTransaction(rawTransaction): Promise<Transaction>{
-    let group: Group;
-    let creator: User;
-    await this.groupService.getGroupById(rawTransaction.gid).then( result => group = result);
-    await this.authService.getUserById(rawTransaction.creator).then( result => creator = result);
-    return new Transaction(
-      rawTransaction.amount,
-      rawTransaction.purpose,
-      rawTransaction.type,
-      rawTransaction.rhythm,
-      creator,
-      null,
-      null,
-      null,
-      rawTransaction.id,
-      group);
-  }
 
   private copyAndPrepare(transaction: Transaction) {
     const copy: any = {...transaction};
