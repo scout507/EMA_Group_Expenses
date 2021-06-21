@@ -29,8 +29,8 @@ export class GroupService {
 
   async getGroupById(id: string): Promise<Group> {
     const snapshot = await this.groupCollection.doc(id).get().toPromise();
-    let temp : any = snapshot.data();
-    let group : Group = new Group();
+    let temp: any = snapshot.data();
+    let group: Group = new Group();
     group.id = snapshot.id;
     let members = [];
     await temp.members.forEach(member => {

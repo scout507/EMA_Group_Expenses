@@ -1,10 +1,14 @@
-import {Transaction} from "../models/transaction.model";
-import {Observable} from "rxjs";
-import {AngularFirestore, AngularFirestoreCollection, QuerySnapshot} from "@angular/fire/firestore";
-import {Injectable} from "@angular/core";
-import {User} from "../models/user.model";
-import {AuthService} from "./auth.service";
-import {GroupService} from "./group.service";
+import {Transaction} from '../models/transaction.model';
+import {Observable} from 'rxjs';
+import {AngularFirestore, AngularFirestoreCollection, QuerySnapshot} from '@angular/fire/firestore';
+import {Injectable} from '@angular/core';
+import {User} from '../models/user.model';
+import {GroupService} from './group.service';
+import {AuthService} from './auth.service';
+import {Group} from '../models/group.model';
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +16,7 @@ import {GroupService} from "./group.service";
 export class TransactionService {
   transactionCollection: AngularFirestoreCollection<Transaction>;
 
-  constructor(private afs: AngularFirestore, private authService : AuthService, private groupService : GroupService) {
+  constructor(private afs: AngularFirestore, private groupService: GroupService, private authService: AuthService) {
     this.transactionCollection = afs.collection<Transaction>('Transaction');
   }
 
