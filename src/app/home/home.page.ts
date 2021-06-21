@@ -45,7 +45,10 @@ export class HomePage {
     this.outgoingView = true;
     this.currentUser = this.authService.currentUser;
     this.transactionService.getAllTransactions().then( result => {
-      this.transactions.push(...result);
+      result.forEach(transaction => {
+        let temp : Transaction;
+        this.transactions.push(temp);
+      });
     });
     this.subTransactions = this.transactionService.findAllSync()
       .subscribe(transactions => {
@@ -90,7 +93,6 @@ export class HomePage {
         }
       }
     });
-
   }
 
 

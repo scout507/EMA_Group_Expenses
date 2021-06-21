@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Group} from "../../models/group.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NavController} from "@ionic/angular";
-import {User} from "../../models/user.model";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
 import {GroupService} from "../../services/group.service";
@@ -16,7 +15,6 @@ import {AuthService} from "../../services/auth.service";
 export class TransactionCreatePage implements OnInit {
   transaction: Transaction;
   groups: Group[] = [];
-  stakes: { user: User, stake: number }[] = [];
   selectAllUsers: boolean = true;
   fairlyDistributedPrice: boolean = true;
 
@@ -48,11 +46,16 @@ export class TransactionCreatePage implements OnInit {
     if (this.transaction.group) {
         if (this.transaction.amount) {
           if (this.fairlyDistributedPrice) {
-            console.log(this.transaction);
             let stake: number = this.transaction.amount / this.transaction.group.members.length;
             for (let user of this.transaction.group.members) {
               let stakeEntry = {user, stake};
-              this.stakes.push(stakeEntry)
+              let paid = false;
+              let accepted = false;
+              let paidEntry = {user, paid};
+              let acceptedEntry = {user, accepted};
+              this.transaction.participation.push(stakeEntry);
+              this.transaction.accepted.push(acceptedEntry);
+              this.transaction.paid.push(paidEntry);
             }
           }
         } else {

@@ -25,32 +25,32 @@
   </ion-row>
 </ion-grid>
   <ion-item>
-    <ion-text>Gruppe</ion-text>
-    <ion-text>{{transaction.group.name}}</ion-text>
+    <ion-label>Gruppe</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.group.name }}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Typ</ion-text>
-    <ion-text>{{transaction.type}}</ion-text>
+    <ion-label>Typ</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.type}}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Betrag</ion-text>
-    <ion-item>{{transaction.amount}}</ion-item>
+    <ion-label>Betrag</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.amount}}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Ersteller</ion-text>
-    <ion-text>{{transaction.creator}}</ion-text>
+    <ion-label>Ersteller</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.creator ? transaction.creator.displayName : transaction.creator.userName}}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Rechnungsdatum</ion-text>
-    <ion-text>{{transaction.purchaseDate}}</ion-text>
+    <ion-label>Rechnungsdatum</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.purchaseDate}}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Fälligkeitsdatum</ion-text>
-    <ion-text>{{transaction.dueDate}}</ion-text>
+    <ion-label>Fälligkeitsdatum</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.dueDate}}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Rhythmus</ion-text>
-    <ion-text>{{transaction.rhythm}}</ion-text>
+    <ion-label>Rhythmus</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.rhythm}}</ion-text>
   </ion-item>
   <ion-button>Bezahlen</ion-button>
 </ion-content>

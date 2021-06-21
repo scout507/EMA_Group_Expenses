@@ -4,6 +4,6 @@ export class Group {
   constructor(public id?: string,
               public name?: string,
               public members?: User[],
-              public creator?: string) {
+              public creator?: User) {
   }
 }

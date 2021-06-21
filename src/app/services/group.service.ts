@@ -27,14 +27,21 @@ export class GroupService {
     this.groupCollection.doc(id).delete();
   }
 
-  getGroupById(id: string): Promise<Group>{
-    return this.groupCollection.doc(id).get().toPromise().then((g: any) => {
-      let group = g.data();
-      group.id = g.id;
-      group.members = [];
-      g.data().members.forEach(uid => group.members.push(this.authService.getUserById(uid)));
-      return group;
-    })
+  async getGroupById(id: string): Promise<Group> {
+    const snapshot = await this.groupCollection.doc(id).get().toPromise();
+    let temp : any = snapshot.data();
+    let group : Group = new Group();
+    group.id = snapshot.id;
+    let members = [];
+    await temp.members.forEach(member => {
+      this.authService.getUserById(member).then(user => {
+        members.push(user);
+      });
+    });
+    group.creator = await this.authService.getUserById(temp.creator);
+    group.members = members;
+    group.name = temp.name;
+    return group;
   }
 
   getGroupsByUserId(id: string): Promise<Group[]>{

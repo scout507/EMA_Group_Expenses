@@ -44,17 +44,23 @@ export class TransactionService {
     this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
-  getAllTransactions() : Promise<Transaction[]> {
-    return this.transactionCollection.get().toPromise().then( result =>
-        result.docs.map((doc : any) => {
-        const transaction = doc.data();
-        transaction.id = doc.id;
-        transaction.creator = this.authService.getUserById(doc.data().creator);
-        transaction.group = this.groupService.getGroupById(doc.data().gid);
-        return transaction;
-      }));
+  //ToDo: Add id to transaction
+  async getAllTransactions() : Promise<Transaction[]> {
+    const snapshot = await this.transactionCollection.get().toPromise();
+    let transactions = [];
+    await snapshot.docs.map(doc => {
+      let transaction =  doc.data();
+      transaction.id = doc.id;
+      return transaction;
+    }).forEach(document => transactions.push(document));
+    await transactions.forEach(transaction => {
+      this.authService.getUserById(transaction.creator).then(user => transaction.creator = user);
+      this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
+    });
+    return transactions;
   }
 
+  //ToDo: Use getAllTransactions
   findTransactionByUser(user: User): Transaction[] {
     let userTransactions: Transaction[] = [];
     this.transactionCollection.get().toPromise().then(results => {
@@ -79,16 +85,13 @@ export class TransactionService {
   }
 
 
-  getAllTransactionUser(id
-                          :
-                          string
-  ):
-    Promise<User[]> {
-    return this.transactionCollection.doc(id).get().toPromise().then(result => {
-      let transaction = result.data();
-      transaction.id = result.id;
-      return Array.from(transaction.participation.keys());
+  async getAllTransactionUser(id: string): Promise<User[]> {
+    let users = [];
+    let snapshot = await this.transactionCollection.doc(id).get().toPromise();
+    await snapshot.data().participation.forEach(entry => {
+      users.push(entry.user);
     });
+    return users;
   }
 
   findAllSync(): Observable<Transaction[]> {
@@ -100,7 +103,7 @@ export class TransactionService {
   }
 
   saveLocally(transaction : Transaction){
-    localStorage.setItem('transaction', JSON.stringify(transaction))
+    localStorage.setItem('transaction', JSON.stringify(transaction));
   }
 
   getLocally(): Transaction{
