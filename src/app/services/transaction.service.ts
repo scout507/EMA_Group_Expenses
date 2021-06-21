@@ -53,30 +53,36 @@ export class TransactionService {
         await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
     }));
     return transactions;
+
   }
 
-  //ToDo: Use getAllTransactions
-  findTransactionByUser(user: User): Transaction[] {
-    const userTransactions: Transaction[] = [];
-    this.transactionCollection.get().toPromise().then(results => {
-      results.forEach(transactionRaw => {
-        const transaction: Transaction = transactionRaw.data();
-        this.getAllTransactionUser(transaction.id).then(users => {
-          if (transaction.creator == user) {
-            userTransactions.push(transaction);
-            return;
-          }
-          users.forEach(userTrans => {
-            if (userTrans == user) {
-              userTransactions.push(transaction);
-              return;
-            }
-          });
-        });
-      });
-      return userTransactions;
+  async getAllTransactionByUser(user: User): Promise<Transaction[]> {
+    const loading = document.createElement('ion-loading');
+    loading.cssClass = 'loading';
+    loading.message = 'Lade Daten';
+    loading.duration = 10000;
+    document.body.appendChild(loading);
+    await loading.present();
+
+    const snapshot = await this.transactionCollection.get().toPromise();
+    const transactions = [];
+
+    await snapshot.docs.map(doc => {
+      const transaction =  doc.data();
+      transaction.id = doc.id;
+      return transaction;
+    }).forEach(document => {
+      //TODO: also search participation
+      if(document.creator.toString() === user.id){
+        transactions.push(document);
+      }
     });
-    return userTransactions;
+    await Promise.all(transactions.map(async (transaction) => {
+      await this.authService.getUserById(transaction.creator).then(u => transaction.creator = u);
+      await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
+    }));
+    loading.dismiss();
+    return transactions;
   }
 
 
@@ -105,7 +111,9 @@ export class TransactionService {
     return JSON.parse(localStorage.getItem('transaction'));
   }
 
+  async presentLoading() {
 
+  }
 
   private copyAndPrepare(transaction: Transaction) {
     const copy: any = {...transaction};

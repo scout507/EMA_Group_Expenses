@@ -69,42 +69,24 @@
 <ion-footer>
   <ion-toolbar>
     <ion-tabs>
-
-      <ion-tab tab="tab-home">
-        <ion-nav></ion-nav>
-      </ion-tab>
-
-      <ion-tab tab="tab-payment">
-        <ion-nav></ion-nav>
-      </ion-tab>
-
-      <ion-tab tab="group">
-        <ion-nav></ion-nav>
-      </ion-tab>
-
-      <ion-tab tab="profile">
-        <ion-nav></ion-nav>
-      </ion-tab>
-
-      <ion-tab-bar slot="top">
-        <ion-tab-button tab="tab-home" (click)="router.navigate(['home'])">
+      <ion-tab-bar>
+        <ion-tab-button (click)="router.navigate(['home'])">
           <ion-icon name="home-outline"></ion-icon>
           <ion-badge>6</ion-badge>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab-payment">
+        <ion-tab-button>
           <ion-icon name="cash-outline"></ion-icon>
         </ion-tab-button>
 
-        <ion-tab-button tab="group" (click)="router.navigate(['group-list'])">
+        <ion-tab-button (click)="router.navigate(['group-list'])">
           <ion-icon name="people-outline"></ion-icon>
         </ion-tab-button>
 
-        <ion-tab-button tab="profile">
+        <ion-tab-button>
           <ion-icon name="person-outline"></ion-icon>
         </ion-tab-button>
       </ion-tab-bar>
-
     </ion-tabs>
   </ion-toolbar>
 </ion-footer>

@@ -51,7 +51,7 @@ export class HomePage {
     this.search = '';
     this.outgoingView = true;
     this.currentUser = this.authService.currentUser;
-    this.transactionService.getAllTransactions().then( result => {
+    this.transactionService.getAllTransactionByUser(this.currentUser).then( result => {
       result.forEach( transaction => {
         this.createSimpleTransaction(transaction);
       });
@@ -59,6 +59,7 @@ export class HomePage {
       this.filterTransaction(this.search);
       this.updateTransactions();
     });
+    this.transactionService.presentLoading();
   }
 
   filterTransaction(searchTerm: string) {
