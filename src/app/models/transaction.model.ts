@@ -13,9 +13,9 @@ export class Transaction{
   photo: any;
   creator: User;
 
-  participation: Map<User, number>;
-  accepted: Map<User, boolean>;
-  paid: Map<User, boolean>;
+  participation : {user: User, stake: number}[];
+  accepted : {user: User, accepted: boolean}[];
+  paid : {user: User, paid: boolean}[];
 
   //TODO figure out photo & person
 

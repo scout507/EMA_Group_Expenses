@@ -25,32 +25,75 @@
   </ion-row>
 </ion-grid>
   <ion-item>
-    <ion-text>Gruppe</ion-text>
-    <ion-text> Group-not-implemented replace soon</ion-text>
+    <ion-label>Gruppe</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.group.name }}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Typ</ion-text>
-    <ion-text>{{ transaction.type}}</ion-text>
+    <ion-label>Typ</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.type}}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Betrag</ion-text>
-    <ion-item>{{ transaction.amount}}</ion-item>
+    <ion-label>Betrag</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.amount}}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Ersteller</ion-text>
-    <ion-text>{{ transaction.creator.displayName}}</ion-text>
+    <ion-label>Ersteller</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.creator ? transaction.creator.displayName : transaction.creator.userName}}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Rechnungsdatum</ion-text>
-    <ion-text>{{ transaction.purchaseDate}}</ion-text>
+    <ion-label>Rechnungsdatum</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.purchaseDate}}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Fälligkeitsdatum</ion-text>
-    <ion-text>{{ transaction.dueDate}}</ion-text>
+    <ion-label>Fälligkeitsdatum</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.dueDate}}</ion-text>
   </ion-item>
   <ion-item>
-    <ion-text>Rhythmus</ion-text>
-    <ion-text>{{ transaction.rhythm}}</ion-text>
+    <ion-label>Rhythmus</ion-label>
+    <ion-text class="ion-text-right">{{ transaction.rhythm}}</ion-text>
   </ion-item>
   <ion-button>Bezahlen</ion-button>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+
+      <ion-tab tab="tab-home">
+        <ion-nav></ion-nav>
+      </ion-tab>
+
+      <ion-tab tab="tab-payment">
+        <ion-nav></ion-nav>
+      </ion-tab>
+
+      <ion-tab tab="group">
+        <ion-nav></ion-nav>
+      </ion-tab>
+
+      <ion-tab tab="profile">
+        <ion-nav></ion-nav>
+      </ion-tab>
+
+      <ion-tab-bar slot="top">
+        <ion-tab-button tab="tab-home" (click)="router.navigate(['home'])">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-badge>6</ion-badge>
+        </ion-tab-button>
+
+        <ion-tab-button tab="tab-payment">
+          <ion-icon name="cash-outline"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="group" (click)="router.navigate(['group-list'])">
+          <ion-icon name="people-outline"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="profile">
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

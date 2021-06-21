@@ -86,15 +86,13 @@ export class TransactionService {
   }
 
 
-  getAllTransactionUser(id:
-                          string
-  ):
-    Promise<User[]> {
-    return this.transactionCollection.doc(id).get().toPromise().then(result => {
-      const transaction = result.data();
-      transaction.id = result.id;
-      return Array.from(transaction.participation.keys());
+  async getAllTransactionUser(id: string): Promise<User[]> {
+    let users = [];
+    let snapshot = await this.transactionCollection.doc(id).get().toPromise();
+    await snapshot.data().participation.forEach(entry => {
+      users.push(entry.user);
     });
+    return users;
   }
 
   findAllSync(): Observable<Transaction[]> {

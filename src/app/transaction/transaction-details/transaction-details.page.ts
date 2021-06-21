@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Transaction} from "../../models/transaction.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TransactionService} from "../../services/transaction.service";
 
 @Component({
@@ -11,7 +11,7 @@ import {TransactionService} from "../../services/transaction.service";
 export class TransactionDetailsPage implements OnInit {
   transaction: Transaction;
 
-  constructor(private route: ActivatedRoute, private transactionService : TransactionService) {
+  constructor(private route: ActivatedRoute, private transactionService : TransactionService, private router: Router) {
     this.transaction = this.transactionService.getLocally();
   }
 
