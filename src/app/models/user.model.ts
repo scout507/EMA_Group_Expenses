@@ -1,4 +1,9 @@
 export class User {
-  constructor(public userName: string, public displayName: string, public email: string, public id?: string) {
+  constructor(public userName: string,
+              public displayName: string,
+              public email: string,
+              public id?: string,
+              public friends?: string[],
+              public profilePic?: any) {
   }
 }
