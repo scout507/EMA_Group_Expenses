@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Group} from "../../models/group.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NavController} from "@ionic/angular";
-import {User} from "../../models/user.model";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
 import {GroupService} from "../../services/group.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-transaction-create',
@@ -15,77 +15,76 @@ import {GroupService} from "../../services/group.service";
 export class TransactionCreatePage implements OnInit {
   transaction: Transaction;
   groups: Group[] = [];
-  stakes: { user: User, stake: number }[] = [];
   selectAllUsers: boolean = true;
   fairlyDistributedPrice: boolean = true;
 
   errors: Map<string, string> = new Map<string, string>();
 
+  ionViewWillEnter(){
+    this.groupService.getGroupsByUserId(this.authService.currentUser.id).then(groups => {
+      this.groups = groups;
+    });
+  }
+
   constructor(private router: Router,
               private navCtrl: NavController,
               private route: ActivatedRoute,
               private transactionService: TransactionService,
-              private groupService: GroupService) {
-    const testGroup = new Group("abc", "Test");
-    const testUser = new User("Tester", "Max Mustermann", "max@muster.de")
+              private groupService: GroupService,
+              private authService : AuthService) {
 
-    this.transaction = new Transaction(testGroup, 0, "", "cost", "once", testUser);
-    this.transaction.rhythm = "once";
-    this.transaction.type = "cost";
-    this.transaction.dueDate = new Date();
-    this.transaction.purchaseDate = new Date();
-    testGroup.users.push(testUser);
-    this.groups.push(testGroup);
-    //this.groups = groupService.findAll();
+    this.transaction = new Transaction("",0, "", "cost", "once", authService.currentUser, new Date(), null);
     const groupId = this.route.snapshot.paramMap.get('group');
     if (groupId) {
-      //this.transaction.group = this.groupService.findById(groupId);
+      this.groupService.getGroupById(groupId).then(group => {
+        this.transaction.group = group;
+      });
     }
   }
 
   calculateStakes() {
-    if (this.transaction.group) {
-        if (this.transaction.amount) {
-          if (this.fairlyDistributedPrice) {
-            let stake: number = this.transaction.amount / this.transaction.group.users.length;
-            for (let user of this.transaction.group.users) {
-              let stakeEntry = {user, stake};
-              this.stakes.push(stakeEntry)
-            }
-          }
-        } else {
-          this.errors.set('costs', 'Bitte Betrag angeben.');
-        }
-    } else {
-      this.errors.set('group', 'Bitte Gruppe auswählen.');
+    let stake: number = this.transaction.amount / this.transaction.group.members.length;
+    for (let user of this.transaction.group.members) {
+      let stakeEntry = {user, stake};
+      let paid = false;
+      let accepted = false;
+      let paidEntry = {user, paid};
+      let acceptedEntry = {user, accepted};
+      //this.transaction.participation.push(stakeEntry);
+      //this.transaction.accepted.push(acceptedEntry);
+      //this.transaction.paid.push(paidEntry);
     }
   }
 
   nextPage(): void {
-    if (this.transaction.purpose
-    ) {
-      if (this.transaction.amount) {
-        if (this.selectAllUsers && this.fairlyDistributedPrice) {
-          this.calculateStakes();
-          this.transactionService.persist(this.transaction);
-          this.navCtrl.pop();
-          return;
-        }
-        if (!this.selectAllUsers) {
-          this.transactionService.saveLocally(this.transaction);
-          this.router.navigate(['transaction-participants']);
-          return;
-        }
-        if (!this.fairlyDistributedPrice) {
-          this.transactionService.saveLocally(this.transaction);
-          this.router.navigate(['transaction-stakes']);
-          return;
-        }
-      } else {
-        this.errors.set('costs', 'Bitte Betrag angeben.');
-      }
-    } else {
+    this.errors.clear();
+    if (!this.transaction.purpose){
       this.errors.set('purpose', 'Bitte geben Sie einen Zweck an.');
+    }
+    if (!this.transaction.amount){
+      this.errors.set('amount', 'Bitte geben Sie einen Betrag an.');
+    }
+    if (!this.transaction.group){
+      this.errors.set('group', 'Bitte wählen Sie eine Gruppe aus.');
+    }
+    if (this.errors.size === 0){
+      if (this.selectAllUsers && this.fairlyDistributedPrice) {
+        this.calculateStakes();
+        console.log(this.transaction);
+        this.transactionService.persist(this.transaction);
+        this.navCtrl.pop();
+        return;
+      }
+      if (!this.selectAllUsers) {
+        this.transactionService.saveLocally(this.transaction);
+        this.router.navigate(['transaction-participants']);
+        return;
+      }
+      if (!this.fairlyDistributedPrice) {
+        this.transactionService.saveLocally(this.transaction);
+        this.router.navigate(['transaction-stakes']);
+        return;
+      }
     }
   }
 
