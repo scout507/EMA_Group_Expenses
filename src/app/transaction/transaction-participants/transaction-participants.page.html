@@ -10,15 +10,15 @@
 <ion-content>
   <ion-item>
     <ion-text>Alle</ion-text>
-    <ion-toggle [(ngModel)]="allSelected"></ion-toggle>
+    <ion-toggle [(ngModel)]="allSelected" (click)="toggleSelectAll()"></ion-toggle>
   </ion-item>
   <ion-list>
-    <ion-item *ngFor="let user of transaction.group.users">
+    <ion-item *ngFor="let user of transaction.group.members">
       <ion-avatar slot="start">
-        <img src="{{user.avatar}}">
+        <img src="{{user.profilePic}}">
       </ion-avatar>
-      <ion-text>{{user.name}}</ion-text>
-      <ion-toggle (click)="toggleSelected(user)"></ion-toggle>
+      <ion-text>{{user.displayName ? user.displayName : user.userName}}</ion-text>
+      <ion-toggle (click)="toggleSelected(user)" [(ngModel)]="getParticipation(user)"></ion-toggle>
     </ion-item>
   </ion-list>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
@@ -28,7 +28,7 @@
     </ion-fab-button>
   </ion-fab>
   <ion-fab horizontal="start" vertical="bottom" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="handleSubmit()">
       <ion-icon name="close"></ion-icon>
     </ion-fab-button>
   </ion-fab>

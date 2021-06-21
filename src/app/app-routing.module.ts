@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'transaction-create',
     loadChildren: () => import('./transaction/transaction-create/transaction-create.module').then( m => m.TransactionCreatePageModule)
+  },
+  {
+    path: 'transaction-participants',
+    loadChildren: () => import('./transaction/transaction-participants/transaction-participants.module').then(m => m.TransactionParticipantsPageModule)
   },
   {
     path: 'transaction-details',
@@ -87,10 +91,14 @@ const routes: Routes = [
     path: 'change-password',
     loadChildren: () => import('./auth/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
   },
+  {
+    path: 'add-members',
+    loadChildren: () => import('./group/add-members/add-members.module').then( m => m.AddMembersPageModule)
+  },
+
 
 
 ];
-
 
 @NgModule({
   imports: [

@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>group-create</ion-title>
+    <ion-title>Gruppe erstellen</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>Name</ion-label>
+    <ion-input
+      class="ion-text-end"
+      [(ngModel)]="group.name"
+      type="text">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Members</ion-label>
+    <ion-button (click)="addMembers()">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <ion-list>
+    <ion-item *ngFor="let member of this.group.members">
+      {{member.displayName}}
+    </ion-item>
+  </ion-list>
+  <ion-buttons class="ion-text-center">
+    <ion-button (click)="this.navCtrl.back()" color="danger">Abbrechen</ion-button>
+    <ion-button (click)="this.add()" color="primary">
+      Erstellen
+    </ion-button>
+  </ion-buttons>
 
 </ion-content>
