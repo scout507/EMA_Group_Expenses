@@ -1,9 +1,9 @@
-import {User} from "./user.model";
-import {Group} from "./group.model";
+import {User} from './user.model';
+import {Group} from './group.model';
 
 export class Transaction{
   id: string;
-  group : Group;
+  group: Group;
   amount: number;
   purpose: string;
   type: string;
@@ -19,7 +19,7 @@ export class Transaction{
 
   //TODO figure out photo & person
 
-  constructor(amount : number, purpose : string, type : string, rhythm : string, creator : User, purchaseDate? : Date, dueDate? : Date, photo? : any, id? : string, group? : Group){
+  constructor(id : string, amount: number, purpose: string, type: string, rhythm: string, creator: User, purchaseDate? : Date, dueDate? : Date, photo? : any,  group? : Group){
     this.group = group;
     this.id = id;
     this.amount = amount;

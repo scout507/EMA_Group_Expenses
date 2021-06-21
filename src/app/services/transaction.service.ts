@@ -16,16 +16,6 @@ export class TransactionService {
     this.transactionCollection = afs.collection<Transaction>('Transaction');
   }
 
-  private copyAndPrepare(transaction: Transaction) {
-    const copy: any = {...transaction};
-    delete copy.id;
-    delete copy.group;
-    delete copy.creator;
-    copy.photo = transaction.photo || null;
-    copy.group = transaction.group.id;
-    copy.creator = transaction.creator.id;
-    return copy;
-  }
 
   isTransactionPending(transaction: Transaction): boolean {
     transaction.accepted.forEach(entry => {
@@ -44,28 +34,29 @@ export class TransactionService {
     this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
-  //ToDo: Add id to transaction
-  async getAllTransactions() : Promise<Transaction[]> {
+
+
+  async getAllTransactions(): Promise<Transaction[]> {
     const snapshot = await this.transactionCollection.get().toPromise();
-    let transactions = [];
+    const transactions = [];
     await snapshot.docs.map(doc => {
-      let transaction =  doc.data();
+      const transaction =  doc.data();
       transaction.id = doc.id;
       return transaction;
-    }).forEach(document => transactions.push(document));
-    await transactions.forEach(transaction => {
-      this.authService.getUserById(transaction.creator).then(user => transaction.creator = user);
-      this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
-    });
+    }).forEach(document => {transactions.push(document);});
+    await Promise.all(transactions.map(async (transaction) => {
+        await this.authService.getUserById(transaction.creator).then(user => transaction.creator = user);
+        await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
+    }));
     return transactions;
   }
 
   //ToDo: Use getAllTransactions
   findTransactionByUser(user: User): Transaction[] {
-    let userTransactions: Transaction[] = [];
+    const userTransactions: Transaction[] = [];
     this.transactionCollection.get().toPromise().then(results => {
       results.forEach(transactionRaw => {
-        let transaction: Transaction = transactionRaw.data();
+        const transaction: Transaction = transactionRaw.data();
         this.getAllTransactionUser(transaction.id).then(users => {
           if (transaction.creator == user) {
             userTransactions.push(transaction);
@@ -74,10 +65,10 @@ export class TransactionService {
           users.forEach(userTrans => {
             if (userTrans == user) {
               userTransactions.push(transaction);
-              return
+              return;
             }
-          })
-        })
+          });
+        });
       });
       return userTransactions;
     });
@@ -102,11 +93,25 @@ export class TransactionService {
     this.transactionCollection.doc(id).delete();
   }
 
-  saveLocally(transaction : Transaction){
+  saveLocally(transaction: Transaction){
     localStorage.setItem('transaction', JSON.stringify(transaction));
   }
 
   getLocally(): Transaction{
     return JSON.parse(localStorage.getItem('transaction'));
   }
+
+
+
+  private copyAndPrepare(transaction: Transaction) {
+    const copy: any = {...transaction};
+    delete copy.id;
+    delete copy.group;
+    delete copy.creator;
+    copy.photo = transaction.photo || null;
+    copy.group = transaction.group.id;
+    copy.creator = transaction.creator.id;
+    return copy;
+  }
+
 }
