@@ -118,4 +118,33 @@ export class TransactionService {
     return copy;
   }
 
+  getStakeForUser(member: User, transaction: Transaction) : number{
+    let stake: number = 0;
+    transaction.participation.forEach(participation => {
+      if (participation.user.id === member.id) stake = participation.stake
+    });
+    return stake;
+  }
+
+  hasUserPaid(member: User, transaction: Transaction): boolean {
+    let paid: boolean = false;
+    transaction.paid.forEach(payment => {
+      if (payment.user.id === member.id) paid = payment.paid;
+    });
+    return paid;
+  }
+
+  wasPaymentAccepted(member: User, transaction: Transaction): boolean {
+    let accepted: boolean = false;
+    transaction.accepted.forEach(entry => {
+      if (entry.user.id === member.id) accepted = entry.accepted;
+    });
+    return accepted;
+  }
+
+  getParticipants(transaction: Transaction): User[] {
+    let participants: User[] = [];
+    transaction.participation.forEach(participant => participants.push(participant.user));
+    return participants;
+  }
 }
