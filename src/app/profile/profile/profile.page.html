@@ -1,5 +1,10 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="friendlist()">
+        <ion-icon name="people-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title class="ion-text-center">Profil</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="profileSettings()">
@@ -13,30 +18,51 @@
   <ion-grid class="grid">
     <ion-row class="row">
       <ion-col class="profileImgCol">
-        <img class="profileImg" src={{profileImage}}>
+        <img class="profileImg" src={{user.image}}>
       </ion-col>
       <ion-col class="profileDescriptionCol">
         <ion-row>
           <ion-col class="name">
-            {{firstname}} {{lastname}}
+            {{user.firstname}} {{user.lastname}}
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            {{description}}
+            {{user.description}}
           </ion-col>
         </ion-row>
       </ion-col>
     </ion-row>
     <ion-row class="row">
       <ion-col class="iconsCol icons" *ngFor="let i of badges">
-        <img class="icons" (click)="badgeDescription(i[0])" src={{i[1]}}>
+        <img class="icons" (click)="badgeDescription(i.name, i.description)" src={{i.image}}>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-list lines="full">
-    <ion-item class="iconsCol" button (click)="friendlist()">Freundesliste</ion-item>
-    <ion-item button (click)="statics()">Statistik</ion-item>
-  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button (click)="redirect('home')">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-badge></ion-badge>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="redirect('transaction')">
+          <ion-icon name="cash-outline"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="redirect('group')">
+          <ion-icon name="people-outline"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button>
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
