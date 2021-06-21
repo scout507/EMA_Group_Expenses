@@ -50,6 +50,7 @@ export class GroupCreatePage implements OnInit {
       this.group.members.push(this.currentUser);
       this.groupService.new(this.group);
       this.navCtrl.pop();
+      console.log(this.navCtrl);
     }else{
       alert("name zu kurz")
     }
