@@ -35,7 +35,7 @@
     </ion-row>
     <ion-row class="row">
       <ion-col class="iconsCol icons" *ngFor="let i of badges">
-        <img class="icons" (click)="badgeDescription(i[0])" src={{i[1]}}>
+        <img class="icons" (click)="badgeDescription(i.name, i.description)" src={{i.image}}>
       </ion-col>
     </ion-row>
   </ion-grid>

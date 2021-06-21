@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 
@@ -12,22 +13,23 @@ export class PaymentPage implements OnInit {
   user: User = new User();
   userOld: User = new User();
 
-  constructor(private router: Router, private userService: UserService) {
-    this.loadData();
+  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private af: AngularFireAuth) {
   }
 
   ngOnInit() {
   }
 
   ionViewWillEnter() {
-    this.loadData();
-  }
-
-  async loadData() {
-    this.userService.findById("w2Zc9cjVRA21Os8ELOh5").then(value => {
-      this.userOld = { ...value };
-      this.user = { ...value };
+    this.af.authState.subscribe(user => {
+      if (user) {
+        this.userService.findById(user.uid).then(value => {
+          this.userOld = { ...value };
+          this.user = { ...value };
+        });
+      }
     });
+
+
   }
 
   async backBtn() {
@@ -59,7 +61,7 @@ export class PaymentPage implements OnInit {
       await alert.present();
       var rsl = await alert.onDidDismiss();
 
-      if (rsl.role == "yes"){
+      if (rsl.role == "yes") {
         this.userService.update(this.user);
         this.router.navigate(['options']);
       }

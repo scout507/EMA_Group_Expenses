@@ -6,7 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
   providedIn: 'root'
 })
 
-export class UserService {
+export class FriendsService {
   userCollection: AngularFirestoreCollection<User>;
 
   constructor(private afs: AngularFirestore) {
@@ -26,7 +26,6 @@ export class UserService {
     user.imagePublic = false;
     user.lastnamePublic = false;
     user.awardsPublic = false;
-    user.friends = [""];
     this.userCollection.doc(id).set(this.copyAndPrepare(user));
   }
 
@@ -45,6 +44,14 @@ export class UserService {
     return this.userCollection.doc(id).get().toPromise().then(res => {
       const ret = res.data();
       ret.id = res.id;
+      if (!ret.imagePublic)
+        ret.image = "https://bit.ly/2S904CS";
+      if (!ret.lastnamePublic)
+        ret.lastname = "(kein Nachname)";
+      if (!ret.descriptionPublic)
+        ret.description = "(keine Beschreibung)";
+      if (!ret.awardsPublic)
+        ret.awards = [];
       return ret;
     });
   }

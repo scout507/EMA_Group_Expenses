@@ -14,7 +14,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content id="asd">
   <ion-grid>
     <ion-row>
       <ion-col class="profileImgCol">
@@ -24,7 +24,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-input maxlength=20 [(ngModel)]="user.firstname"></ion-input>
+              <ion-input maxlength=20 [(ngModel)]="user.firstname" (ngModelChange)="user.firstname"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>

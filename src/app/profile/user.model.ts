@@ -12,6 +12,9 @@ export class User {
         public paypal?: boolean,
         public imagePublic?: boolean,   
         public lastnamePublic?: boolean,   
-        public awardsPublic?: boolean,         
+        public awardsPublic?: boolean,
+        public descriptionPublic?: boolean,
+        public friends?: string[],   
+        public awards?: string[],          
         ) { }
 }

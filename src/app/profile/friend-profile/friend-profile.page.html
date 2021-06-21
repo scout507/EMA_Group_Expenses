@@ -13,24 +13,24 @@
   <ion-grid class="grid">
     <ion-row class="row">
       <ion-col class="profileImgCol">
-        <img class="profileImg" src={{profileImage}}>
+        <img class="profileImg" src={{user.image}}>
       </ion-col>
       <ion-col class="profileDescriptionCol">
         <ion-row>
           <ion-col class="name">
-            {{firstname}} {{lastname}}
+            {{user.firstname}} {{user.lastname}}
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            {{description}}
+            {{user.description}}
           </ion-col>
         </ion-row>
       </ion-col>
     </ion-row>
     <ion-row class="row">
       <ion-col class="iconsCol icons" *ngFor="let i of badges">
-        <img class="icons" (click)="badgeDescription(i[0])" src={{i[1]}}>
+        <img class="icons" (click)="badgeDescription(i.name, i.description)" src={{i.image}}>
       </ion-col>
     </ion-row>
   </ion-grid>

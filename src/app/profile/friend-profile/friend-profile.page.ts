@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Award } from '../award.model';
+import { ArwardService } from '../award.service';
+import { FriendsService } from '../friends.service';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-friend-profile',
@@ -7,21 +13,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./friend-profile.page.scss'],
 })
 export class FriendProfilePage implements OnInit {
-  badges = [[1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"]];
+  badges: Award[] = [];
+  user: User = new User();
 
-  firstname = "Max";
-  lastname = "Mustermann";
-  profileImage = "https://bit.ly/2S904CS";
-  description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et uptua. Atdolores etat.";
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private awardService: ArwardService, private af: AngularFireAuth, private userService:UserService,  private friendsService: FriendsService) { }
 
+  ionViewWillEnter() {
+    this.route.params.subscribe(item => {
+      this.friendsService.findById(item[0]).then(item2 =>{
+        this.user = item2;
+        this.badges = [];
+        this.user.awards.forEach(element => {
+          this.awardService.findById(element).then(item3 =>{
+            this.badges.push(item3);
+          });
+        });
+      });
+    });
   }
 
   ngOnInit() {
@@ -31,10 +39,10 @@ export class FriendProfilePage implements OnInit {
     this.router.navigate(['friends']);
   }
 
-  async badgeDescription(badgename) {
+  async badgeDescription(badgename, badgeDescription) {
     const alert = document.createElement('ion-alert');
-    alert.header = 'Auszeichnung';
-    alert.message = badgename; // TODO: Name der Ausszeichnung
+    alert.header = badgename;
+    alert.message = badgeDescription;
     alert.buttons = [{ text: "schließen" }];
 
     document.body.appendChild(alert);

@@ -11,14 +11,14 @@
 
 <ion-content>
   <ion-list lines="full">
-    <ion-item button *ngFor="let item of friendlist" (click)="friendBttn(item[2])">
+    <ion-item button *ngFor="let item of friends" (click)="friendBttn(item.id)">
       <ion-grid>
         <ion-row>
           <ion-col class="profileImgCol">
-            <img class="profileImg" src={{item[0]}}>
+            <img class="profileImg" src={{item.image}}>
           </ion-col>
           <ion-col style="margin-top: auto; margin-bottom: auto; margin-left: 20px;">
-            {{item[1]}}
+            {{item.firstname}} {{item.lastname}}
           </ion-col>
         </ion-row>
       </ion-grid>

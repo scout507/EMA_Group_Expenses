@@ -13,7 +13,7 @@ export class PasswordPage implements OnInit {
   newPassword2: string;
   errors: Map<string, string> = new Map<string, string>();
 
-  constructor(private router: Router, public afAuth: AngularFireAuth) { }
+  constructor(private router: Router, public authservice: AngularFireAuth) { }
 
   ngOnInit() {
   }
@@ -63,7 +63,7 @@ export class PasswordPage implements OnInit {
       this.errors.set('newPassword1', 'Passwort zu kurz mind. 6 Zeichen!');
     }
 
-    await this.afAuth.signInWithEmailAndPassword((await this.afAuth.currentUser).email, this.oldPassword)
+    await this.authservice.signInWithEmailAndPassword((await this.authservice.currentUser).email,this.oldPassword)
       .catch(error => this.errors.set('oldPassword', 'Altes Passwort falsch!'));
 
     if (this.errors.size === 0) {
@@ -76,7 +76,7 @@ export class PasswordPage implements OnInit {
       var rsl = await alert.onDidDismiss();
 
       if (rsl.role == "yes") {
-        (await this.afAuth.currentUser).updatePassword(this.newPassword1);
+        (await this.authservice.currentUser).updatePassword(this.newPassword1);
         this.router.navigate(['options']);
       }
     }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { Award } from '../award.model';
+import { ArwardService } from '../award.service';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 
@@ -10,50 +13,43 @@ import { UserService } from '../user.service';
 })
 export class ProfilePage implements OnInit {
 
-  badges = [[1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"]];
-
+  badges: Award[] = [];
   user: User = new User();
 
-  constructor(private router: Router, private userService: UserService) {
-    this.loadData();
+  constructor(private router: Router, private userService: UserService, private af: AngularFireAuth, private awardService: ArwardService) {
   }
 
   ionViewWillEnter() {
-    this.loadData();
+    this.af.authState.subscribe(user => {
+      if (user) {
+        this.userService.findById(user.uid).then(value => {
+          this.user = { ...value };
+          this.badges = [];
+          this.user.awards.forEach(element => {
+            this.awardService.findById(element).then(item => {
+              this.badges.push(item);
+            });
+          });
+        });
+      }
+    });
   }
 
   ngOnInit() {
-  }
-
-  async loadData() {
-    await this.userService.findById("w2Zc9cjVRA21Os8ELOh5").then(value => {
-      this.user = { ...value };
-    });
   }
 
   friendlist() {
     this.router.navigate(['friends']);
   }
 
-  statics() {
-    this.router.navigate(['statistics']);
-  }
-
   profileSettings() {
     this.router.navigate(['options']);
   }
 
-  async badgeDescription(badgename) {
+  async badgeDescription(badgename, badgeDescription) {
     const alert = document.createElement('ion-alert');
-    alert.header = 'Auszeichnung';
-    alert.message = badgename; // TODO: Name der Ausszeichnung
+    alert.header = badgename;
+    alert.message = badgeDescription;
     alert.buttons = [{ text: "schließen" }];
 
     document.body.appendChild(alert);

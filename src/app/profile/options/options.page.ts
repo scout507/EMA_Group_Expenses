@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-options',
@@ -12,21 +13,18 @@ export class OptionsPage implements OnInit {
   user: User = new User();
   userOld: User = new User();
 
-  constructor(private router: Router, private userService: UserService) {
-    this.loadData();
-  }
+  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private af: AngularFireAuth) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   ionViewWillEnter() {
-    this.loadData();
-  }
-
-  async loadData() {
-    await this.userService.findById("w2Zc9cjVRA21Os8ELOh5").then(value => {
-      this.userOld = { ...value };
-      this.user = { ...value };
+    this.af.authState.subscribe(user => {
+      if (user) {
+        this.userService.findById(user.uid).then(value => {
+          this.userOld = { ...value };
+          this.user = { ...value };
+        });
+      }
     });
   }
 
@@ -75,15 +73,38 @@ export class OptionsPage implements OnInit {
   }
 
   payment() {
-    this.router.navigate(['payment']);
+    this.saveAlert("payment");
   }
 
   passwordchange() {
-    this.router.navigate(['password']);
+    this.saveAlert('password');
   }
 
   privacy() {
-    this.router.navigate(['privacy']);
+    this.saveAlert('privacy');
+  }
+
+  async saveAlert(site: string) {
+    if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
+      const alert = document.createElement('ion-alert');
+      alert.header = 'Änderungen speichern?';
+      alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Nein", role: "no" }, { text: "Abbrechen" }];
+
+      document.body.appendChild(alert);
+      await alert.present();
+      var rsl = await alert.onDidDismiss();
+
+      if (rsl.role == "yes") {
+        this.userService.update(this.user);
+        this.router.navigate([site]);
+      } else if (rsl.role == "no") {
+        this.user = this.userOld;
+        this.router.navigate([site]);
+      }
+    }
+    else {
+      this.router.navigate([site]);
+    }
   }
 
 }
