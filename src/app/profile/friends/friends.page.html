@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>friends</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="backBtn()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" style="margin-right: 40px;">Freunde</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list lines="full">
+    <ion-item button *ngFor="let item of friends" (click)="friendBttn(item.id)">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="profileImgCol">
+            <img class="profileImg" src={{item.image}}>
+          </ion-col>
+          <ion-col style="margin-top: auto; margin-bottom: auto; margin-left: 20px;">
+            {{item.firstname}} {{item.lastname}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 </ion-content>
