@@ -15,6 +15,9 @@ import { TransactionCreatePage } from './transaction-create.page';
     IonicModule,
     TransactionCreatePageRoutingModule
   ],
+  exports: [
+    TransactionCreatePage
+  ],
   declarations: [TransactionCreatePage]
 })
 export class TransactionCreatePageModule {}

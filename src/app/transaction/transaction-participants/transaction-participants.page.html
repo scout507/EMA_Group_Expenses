@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Teilnehmer auswählen</ion-title>
+    <ion-button slot="end">
+      <ion-icon name="search"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-text>Alle</ion-text>
+    <ion-toggle [(ngModel)]="allSelected"></ion-toggle>
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let user of transaction.group.users">
+      <ion-avatar slot="start">
+        <img src="{{user.avatar}}">
+      </ion-avatar>
+      <ion-text>{{user.name}}</ion-text>
+      <ion-toggle (click)="toggleSelected(user)"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button>
+      <ion-icon *ngIf="fairlyDistributedCosts" name="checkmark"></ion-icon>
+      <ion-icon *ngIf="!fairlyDistributedCosts" name="arrow-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

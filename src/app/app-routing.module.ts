@@ -54,7 +54,8 @@ const routes: Routes = [
   {
     path: 'payment',
     loadChildren: () => import('./profile/payment/payment.module').then( m => m.PaymentPageModule)
-  },  {
+  },
+  {
     path: 'privacy',
     loadChildren: () => import('./profile/privacy/privacy.module').then( m => m.PrivacyPageModule)
   },
@@ -62,6 +63,33 @@ const routes: Routes = [
     path: 'friend-profile',
     loadChildren: () => import('./profile/friend-profile/friend-profile.module').then( m => m.FriendProfilePageModule)
   },
+  {
+    path: 'register',
+    loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'change-password',
+    loadChildren: () => import('./auth/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'change-password',
+    loadChildren: () => import('./auth/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+  },
+
+
+];
 
 
 ];
