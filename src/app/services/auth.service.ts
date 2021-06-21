@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private auth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
     this.userCollection = afs.collection<User>('User');
     //TESTING
-    //this.currentUser = new User("ralf", "ralf", "ralf2@web.de", "FJD2mpSZ6PLDXDC3dNja", ["qf4XQRDvbUJm9dVEZ0BT"])
+    this.currentUser = new User("ralf", "ralf", "ralf2@web.de", "FJD2mpSZ6PLDXDC3dNja", ["qf4XQRDvbUJm9dVEZ0BT"])
     //TESTING
   }
 
