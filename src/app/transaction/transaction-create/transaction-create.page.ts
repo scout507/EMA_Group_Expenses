@@ -43,55 +43,48 @@ export class TransactionCreatePage implements OnInit {
   }
 
   calculateStakes() {
-    if (this.transaction.group) {
-        if (this.transaction.amount) {
-          if (this.fairlyDistributedPrice) {
-            let stake: number = this.transaction.amount / this.transaction.group.members.length;
-            for (let user of this.transaction.group.members) {
-              let stakeEntry = {user, stake};
-              let paid = false;
-              let accepted = false;
-              let paidEntry = {user, paid};
-              let acceptedEntry = {user, accepted};
-              this.transaction.participation.push(stakeEntry);
-              this.transaction.accepted.push(acceptedEntry);
-              this.transaction.paid.push(paidEntry);
-            }
-          }
-        } else {
-          this.errors.set('costs', 'Bitte Betrag angeben.');
-        }
-    } else {
-      this.errors.set('group', 'Bitte Gruppe auswählen.');
+    let stake: number = this.transaction.amount / this.transaction.group.members.length;
+    for (let user of this.transaction.group.members) {
+      let stakeEntry = {user, stake};
+      let paid = false;
+      let accepted = false;
+      let paidEntry = {user, paid};
+      let acceptedEntry = {user, accepted};
+      this.transaction.participation.push(stakeEntry);
+      this.transaction.accepted.push(acceptedEntry);
+      this.transaction.paid.push(paidEntry);
     }
   }
 
   nextPage(): void {
-    if (this.transaction.purpose
-    ) {
-      if (this.transaction.amount) {
-        if (this.selectAllUsers && this.fairlyDistributedPrice) {
-          this.calculateStakes();
-          console.log(this.transaction);
-          this.transactionService.persist(this.transaction);
-          this.navCtrl.pop();
-          return;
-        }
-        if (!this.selectAllUsers) {
-          this.transactionService.saveLocally(this.transaction);
-          this.router.navigate(['transaction-participants']);
-          return;
-        }
-        if (!this.fairlyDistributedPrice) {
-          this.transactionService.saveLocally(this.transaction);
-          this.router.navigate(['transaction-stakes']);
-          return;
-        }
-      } else {
-        this.errors.set('costs', 'Bitte Betrag angeben.');
-      }
-    } else {
+    this.errors.clear();
+    if (!this.transaction.purpose){
       this.errors.set('purpose', 'Bitte geben Sie einen Zweck an.');
+    }
+    if (!this.transaction.amount){
+      this.errors.set('amount', 'Bitte geben Sie einen Betrag an.');
+    }
+    if (!this.transaction.group){
+      this.errors.set('group', 'Bitte wählen Sie eine Gruppe aus.');
+    }
+    if (this.errors.size === 0){
+      if (this.selectAllUsers && this.fairlyDistributedPrice) {
+        this.calculateStakes();
+        console.log(this.transaction);
+        this.transactionService.persist(this.transaction);
+        this.navCtrl.pop();
+        return;
+      }
+      if (!this.selectAllUsers) {
+        this.transactionService.saveLocally(this.transaction);
+        this.router.navigate(['transaction-participants']);
+        return;
+      }
+      if (!this.fairlyDistributedPrice) {
+        this.transactionService.saveLocally(this.transaction);
+        this.router.navigate(['transaction-stakes']);
+        return;
+      }
     }
   }
 

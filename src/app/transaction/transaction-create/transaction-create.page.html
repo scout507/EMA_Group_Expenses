@@ -9,6 +9,7 @@
     <ion-select-option *ngFor="let groupChoice of groups"
                        [value]="groupChoice">{{groupChoice.name}}</ion-select-option>
   </ion-select>
+  <ion-text color="danger" *ngIf="errors.get('group')">{{errors.get('group')}}</ion-text>
   <ion-select [(ngModel)]="transaction.type" class="ion-text-center">
     <ion-select-option value="income">Einnahme</ion-select-option>
     <ion-select-option value="cost">Ausgabe</ion-select-option>
@@ -17,11 +18,13 @@
     <ion-label>Zweck</ion-label>
     <ion-input [(ngModel)]="transaction.purpose" class="ion-text-right"></ion-input>
   </ion-item>
+  <ion-text color="danger" *ngIf="errors.get('purpose')">{{errors.get('purpose')}}</ion-text>
   <ion-item>
     <ion-label>Preis</ion-label>
     <ion-input type="number" [(ngModel)]="transaction.amount" class="ion-text-right"></ion-input>
     <ion-text>€</ion-text>
   </ion-item>
+  <ion-text color="danger" *ngIf="errors.get('amount')">{{errors.get('amount')}}</ion-text>
   <ion-item>
     <ion-label>Rechnungsdatum</ion-label>
     <ion-datetime [(ngModel)]="transaction.purchaseDate" displayFormat="DD.MM.YYYY"></ion-datetime>
