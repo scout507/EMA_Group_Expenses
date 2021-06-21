@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { Award } from '../award.model';
+import { ArwardService } from '../award.service';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,22 +13,29 @@ import { Router } from '@angular/router';
 })
 export class ProfilePage implements OnInit {
 
-  badges = [[1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"],
-  [1, "https://media.discordapp.net/attachments/798632008569061446/851433167793684550/abzeichen.png"]];
+  badges: Award[] = [];
+  user: User = new User();
 
-  firstname = "Max";
-  lastname = "Mustermann";
-  profileImage = "https://bit.ly/2S904CS";
-  description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et uptua. Atdolores etat.";
+  constructor(private router: Router, private userService: UserService, private af: AngularFireAuth, private awardService: ArwardService) {
+  }
 
-  constructor(private router: Router) {
+  ionViewWillEnter() {
+    //for testing
+    this.af.signInWithEmailAndPassword("abc@abc.de", "123456");
 
+    this.af.authState.subscribe(user => {
+      if (user) {
+        this.userService.findById(user.uid).then(value => {
+          this.user = { ...value };
+          this.badges = [];
+          this.user.awards.forEach(element => {
+            this.awardService.findById(element).then(item => {
+              this.badges.push(item);
+            });
+          });
+        });
+      }
+    });
   }
 
   ngOnInit() {
@@ -33,23 +45,36 @@ export class ProfilePage implements OnInit {
     this.router.navigate(['friends']);
   }
 
-  statics() {
-    this.router.navigate(['statistics']);
-  }
-
   profileSettings() {
     this.router.navigate(['options']);
   }
 
-  async badgeDescription(badgename) {
+  async badgeDescription(badgename, badgeDescription) {
     const alert = document.createElement('ion-alert');
-    alert.header = 'Auszeichnung';
-    alert.message = badgename;
+    alert.header = badgename;
+    alert.message = badgeDescription;
     alert.buttons = [{ text: "schließen" }];
 
     document.body.appendChild(alert);
     await alert.present();
     await alert.onDidDismiss();
+  }
+
+  redirect(target: string){
+    switch (target) {
+      case 'transaction': {
+        this.router.navigate(['transaction-create']);
+        break;
+      }
+      case 'group':{
+        this.router.navigate(['group-list']);
+        break;
+      }
+      case 'home':{
+        this.router.navigate(['home']);
+        break;
+      }
+    }
   }
 
 }
