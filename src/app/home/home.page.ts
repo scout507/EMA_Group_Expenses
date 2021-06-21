@@ -209,6 +209,10 @@ export class HomePage {
         this.router.navigate(['group-list']);
         break;
       }
+      case 'profile':{
+        this.router.navigate(['profile']);
+        break;
+      }
     }
   }
 }
