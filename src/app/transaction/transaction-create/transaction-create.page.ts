@@ -45,15 +45,6 @@ export class TransactionCreatePage implements OnInit {
 
   calculateStakes() {
     let stake: number = this.transaction.amount / this.transaction.group.members.length;
-    if (!this.transaction.participation) {
-      this.transaction.participation = [];
-    }
-    if (!this.transaction.accepted) {
-      this.transaction.accepted = [];
-    }
-    if (!this.transaction.paid) {
-      this.transaction.paid = [];
-    }
     for (let user of this.transaction.group.members) {
       let stakeEntry = {user, stake};
       let paid = false;
@@ -78,6 +69,15 @@ export class TransactionCreatePage implements OnInit {
       this.errors.set('group', 'Bitte wählen Sie eine Gruppe aus.');
     }
     if (this.errors.size === 0){
+      if (!this.transaction.participation) {
+        this.transaction.participation = [];
+      }
+      if (!this.transaction.accepted) {
+        this.transaction.accepted = [];
+      }
+      if (!this.transaction.paid) {
+        this.transaction.paid = [];
+      }
       if (this.selectAllUsers && this.fairlyDistributedPrice) {
         this.calculateStakes();
         if(!this.editMode) {
@@ -90,7 +90,7 @@ export class TransactionCreatePage implements OnInit {
       }
       if (!this.selectAllUsers) {
         this.transactionService.saveLocally(this.transaction);
-        this.router.navigate(['transaction-participants']);
+        this.router.navigate(['transaction-participation', {'fairlyDistributedPrice': JSON.stringify(this.fairlyDistributedPrice)}]);
         return;
       }
       if (!this.fairlyDistributedPrice) {

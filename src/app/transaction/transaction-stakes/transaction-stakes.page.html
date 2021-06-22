@@ -8,25 +8,26 @@
 </ion-header>
 
 <ion-content>
-<ion-text class="ion-text-right">{{currentStakes()}}€ von {{costs}}€</ion-text>
+<ion-text class="ion-text-right">{{getCurrentAmount()}}€ von {{transaction.amount}}€</ion-text>
   <ion-list>
-    <ion-item *ngFor="let stake in stakes">
+    <ion-item *ngFor="let participant of transaction.participation">
       <ion-avatar>
         <img src="">
       </ion-avatar>
-      <ion-text>{{stake.user.name}}</ion-text>
-      <ion-input type="number" [(ngModel)]="stake.stake"></ion-input>
+      <ion-text>{{participant.user.displayName ? participant.user.displayName : participant.user.userName}}</ion-text>
+      <ion-input type="number" [(ngModel)]="participant.stake" class="ion-text-right"></ion-input>
       <ion-text>€</ion-text>
     </ion-item>
   </ion-list>
+  <ion-text *ngIf="errors.get('amount')" color="danger">{{errors.get('amount')}}</ion-text>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="handleSubmit()">
       <ion-icon name="checkmark"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <ion-fab horizontal="start" vertical="bottom" slot="fixed">
     <ion-fab-button>
-      <ion-icon name="close"></ion-icon>
+      <ion-icon name="close" (click)="router.navigate(['home'])"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

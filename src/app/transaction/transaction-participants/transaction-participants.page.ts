@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../models/user.model";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-transaction-participants',
@@ -11,74 +11,56 @@ import {Router} from "@angular/router";
 })
 export class TransactionParticipantsPage implements OnInit {
   allSelected : boolean = false;
-  stakes: { user: User, stake: number }[] = [];
   participants: User[] = [];
+  participation: { user: User, participates: boolean}[] = [];
   fairlyDistributedCosts : boolean;
   transaction : Transaction;
 
   constructor(private transactionService : TransactionService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
+    this.fairlyDistributedCosts = JSON.parse(route.snapshot.paramMap.get('fairlyDistributedPrice'));
     this.transaction = this.transactionService.getLocally();
+    this.transaction.group.members.forEach(user => {
+      let participates = false;
+      this.participation.push({user, participates});
+    })
   }
 
-  //ToDo: push / remove user to stakes depending on the selection
-
-  toggleSelected(user : User): boolean{
-    let found = false;
-    this.participants.forEach(participant => {
-      if (user.id == participant.id) {
-        this.participants.splice(this.participants.indexOf(participant), 1);
-        found = true;
-      }
-    });
-    if (!found){
-      this.participants.push(user);
-    }
-    return !found;
-  }
 
   calculateStakes(){
-    if (this.fairlyDistributedCosts){
-      let stake: number = this.transaction.amount / this.transaction.group.members.length;
+      this.participation.forEach(participant => {if (participant.participates) this.participants.push(participant.user)});
+      let stake: number = this.transaction.amount / this.participants.length;
       for (let user of this.participants) {
         let stakeEntry = {user, stake};
         let paid = false;
         let accepted = false;
         let paidEntry = {user, paid};
         let acceptedEntry = {user, accepted};
+        console.log(stakeEntry);
         this.transaction.participation.push(stakeEntry);
         this.transaction.accepted.push(acceptedEntry);
         this.transaction.paid.push(paidEntry);
       }
-    }
   }
 
   handleSubmit(){
+    this.calculateStakes();
     if (this.fairlyDistributedCosts) {
-      this.calculateStakes();
-      this.transaction.participation = this.stakes;
       this.transactionService.persist(this.transaction);
       this.router.navigate(['home']);
     } else {
       this.transactionService.saveLocally(this.transaction);
-      this.router.navigate(['transaction-stakes', {participants: JSON.stringify(this.participants)}]);
+      this.router.navigate(['transaction-stakes']);
     }
   }
 
   toggleSelectAll(){
     if (this.allSelected) {
-      this.participants = this.transaction.group.members;
+      this.participation.forEach(participant => participant.participates = true);
     } else {
-      this.participants = [];
+      this.participation.forEach(participant => participant.participates = false);
     }
-  }
-
-  getParticipation(user: User): boolean{
-    let found = false;
-    this.participants.forEach(participant => {
-      if(participant.id == user.id) found = true;
-    });
-    return found;
   }
 
   ngOnInit() {

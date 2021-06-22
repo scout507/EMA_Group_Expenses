@@ -44,12 +44,16 @@ const routes: Routes = [
     loadChildren: () => import('./transaction/transaction-create/transaction-create.module').then( m => m.TransactionCreatePageModule)
   },
   {
-    path: 'transaction-participants',
+    path: 'transaction-participation',
     loadChildren: () => import('./transaction/transaction-participants/transaction-participants.module').then(m => m.TransactionParticipantsPageModule)
   },
   {
     path: 'transaction-details',
     loadChildren: () => import('./transaction/transaction-details/transaction-details.module').then( m => m.TransactionDetailsPageModule)
+  },
+  {
+    path: 'transaction-stakes',
+    loadChildren: () => import('./transaction/transaction-stakes/transaction-stakes.module').then(m => m.TransactionStakesPageModule)
   },
   {
     path: 'register',
