@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backBttn()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" style="margin-right: 40px;">Freundes Profil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="global">
+  <ion-grid class="grid">
+    <ion-row class="row">
+      <ion-col class="profileImgCol">
+        <img class="profileImg" src={{user.image}}>
+      </ion-col>
+      <ion-col class="profileDescriptionCol">
+        <ion-row>
+          <ion-col class="name">
+            {{user.firstname}} {{user.lastname}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{user.description}}
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row">
+      <ion-col class="iconsCol icons" *ngFor="let i of badges">
+        <img class="icons" (click)="badgeDescription(i.name, i.description)" src={{i.image}}>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

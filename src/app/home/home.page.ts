@@ -36,30 +36,17 @@ export class HomePage {
   private incoming: number;
   private pending: number;
   private confirm: number;
-  private subTransactions: Subscription;
 
 
 
   // eslint-disable-next-line max-len
   constructor(private transactionService: TransactionService, private authService: AuthService, private groupService: GroupService, private router: Router) {
-
   }
 
   ionViewWillEnter() {
-    this.transactions = [];
-    this.simpleTransactions = [];
-    this.search = '';
     this.outgoingView = true;
     this.currentUser = this.authService.currentUser;
-    this.transactionService.getAllTransactionByUser(this.currentUser).then( result => {
-      result.forEach( transaction => {
-        this.createSimpleTransaction(transaction);
-      });
-      this.transactions.push(...result);
-      this.filterTransaction(this.search);
-      this.updateTransactions();
-    });
-    this.transactionService.presentLoading();
+    this.updateTransactions();
   }
 
   filterTransaction(searchTerm: string) {
@@ -99,6 +86,87 @@ export class HomePage {
     });
   }
 
+  viewTransaction(transaction: Transaction) {
+    this.transactionService.saveLocally(transaction);
+    this.router.navigate(['transaction-details']);
+  }
+
+  updateTransactions(){
+    this.transactions = [];
+    this.simpleTransactions = [];
+    this.search = '';
+
+    this.transactionService.getAllTransactionByUser(this.currentUser).then( result => {
+      result.forEach( transaction => {
+        this.createSimpleTransaction(transaction);
+      });
+      this.transactions.push(...result);
+      this.filterTransaction(this.search);
+
+      //for the counter
+      this.outgoing = 0;
+      this.incoming = 0;
+      this.pending = 0;
+      this.confirm = 0;
+      //TODO: add pending
+      this.transactions.forEach(transaction => {
+        if (transaction.type === 'cost') {
+          if (transaction.creator !== this.currentUser) {
+            this.outgoing += transaction.amount;
+          } else {
+            this.incoming += transaction.amount;
+          }
+        }
+        else if(transaction.type === 'income'){
+          if (transaction.creator !== this.currentUser) {
+            this.incoming += transaction.amount;
+          } else {
+            this.outgoing += transaction.amount;
+          }
+        }
+        else if(transaction.type === 'cost'){
+          if (transaction.creator !== this.currentUser) {
+            this.pending ++;
+          } else {
+            this.confirm ++;
+          }
+        }
+        else if(transaction.type === 'income'){
+          if(transaction.creator !== this.currentUser) {
+            this.pending ++;
+          } else {
+            this.confirm ++;
+          }
+        }
+      });
+    });
+  }
+
+  refreshHandler(event) {
+    this.updateTransactions();
+    setTimeout(() => {
+      event.target.complete();
+    }, 200);
+  }
+
+  createSimpleTransaction(transaction: Transaction){
+    let otherUser: User;
+    let outgoing: boolean;
+    let cost: number;
+    //THIS IS NOT WORKING RIGHT NOW; NEED TO WAIT FOR THE DB to contain participation
+    //TODO: add pending
+    if(transaction.creator !== this.currentUser){
+      otherUser = transaction.creator;
+      if(transaction.type === "cost") outgoing = true;
+      else outgoing = false;
+      // cost = transaction.participation.get(this.currentUser); <--- use instead of transaction.amount
+      // eslint-disable-next-line max-len
+      this.simpleTransactions.push(new SimpleTransaction(transaction.id,transaction.amount,transaction.purpose,true,transaction.creator,transaction.group.name,transaction.dueDate));
+    }
+    console.log(this.simpleTransactions);
+  }
+
+
 
   doSearch() {
     this.filterTransaction(this.search);
@@ -131,70 +199,6 @@ export class HomePage {
     else {this.confirmView = true;}
   }
 
-
-  viewTransaction(transaction: Transaction) {
-    this.transactionService.saveLocally(transaction);
-    this.router.navigate(['transaction-details']);
-  }
-
-  updateTransactions(){
-    //for the counter
-    this.outgoing = 0;
-    this.incoming = 0;
-    this.pending = 0;
-    this.confirm = 0;
-    //TODO: add pending
-    this.transactions.forEach(transaction => {
-      if (transaction.type === 'cost') {
-        if (transaction.creator !== this.currentUser) {
-          this.outgoing += transaction.amount;
-        } else {
-          this.incoming += transaction.amount;
-        }
-      }
-      else if(transaction.type === 'income'){
-        if (transaction.creator !== this.currentUser) {
-          this.incoming += transaction.amount;
-        } else {
-          this.outgoing += transaction.amount;
-        }
-      }
-      else if(transaction.type === 'cost'){
-        if (transaction.creator !== this.currentUser) {
-          this.pending ++;
-        } else {
-          this.confirm ++;
-        }
-      }
-      else if(transaction.type === 'income'){
-        if(transaction.creator !== this.currentUser) {
-          this.pending ++;
-        } else {
-          this.confirm ++;
-        }
-      }
-    });
-
-  }
-
-
-  createSimpleTransaction(transaction: Transaction){
-    let otherUser: User;
-    let outgoing: boolean;
-    let cost: number;
-    //THIS IS NOT WORKING RIGHT NOW; NEED TO WAIT FOR THE DB to contain participation
-    //TODO: add pending
-    if(transaction.creator !== this.currentUser){
-      otherUser = transaction.creator;
-      if(transaction.type === "cost") outgoing = true;
-      else outgoing = false;
-      // cost = transaction.participation.get(this.currentUser); <--- use instead of transaction.amount
-      // eslint-disable-next-line max-len
-      this.simpleTransactions.push(new SimpleTransaction(transaction.id,transaction.amount,transaction.purpose,true,transaction.creator,transaction.group.name,transaction.dueDate));
-    }
-    console.log(this.simpleTransactions);
-  }
-
   redirect(target: string){
     switch (target) {
       case 'transaction': {
@@ -203,6 +207,10 @@ export class HomePage {
       }
       case 'group':{
         this.router.navigate(['group-list']);
+        break;
+      }
+      case 'profile':{
+        this.router.navigate(['profile']);
         break;
       }
     }
