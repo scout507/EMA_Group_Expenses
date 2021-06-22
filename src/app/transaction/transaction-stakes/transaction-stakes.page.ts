@@ -16,6 +16,12 @@ export class TransactionStakesPage implements OnInit {
   constructor(private router: Router,
               private transactionService: TransactionService) {
     this.transaction = transactionService.getLocally();
+    if(this.transaction.participation.length === 0){
+      let stake = this.transaction.amount / this.transaction.group.members.length;
+      this.transaction.group.members.forEach(user => {
+        this.transaction.participation.push({user, stake});
+      })
+    }
   }
 
   getCurrentAmount(){

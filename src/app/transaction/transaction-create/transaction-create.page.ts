@@ -51,9 +51,9 @@ export class TransactionCreatePage implements OnInit {
       let accepted = false;
       let paidEntry = {user, paid};
       let acceptedEntry = {user, accepted};
-      //this.transaction.participation.push(stakeEntry);
-      //this.transaction.accepted.push(acceptedEntry);
-      //this.transaction.paid.push(paidEntry);
+      this.transaction.participation.push(stakeEntry);
+      this.transaction.accepted.push(acceptedEntry);
+      this.transaction.paid.push(paidEntry);
     }
   }
 
@@ -94,6 +94,7 @@ export class TransactionCreatePage implements OnInit {
         return;
       }
       if (!this.fairlyDistributedPrice) {
+
         this.transactionService.saveLocally(this.transaction);
         this.router.navigate(['transaction-stakes']);
         return;
