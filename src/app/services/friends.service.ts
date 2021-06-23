@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './user.model';
+import { User } from '../models/user.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Injectable({
@@ -15,16 +15,14 @@ export class FriendsService {
 
   persist(id: string) {
     var user = new User();
-    user.firstname = "Max";
-    user.lastname = "Mustername";
-    user.image = "https://bit.ly/2S904CS";
+    user.displayName = "Max Mustername";
+    user.profilePic = "https://bit.ly/2S904CS";
     user.description = "Erstelle eine Beschreibung...";
     user.cash = false;
     user.ec_card = false;
     user.paypal = false;
     user.kreditcard = false;
     user.imagePublic = false;
-    user.lastnamePublic = false;
     user.awardsPublic = false;
     this.userCollection.doc(id).set(this.copyAndPrepare(user));
   }
@@ -44,14 +42,16 @@ export class FriendsService {
     return this.userCollection.doc(id).get().toPromise().then(res => {
       const ret = res.data();
       ret.id = res.id;
+      
       if (!ret.imagePublic)
-        ret.image = "https://bit.ly/2S904CS";
-      if (!ret.lastnamePublic)
-        ret.lastname = "(kein Nachname)";
+        ret.profilePic = "https://bit.ly/2S904CS";
+
       if (!ret.descriptionPublic)
         ret.description = "(keine Beschreibung)";
+
       if (!ret.awardsPublic)
         ret.awards = [];
+
       return ret;
     });
   }

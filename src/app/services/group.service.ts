@@ -4,6 +4,7 @@ import {Group} from "../models/group.model";
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {User} from "../models/user.model";
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class GroupService {
 
   private groupCollection: AngularFirestoreCollection<Group>;
 
-  constructor(private afs: AngularFirestore, private authService: AuthService) {
+  constructor(private afs: AngularFirestore, private authService: AuthService, private userService:UserService) {
     this.groupCollection = afs.collection<Group>('Group');
   }
 
@@ -35,11 +36,11 @@ export class GroupService {
     group.id = snapshot.id;
     let members = [];
     await temp.members.forEach(member => {
-      this.authService.getUserById(member).then(user => {
+      this.userService.findById(member).then(user => {
         members.push(user);
       });
     });
-    group.creator = await this.authService.getUserById(temp.creator);
+    group.creator = await this.userService.findById(temp.creator);
     group.members = members;
     group.name = temp.name;
     return group;
@@ -53,7 +54,7 @@ export class GroupService {
           if(member.toString() === id){
             let members: User[] = [];
             g.data().members.forEach(m => {
-              this.authService.getUserById(m.toString()).then(u => {
+              this.userService.findById(m.toString()).then(u => {
                 members.push(u);
               })
             });

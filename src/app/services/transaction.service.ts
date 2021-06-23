@@ -6,6 +6,7 @@ import {User} from '../models/user.model';
 import {GroupService} from './group.service';
 import {AuthService} from './auth.service';
 import {Group} from '../models/group.model';
+import { UserService } from './user.service';
 
 
 
@@ -16,7 +17,7 @@ import {Group} from '../models/group.model';
 export class TransactionService {
   transactionCollection: AngularFirestoreCollection<Transaction>;
 
-  constructor(private afs: AngularFirestore, private groupService: GroupService, private authService: AuthService) {
+  constructor(private afs: AngularFirestore, private groupService: GroupService, private authService: AuthService, private userService: UserService) {
     this.transactionCollection = afs.collection<Transaction>('Transaction');
   }
 
@@ -49,7 +50,7 @@ export class TransactionService {
       return transaction;
     }).forEach(document => {transactions.push(document);});
     await Promise.all(transactions.map(async (transaction) => {
-        await this.authService.getUserById(transaction.creator).then(user => transaction.creator = user);
+        await this.userService.findById(transaction.creator.id).then(user => transaction.creator = user);
         await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
     }));
     return transactions;
@@ -78,7 +79,7 @@ export class TransactionService {
       }
     });
     await Promise.all(transactions.map(async (transaction) => {
-      await this.authService.getUserById(transaction.creator).then(u => transaction.creator = u);
+      await this.userService.findById(transaction.creator.id).then(user => transaction.creator = user);
       await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
     }));
     loading.dismiss();

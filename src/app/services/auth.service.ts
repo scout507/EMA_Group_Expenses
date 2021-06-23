@@ -1,31 +1,25 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/auth";
 import {Router} from "@angular/router";
-import firebase from "firebase";
-import {User} from "../models/user.model";
-import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/firestore";
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  currentUser = null;
 
-  private userCollection: AngularFirestoreCollection<User>;
-  currentUser: User;
-
-  constructor(private auth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
-    this.userCollection = afs.collection<User>('User');
-    //TESTING
-    this.currentUser = new User("ralf", "ralf", "ralf2@web.de", "FJD2mpSZ6PLDXDC3dNja", ["qf4XQRDvbUJm9dVEZ0BT"])
-    //TESTING
+  constructor(private auth: AngularFireAuth, private router: Router, private userservice: UserService) {
   }
 
-  register(username: string, email: string, password: string){
+  register(email: string, password: string){
     this.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.currentUser = new User(username, username, email);
-        this.userCollection.add(this.copyAndPrepareUser(this.currentUser));
-        this.router.navigate(['home'])
+        this.userservice.persist(result.user.uid, email);
+        this.userservice.findById(result.user.uid).then(user => {
+          this.currentUser = user;
+          this.router.navigate(['home']);
+        });  
       })
       .catch((error) => {
         console.log(error.message);
@@ -35,17 +29,17 @@ export class AuthService {
   login(email: string, password: string){
     this.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.getUser(email).then(user => {
+        this.userservice.findById(result.user.uid).then(user => {
           this.currentUser = user;
           this.router.navigate(['home']);
-        });
+        });       
       })
       .catch((error) => {
         console.log(error.message);
       })
   }
 
-  logout(){
+  logout() {
     this.auth.signOut()
       .then((result) => {
         this.currentUser = null;
@@ -56,14 +50,6 @@ export class AuthService {
       })
   }
 
-  getUserById(id: string) : Promise<User>{
-    return this.userCollection.doc(id).get().toPromise().then(u => {
-      let user: User = u.data();
-      user.id = u.id;
-      return user;
-    })
-  }
-
   changePassword(email){
     this.auth.sendPasswordResetEmail(email).then(() => {
         this.router.navigate(['login']);
@@ -72,26 +58,4 @@ export class AuthService {
       console.log(error)
     })
   }
-
-  getUser(email: string): Promise<User>{
-    let user: User;
-    return this.userCollection.get().toPromise().then(col => {
-      col.forEach(doc => {
-        if(doc.data().email === email){
-          user = doc.data();
-          user.id = doc.id;
-        }
-      });
-      return user;
-    })
-  }
-
-  copyAndPrepareUser(user: User): User{
-    const copy = {...user};
-    delete copy.id;
-    delete copy.friends;
-    delete copy.profilePic;
-    return copy;
-  }
-
 }

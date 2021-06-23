@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Award } from '../award.model';
-import { ArwardService } from '../award.service';
-import { FriendsService } from '../friends.service';
-import { User } from '../user.model';
-import { UserService } from '../user.service';
+import { Award } from '../../models/award.model';
+import { ArwardService } from 'src/app/services/award.service';
+import { FriendsService } from '../../services/friends.service';
+import { User } from 'src/app/models/user.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-friend-profile',
