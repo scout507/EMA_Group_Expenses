@@ -16,7 +16,10 @@ export class AuthService {
     this.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.userservice.persist(result.user.uid, email);
-        this.router.navigate(['home']);
+        this.userservice.findById(result.user.uid).then(user => {
+          this.currentUser = user;
+          this.router.navigate(['home']);
+        });  
       })
       .catch((error) => {
         console.log(error.message);
@@ -26,8 +29,10 @@ export class AuthService {
   login(email: string, password: string){
     this.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.userservice.findById(result.user.uid).then(user => this.currentUser = user);
-        this.router.navigate(['home']);
+        this.userservice.findById(result.user.uid).then(user => {
+          this.currentUser = user;
+          this.router.navigate(['home']);
+        });       
       })
       .catch((error) => {
         console.log(error.message);
