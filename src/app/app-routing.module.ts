@@ -52,6 +52,10 @@ const routes: Routes = [
     loadChildren: () => import('./transaction/transaction-details/transaction-details.module').then( m => m.TransactionDetailsPageModule)
   },
   {
+    path: 'transaction-stakes',
+    loadChildren: () => import('./transaction/transaction-stakes/transaction-stakes.module').then(m => m.TransactionStakesPageModule)
+  },
+  {
     path: 'password',
     loadChildren: () => import('./profile/password/password.module').then( m => m.PasswordPageModule)
   },

@@ -18,20 +18,13 @@
   <ion-grid>
     <ion-row>
       <ion-col class="profileImgCol">
-        <img (click)="profileImageChange()" class="profileImg" src={{user.image}}>
+        <img (click)="profileImageChange()" class="profileImg" src={{user.profilePic}}>
       </ion-col>
       <ion-col>
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-input maxlength=20 [(ngModel)]="user.firstname" (ngModelChange)="user.firstname"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item>
-              <ion-input maxlength=20 [(ngModel)]="user.lastname"></ion-input>
+              <ion-input maxlength=20 [(ngModel)]="user.displayName"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
