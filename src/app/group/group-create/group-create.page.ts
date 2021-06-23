@@ -32,8 +32,8 @@ export class GroupCreatePage implements OnInit {
   }
 
   add(){
-    if(this.group.name.length > 2){
-      if( this.group.members.length > 0){
+    if(this.group.name && this.group.name.length > 2){
+      if(this.group.members && this.group.members.length > 0){
         this.group.creator = this.currentUser;
         this.group.members.push(this.currentUser);
         this.groupService.new(this.group);
@@ -42,7 +42,7 @@ export class GroupCreatePage implements OnInit {
         alert("Gruppe muss mind. 1 Mitglied enthalten.")
       }
     }else{
-      alert("Gruppen Name muss mind. 3 Zeichen lang sein.")
+      alert("Gruppenname muss mind. 3 Zeichen lang sein.")
     }
   }
 
