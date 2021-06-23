@@ -44,13 +44,13 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-list>
-      <ion-item button *ngFor="let transaction of filteredTransactions" (click)="viewTransaction(transaction)" lines="full">
+      <ion-item button *ngFor="let transaction of filteredTransactions" (click)="viewTransaction(transaction.id)" lines="full">
         <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
           <ion-row>
-          <ion-col align="left">bild</ion-col>
+          <ion-col align="left"><ion-img src="{{transaction.otherUser.profilePic}}"></ion-img></ion-col>
           <ion-col>
             <div>{{transaction.purpose}}</div>
-            <div style="font-size: small">{{transaction.group? transaction.group.name : "Gruppenname" }}, {{transaction.creator.displayName}}</div>
+            <div style="font-size: small">{{transaction.groupName? transaction.groupName : "Gruppenname" }}, {{transaction.otherUser.displayName}}</div>
           </ion-col>
           <ion-col align="right" >{{transaction.amount}}€</ion-col>
           </ion-row>
