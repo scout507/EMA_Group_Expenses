@@ -53,7 +53,7 @@ export class UserService {
     return copy;
   }
 
-  findByEmail(email: String) {
+  findByEmail(email: string) {
     return this.userCollection.get()
       .toPromise()
       .then(snapshot =>
