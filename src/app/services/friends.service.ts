@@ -62,12 +62,15 @@ export class FriendsService {
     this.userService.findByEmail(email).then(user => {
       if(user) {
         user.forEach(u => {
-              this.userService.findById(currentUserID).then( curUser => {
-              curUser.friends.push(u.id);
-              u.friends.push(currentUserID);
-              this.update(u);
-              this.update(curUser);
-            });
+              if(u) {
+                this.userService.findById(currentUserID).then(curUser => {
+                  curUser.friends.push(u.id);
+                  u.friends.push(currentUserID);
+                  this.update(u);
+                  this.update(curUser);
+
+                });
+              }
         });
       }
     });
