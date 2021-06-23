@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
-import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-change-password',
@@ -9,9 +8,7 @@ import {NavController} from "@ionic/angular";
 })
 export class ChangePasswordPage implements OnInit {
 
-  email: string;
-
-  constructor(public authService: AuthService, public navCtrl: NavController) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
   }
