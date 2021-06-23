@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Group} from "../../models/group.model";
 import {GroupService} from "../../services/group.service";
 import {ActivatedRoute} from "@angular/router";
-import {NavController} from "@ionic/angular";
+import {AlertController, NavController} from "@ionic/angular";
 import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-group-details',
@@ -15,20 +14,60 @@ import { UserService } from 'src/app/services/user.service';
 export class GroupDetailsPage implements OnInit {
 
   id: string;
-  group: Group = new Group();
-  friendsArray: User[] = [];
+  group: Group;
   currentUser: User;
 
-  constructor(private groupService: GroupService, private userService:UserService, private route: ActivatedRoute, private navCtrl: NavController, private authService: AuthService) {
+  constructor(private groupService: GroupService,
+              private route: ActivatedRoute,
+              private navCtrl: NavController,
+              private alertController: AlertController,
+              private authService: AuthService) {
+  }
+  addMembers(){
+    this.groupService.addMembers(this.group, this.currentUser).then(members => {
+      this.group.members.splice(0, this.group.members.length, ...members);
+    })
+  }
+
+  update(){
+    if(this.group.name.length > 2){
+      if(this.group.members.length > 1){
+        this.groupService.update(this.group);
+        this.navCtrl.back();
+      } else {
+        alert("Bitte fügen Sie ein Freund Ihrer Gruppe hinzu.")
+      }
+    } else{
+      alert("Bitte geben Sie einen längeren Namen ein.")
+    }
+  }
+
+  async delete(): Promise<void>{
+    const alert = await this.alertController.create({
+      header: 'Gruppe löschen',
+      message: `Bist du dir sicher das du die Gruppe ${this.group.name} löschen möchtest?`,
+      buttons: [
+        {
+          text: 'Abbrechen',
+          role: 'cancel',
+        },
+        {
+          text: 'Löschen',
+          handler: () => {
+            this.groupService.delete(this.group.id);
+            this.navCtrl.back();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  ionViewWillEnter() {
     this.currentUser = this.authService.currentUser;
     const groupID = this.route.snapshot.paramMap.get('id');
     this.groupService.getGroupById(groupID).then(g => {
       this.group = g;
-      for(const member of this.group.members){
-        this.userService.findById(member.id).then(result => {
-          this.friendsArray.push(result);
-        });
-      }
     });
   }
 

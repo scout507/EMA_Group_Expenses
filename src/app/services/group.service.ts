@@ -5,6 +5,8 @@ import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {User} from "../models/user.model";
 import { UserService } from './user.service';
+import {AddMembersPage} from "../group/add-members/add-members.page";
+import {ModalController} from "@ionic/angular";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,10 @@ export class GroupService {
 
   private groupCollection: AngularFirestoreCollection<Group>;
 
-  constructor(private afs: AngularFirestore, private authService: AuthService, private userService:UserService) {
+  constructor(private afs: AngularFirestore,
+              private authService: AuthService,
+              private userService:UserService,
+              private modalController: ModalController) {
     this.groupCollection = afs.collection<Group>('Group');
   }
 
@@ -24,6 +29,11 @@ export class GroupService {
   new(group: Group){
     this.groupCollection.add(this.copyAndPrepare(group));
   }
+
+  update(group: Group) {
+    this.groupCollection.doc(group.id).update(this.copyAndPrepare(group));
+  }
+
 
   delete(id: string){
     this.groupCollection.doc(id).delete();
@@ -36,11 +46,11 @@ export class GroupService {
     group.id = snapshot.id;
     let members = [];
     await temp.members.forEach(member => {
-      this.userService.findById(member).then(user => {
+      this.userService.findById(member.toString()).then(user => {
         members.push(user);
       });
     });
-    group.creator = await this.userService.findById(temp.creator.id);
+    group.creator = await this.userService.findById(temp.creator.toString());
     group.members = members;
     group.name = temp.name;
     return group;
@@ -52,16 +62,7 @@ export class GroupService {
       doc.forEach(g => {
         g.data().members.forEach(member => {
           if(member.toString() === id){
-            let members: User[] = [];
-            g.data().members.forEach(m => {
-              this.userService.findById(m.toString()).then(u => {
-                members.push(u);
-              })
-            });
-            let group = g.data();
-            group.members = members;
-            group.id = g.id;
-            groups.push(group);
+            groups.push(this.createGroup(g.data(), g.id))
           }
         })
       });
@@ -69,9 +70,38 @@ export class GroupService {
     })
   }
 
+  createGroup(group: Group, id: string): Group {
+    let members: User[] = [];
+    group.members.forEach(m => {
+      this.userService.findById(m.toString()).then(u => {
+        members.push(u);
+      })
+    });
+    let newGroup: Group = group;
+    group.members = members;
+    group.id = id;
+    return group
+  }
+
+
+  async addMembers(group: Group, currentUser: User): Promise<User[]> {
+    const modal = await this.modalController.create({
+      component: AddMembersPage,
+      componentProps: {
+        selectedFriendsParam: group.members,
+        currentUserParam: currentUser
+      }
+    });
+    await modal.present();
+    const result = await modal.onDidDismiss();
+    return result.data;
+  }
+
+
   copyAndPrepare(group: Group): Group{
     const copy: any = {...group};
     delete copy.id;
+    copy.creator = group.creator.id;
     copy.members = [];
     group.members.forEach(member => {
       copy.members.push(member.id);

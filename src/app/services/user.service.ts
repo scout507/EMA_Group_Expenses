@@ -31,7 +31,7 @@ export class UserService {
     this.userCollection.doc(id).set(this.copyAndPrepare(user));
   }
 
-  findById(id: string) {
+  findById(id: string): Promise<User> {
     return this.userCollection.doc(id).get().toPromise().then(res => {
       const ret: User = res.data();
       ret.id = id;
