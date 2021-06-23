@@ -47,6 +47,9 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.outgoingView = true;
+    this.confirmView = false;
+    this.incomingView = false;
+    this.pendingView = false;
     const sub = this.af.authState.subscribe(user => {
       if (user) {
         this.userService.findById(user.uid).then(result => {
@@ -216,5 +219,19 @@ export class HomePage {
         break;
       }
     }
+  }
+
+  confirmTransaction(transactionId: string, user: User) {
+    console.log("not active, read comment in home.page.ts confirmTransaction");
+    /*
+    TODO: activate this, as soon as you fix the button over button issue
+    this.transactions.forEach(transaction =>{
+      if(transaction.id === transactionId){
+        transaction.accepted.forEach(a =>{
+          if(a.user = user) a.accepted = true;
+        });
+      }
+    });
+     */
   }
 }

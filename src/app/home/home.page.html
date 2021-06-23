@@ -53,6 +53,7 @@
             <div style="font-size: small">{{transaction.groupName? transaction.groupName : "Gruppenname" }}, {{transaction.otherUser.displayName}}</div>
           </ion-col>
           <ion-col align="right" >{{transaction.amount}}€</ion-col>
+            <ion-col *ngIf="confirmView"><ion-button (click)="confirmTransaction()">x</ion-button></ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
