@@ -21,8 +21,8 @@ export class FriendsPage implements OnInit {
       if (user) {
         this.userService.findById(user.uid).then(value => {
           this.friends = [];
-          value.friends.forEach(element => {
-            this.friendsService.findById(element).then(friend => {
+          value.friends.forEach(async element => {
+            await this.friendsService.findById(element).then(friend => {
               this.friends.push(friend);
             });
           });
@@ -42,4 +42,20 @@ export class FriendsPage implements OnInit {
     this.router.navigate(['friend-profile', [id]]);
   }
 
+  redirect(target: string){
+    switch (target) {
+      case 'transaction': {
+        this.router.navigate(['transaction-create']);
+        break;
+      }
+      case 'group':{
+        this.router.navigate(['group-list']);
+        break;
+      }
+      case 'home':{
+        this.router.navigate(['home']);
+        break;
+      }
+    }
+  }
 }
