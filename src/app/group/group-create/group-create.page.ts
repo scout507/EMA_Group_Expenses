@@ -26,22 +26,9 @@ export class GroupCreatePage implements OnInit {
   }
 
   async addMembers(){
-    let selectedFriendsID: string[] = [];
-    if(this.group.members){
-      this.group.members.forEach(m => {
-        selectedFriendsID.push(m.id)
-      });
-    }
-    const modal = await this.modalController.create({
-      component: AddMembersPage,
-      componentProps: {
-        friends: this.currentUser.friends,
-        selectedFriends: selectedFriendsID,
-      }
-    });
-    await modal.present();
-    const result = await modal.onDidDismiss();
-    this.group.members = result.data;
+    this.groupService.addMembers(this.group, this.currentUser).then(members => {
+      this.group.members = members;
+    })
   }
 
   add(){

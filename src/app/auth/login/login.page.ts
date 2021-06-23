@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
   password: string;
   inputType: string;
   iconName: string;
+  errorMessage: string;
 
   constructor(public authService: AuthService, public router: Router) {
     this.inputType = "password";
@@ -28,6 +29,17 @@ export class LoginPage implements OnInit {
       this.iconName = "eye-off-outline";
     }
   }
+
+  login(email: string, password: string){
+    this.authService.login(email, password).then(ret => {
+      if(ret){
+        this.errorMessage = ret;
+      }else{
+        this.router.navigate(['home']);
+      }
+    })
+  }
+
 
   ngOnInit() {
   }
