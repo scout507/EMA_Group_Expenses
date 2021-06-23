@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {NavController} from "@ionic/angular";
 import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-group-details',
@@ -18,13 +19,13 @@ export class GroupDetailsPage implements OnInit {
   friendsArray: User[] = [];
   currentUser: User;
 
-  constructor(private groupService: GroupService, private route: ActivatedRoute, private navCtrl: NavController, private authService: AuthService) {
+  constructor(private groupService: GroupService, private userService:UserService, private route: ActivatedRoute, private navCtrl: NavController, private authService: AuthService) {
     this.currentUser = this.authService.currentUser;
     const groupID = this.route.snapshot.paramMap.get('id');
     this.groupService.getGroupById(groupID).then(g => {
       this.group = g;
       this.group.members.forEach(m => {
-        this.authService.getUserById(m.toString()).then(result => {
+        this.userService.findById(m.toString()).then(result => {
           this.friendsArray.push(result)
         })
       });

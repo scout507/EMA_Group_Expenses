@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { Award } from '../award.model';
-import { ArwardService } from '../award.service';
-import { User } from '../user.model';
-import { UserService } from '../user.service';
+import { Award } from '../../models/award.model';
+import { User } from 'src/app/models/user.model';
+import { UserService } from '../../services/user.service';
+import { ArwardService } from 'src/app/services/award.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,10 +20,7 @@ export class ProfilePage implements OnInit {
   }
 
   ionViewWillEnter() {
-    //for testing
-    this.af.signInWithEmailAndPassword("abc@abc.de", "123456");
-
-    this.af.authState.subscribe(user => {
+    var sub = this.af.authState.subscribe(user => {
       if (user) {
         this.userService.findById(user.uid).then(value => {
           this.user = { ...value };
@@ -34,6 +31,7 @@ export class ProfilePage implements OnInit {
             });
           });
         });
+        sub.unsubscribe();
       }
     });
   }

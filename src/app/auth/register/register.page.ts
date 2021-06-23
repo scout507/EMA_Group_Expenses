@@ -18,7 +18,7 @@ export class RegisterPage implements OnInit {
 
   register(){
     if(this.password === this.secondPassword){
-      this.authService.register(this.username, this.email, this.password);
+      this.authService.register(this.email, this.password);
     }else{
       alert("Passwörter ungleich")
     }

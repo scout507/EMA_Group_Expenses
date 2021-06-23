@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './user.model';
+import { User } from '../models/user.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Injectable({
@@ -10,35 +10,25 @@ export class UserService {
   userCollection: AngularFirestoreCollection<User>;
 
   constructor(private afs: AngularFirestore) {
-    this.userCollection = afs.collection<User>('User2');
+    this.userCollection = afs.collection<User>('User');
   }
 
-  persist(id: string) {
+  persist(id: string, email:string) {
     var user = new User();
-    user.firstname = "Max";
-    user.lastname = "Mustername";
-    user.image = "https://bit.ly/2S904CS";
+    user.displayName = "Max Mustername";
+    user.profilePic = "https://bit.ly/2S904CS";
+    user.email = email;
     user.description = "Erstelle eine Beschreibung...";
+    user.awards = ["iO3uC7uzgAb5j8PfycqB"];
+    user.descriptionPublic = false;
     user.cash = false;
     user.ec_card = false;
     user.paypal = false;
     user.kreditcard = false;
     user.imagePublic = false;
-    user.lastnamePublic = false;
     user.awardsPublic = false;
     user.friends = [""];
     this.userCollection.doc(id).set(this.copyAndPrepare(user));
-  }
-
-  findAll() {
-    return this.userCollection.get()
-      .toPromise()
-      .then(snapshot =>
-        snapshot.docs.map(doc => {
-          const user = doc.data();
-          user.id = doc.id;
-          return user;
-        }));
   }
 
   findById(id: string) {
@@ -63,7 +53,15 @@ export class UserService {
     return copy;
   }
 
-  findAllSync() {
-    return this.userCollection.valueChanges({ idField: 'id' });
+  findByEmail(email: String) {
+    return this.userCollection.get()
+      .toPromise()
+      .then(snapshot =>
+        snapshot.docs.map(doc => {
+          const user = doc.data();
+          user.id = doc.id;
+          if (user.email == email)
+          return user;
+        }));
   }
 }
