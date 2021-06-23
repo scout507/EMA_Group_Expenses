@@ -40,7 +40,7 @@ export class GroupService {
         members.push(user);
       });
     });
-    group.creator = await this.userService.findById(temp.creator);
+    group.creator = await this.userService.findById(temp.creator.id);
     group.members = members;
     group.name = temp.name;
     return group;

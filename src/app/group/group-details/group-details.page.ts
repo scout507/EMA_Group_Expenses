@@ -24,12 +24,12 @@ export class GroupDetailsPage implements OnInit {
     const groupID = this.route.snapshot.paramMap.get('id');
     this.groupService.getGroupById(groupID).then(g => {
       this.group = g;
-      this.group.members.forEach(m => {
-        this.userService.findById(m.toString()).then(result => {
-          this.friendsArray.push(result)
-        })
-      });
-    })
+      for(const member of this.group.members){
+        this.userService.findById(member.id).then(result => {
+          this.friendsArray.push(result);
+        });
+      }
+    });
   }
 
   ngOnInit() {

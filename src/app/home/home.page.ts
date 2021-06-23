@@ -52,8 +52,8 @@ export class HomePage {
         this.userService.findById(user.uid).then(result => {
           this.currentUser = result;
           this.updateTransactions();
+          sub.unsubscribe();
         });
-        sub.unsubscribe();
       }
     });
   }
@@ -104,7 +104,6 @@ export class HomePage {
     this.transactions = [];
     this.simpleTransactions = [];
     this.search = '';
-
     this.transactionService.getAllTransactionByUser(this.currentUser).then( result => {
       result.forEach( transaction => {
         this.createSimpleTransaction(transaction);

@@ -33,8 +33,8 @@ export class UserService {
 
   findById(id: string) {
     return this.userCollection.doc(id).get().toPromise().then(res => {
-      const ret = res.data();
-      ret.id = res.id;
+      const ret: User = res.data();
+      ret.id = id;
       return ret;
     });
   }
