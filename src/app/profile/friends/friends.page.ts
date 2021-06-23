@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { FriendsService } from '../friends.service';
-import { User } from '../user.model';
-import { UserService } from '../user.service';
+import { User } from 'src/app/models/user.model';
+import { FriendsService } from '../../services/friends.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-friends',
