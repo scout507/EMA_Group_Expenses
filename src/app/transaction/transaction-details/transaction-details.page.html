@@ -52,7 +52,7 @@
       <ion-label>Rhythmus</ion-label>
       <ion-text class="ion-text-right">{{ formatRhythm(transaction.rhythm)}}</ion-text>
     </ion-item>
-    <ion-button>Bezahlen</ion-button>
+    <ion-button (click)="payTransaction()">Bezahlen</ion-button>
   </div>
   <div *ngIf="currentView === 'members'">
     <ion-item *ngFor="let member of transactionService.getParticipants(transaction)">
