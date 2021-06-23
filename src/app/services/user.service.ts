@@ -13,9 +13,9 @@ export class UserService {
     this.userCollection = afs.collection<User>('User');
   }
 
-  persist(id: string, email:string) {
+  persist(id: string, email:string, username:string) {
     var user = new User();
-    user.displayName = "Max Mustername";
+    user.displayName = username;
     user.profilePic = "https://bit.ly/2S904CS";
     user.email = email;
     user.description = "Erstelle eine Beschreibung...";

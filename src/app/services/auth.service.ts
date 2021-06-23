@@ -16,7 +16,7 @@ export class AuthService {
     let message: string;
     await this.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.userservice.persist(result.user.uid, email);
+        this.userservice.persist(result.user.uid, email, username);
         this.userservice.findById(result.user.uid).then(user => {
           this.currentUser = user;
           this.router.navigate(['home']);

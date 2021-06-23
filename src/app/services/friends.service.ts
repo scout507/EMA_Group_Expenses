@@ -10,7 +10,7 @@ export class FriendsService {
   userCollection: AngularFirestoreCollection<User>;
 
   constructor(private afs: AngularFirestore) {
-    this.userCollection = afs.collection<User>('User2');
+    this.userCollection = afs.collection<User>('User');
   }
 
   persist(id: string) {
