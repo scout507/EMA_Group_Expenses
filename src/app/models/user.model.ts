@@ -1,9 +1,19 @@
 export class User {
-  constructor(public userName?: string,
-              public displayName?: string,
-              public email?: string,
-              public id?: string,
-              public friends?: string[],
-              public profilePic?: any) {
+  constructor(
+    public id?: string,
+    public displayName?: string,
+    public email?: string,
+    public friends?: string[],
+    public awards?: string[], 
+    public profilePic?: string,
+    public description?: string,
+    public cash?: boolean,
+    public ec_card?: boolean,
+    public kreditcard?: boolean,
+    public paypal?: boolean,
+    public imagePublic?: boolean,    
+    public awardsPublic?: boolean,
+    public descriptionPublic?: boolean,
+    ) {
   }
 }

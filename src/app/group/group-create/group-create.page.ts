@@ -22,13 +22,26 @@ export class GroupCreatePage implements OnInit {
               private authService: AuthService,
               private groupService: GroupService,
               private navCtrl: NavController) {
-    this.group.members = [];
+
   }
 
-  addMembers(){
-    this.groupService.addMembers(this.group, this.currentUser).then(members => {
-      this.group.members.splice(0, this.group.members.length, ...members);
+  async addMembers(){
+    let selectedFriendsID: string[] = [];
+    if(this.group.members){
+      this.group.members.forEach(m => {
+        selectedFriendsID.push(m.id)
+      });
+    }
+    const modal = await this.modalController.create({
+      component: AddMembersPage,
+      componentProps: {
+        friends: this.currentUser.friends,
+        selectedFriends: selectedFriendsID,
+      }
     });
+    await modal.present();
+    const result = await modal.onDidDismiss();
+    this.group.members = result.data;
   }
 
   add(){
@@ -36,7 +49,8 @@ export class GroupCreatePage implements OnInit {
       this.group.creator = this.currentUser;
       this.group.members.push(this.currentUser);
       this.groupService.new(this.group);
-      this.navCtrl.back();
+      this.navCtrl.pop();
+      console.log(this.navCtrl);
     }else{
       alert("name zu kurz")
     }
