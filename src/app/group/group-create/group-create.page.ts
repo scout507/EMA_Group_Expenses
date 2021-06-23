@@ -32,14 +32,17 @@ export class GroupCreatePage implements OnInit {
   }
 
   add(){
-    if(this.group.name.length > 2 && this.group.members.length > 0){
-      this.group.creator = this.currentUser;
-      this.group.members.push(this.currentUser);
-      this.groupService.new(this.group);
-      this.navCtrl.pop();
-      console.log(this.navCtrl);
+    if(this.group.name.length > 2){
+      if( this.group.members.length > 0){
+        this.group.creator = this.currentUser;
+        this.group.members.push(this.currentUser);
+        this.groupService.new(this.group);
+        this.navCtrl.back();
+      }else{
+        alert("Gruppe muss mind. 1 Mitglied enthalten.")
+      }
     }else{
-      alert("name zu kurz")
+      alert("Gruppen Name muss mind. 3 Zeichen lang sein.")
     }
   }
 
