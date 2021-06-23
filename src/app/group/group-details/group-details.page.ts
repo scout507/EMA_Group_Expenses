@@ -70,10 +70,6 @@ export class GroupDetailsPage implements OnInit {
     const groupID = this.route.snapshot.paramMap.get('id');
     this.groupService.getGroupById(groupID).then(g => {
       this.group = g;
-      this.authService.getUserById(this.group.creator).then(u => {
-        this.creator = u;
-        console.log(this.creator);
-      })
     });
   }
 
