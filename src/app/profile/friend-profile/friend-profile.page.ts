@@ -50,4 +50,20 @@ export class FriendProfilePage implements OnInit {
     await alert.onDidDismiss();
   }
 
+  redirect(target: string){
+    switch (target) {
+      case 'transaction': {
+        this.router.navigate(['transaction-create']);
+        break;
+      }
+      case 'group':{
+        this.router.navigate(['group-list']);
+        break;
+      }
+      case 'home':{
+        this.router.navigate(['home']);
+        break;
+      }
+    }
+  }
 }
