@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private auth: AngularFireAuth, private router: Router, private userservice: UserService) {
   }
 
-  async register(email: string, password: string): Promise<void | string>{
+  async register(email: string, password: string, username: string): Promise<void | string>{
     let message: string;
     await this.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {

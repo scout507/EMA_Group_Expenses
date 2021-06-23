@@ -19,7 +19,7 @@ export class RegisterPage implements OnInit {
 
   register(){
     if(this.password === this.secondPassword){
-      this.authService.register(this.email, this.password).then(ret => {
+      this.authService.register(this.email, this.password, this.username).then(ret => {
         if(ret){
           this.errorMessage = ret;
         }else{
