@@ -12,6 +12,8 @@ import { UserService } from '../../services/user.service';
 })
 export class FriendsPage implements OnInit {
   friends: User[] = [];
+  addFriendInput: string;
+  currentUser: User;
 
   constructor(private router: Router, private af: AngularFireAuth, private friendsService: FriendsService, private userService: UserService) {
   }
@@ -20,6 +22,7 @@ export class FriendsPage implements OnInit {
     this.af.authState.subscribe(user => {
       if (user) {
         this.userService.findById(user.uid).then(value => {
+          this.currentUser = value;
           this.friends = [];
           value.friends.forEach(async element => {
             await this.friendsService.findById(element).then(friend => {
@@ -40,6 +43,10 @@ export class FriendsPage implements OnInit {
 
   friendBttn(id: string) {
     this.router.navigate(['friend-profile', [id]]);
+  }
+
+  addFriend(){
+    this.friendsService.addFriend(this.addFriendInput, this.currentUser.id);
   }
 
   redirect(target: string){
