@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Transaction} from "../../models/transaction.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TransactionService} from "../../services/transaction.service";
 
 @Component({
@@ -9,19 +9,58 @@ import {TransactionService} from "../../services/transaction.service";
   styleUrls: ['./transaction-details.page.scss'],
 })
 export class TransactionDetailsPage implements OnInit {
-  transaction : Transaction;
+  transaction: Transaction;
+  currentView: string = 'overview';
 
-  constructor(private route: ActivatedRoute, private transactionService : TransactionService) { }
-
-  ionViewWillEnter(){
-
-    this.transaction = JSON.parse(this.route.snapshot.paramMap.get('transaction'));
-    if (!this.transaction) {
-      this.transaction = this.transactionService.getLocally();
-    }
+  constructor(private route: ActivatedRoute, private transactionService : TransactionService, private router: Router) {
+    this.transaction = this.transactionService.getLocally();
   }
+
 
   ngOnInit() {
   }
 
+  formatType(type: string): string{
+    switch (type) {
+      case 'cost': {
+        return 'Ausgabe';
+      }
+      case 'income': {
+        return 'Einnahme';
+      }
+    }
+  }
+
+  formatRhythm(rhythm: string): string{
+    switch (rhythm) {
+      case 'once': {
+        return 'Einmalig';
+      }
+      case 'daily': {
+        return 'Täglich';
+      }
+      case 'weekly': {
+        return 'Wöchentlich';
+      }
+      case 'monthly': {
+        return 'Monatlich';
+      }
+      case 'yearly': {
+        return 'Jährlich';
+      }
+    }
+  }
+
+  delete(){
+    let confirmation = confirm('Are you sure you want to delete this transaction?');
+    if (confirmation) {
+      this.transactionService.delete(this.transaction.id);
+      this.router.navigate(['home']);
+    }
+  }
+
+  editTransaction(){
+    this.transactionService.saveLocally(this.transaction);
+    this.router.navigate(['transaction-create', {editMode: true}]);
+  }
 }

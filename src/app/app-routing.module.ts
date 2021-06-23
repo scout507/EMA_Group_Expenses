@@ -52,6 +52,26 @@ const routes: Routes = [
     loadChildren: () => import('./transaction/transaction-details/transaction-details.module').then( m => m.TransactionDetailsPageModule)
   },
   {
+    path: 'transaction-stakes',
+    loadChildren: () => import('./transaction/transaction-stakes/transaction-stakes.module').then(m => m.TransactionStakesPageModule)
+  },
+  {
+    path: 'password',
+    loadChildren: () => import('./profile/password/password.module').then( m => m.PasswordPageModule)
+  },
+  {
+    path: 'payment',
+    loadChildren: () => import('./profile/payment/payment.module').then( m => m.PaymentPageModule)
+  },
+  {
+    path: 'privacy',
+    loadChildren: () => import('./profile/privacy/privacy.module').then( m => m.PrivacyPageModule)
+  },
+  {
+    path: 'friend-profile',
+    loadChildren: () => import('./profile/friend-profile/friend-profile.module').then( m => m.FriendProfilePageModule)
+  },
+  {
     path: 'register',
     loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
   },

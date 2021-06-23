@@ -1,56 +1,92 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>{{transaction.purpose}}</ion-title>
+    <ion-button slot="end" (click)="editTransaction()">
+      <ion-icon name="create"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" (click)="delete()">
+      <ion-icon name="trash"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      <ion-button>
-        <ion-icon name="information-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col>
-      <ion-button>
-        <ion-icon name="people"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col>
-      <ion-button>
-        <ion-icon name="attach"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-  <ion-item>
-    <ion-text>Gruppe</ion-text>
-    <ion-text>{{transaction.group.name}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-text>Typ</ion-text>
-    <ion-text>{{transaction.type}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-text>Betrag</ion-text>
-    <ion-item>{{transaction.amount}}</ion-item>
-  </ion-item>
-  <ion-item>
-    <ion-text>Ersteller</ion-text>
-    <ion-text>{{transaction.creator}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-text>Rechnungsdatum</ion-text>
-    <ion-text>{{transaction.purchaseDate}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-text>Fälligkeitsdatum</ion-text>
-    <ion-text>{{transaction.dueDate}}</ion-text>
-  </ion-item>
-  <ion-item>
-    <ion-text>Rhythmus</ion-text>
-    <ion-text>{{transaction.rhythm}}</ion-text>
-  </ion-item>
-  <ion-button>Bezahlen</ion-button>
+  <ion-toolbar>
+    <ion-button (click)="currentView = 'overview'">
+      <ion-icon name="information-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="currentView = 'members'">
+      <ion-icon name="people"></ion-icon>
+    </ion-button>
+    <ion-button (click)="currentView = 'attachment'">
+      <ion-icon name="attach"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+  <div *ngIf="currentView === 'overview'">
+    <ion-item>
+      <ion-label>Gruppe</ion-label>
+      <ion-text class="ion-text-right">{{ transaction.group.name }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Typ</ion-label>
+      <ion-text class="ion-text-right">{{ formatType(transaction.type)}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Betrag</ion-label>
+      <ion-text class="ion-text-right">{{ transaction.amount}}€</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ersteller</ion-label>
+      <ion-text
+        class="ion-text-right">{{ transaction.creator ? transaction.creator.displayName : transaction.creator.userName}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Rechnungsdatum</ion-label>
+      <ion-text class="ion-text-right">{{ transaction.purchaseDate}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fälligkeitsdatum</ion-label>
+      <ion-text class="ion-text-right">{{ transaction.dueDate}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Rhythmus</ion-label>
+      <ion-text class="ion-text-right">{{ formatRhythm(transaction.rhythm)}}</ion-text>
+    </ion-item>
+    <ion-button>Bezahlen</ion-button>
+  </div>
+  <div *ngIf="currentView === 'members'">
+    <ion-item *ngFor="let member of transactionService.getParticipants(transaction)">
+      <ion-avatar>{{member.profilePic}}</ion-avatar>
+      <ion-label>{{member.displayName ? member.displayName : member.userName}}</ion-label>
+      <ion-text>{{transactionService.getStakeForUser(member, transaction)}}€</ion-text>
+      <ion-icon *ngIf="transactionService.hasUserPaid(member, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
+      <ion-icon *ngIf="transactionService.wasPaymentAccepted(member, transaction)" name="checkmark" color="green"></ion-icon>
+      <ion-icon *ngIf="!transactionService.hasUserPaid(member, transaction)" name="close" color="red"></ion-icon>
+    </ion-item>
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button (click)="router.navigate(['home'])">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-badge>6</ion-badge>
+        </ion-tab-button>
+
+        <ion-tab-button>
+          <ion-icon name="cash-outline"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="router.navigate(['group-list'])">
+          <ion-icon name="people-outline"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button>
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

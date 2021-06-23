@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
-import {TransactionService} from "../services/transaction.service";
-import {Transaction} from "../models/transaction.model";
-import {Subscription} from "rxjs";
-import {User} from "../models/user.model";
-import {AuthService} from "../services/auth.service";
-import {GroupService} from "../services/group.service";
-import {Router} from "@angular/router";
+import {TransactionService} from '../services/transaction.service';
+import {Transaction} from '../models/transaction.model';
+import {Subscription} from 'rxjs';
+import {User} from '../models/user.model';
+import {AuthService} from '../services/auth.service';
+import {GroupService} from '../services/group.service';
+import {Router} from '@angular/router';
+import {SimpleTransaction} from '../models/simpleTransaction.model';
 
 
 @Component({
@@ -28,75 +29,144 @@ export class HomePage {
 
   testing: boolean;
   transactions: Transaction[] = [];
+  simpleTransactions: SimpleTransaction[] = [];
   filteredTransactions: Transaction[] = [];
   currentUser: User;
 
   private incoming: number;
   private pending: number;
   private confirm: number;
-  private subTransactions: Subscription;
 
 
-  constructor(private transactionService: TransactionService, private authService: AuthService, private groupService: GroupService, private router : Router) {
+
+  // eslint-disable-next-line max-len
+  constructor(private transactionService: TransactionService, private authService: AuthService, private groupService: GroupService, private router: Router) {
   }
 
   ionViewWillEnter() {
-    this.search = '';
     this.outgoingView = true;
     this.currentUser = this.authService.currentUser;
-    this.transactionService.getAllTransactions().then( result => {
-      this.transactions.push(...result);
-    });
-    this.subTransactions = this.transactionService.findAllSync()
-      .subscribe(transactions => {
-        this.updateTransactions();
-        this.transactions.splice(0, this.transactions.length, ...transactions);
-        this.filterTransaction(this.search);
-      });
+    this.updateTransactions();
   }
 
-
   filterTransaction(searchTerm: string) {
+
     this.filteredTransactions = [];
     this.transactions.forEach(transaction =>{
       //TODO: add pending & add multiple search options
       if(transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())) {
         if (this.outgoingView) {
-          if (transaction.type === "Ausgabe" && transaction.creator !== this.currentUser) {
+          if (transaction.type === 'cost' && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "Einnahme" && transaction.creator === this.currentUser){
+          } else if (transaction.type === 'income' && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }else if (this.incomingView) {
-          if (transaction.type === "Einnahme" && transaction.creator !== this.currentUser) {
+          if (transaction.type === 'income' && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "Ausgabe" && transaction.creator === this.currentUser){
+          } else if (transaction.type === 'cost' && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }
         else if (this.pendingView) {
-          if (transaction.type === "Ausgabe" && transaction.creator !== this.currentUser) {
+          if (transaction.type === 'cost' && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "Einnahme" && transaction.creator === this.currentUser){
+          } else if (transaction.type === 'income' && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }
         else if (this.confirmView) {
-          if (transaction.type === "Einnahme" && transaction.creator !== this.currentUser) {
+          if (transaction.type === 'income' && transaction.creator !== this.currentUser) {
             this.filteredTransactions.push(transaction);
-          } else if (transaction.type === "Ausgabe" && transaction.creator === this.currentUser){
+          } else if (transaction.type === 'cost' && transaction.creator === this.currentUser){
             this.filteredTransactions.push(transaction);
           }
         }
       }
     });
+  }
 
+  viewTransaction(transaction: Transaction) {
+    this.transactionService.saveLocally(transaction);
+    this.router.navigate(['transaction-details']);
+  }
+
+  updateTransactions(){
+    this.transactions = [];
+    this.simpleTransactions = [];
+    this.search = '';
+
+    this.transactionService.getAllTransactionByUser(this.currentUser).then( result => {
+      result.forEach( transaction => {
+        this.createSimpleTransaction(transaction);
+      });
+      this.transactions.push(...result);
+      this.filterTransaction(this.search);
+
+      //for the counter
+      this.outgoing = 0;
+      this.incoming = 0;
+      this.pending = 0;
+      this.confirm = 0;
+      //TODO: add pending
+      this.transactions.forEach(transaction => {
+        if (transaction.type === 'cost') {
+          if (transaction.creator !== this.currentUser) {
+            this.outgoing += transaction.amount;
+          } else {
+            this.incoming += transaction.amount;
+          }
+        }
+        else if(transaction.type === 'income'){
+          if (transaction.creator !== this.currentUser) {
+            this.incoming += transaction.amount;
+          } else {
+            this.outgoing += transaction.amount;
+          }
+        }
+        else if(transaction.type === 'cost'){
+          if (transaction.creator !== this.currentUser) {
+            this.pending ++;
+          } else {
+            this.confirm ++;
+          }
+        }
+        else if(transaction.type === 'income'){
+          if(transaction.creator !== this.currentUser) {
+            this.pending ++;
+          } else {
+            this.confirm ++;
+          }
+        }
+      });
+    });
+  }
+
+  refreshHandler(event) {
+    this.updateTransactions();
+    setTimeout(() => {
+      event.target.complete();
+    }, 200);
+  }
+
+  createSimpleTransaction(transaction: Transaction){
+    let otherUser: User;
+    let outgoing: boolean;
+    let cost: number;
+    //THIS IS NOT WORKING RIGHT NOW; NEED TO WAIT FOR THE DB to contain participation
+    //TODO: add pending
+    if(transaction.creator !== this.currentUser){
+      otherUser = transaction.creator;
+      if(transaction.type === "cost") outgoing = true;
+      else outgoing = false;
+      // cost = transaction.participation.get(this.currentUser); <--- use instead of transaction.amount
+      // eslint-disable-next-line max-len
+      this.simpleTransactions.push(new SimpleTransaction(transaction.id,transaction.amount,transaction.purpose,true,transaction.creator,transaction.group.name,transaction.dueDate));
+    }
+    console.log(this.simpleTransactions);
   }
 
 
-  ionViewDidLeave() {
-    this.subTransactions.unsubscribe();
-  }
 
   doSearch() {
     this.filterTransaction(this.search);
@@ -109,7 +179,7 @@ export class HomePage {
   }
 
   clearSearch() {
-    this.search = "";
+    this.search = '';
   }
 
   startSearch() {
@@ -123,65 +193,24 @@ export class HomePage {
     this.pendingView = false;
     this.confirmView = false;
 
-    if (type == 0) this.outgoingView = true;
-    else if (type == 1) this.incomingView = true;
-    else if (type == 2) this.pendingView = true;
-    else this.confirmView = true;
+    if (type === 0) {this.outgoingView = true;}
+    else if (type === 1) {this.incomingView = true;}
+    else if (type === 2) {this.pendingView = true;}
+    else {this.confirmView = true;}
   }
 
-
-  viewTransaction(tid: Transaction) {
-    this.router.navigate(['transaction-details', {transaction: JSON.stringify(tid)}])
-  }
-
-  updateTransactions(){
-    //for the counter
-    this.outgoing = 0;
-    this.incoming = 0;
-    this.pending = 0;
-    this.confirm = 0;
-    //TODO: add pending
-    this.transactions.forEach(transaction => {
-      if (transaction.type === 'Ausgabe') {
-        if (transaction.creator !== this.currentUser) {
-          this.outgoing += transaction.amount;
-        } else {
-          this.incoming += transaction.amount;
-        }
-      }
-      else if(transaction.type === 'Einnahme'){
-        if (transaction.creator !== this.currentUser) {
-          this.incoming += transaction.amount;
-        } else {
-          this.outgoing += transaction.amount;
-        }
-      }
-      else if(transaction.type === 'Ausgabe'){
-        if (transaction.creator !== this.currentUser) {
-          this.pending ++;
-        } else {
-          this.confirm ++;
-        }
-      }
-      else if(transaction.type === 'Einnahme'){
-        if(transaction.creator !== this.currentUser) {
-          this.pending ++;
-        } else {
-          this.confirm ++;
-        }
-      }
-    });
-
-  }
-
-  redirect(target : string){
+  redirect(target: string){
     switch (target) {
-      case "transaction": {
+      case 'transaction': {
         this.router.navigate(['transaction-create']);
         break;
       }
-      case "group":{
+      case 'group':{
         this.router.navigate(['group-list']);
+        break;
+      }
+      case 'profile':{
+        this.router.navigate(['profile']);
         break;
       }
     }

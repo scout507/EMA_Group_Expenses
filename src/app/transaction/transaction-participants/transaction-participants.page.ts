@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../models/user.model";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-transaction-participants',
@@ -10,24 +11,55 @@ import {TransactionService} from "../../services/transaction.service";
 })
 export class TransactionParticipantsPage implements OnInit {
   allSelected : boolean = false;
-  participations : Map<User, boolean> = new Map<User, boolean>();
+  participants: User[] = [];
+  participation: { user: User, participates: boolean}[] = [];
   fairlyDistributedCosts : boolean;
   transaction : Transaction;
 
-  ionViewWillEnter(){
+  constructor(private transactionService : TransactionService,
+              private router: Router,
+              private route: ActivatedRoute) {
+    this.fairlyDistributedCosts = JSON.parse(route.snapshot.paramMap.get('fairlyDistributedPrice'));
     this.transaction = this.transactionService.getLocally();
+    this.transaction.group.members.forEach(user => {
+      let participates = false;
+      this.participation.push({user, participates});
+    })
   }
 
-  constructor(private transactionService : TransactionService) {
-    this.transaction = JSON.parse(localStorage.getItem('transaction'));
+
+  calculateStakes(){
+      this.participation.forEach(participant => {if (participant.participates) this.participants.push(participant.user)});
+      let stake: number = this.transaction.amount / this.participants.length;
+      for (let user of this.participants) {
+        let stakeEntry = {user, stake};
+        let paid = false;
+        let accepted = false;
+        let paidEntry = {user, paid};
+        let acceptedEntry = {user, accepted};
+        console.log(stakeEntry);
+        this.transaction.participation.push(stakeEntry);
+        this.transaction.accepted.push(acceptedEntry);
+        this.transaction.paid.push(paidEntry);
+      }
   }
 
-  toggleSelected(user : User){
-    const entry = this.participations.get(user);
-    if (entry){
-      this.participations.set(user, false);
+  handleSubmit(){
+    this.calculateStakes();
+    if (this.fairlyDistributedCosts) {
+      this.transactionService.persist(this.transaction);
+      this.router.navigate(['home']);
     } else {
-      this.participations.set(user, true);
+      this.transactionService.saveLocally(this.transaction);
+      this.router.navigate(['transaction-stakes']);
+    }
+  }
+
+  toggleSelectAll(){
+    if (this.allSelected) {
+      this.participation.forEach(participant => participant.participates = true);
+    } else {
+      this.participation.forEach(participant => participant.participates = false);
     }
   }
 

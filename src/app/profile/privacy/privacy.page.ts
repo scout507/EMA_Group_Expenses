@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
-  selector: 'app-options',
-  templateUrl: './options.page.html',
-  styleUrls: ['./options.page.scss'],
+  selector: 'app-privacy',
+  templateUrl: './privacy.page.html',
+  styleUrls: ['./privacy.page.scss'],
 })
-export class OptionsPage implements OnInit {
+export class PrivacyPage implements OnInit {
   user: User = new User();
   userOld: User = new User();
 
+
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private af: AngularFireAuth) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   ionViewWillEnter() {
     this.af.authState.subscribe(user => {
@@ -38,12 +40,12 @@ export class OptionsPage implements OnInit {
       await alert.present();
       var rsl = await alert.onDidDismiss();
       if (rsl.role == "yes") {
-        this.user = this.userOld;
-        this.router.navigate(['profile']);
+        this.user = { ...this.userOld };
+        this.router.navigate(['options']);
       }
     }
     else {
-      this.router.navigate(['profile']);
+      this.router.navigate(['options']);
     }
   }
 
@@ -59,51 +61,11 @@ export class OptionsPage implements OnInit {
 
       if (rsl.role == "yes") {
         this.userService.update(this.user);
-        this.router.navigate(['profile']);
+        this.router.navigate(['options']);
       }
     }
     else {
-      this.router.navigate(['profile']);
-    }
-  }
-
-  profileImageChange() {
-    // TODO: Foto hochladen
-    console.log("Test");
-  }
-
-  payment() {
-    this.saveAlert("payment");
-  }
-
-  passwordchange() {
-    this.saveAlert('password');
-  }
-
-  privacy() {
-    this.saveAlert('privacy');
-  }
-
-  async saveAlert(site: string) {
-    if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
-      const alert = document.createElement('ion-alert');
-      alert.header = 'Änderungen speichern?';
-      alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Nein", role: "no" }, { text: "Abbrechen" }];
-
-      document.body.appendChild(alert);
-      await alert.present();
-      var rsl = await alert.onDidDismiss();
-
-      if (rsl.role == "yes") {
-        this.userService.update(this.user);
-        this.router.navigate([site]);
-      } else if (rsl.role == "no") {
-        this.user = this.userOld;
-        this.router.navigate([site]);
-      }
-    }
-    else {
-      this.router.navigate([site]);
+      this.router.navigate(['options']);
     }
   }
 

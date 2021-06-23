@@ -80,10 +80,9 @@ export class AuthService {
       })
   }
 
-  getUserById(id: string): Promise<User> {
-    let user: User = new User();
+  getUserById(id: string) : Promise<User>{
     return this.userCollection.doc(id).get().toPromise().then(u => {
-      user = u.data();
+      let user: User = u.data();
       user.id = u.id;
       return user;
     })

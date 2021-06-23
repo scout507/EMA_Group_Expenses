@@ -10,25 +10,25 @@
 <ion-content>
   <ion-item>
     <ion-text>Alle</ion-text>
-    <ion-toggle [(ngModel)]="allSelected"></ion-toggle>
+    <ion-toggle [(ngModel)]="allSelected" (click)="toggleSelectAll()" slot="end"></ion-toggle>
   </ion-item>
   <ion-list>
-    <ion-item *ngFor="let user of transaction.group.members">
+    <ion-item *ngFor="let participant of participation">
       <ion-avatar slot="start">
-        <img src="{{user.profilePic}}">
+        <img src="{{participant.user.profilePic}}">
       </ion-avatar>
-      <ion-text>{{user.displayName ? user.displayName : user.userName}}</ion-text>
-      <ion-toggle (click)="toggleSelected(user)"></ion-toggle>
+      <ion-text>{{participant.user.displayName ? participant.user.displayName : participant.user.userName}}</ion-text>
+      <ion-toggle [(ngModel)]="participant.participates" slot="end"></ion-toggle>
     </ion-item>
   </ion-list>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="handleSubmit()">
       <ion-icon *ngIf="fairlyDistributedCosts" name="checkmark"></ion-icon>
       <ion-icon *ngIf="!fairlyDistributedCosts" name="arrow-forward"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <ion-fab horizontal="start" vertical="bottom" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="router.navigate(['home'])">
       <ion-icon name="close"></ion-icon>
     </ion-fab-button>
   </ion-fab>

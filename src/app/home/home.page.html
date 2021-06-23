@@ -14,38 +14,43 @@
                    placeholder="Suche">
     </ion-searchbar>
   </ion-toolbar>
-</ion-header>
-
-<ion-content>
   <ion-grid>
     <ion-row class="ion-justify-content-evenly">
       <ion-col class="ion-no-padding">
-          <ion-button expand="full" (click)="buttonHandler(0); filterTransaction(this.search)">
-            <ion-text></ion-text>
-            <ion-text>{{outgoing}}€ Ausgaben</ion-text>
-          </ion-button>
+        <ion-button expand="full" (click)="buttonHandler(0); filterTransaction(this.search)">
+          <ion-text></ion-text>
+          <ion-text>{{outgoing}}€ Ausgaben</ion-text>
+        </ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-          <ion-button expand="full" (click)="buttonHandler(1); filterTransaction(this.search)">{{incoming}}€ Einnahmen</ion-button>
+        <ion-button expand="full" (click)="buttonHandler(1); filterTransaction(this.search)">{{incoming}}€ Einnahmen</ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-          <ion-button expand="full" (click)="buttonHandler(2); filterTransaction(this.search)">{{pending}} Ausstehend</ion-button>
+        <ion-button expand="full" (click)="buttonHandler(2); filterTransaction(this.search)">{{pending}} Ausstehend</ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-          <ion-button expand="full" (click)="buttonHandler(3); filterTransaction(this.search)">{{confirm}} Bestätigen</ion-button>
+        <ion-button expand="full" (click)="buttonHandler(3); filterTransaction(this.search)">{{confirm}} Bestätigen</ion-button>
       </ion-col>
     </ion-row>
-
   </ion-grid>
+</ion-header>
 
+<ion-content>
+  <ion-refresher id="refresher" slot="fixed" pullFactor="0.3" (ionRefresh)="refreshHandler($event)">
+    <ion-refresher-content
+      pullingText="Pull to refresh"
+      pullingIcon="chevron-down-circle-outline"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list>
       <ion-item button *ngFor="let transaction of filteredTransactions" (click)="viewTransaction(transaction)" lines="full">
         <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
           <ion-row>
-          <ion-col align="left"><ion-img src="transaction.user.img"></ion-img></ion-col>
+          <ion-col align="left">bild</ion-col>
           <ion-col>
             <div>{{transaction.purpose}}</div>
-            <div style="font-size: small">{{transaction.purpose}}</div>
+            <div style="font-size: small">{{transaction.group? transaction.group.name : "Gruppenname" }}, {{transaction.creator.displayName}}</div>
           </ion-col>
           <ion-col align="right" >{{transaction.amount}}€</ion-col>
           </ion-row>
@@ -53,45 +58,26 @@
       </ion-item>
   </ion-list>
 
-
-
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
   <ion-tabs>
-
-    <ion-tab tab="tab-home">
-      <ion-nav></ion-nav>
-    </ion-tab>
-
-    <ion-tab tab="tab-payment">
-      <ion-nav></ion-nav>
-    </ion-tab>
-
-    <ion-tab tab="group">
-      <ion-nav></ion-nav>
-    </ion-tab>
-
-    <ion-tab tab="profile">
-      <ion-nav></ion-nav>
-    </ion-tab>
-
-    <ion-tab-bar slot="top">
-      <ion-tab-button tab="tab-home">
+    <ion-tab-bar>
+      <ion-tab-button>
         <ion-icon name="home-outline"></ion-icon>
-        <ion-badge>6</ion-badge>
+        <ion-badge></ion-badge>
       </ion-tab-button>
 
-      <ion-tab-button tab="tab-payment" (click)="redirect('transaction')">
+      <ion-tab-button (click)="redirect('transaction')">
         <ion-icon name="cash-outline"></ion-icon>
       </ion-tab-button>
 
-      <ion-tab-button tab="group" (click)="redirect('group')">
+      <ion-tab-button (click)="redirect('group')">
         <ion-icon name="people-outline"></ion-icon>
       </ion-tab-button>
 
-      <ion-tab-button tab="profile">
+      <ion-tab-button (click)="redirect('profile')">
         <ion-icon name="person-outline"></ion-icon>
       </ion-tab-button>
     </ion-tab-bar>
