@@ -12,10 +12,10 @@ export class AuthService {
   constructor(private auth: AngularFireAuth, private router: Router, private userservice: UserService) {
   }
 
-  register(email: string, password: string){
+  register(email: string, password: string, username: string){
     this.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.userservice.persist(result.user.uid, email);
+        this.userservice.persist(result.user.uid, email, username);
         this.userservice.findById(result.user.uid).then(user => {
           this.currentUser = user;
           this.router.navigate(['home']);
