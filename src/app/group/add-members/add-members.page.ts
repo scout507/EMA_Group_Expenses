@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController, NavParams} from "@ionic/angular";
+import { UserService } from 'src/app/services/user.service';
 import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
 
@@ -14,11 +15,11 @@ export class AddMembersPage implements OnInit {
   public selectedFriendsArray: User[] = [];
   public newSelectedFriendsArray: User[] = [];
 
-  constructor(private modalController: ModalController, public navParams: NavParams, public authService: AuthService) {
+  constructor(private modalController: ModalController, public navParams: NavParams, public authService: AuthService, private userService:UserService) {
     let friendsID: string[] = navParams.get('friends');
     let selectedFriendsID: string[] = navParams.get('selectedFriends');
     friendsID.forEach(id => {
-      this.authService.getUserById(id).then(user => {
+      this.userService.findById(id).then(user => {
         this.friendsArray.push(user);
         if(selectedFriendsID !== undefined && selectedFriendsID.includes(user.id)){
           this.selectedFriendsArray.push(user);
