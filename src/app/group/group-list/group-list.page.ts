@@ -6,7 +6,6 @@ import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {IonSearchbar} from "@ionic/angular";
-import firebase from "firebase";
 
 @Component({
   selector: 'app-group-list',
@@ -63,13 +62,11 @@ export class GroupListPage implements OnInit {
             newGroups.push(group)
           }
         })
-
       });
       this.groups = [];
       newGroups.forEach(group => {
         this.groups.push(this.groupService.createGroup(group, group.id));
       });
-      console.log(this.groups);
       this.filteredGroups.splice(0, this.filteredGroups.length, ...this.groups);
     });
   }
@@ -88,5 +85,4 @@ export class GroupListPage implements OnInit {
 
   ngOnInit() {
   }
-
 }

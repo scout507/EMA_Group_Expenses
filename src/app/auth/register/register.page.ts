@@ -13,16 +13,25 @@ export class RegisterPage implements OnInit {
   email: string;
   password: string;
   secondPassword: string;
+  errorMessage: string;
 
   constructor(public authService: AuthService, public router: Router) { }
 
   register(){
     if(this.password === this.secondPassword){
-      this.authService.register(this.email, this.password);
+      this.authService.register(this.email, this.password).then(ret => {
+        if(ret){
+          this.errorMessage = ret;
+        }else{
+          console.log(ret);
+          this.router.navigate(['home']);
+        }
+      });
     }else{
-      alert("Passwörter ungleich")
+      this.errorMessage = 'Passwörter ungleich'
     }
   }
+
 
   ngOnInit() {
   }

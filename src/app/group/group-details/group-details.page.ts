@@ -14,16 +14,14 @@ import {AuthService} from "../../services/auth.service";
 export class GroupDetailsPage implements OnInit {
 
   id: string;
-  group: Group = new Group();
-  creator: User;
-  currentUser: User = new User();
+  group: Group;
+  currentUser: User;
 
   constructor(private groupService: GroupService,
               private route: ActivatedRoute,
               private navCtrl: NavController,
               private alertController: AlertController,
               private authService: AuthService) {
-
   }
   addMembers(){
     this.groupService.addMembers(this.group, this.currentUser).then(members => {
