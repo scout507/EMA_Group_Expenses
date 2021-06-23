@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { UserService } from "./user.service";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 export class FriendsService {
   userCollection: AngularFirestoreCollection<User>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private userService: UserService, private authService: AuthService) {
     this.userCollection = afs.collection<User>('User');
   }
 
@@ -42,7 +44,7 @@ export class FriendsService {
     return this.userCollection.doc(id).get().toPromise().then(res => {
       const ret = res.data();
       ret.id = res.id;
-      
+
       if (!ret.imagePublic)
         ret.profilePic = "https://bit.ly/2S904CS";
 
@@ -53,6 +55,24 @@ export class FriendsService {
         ret.awards = [];
 
       return ret;
+    });
+  }
+
+  addFriend(email: string, currentUserID: string){
+    this.userService.findByEmail(email).then(user => {
+      if(user) {
+        user.forEach(u => {
+              if(u) {
+                this.userService.findById(currentUserID).then(curUser => {
+                  curUser.friends.push(u.id);
+                  u.friends.push(currentUserID);
+                  this.update(u);
+                  this.update(curUser);
+
+                });
+              }
+        });
+      }
     });
   }
 
