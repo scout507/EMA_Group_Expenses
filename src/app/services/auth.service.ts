@@ -16,7 +16,7 @@ export class AuthService {
     let message: string;
     await this.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.userservice.persist(result.user.uid, email, username);
+        this.userservice.persist(result.user.uid, email.toLocaleLowerCase(), username);
         this.userservice.findById(result.user.uid).then(user => {
           this.currentUser = user;
           this.router.navigate(['home']);
@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Promise<void | string>{
-    return this.auth.signInWithEmailAndPassword(email, password)
+    return this.auth.signInWithEmailAndPassword(email.toLocaleLowerCase(), password)
       .then((result) => {
         this.userservice.findById(result.user.uid).then(user => {
           this.currentUser = user;

@@ -59,19 +59,25 @@ export class FriendsService {
   }
 
   addFriend(email: string, currentUserID: string){
-    this.userService.findByEmail(email).then(user => {
+    this.userService.findByEmail(email.toLocaleLowerCase()).then(user => {
       if(user) {
         user.forEach(u => {
               if(u) {
                 this.userService.findById(currentUserID).then(curUser => {
+                  curUser.friends.forEach(friend =>{
+                    if(friend === u.id) return 'bereits befreundet';
+                  })
                   curUser.friends.push(u.id);
                   u.friends.push(currentUserID);
                   this.update(u);
                   this.update(curUser);
-
+                  return 'erfolgreich hinzugefügt';
                 });
               }
         });
+      }
+      else{
+        return 'Nutzer nicht vorhanden';
       }
     });
   }
