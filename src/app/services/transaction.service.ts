@@ -84,6 +84,27 @@ export class TransactionService {
     return transactions;
   }
 
+  async getAllTransactionByGroup(group: Group): Promise<Transaction[]> {
+    const snapshot = await this.transactionCollection.get().toPromise();
+    const transactions = [];
+
+    await snapshot.docs.map(doc => {
+      const transaction = doc.data();
+      transaction.id = doc.id;
+      return transaction;
+    }).forEach(document => {
+      //TODO: Check if transaction is active
+      if(document.group.toString() === group.id){
+        document.group = group;
+        transactions.push(document);
+      }
+    });
+    await Promise.all(transactions.map(async (transaction) => {
+      await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
+    }));
+    return transactions;
+  }
+
 
   async getAllTransactionUser(id: string): Promise<User[]> {
     let users = [];
