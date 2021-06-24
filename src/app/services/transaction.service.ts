@@ -70,11 +70,16 @@ export class TransactionService {
       return transaction;
     }).forEach(document => {
       //TODO: Check if transaction is active
-      document.participation.forEach( part =>{
-        if(part.user.id === user.id){
-          transactions.push(document);
-        }
-      });
+      if(document.creator.toString() === user.id){
+        transactions.push(document);
+      }
+      else {
+        document.participation.forEach(part => {
+          if (part.user.id === user.id) {
+            transactions.push(document);
+          }
+        });
+      }
     });
     await Promise.all(transactions.map(async (transaction) => {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
