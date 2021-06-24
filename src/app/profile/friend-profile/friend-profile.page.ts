@@ -16,7 +16,7 @@ import {AuthService} from "../../services/auth.service";
 export class FriendProfilePage implements OnInit {
   badges: Award[] = [];
   user: User = new User();
-  isfriend: boolean;
+  isfriend= false;
 
   constructor(private route: ActivatedRoute, private router: Router, private awardService: ArwardService, private af: AngularFireAuth, private userService:UserService,  private friendsService: FriendsService, private authService: AuthService) { }
 
@@ -32,7 +32,7 @@ export class FriendProfilePage implements OnInit {
         });
         this.user.friends.forEach(friend => {
           if(friend === this.authService.currentUser.id) this.isfriend = true;
-        })
+        });
       });
     });
   }

@@ -6,7 +6,7 @@
       </ion-button>
     </ion-buttons>
     <ion-title class="ion-text-center" style="margin-right: 40px;">Freundes Profil</ion-title>
-    <ion-button *ngif="!isfriend" slot="end" (click)="addFriend()">
+    <ion-button *ngIf="!isfriend" slot="end" (click)="addFriend()">
       <ion-icon name="person-add-outline"></ion-icon>
     </ion-button>
   </ion-toolbar>
