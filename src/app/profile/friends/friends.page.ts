@@ -12,8 +12,9 @@ import { UserService } from '../../services/user.service';
 })
 export class FriendsPage implements OnInit {
   friends: User[] = [];
-  addFriendInput: string;
+  addFriendInput;
   currentUser: User;
+  addFriendsOutput: string;
 
   constructor(private router: Router, private af: AngularFireAuth, private friendsService: FriendsService, private userService: UserService) {
   }
@@ -46,8 +47,9 @@ export class FriendsPage implements OnInit {
   }
 
   addFriend(){
-    this.friendsService.addFriend(this.addFriendInput, this.currentUser.id);
     //TODO: this needs to reload the friends list and check if input was valid
+    this.addFriendInput = this.friendsService.addFriend(this.addFriendInput, this.currentUser.id);
+    console.log(this.addFriendInput);
   }
 
   redirect(target: string){

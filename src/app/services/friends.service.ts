@@ -64,13 +64,20 @@ export class FriendsService {
         user.forEach(u => {
               if(u) {
                 this.userService.findById(currentUserID).then(curUser => {
+                  curUser.friends.forEach(friend =>{
+                    if(friend === u.id) return 'bereits befreundet';
+                  })
                   curUser.friends.push(u.id);
                   u.friends.push(currentUserID);
                   this.update(u);
                   this.update(curUser);
+                  return 'erfolgreich hinzugefügt';
                 });
               }
         });
+      }
+      else{
+        return 'Nutzer nicht vorhanden';
       }
     });
   }
