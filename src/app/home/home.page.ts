@@ -83,9 +83,10 @@ export class HomePage {
     });
   }
 
-  viewTransaction(transactionID: string) {
+  viewTransaction(transactionID: string, userID: string) {
     this.transactions.forEach(transaction =>{
       if(transaction.id === transactionID){
+        localStorage.setItem('otherUser', JSON.stringify(userID));
         this.transactionService.saveLocally(transaction);
         this.router.navigate(['transaction-details']);
       }
