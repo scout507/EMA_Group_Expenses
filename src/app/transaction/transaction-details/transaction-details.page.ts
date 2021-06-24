@@ -3,6 +3,7 @@ import {Transaction} from "../../models/transaction.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TransactionService} from "../../services/transaction.service";
 import {AuthService} from "../../services/auth.service";
+import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -14,7 +15,7 @@ export class TransactionDetailsPage implements OnInit {
   transaction: Transaction;
   currentView: string = 'overview';
 
-  constructor(private route: ActivatedRoute, private transactionService : TransactionService, private router: Router, private authService: AuthService) {
+  constructor(private route: ActivatedRoute, private transactionService : TransactionService, private router: Router, private authService: AuthService, private userService: UserService) {
     this.transaction = this.transactionService.getLocally();
   }
 

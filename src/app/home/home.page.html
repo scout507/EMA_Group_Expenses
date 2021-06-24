@@ -47,7 +47,7 @@
       <ion-item button *ngFor="let transaction of filteredTransactions" (click)="viewTransaction(transaction.id)" lines="full">
         <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
           <ion-row>
-          <ion-col align="left"><ion-img src="{{transaction.otherUser.profilePic}}"></ion-img></ion-col>
+            <ion-col align="left"><ion-avatar><img src="{{transaction.otherUser.profilePic}}"></ion-avatar></ion-col>
           <ion-col>
             <div>{{transaction.purpose}}</div>
             <div style="font-size: small">{{transaction.groupName? transaction.groupName : "Gruppenname" }}, {{transaction.otherUser.displayName}}</div>

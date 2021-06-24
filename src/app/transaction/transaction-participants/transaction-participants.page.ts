@@ -57,9 +57,9 @@ export class TransactionParticipantsPage implements OnInit {
 
   toggleSelectAll(){
     if (this.allSelected) {
-      this.participation.forEach(participant => participant.participates = true);
-    } else {
       this.participation.forEach(participant => participant.participates = false);
+    } else {
+      this.participation.forEach(participant => participant.participates = true);
     }
   }
 

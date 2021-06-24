@@ -40,6 +40,9 @@ export class TransactionCreatePage implements OnInit {
               private authService : AuthService) {
     if (!this.editMode) {
       this.transaction = new Transaction("", 0, "", "cost", "once", authService.currentUser, new Date(), null);
+      this.transaction.paid = [];
+      this.transaction.accepted = [];
+      this.transaction.participation = [];
     }
   }
 
@@ -69,15 +72,6 @@ export class TransactionCreatePage implements OnInit {
       this.errors.set('group', 'Bitte wählen Sie eine Gruppe aus.');
     }
     if (this.errors.size === 0){
-      if (!this.transaction.participation) {
-        this.transaction.participation = [];
-      }
-      if (!this.transaction.accepted) {
-        this.transaction.accepted = [];
-      }
-      if (!this.transaction.paid) {
-        this.transaction.paid = [];
-      }
       if (this.selectAllUsers && this.fairlyDistributedPrice) {
         this.calculateStakes();
         if(!this.editMode) {
@@ -90,11 +84,10 @@ export class TransactionCreatePage implements OnInit {
       }
       if (!this.selectAllUsers) {
         this.transactionService.saveLocally(this.transaction);
-        this.router.navigate(['transaction-participation', {'fairlyDistributedPrice': JSON.stringify(this.fairlyDistributedPrice)}]);
+        this.router.navigate(['transaction-participants', {'fairlyDistributedPrice': JSON.stringify(this.fairlyDistributedPrice)}]);
         return;
       }
       if (!this.fairlyDistributedPrice) {
-
         this.transactionService.saveLocally(this.transaction);
         this.router.navigate(['transaction-stakes']);
         return;

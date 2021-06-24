@@ -4,7 +4,7 @@
     <ion-button slot="end" (click)="editTransaction()">
       <ion-icon name="create"></ion-icon>
     </ion-button>
-    <ion-button slot="end" (click)="delete()">
+    <ion-button slot="end" (click)="delete()" *ngIf="transaction.creator.id === authService.currentUser.id">
       <ion-icon name="trash"></ion-icon>
     </ion-button>
   </ion-toolbar>
@@ -38,17 +38,16 @@
     <ion-item>
       <ion-label>Ersteller</ion-label>
       <ion-text
-        class="ion-text-right">{{ transaction.creator ? transaction.creator.displayName : transaction.creator.userName}}</ion-text>
+        class="ion-text-right">{{ transaction.creator.displayName}}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label>Rechnungsdatum</ion-label>
-      <ion-text class="ion-text-right">{{ transaction.purchaseDate}}</ion-text>
+      <ion-datetime [(ngModel)]="transaction.purchaseDate" displayFormat="DD.MM.YYYY" readonly="true"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Fälligkeitsdatum</ion-label>
-      <ion-text class="ion-text-right">{{ transaction.dueDate}}</ion-text>
-    </ion-item>
-    <ion-item>
+      <ion-datetime [(ngModel)]="transaction.dueDate" displayFormat="DD.MM.YYYY" readonly="true"></ion-datetime>
+    </ion-item>    <ion-item>
       <ion-label>Rhythmus</ion-label>
       <ion-text class="ion-text-right">{{ formatRhythm(transaction.rhythm)}}</ion-text>
     </ion-item>
@@ -56,8 +55,10 @@
   </div>
   <div *ngIf="currentView === 'members'">
     <ion-item *ngFor="let member of transactionService.getParticipants(transaction)">
-      <ion-avatar>{{member.profilePic}}</ion-avatar>
-      <ion-label>{{member.displayName ? member.displayName : member.userName}}</ion-label>
+      <ion-avatar>
+        <img src="{{member.profilePic}}">
+      </ion-avatar>
+      <ion-label>{{member.displayName}}</ion-label>
       <ion-text>{{transactionService.getStakeForUser(member, transaction)}}€</ion-text>
       <ion-icon *ngIf="transactionService.hasUserPaid(member, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
       <ion-icon *ngIf="transactionService.wasPaymentAccepted(member, transaction)" name="checkmark" color="green"></ion-icon>

@@ -8,9 +8,6 @@ import {AuthService} from './auth.service';
 import {Group} from '../models/group.model';
 import { UserService } from './user.service';
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -40,12 +37,11 @@ export class TransactionService {
   }
 
 
-
   async getAllTransactions(): Promise<Transaction[]> {
     const snapshot = await this.transactionCollection.get().toPromise();
     const transactions = [];
     await snapshot.docs.map(doc => {
-      const transaction =  doc.data();
+      const transaction = doc.data();
       transaction.id = doc.id;
       return transaction;
     }).forEach(document => {transactions.push(document);});
@@ -69,7 +65,7 @@ export class TransactionService {
     const transactions = [];
 
     await snapshot.docs.map(doc => {
-      const transaction =  doc.data();
+      const transaction = doc.data();
       transaction.id = doc.id;
       return transaction;
     }).forEach(document => {
@@ -126,7 +122,7 @@ export class TransactionService {
     return copy;
   }
 
-  getStakeForUser(member: User, transaction: Transaction) : number{
+  getStakeForUser(member: User, transaction: Transaction): number {
     let stake: number = 0;
     transaction.participation.forEach(participation => {
       if (participation.user.id === member.id) stake = participation.stake

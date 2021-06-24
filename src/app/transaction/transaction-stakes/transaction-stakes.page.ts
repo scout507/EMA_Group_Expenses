@@ -18,8 +18,12 @@ export class TransactionStakesPage implements OnInit {
     this.transaction = transactionService.getLocally();
     if(this.transaction.participation.length === 0){
       let stake = this.transaction.amount / this.transaction.group.members.length;
+      let accepted = false;
+      let paid = false;
       this.transaction.group.members.forEach(user => {
         this.transaction.participation.push({user, stake});
+        this.transaction.accepted.push({user, accepted});
+        this.transaction.paid.push({user, paid});
       })
     }
   }
