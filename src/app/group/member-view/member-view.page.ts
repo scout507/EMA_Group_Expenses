@@ -30,6 +30,7 @@ export class MemberViewPage implements OnInit {
   addMembers(){
     this.groupService.addMembers(this.group, this.currentUser).then(members => {
       this.group.members.splice(0, this.group.members.length, ...members);
+      this.groupService.update(this.group);
     });
   }
 
