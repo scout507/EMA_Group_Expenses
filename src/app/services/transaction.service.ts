@@ -70,17 +70,43 @@ export class TransactionService {
       return transaction;
     }).forEach(document => {
       //TODO: Check if transaction is active
-      document.participation.forEach( part =>{
-        if(part.user.id === user.id){
-          transactions.push(document);
-        }
-      });
+      if(document.creator.toString() === user.id){
+        transactions.push(document);
+      }
+      else {
+        document.participation.forEach(part => {
+          if (part.user.id === user.id) {
+            transactions.push(document);
+          }
+        });
+      }
     });
     await Promise.all(transactions.map(async (transaction) => {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
       await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
     }));
     loading.dismiss();
+    return transactions;
+  }
+
+  async getAllTransactionByGroup(group: Group): Promise<Transaction[]> {
+    const snapshot = await this.transactionCollection.get().toPromise();
+    const transactions = [];
+
+    await snapshot.docs.map(doc => {
+      const transaction = doc.data();
+      transaction.id = doc.id;
+      return transaction;
+    }).forEach(document => {
+      //TODO: Check if transaction is active
+      if(document.group.toString() === group.id){
+        document.group = group;
+        transactions.push(document);
+      }
+    });
+    await Promise.all(transactions.map(async (transaction) => {
+      await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
+    }));
     return transactions;
   }
 

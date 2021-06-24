@@ -98,7 +98,11 @@ const routes: Routes = [
   {
     path: 'add-members',
     loadChildren: () => import('./group/add-members/add-members.module').then( m => m.AddMembersPageModule)
+  },  {
+    path: 'member-view',
+    loadChildren: () => import('./group/member-view/member-view.module').then( m => m.MemberViewPageModule)
   },
+
 
 
 
