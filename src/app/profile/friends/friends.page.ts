@@ -47,6 +47,7 @@ export class FriendsPage implements OnInit {
 
   addFriend(){
     this.friendsService.addFriend(this.addFriendInput, this.currentUser.id);
+    //TODO: this needs to reload the friends list and check if input was valid
   }
 
   redirect(target: string){

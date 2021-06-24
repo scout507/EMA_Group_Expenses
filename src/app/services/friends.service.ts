@@ -59,7 +59,7 @@ export class FriendsService {
   }
 
   addFriend(email: string, currentUserID: string){
-    this.userService.findByEmail(email).then(user => {
+    this.userService.findByEmail(email.toLocaleLowerCase()).then(user => {
       if(user) {
         user.forEach(u => {
               if(u) {
@@ -68,7 +68,6 @@ export class FriendsService {
                   u.friends.push(currentUserID);
                   this.update(u);
                   this.update(curUser);
-
                 });
               }
         });
