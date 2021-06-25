@@ -84,29 +84,45 @@ export class GroupService {
   }
 
   async deleteUserFromAllGroups(user: User){
+    const snapshot = await this.groupCollection.get().toPromise();
     const groups: Group[] = [];
-    await this.getGroupsByUserId(user.id).then(res => {
-      for(const group of res){
-        groups.push(group);
-      }
-    });
-    groups.forEach(group =>{
-      console.log(group.members.length);
-      this.deleteUserFromGroup(user,group);
+
+    await snapshot.docs.map(doc => {
+      const group = doc.data();
+      group.id = doc.id;
+      this.userService.findById(group.creator.toString()).then(creator => {
+        group.creator = creator;
+        this.deleteUserFromGroup(user, group);
+
+      });
     });
   }
 
   deleteUserFromGroup(user: User, group: Group){
     let index = -1;
-    console.log(group.members)
-    let i = 0;
-    group.members.forEach(member => {
-      console.log("hallo");
-      if(member.id === user.id) index = i;
-      i++;
-    })
-    console.log(index);
-    //group.members.splice(index, 1);
+    for(let i = 0; i < group.members.length; i++){
+      if(group.members[i].toString() === user.id){
+        index = i;
+      }
+    }
+    if(index > -1) {
+      if(group.creator.id === user.id) {
+        if(group.members.length > 1){
+          if (index < group.members.length - 1) {
+            group.creator = group.members[index + 1];
+          }else{
+            group.creator = group.members[index - 1];
+          }
+        }
+      }
+      if(group.members.length > 1){
+        group.members.splice(index, 1);
+        this.update(group);
+      }
+      else{
+        this.delete(group.id);
+      }
+    }
   }
 
   async addMembers(group: Group, currentUser: User): Promise<User[]> {
@@ -129,7 +145,10 @@ export class GroupService {
     copy.creator = group.creator.id;
     copy.members = [];
     group.members.forEach(member => {
-      copy.members.push(member.id);
+      //This is not a good way to do this, but member.id is not always set, this is the case when loading members takes too long
+      //It is needed for the deleteMemberFromGroup functionality
+      if(member.id) copy.members.push(member.id);
+      else copy.members.push(member.toString());
     });
     return copy;
   }
