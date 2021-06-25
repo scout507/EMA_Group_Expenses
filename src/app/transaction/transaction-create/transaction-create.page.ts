@@ -39,7 +39,7 @@ export class TransactionCreatePage implements OnInit {
               private groupService: GroupService,
               private authService : AuthService) {
     if (!this.editMode) {
-      this.transaction = new Transaction("", 0, "", "cost", "once", authService.currentUser, new Date().toDateString(), new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toDateString());
+      this.transaction = new Transaction("", null, "", "cost", "once", authService.currentUser, new Date().toDateString(), new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toDateString());
       this.transaction.paid = [];
       this.transaction.accepted = [];
       this.transaction.participation = [];

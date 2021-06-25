@@ -28,7 +28,7 @@
   <ion-text color="danger" *ngIf="errors.get('purpose')">{{errors.get('purpose')}}</ion-text>
   <ion-item>
     <ion-label>Betrag</ion-label>
-    <ion-input type="number" [(ngModel)]="transaction.amount" class="ion-text-right" min="0"></ion-input>
+    <ion-input type="number" clearOnEdit="true" placeholder="0" [(ngModel)]="transaction.amount" class="ion-text-right" min="0"></ion-input>
     <ion-text>€</ion-text>
   </ion-item>
   <ion-text color="danger" *ngIf="errors.get('amount')">{{errors.get('amount')}}</ion-text>
