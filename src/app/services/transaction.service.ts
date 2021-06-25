@@ -153,7 +153,7 @@ export class TransactionService {
     transaction.participation.forEach(participation => {
       if (participation.user.id === member.id) stake = participation.stake
     });
-    return stake;
+    return Math.round(stake * 100) / 100;
   }
 
   hasUserPaid(member: User, transaction: Transaction): boolean {

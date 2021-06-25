@@ -50,8 +50,8 @@ export class TransactionCreatePage implements OnInit {
     let stake: number = this.transaction.amount / this.transaction.group.members.length;
     for (let user of this.transaction.group.members) {
       let stakeEntry = {user, stake};
-      let paid = false;
-      let accepted = false;
+      let paid = user.id === this.transaction.creator.id;
+      let accepted = user.id === this.transaction.creator.id;
       let paidEntry = {user, paid};
       let acceptedEntry = {user, accepted};
       this.transaction.participation.push(stakeEntry);

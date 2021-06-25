@@ -33,8 +33,8 @@ export class TransactionParticipantsPage implements OnInit {
       let stake: number = this.transaction.amount / this.participants.length;
       for (let user of this.participants) {
         let stakeEntry = {user, stake};
-        let paid = false;
-        let accepted = false;
+        let paid = user.id === this.transaction.creator.id;
+        let accepted = user.id === this.transaction.creator.id;
         let paidEntry = {user, paid};
         let acceptedEntry = {user, accepted};
         console.log(stakeEntry);
