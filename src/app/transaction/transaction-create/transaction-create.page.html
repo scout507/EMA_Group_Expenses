@@ -6,10 +6,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-select *ngIf="!editMode" [(ngModel)]="transaction.group" placeholder="Gruppe auswählen" class="ion-text-center">
+  <ion-select *ngIf="!editMode && groups.length !== 0" [(ngModel)]="transaction.group" placeholder="Gruppe auswählen" class="ion-text-center">
     <ion-select-option *ngFor="let groupChoice of groups"
                        [value]="groupChoice">{{groupChoice.name}}</ion-select-option>
   </ion-select>
+  <ion-item *ngIf="groups.length === 0">
+    <ion-text>Keine Gruppe gefunden.</ion-text>
+  </ion-item>
   <ion-item *ngIf="editMode" class="ion-text-center">
     <ion-label>{{transaction.group.name}}</ion-label>
   </ion-item>
@@ -24,8 +27,8 @@
   </ion-item>
   <ion-text color="danger" *ngIf="errors.get('purpose')">{{errors.get('purpose')}}</ion-text>
   <ion-item>
-    <ion-label>Preis</ion-label>
-    <ion-input type="number" [(ngModel)]="transaction.amount" class="ion-text-right"></ion-input>
+    <ion-label>Betrag</ion-label>
+    <ion-input type="number" clearOnEdit="true" placeholder="0" [(ngModel)]="transaction.amount" class="ion-text-right" min="0"></ion-input>
     <ion-text>€</ion-text>
   </ion-item>
   <ion-text color="danger" *ngIf="errors.get('amount')">{{errors.get('amount')}}</ion-text>
@@ -75,7 +78,6 @@
       <ion-tab-bar>
         <ion-tab-button (click)="router.navigate(['home'])">
           <ion-icon name="home-outline"></ion-icon>
-          <ion-badge>6</ion-badge>
         </ion-tab-button>
 
         <ion-tab-button>
@@ -86,7 +88,7 @@
           <ion-icon name="people-outline"></ion-icon>
         </ion-tab-button>
 
-        <ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['profile'])">
           <ion-icon name="person-outline"></ion-icon>
         </ion-tab-button>
       </ion-tab-bar>

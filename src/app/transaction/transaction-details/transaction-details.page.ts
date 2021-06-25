@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {TransactionService} from "../../services/transaction.service";
 import {AuthService} from "../../services/auth.service";
 import {UserService} from "../../services/user.service";
+import {User} from "../../models/user.model";
 
 
 @Component({
@@ -15,10 +16,16 @@ export class TransactionDetailsPage implements OnInit {
   transaction: Transaction;
   currentView: string = 'overview';
   otherUserId: string;
+  hasStake: boolean = false;
 
   constructor(private route: ActivatedRoute, private transactionService : TransactionService, private router: Router, private authService: AuthService, private userService: UserService) {
     this.transaction = this.transactionService.getLocally();
     this.otherUserId = JSON.parse(localStorage.getItem('otherUser'));
+    this.transaction.participation.forEach(entry => {
+      if (entry.user.id === authService.currentUser.id){
+        this.hasStake = true;
+      }
+    })
   }
 
 
