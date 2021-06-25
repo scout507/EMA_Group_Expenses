@@ -32,14 +32,14 @@ export class GroupCreatePage implements OnInit {
   }
 
   add(){
-    if(this.group.name.length > 2 && this.group.members.length > 0){
+    if(this.group.name.length > 0 && this.group.members.length > 0){
       this.group.creator = this.currentUser;
       this.group.members.push(this.currentUser);
       this.groupService.new(this.group);
       this.navCtrl.pop();
       console.log(this.navCtrl);
     }else{
-      alert("name zu kurz")
+      alert("name zu kurz");
     }
   }
 

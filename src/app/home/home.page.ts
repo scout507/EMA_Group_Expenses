@@ -64,7 +64,9 @@ export class HomePage {
   filterTransaction(searchTerm: string) {
     this.filteredTransactions = [];
     this.simpleTransactions.forEach(transaction =>{
-      if(transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())) {
+      if(transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+        transaction.otherUser.displayName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+        transaction.groupName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())) {
         if(this.outgoingView && transaction.outgoing && !transaction.pending){
           this.filteredTransactions.push(transaction);
         }
@@ -81,9 +83,10 @@ export class HomePage {
     });
   }
 
-  viewTransaction(transactionID: string) {
+  viewTransaction(transactionID: string, userID: string) {
     this.transactions.forEach(transaction =>{
       if(transaction.id === transactionID){
+        localStorage.setItem('otherUser', JSON.stringify(userID));
         this.transactionService.saveLocally(transaction);
         this.router.navigate(['transaction-details']);
       }

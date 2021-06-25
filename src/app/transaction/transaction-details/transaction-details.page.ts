@@ -14,9 +14,11 @@ import {UserService} from "../../services/user.service";
 export class TransactionDetailsPage implements OnInit {
   transaction: Transaction;
   currentView: string = 'overview';
+  otherUserId: string;
 
   constructor(private route: ActivatedRoute, private transactionService : TransactionService, private router: Router, private authService: AuthService, private userService: UserService) {
     this.transaction = this.transactionService.getLocally();
+    this.otherUserId = JSON.parse(localStorage.getItem('otherUser'));
   }
 
 
@@ -64,21 +66,26 @@ export class TransactionDetailsPage implements OnInit {
 
   payTransaction(){
     if(this.authService.currentUser){
-      if(this.transaction.creator !== this.authService.currentUser) {
-        this.transaction.paid.forEach(p => {
-          console.log(p.user.id);
-          console.log(this.authService.currentUser.id);
-          if (p.user.id === this.authService.currentUser.id) {
+      if(this.transaction.creator.id !== this.authService.currentUser.id) {
+          this.transaction.paid.forEach(p => {
+            if (p.user.id === this.authService.currentUser.id) {
+              p.paid = true;
+              this.transactionService.update(this.transaction);
+              this.router.navigate(['home']);
+            }
+          });
+        }
+        else{
+          this.transaction.paid.forEach(p => {
+            console.log(p.user.id);
+            console.log(this.otherUserId);
+          if(p.user.id === this.otherUserId) {
+            console.log("hallo");
             p.paid = true;
             this.transactionService.update(this.transaction);
-            console.log("hallo");
             this.router.navigate(['home']);
           }
         });
-      }
-      else{
-        //This is the case when you push a transaction as income, so you owe other people money
-        //TODO: Get who you are paying and confirm it
       }
     }
   }
