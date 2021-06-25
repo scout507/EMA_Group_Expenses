@@ -24,8 +24,8 @@
   </ion-item>
   <ion-text color="danger" *ngIf="errors.get('purpose')">{{errors.get('purpose')}}</ion-text>
   <ion-item>
-    <ion-label>Preis</ion-label>
-    <ion-input type="number" [(ngModel)]="transaction.amount" class="ion-text-right"></ion-input>
+    <ion-label>Betrag</ion-label>
+    <ion-input type="number" [(ngModel)]="transaction.amount" class="ion-text-right" min="0"></ion-input>
     <ion-text>€</ion-text>
   </ion-item>
   <ion-text color="danger" *ngIf="errors.get('amount')">{{errors.get('amount')}}</ion-text>
@@ -75,7 +75,6 @@
       <ion-tab-bar>
         <ion-tab-button (click)="router.navigate(['home'])">
           <ion-icon name="home-outline"></ion-icon>
-          <ion-badge>6</ion-badge>
         </ion-tab-button>
 
         <ion-tab-button>
@@ -86,7 +85,7 @@
           <ion-icon name="people-outline"></ion-icon>
         </ion-tab-button>
 
-        <ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['profile'])">
           <ion-icon name="person-outline"></ion-icon>
         </ion-tab-button>
       </ion-tab-bar>

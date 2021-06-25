@@ -12,7 +12,7 @@
   <ion-list>
     <ion-item *ngFor="let participant of transaction.participation">
       <ion-avatar>
-        <img src="">
+        <img src="{{participant.user.profilePic}}">
       </ion-avatar>
       <ion-text>{{participant.user.displayName ? participant.user.displayName : participant.user.userName}}</ion-text>
       <ion-input type="number" [(ngModel)]="participant.stake" class="ion-text-right"></ion-input>
