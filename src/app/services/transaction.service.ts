@@ -120,6 +120,33 @@ export class TransactionService {
     return users;
   }
 
+  deleteAllTransactionsByUser(user: User){
+    this.userService.findById("QWgrWPALVhaZPnB1ZCiqbOELYbJ2").then(deletedUser =>{
+      console.log(deletedUser);
+      this.getAllTransactionByUser(user).then(transactions => {
+        transactions.forEach(transaction => {
+          if(transaction.creator.id === user.id){
+            this.delete(transaction.id);
+          }
+          else {
+            for (let i = 0; i < transaction.participation.length; i++) {
+              if (transaction.participation[i].user.id === user.id) {
+                transaction.participation[i].user = deletedUser;
+              }
+              if (transaction.paid[i].user.id === user.id) {
+                transaction.paid[i].user = deletedUser;
+              }
+              if (transaction.accepted[i].user.id === user.id) {
+                transaction.accepted[i].user = deletedUser;
+              }
+            }
+          }
+          this.update(transaction);
+        });
+      });
+    });
+  }
+
   findAllSync(): Observable<Transaction[]> {
     return this.transactionCollection.valueChanges({idField: 'id'});
   }
