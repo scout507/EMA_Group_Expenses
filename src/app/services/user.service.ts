@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,6 +46,16 @@ export class UserService {
 
   delete(id: string) {
     this.userCollection.doc(id).delete();
+  }
+  //not sure if delete() is needed, that's why I created a new one @Marcel please fix this
+  deleteUser(user: User){
+    //deleting from friends-lists
+    user.friends.forEach(friend => {
+      this.findById(friend).then(result => {
+        const index = result.friends.indexOf(user.id, 0);
+        //if(index > -1) result.friends.splice(index, 1);
+      });
+    });
   }
 
   private copyAndPrepare(user: User): User {

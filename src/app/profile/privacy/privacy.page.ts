@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
+import {GroupService} from "../../services/group.service";
 
 @Component({
   selector: 'app-privacy',
@@ -14,7 +15,7 @@ export class PrivacyPage implements OnInit {
   userOld: User = new User();
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private af: AngularFireAuth) { }
+  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private af: AngularFireAuth, private groupService: GroupService) { }
 
   ngOnInit() {
   }
@@ -67,6 +68,24 @@ export class PrivacyPage implements OnInit {
     else {
       this.router.navigate(['options']);
     }
+  }
+
+  async deleteBtn(){
+    /* what does this do and why is it not working here? Is this comparing user settings by comparing users?
+    if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
+     */
+      const alert = document.createElement('ion-alert');
+      alert.header = 'Möchtest du deinen Account wirklich löschen? Dies kann nicht rückgängig gemacht werden!';
+      alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
+
+      document.body.appendChild(alert);
+      await alert.present();
+      var rsl = await alert.onDidDismiss();
+
+      if (rsl.role == "yes") {
+        this.userService.deleteUser(this.user);
+        this.groupService.deleteUserFromAllGroups(this.user);
+      }
   }
 
 }
