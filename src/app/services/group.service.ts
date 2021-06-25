@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/firestore";
-import {Group} from "../models/group.model";
-import {AuthService} from "./auth.service";
-import {Observable} from "rxjs";
-import {User} from "../models/user.model";
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {Group} from '../models/group.model';
+import {AuthService} from './auth.service';
+import {Observable} from 'rxjs';
+import {User} from '../models/user.model';
 import { UserService } from './user.service';
-import {AddMembersPage} from "../group/add-members/add-members.page";
-import {ModalController} from "@ionic/angular";
+import {AddMembersPage} from '../group/add-members/add-members.page';
+import {ModalController} from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +17,13 @@ export class GroupService {
 
   constructor(private afs: AngularFirestore,
               private authService: AuthService,
-              private userService:UserService,
+              private userService: UserService,
               private modalController: ModalController) {
     this.groupCollection = afs.collection<Group>('Group');
   }
 
   getAll(): Observable<Group[]>{
-    return this.groupCollection.valueChanges({idField: 'id'})
+    return this.groupCollection.valueChanges({idField: 'id'});
   }
 
   new(group: Group){
@@ -41,10 +41,10 @@ export class GroupService {
 
   async getGroupById(id: string): Promise<Group> {
     const snapshot = await this.groupCollection.doc(id).get().toPromise();
-    let temp: any = snapshot.data();
-    let group: Group = new Group();
+    const temp: any = snapshot.data();
+    const group: Group = new Group();
     group.id = snapshot.id;
-    let members = [];
+    const members = [];
     await temp.members.forEach(member => {
       this.userService.findById(member.toString()).then(user => {
         members.push(user);
@@ -58,31 +58,72 @@ export class GroupService {
 
   getGroupsByUserId(id: string): Promise<Group[]>{
     return this.groupCollection.get().toPromise().then(doc => {
-      let groups: Group[] = [];
+      const groups: Group[] = [];
       doc.forEach(g => {
-        g.data().members.forEach(member => {
+        for(const member of g.data().members){
           if(member.toString() === id){
-            groups.push(this.createGroup(g.data(), g.id))
+            groups.push(this.createGroup(g.data(), g.id));
           }
-        })
+        }
       });
       return groups;
-    })
+    });
   }
 
   createGroup(group: Group, id: string): Group {
-    let members: User[] = [];
+    const members: User[] = [];
     group.members.forEach(m => {
       this.userService.findById(m.toString()).then(u => {
         members.push(u);
-      })
+      });
     });
-    let newGroup: Group = group;
+    const newGroup: Group = group;
     group.members = members;
     group.id = id;
-    return group
+    return group;
   }
 
+  async deleteUserFromAllGroups(user: User){
+    const snapshot = await this.groupCollection.get().toPromise();
+    const groups: Group[] = [];
+
+    await snapshot.docs.map(doc => {
+      const group = doc.data();
+      group.id = doc.id;
+      this.userService.findById(group.creator.toString()).then(creator => {
+        group.creator = creator;
+        this.deleteUserFromGroup(user, group);
+
+      });
+    });
+  }
+
+  deleteUserFromGroup(user: User, group: Group){
+    let index = -1;
+    for(let i = 0; i < group.members.length; i++){
+      if(group.members[i].toString() === user.id){
+        index = i;
+      }
+    }
+    if(index > -1) {
+      if(group.creator.id === user.id) {
+        if(group.members.length > 1){
+          if (index < group.members.length - 1) {
+            group.creator = group.members[index + 1];
+          }else{
+            group.creator = group.members[index - 1];
+          }
+        }
+      }
+      if(group.members.length > 1){
+        group.members.splice(index, 1);
+        this.update(group);
+      }
+      else{
+        this.delete(group.id);
+      }
+    }
+  }
 
   async addMembers(group: Group, currentUser: User): Promise<User[]> {
     const modal = await this.modalController.create({
@@ -104,8 +145,11 @@ export class GroupService {
     copy.creator = group.creator.id;
     copy.members = [];
     group.members.forEach(member => {
-      copy.members.push(member.id);
+      //This is not a good way to do this, but member.id is not always set, this is the case when loading members takes too long
+      //It is needed for the deleteMemberFromGroup functionality
+      if(member.id) copy.members.push(member.id);
+      else copy.members.push(member.toString());
     });
-    return copy
+    return copy;
   }
 }
