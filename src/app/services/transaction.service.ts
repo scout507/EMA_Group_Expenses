@@ -85,6 +85,12 @@ export class TransactionService {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
       await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
     }));
+    // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+    transactions.sort(function(b,a): any{
+      // @ts-ignore
+      return new Date(b.dueDate) - new Date(a.dueDate);
+    });
+
     loading.dismiss();
     return transactions;
   }
@@ -163,6 +169,10 @@ export class TransactionService {
     return JSON.parse(localStorage.getItem('transaction'));
   }
 
+  sortTransactions(transactions: Transaction[]): Transaction[]{
+
+    return transactions;
+  }
 
   private copyAndPrepare(transaction: Transaction) {
     const copy: any = {...transaction};
