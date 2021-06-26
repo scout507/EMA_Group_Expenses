@@ -141,8 +141,6 @@ export class HomePage {
     let outgoing = true;
     let cost: number;
     let pending: boolean;
-    //THIS IS NOT WORKING RIGHT NOW; NEED TO WAIT FOR THE DB to contain participation
-    //TODO: add pending
     if(transaction.creator.id !== this.currentUser.id){
       otherUser = transaction.creator;
       if(transaction.type === "income") outgoing = false;
@@ -174,6 +172,22 @@ export class HomePage {
     //console.log(this.simpleTransactions);
   }
 
+  async confirmDialog(transactionID: string, userID: string, userName: string){
+    const alert = document.createElement('ion-alert');
+    alert.header = 'Hast du die Zahlung von ' + userName + ' erhalten?';
+    alert.buttons = [{ text: "Ja", role: "yes" },{ text: "Details", role: "detail" },{ text: "Abbrechen"}];
+
+    document.body.appendChild(alert);
+    await alert.present();
+    const rsl = await alert.onDidDismiss();
+    if (rsl.role === "yes") {
+        this.confirmTransaction(transactionID,userID);
+    }
+    else if(rsl.role === "detail"){
+      this.viewTransaction(transactionID, userID);
+    }
+  }
+
   getDateDifference(transcation: Transaction){
     // @ts-ignore
     return ((new Date(transcation.dueDate ) - new Date())/86400000);
@@ -197,7 +211,6 @@ export class HomePage {
     this.searchbarVisible = true;
   }
 
-
   buttonHandler(type: number) {
     this.incomingView = false;
     this.outgoingView = false;
@@ -210,17 +223,18 @@ export class HomePage {
     else {this.confirmView = true;}
   }
 
-  confirmTransaction(transactionId: string, user: User) {
-    console.log("not active, read comment in home.page.ts confirmTransaction");
-    /*
-    TODO: activate this, as soon as you fix the button over button issue
-    this.transactions.forEach(transaction =>{
-      if(transaction.id === transactionId){
-        transaction.accepted.forEach(a =>{
-          if(a.user = user) a.accepted = true;
+  confirmTransaction(transactionID: string, userID: string){
+    this.transactions.forEach(transaction => {
+      if(transaction.id === transactionID){
+        transaction.accepted.forEach(a => {
+          if(a.user.id === userID){
+            a.accepted = true;
+            transaction.finished = this.transactionService.checkTransactionFinish(transaction);
+            this.transactionService.update(transaction);
+            this.updateTransactions();
+          }
         });
       }
     });
-     */
   }
 }

@@ -69,16 +69,16 @@ export class TransactionService {
       transaction.id = doc.id;
       return transaction;
     }).forEach(document => {
-      //TODO: Check if transaction is active
-      if(document.creator.toString() === user.id){
-        transactions.push(document);
-      }
-      else {
-        document.participation.forEach(part => {
-          if (part.user.id === user.id) {
-            transactions.push(document);
-          }
-        });
+      if(!document.finished) {
+        if (document.creator.toString() === user.id) {
+          transactions.push(document);
+        } else {
+          document.participation.forEach(part => {
+            if (part.user.id === user.id) {
+              transactions.push(document);
+            }
+          });
+        }
       }
     });
     await Promise.all(transactions.map(async (transaction) => {
@@ -115,7 +115,6 @@ export class TransactionService {
     }));
     return transactions;
   }
-
 
   async getAllTransactionUser(id: string): Promise<User[]> {
     let users = [];
@@ -168,20 +167,13 @@ export class TransactionService {
     return JSON.parse(localStorage.getItem('transaction'));
   }
 
-  sortTransactions(transactions: Transaction[]): Transaction[]{
-
-    return transactions;
-  }
-
-  private copyAndPrepare(transaction: Transaction) {
-    const copy: any = {...transaction};
-    delete copy.id;
-    delete copy.group;
-    delete copy.creator;
-    copy.photo = transaction.photo || null;
-    copy.group = transaction.group.id;
-    copy.creator = transaction.creator.id;
-    return copy;
+  checkTransactionFinish(transaction: Transaction): boolean{
+    for(const a of transaction.accepted){
+      if(a.accepted === false){
+        return false;
+      }
+    }
+    return true;
   }
 
   getStakeForUser(member: User, transaction: Transaction): number {
@@ -212,5 +204,16 @@ export class TransactionService {
     let participants: User[] = [];
     transaction.participation.forEach(participant => participants.push(participant.user));
     return participants;
+  }
+
+  private copyAndPrepare(transaction: Transaction) {
+    const copy: any = {...transaction};
+    delete copy.id;
+    delete copy.group;
+    delete copy.creator;
+    copy.photo = transaction.photo || null;
+    copy.group = transaction.group.id;
+    copy.creator = transaction.creator.id;
+    return copy;
   }
 }
