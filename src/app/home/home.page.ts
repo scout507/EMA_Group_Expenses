@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {TransactionService} from '../services/transaction.service';
 import {Transaction} from '../models/transaction.model';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {User} from '../models/user.model';
 import {AuthService} from '../services/auth.service';
 import {GroupService} from '../services/group.service';
@@ -35,6 +35,7 @@ export class HomePage {
   simpleTransactions: SimpleTransaction[] = [];
   filteredTransactions: SimpleTransaction[] = [];
   currentUser: User;
+  sub: Subscription;
 
   private incoming: number;
   private pending: number;
@@ -47,6 +48,9 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    this.sub = this.transactionService.findAllSync().subscribe(next => {
+      console.log('neue Transaction');
+    });
     this.outgoingView = true;
     this.confirmView = false;
     this.incomingView = false;

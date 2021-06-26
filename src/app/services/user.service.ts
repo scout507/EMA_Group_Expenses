@@ -22,7 +22,7 @@ export class UserService {
     user.profilePic = "https://bit.ly/2S904CS";
     user.email = email;
     user.description = "Erstelle eine Beschreibung...";
-    user.awards = ["iO3uC7uzgAb5j8PfycqB"];
+    user.awards = ["jEy1DdqvHv9minKnPOCc"];
     user.descriptionPublic = false;
     user.cash = false;
     user.ec_card = false;

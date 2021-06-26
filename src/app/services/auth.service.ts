@@ -19,7 +19,7 @@ export class AuthService {
         this.userservice.persist(result.user.uid, email.toLocaleLowerCase(), username);
         this.userservice.findById(result.user.uid).then(user => {
           this.currentUser = user;
-          this.router.navigate(['home']);
+          this.router.navigate(['profile']);
         });
       })
       .catch((error) => {

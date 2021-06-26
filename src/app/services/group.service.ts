@@ -93,20 +93,22 @@ export class GroupService {
       groups.push(group);
     });
     for(const i in groups){
+      let containsUser = false;
       await this.userService.findById(groups[i].creator.toString()).then(creator => {
         groups[i].creator = creator;
+        if(creator.id === user.id) containsUser = true;
       });
       for(const j in groups[i].members){
         await this.userService.findById(groups[i].members[j].toString()).then(member => {
           groups[i].members[j] = member;
+          if(member.id === user.id) containsUser = true;
         });
       }
-      this.deleteUserFromGroup(user, groups[i]);
+      if(containsUser) this.deleteUserFromGroup(user, groups[i]);
     }
   }
 
   deleteUserFromGroup(user: User, group: Group){
-    console.log(group);
     let index = -1;
     for(let i = 0; i < group.members.length; i++){
       if(group.members[i].id === user.id){
