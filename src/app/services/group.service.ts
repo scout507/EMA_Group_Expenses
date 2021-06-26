@@ -88,30 +88,34 @@ export class GroupService {
     const groups: Group[] = [];
 
     await snapshot.docs.map(doc => {
-      console.log(doc.data());
       const group = doc.data();
       group.id = doc.id;
-      this.userService.findById(group.creator.toString()).then(creator => {
-        group.creator = creator;
-        this.deleteUserFromGroup(user, group);
-      });
+      groups.push(group);
     });
+    for(const i in groups){
+      await this.userService.findById(groups[i].creator.toString()).then(creator => {
+        groups[i].creator = creator;
+      });
+      for(const j in groups[i].members){
+        await this.userService.findById(groups[i].members[j].toString()).then(member => {
+          groups[i].members[j] = member;
+        });
+      }
+      this.deleteUserFromGroup(user, groups[i]);
+    }
   }
 
   deleteUserFromGroup(user: User, group: Group){
     console.log(group);
     let index = -1;
     for(let i = 0; i < group.members.length; i++){
-      //this is not pretty but it should be working. If you call this from deleteUserFromAll Groups
-      //group.member is the id. If you call this from somewhere else, group.members.id might be it.
-      if(group.members[i].toString() === user.id || group.members[i].id === user.id){
+      if(group.members[i].id === user.id){
         index = i;
       }
     }
     if(index > -1) {
       if(group.creator.id === user.id) {
         if(group.members.length > 1){
-          //this is not properly working since members doesnt hold actual users just strings
           if (index < group.members.length - 1) {
             group.creator = group.members[index + 1];
           }else{
@@ -120,9 +124,7 @@ export class GroupService {
         }
       }
       if(group.members.length > 1){
-        console.log("hallo2");
         group.members.splice(index, 1);
-        console.log(group);
         this.update(group);
       }
       else{
