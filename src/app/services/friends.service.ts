@@ -10,9 +10,11 @@ import {AuthService} from "./auth.service";
 
 export class FriendsService {
   userCollection: AngularFirestoreCollection<User>;
-
+  currentUser: User;
   constructor(private afs: AngularFirestore, private userService: UserService, private authService: AuthService) {
     this.userCollection = afs.collection<User>('User');
+    //do better than this vvvv
+    this.currentUser = authService.currentUser;
   }
 
   persist(id: string) {
@@ -44,14 +46,14 @@ export class FriendsService {
     return this.userCollection.doc(id).get().toPromise().then(res => {
       const ret = res.data();
       ret.id = res.id;
-
-      if (!ret.imagePublic)
+      const friends = this.isFriends(ret, this.currentUser);
+      if (!ret.imagePublic && !friends)
         ret.profilePic = "https://bit.ly/2S904CS";
 
-      if (!ret.descriptionPublic)
+      if (!ret.descriptionPublic && !friends)
         ret.description = "(keine Beschreibung)";
 
-      if (!ret.awardsPublic)
+      if (!ret.awardsPublic && !friends)
         ret.awards = [];
 
       return ret;
@@ -60,13 +62,11 @@ export class FriendsService {
 
   addFriend(email: string, currentUserID: string): Promise<string>{
     return this.userService.findByEmail(email.toLocaleLowerCase()).then(user => {
-      console.log(user);
       let alreadyFriends = false;
       //the actual user is in a somewhat random spot in the "user" array.
       if(user) {
         user.forEach(u => {
               if(u) {
-                console.log(user);
                   this.userService.findById(currentUserID).then(async curUser => {
                   curUser.friends.forEach(friend =>{
                     if(friend === u.id) {
@@ -90,6 +90,13 @@ export class FriendsService {
         return 'Nutzer nicht vorhanden';
       }
     });
+  }
+
+  isFriends(user1: User, user2: User): boolean{
+    for(let i in user1.friends){
+      if(user1.friends[i] === user2.id) return true;
+    }
+    return false;
   }
 
   update(user: User) {

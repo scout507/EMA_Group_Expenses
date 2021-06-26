@@ -7,8 +7,9 @@ import {AuthService} from '../services/auth.service';
 import {GroupService} from '../services/group.service';
 import {Router} from '@angular/router';
 import {SimpleTransaction} from '../models/simpleTransaction.model';
-import {AngularFireAuth} from "@angular/fire/auth";
-import {UserService} from "../services/user.service";
+import {AngularFireAuth} from '@angular/fire/auth';
+// @ts-ignore
+import {UserService} from '../services/user.service';
 
 
 @Component({
@@ -143,7 +144,7 @@ export class HomePage {
     let pending: boolean;
     if(transaction.creator.id !== this.currentUser.id){
       otherUser = transaction.creator;
-      if(transaction.type === "income") outgoing = false;
+      if(transaction.type === 'income') {outgoing = false;}
 
       for(let i = 0; i < transaction.participation.length; i++){
         if(transaction.accepted[i].accepted !== true && transaction.participation[i].user.id === this.currentUser.id) {
@@ -155,7 +156,7 @@ export class HomePage {
       }
     }
     else{
-      if(transaction.type === "cost") outgoing = false;
+      if(transaction.type === 'cost') {outgoing = false;}
 
       for(let i = 0; i < transaction.participation.length; i++){
         if(transaction.participation[i].user.id !== this.currentUser.id){
@@ -175,15 +176,15 @@ export class HomePage {
   async confirmDialog(transactionID: string, userID: string, userName: string){
     const alert = document.createElement('ion-alert');
     alert.header = 'Hast du die Zahlung von ' + userName + ' erhalten?';
-    alert.buttons = [{ text: "Ja", role: "yes" },{ text: "Details", role: "detail" },{ text: "Abbrechen"}];
+    alert.buttons = [{ text: 'Ja', role: 'yes' },{ text: 'Details', role: 'detail' },{ text: 'Abbrechen'}];
 
     document.body.appendChild(alert);
     await alert.present();
     const rsl = await alert.onDidDismiss();
-    if (rsl.role === "yes") {
+    if (rsl.role === 'yes') {
         this.confirmTransaction(transactionID,userID);
     }
-    else if(rsl.role === "detail"){
+    else if(rsl.role === 'detail'){
       this.viewTransaction(transactionID, userID);
     }
   }

@@ -30,9 +30,7 @@ export class FriendProfilePage implements OnInit {
             this.badges.push(item3);
           });
         });
-        this.user.friends.forEach(friend => {
-          if(friend === this.authService.currentUser.id) this.isfriend = true;
-        });
+        this.isfriend = this.friendsService.isFriends(this.user,this.authService.currentUser);
       });
     });
   }
