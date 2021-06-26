@@ -210,23 +210,6 @@ export class HomePage {
     else {this.confirmView = true;}
   }
 
-  redirect(target: string){
-    switch (target) {
-      case 'transaction': {
-        this.router.navigate(['transaction-create']);
-        break;
-      }
-      case 'group':{
-        this.router.navigate(['group-list']);
-        break;
-      }
-      case 'profile':{
-        this.router.navigate(['profile']);
-        break;
-      }
-    }
-  }
-
   confirmTransaction(transactionId: string, user: User) {
     console.log("not active, read comment in home.page.ts confirmTransaction");
     /*

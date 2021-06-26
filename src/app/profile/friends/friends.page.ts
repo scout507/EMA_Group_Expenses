@@ -48,24 +48,10 @@ export class FriendsPage implements OnInit {
 
   addFriend(){
     //TODO: this needs to reload the friends list and check if input was valid
-    this.addFriendInput = this.friendsService.addFriend(this.addFriendInput, this.currentUser.id);
-    console.log(this.addFriendInput);
-  }
-
-  redirect(target: string){
-    switch (target) {
-      case 'transaction': {
-        this.router.navigate(['transaction-create']);
-        break;
-      }
-      case 'group':{
-        this.router.navigate(['group-list']);
-        break;
-      }
-      case 'home':{
-        this.router.navigate(['home']);
-        break;
-      }
-    }
+    // @ts-ignore
+    this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res =>{
+      this.addFriendsOutput = res;
+      console.log(this.addFriendsOutput);
+    });
   }
 }
