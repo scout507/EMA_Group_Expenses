@@ -141,8 +141,7 @@ export class HomePage {
     let outgoing = true;
     let cost: number;
     let pending: boolean;
-    //THIS IS NOT WORKING RIGHT NOW; NEED TO WAIT FOR THE DB to contain participation
-    //TODO: add pending
+    console.log(this.transactionService.checkTransactionFinish(transaction));
     if(transaction.creator.id !== this.currentUser.id){
       otherUser = transaction.creator;
       if(transaction.type === "income") outgoing = false;
