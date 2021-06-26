@@ -5,6 +5,7 @@ import { Award } from '../../models/award.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import { ArwardService } from 'src/app/services/award.service';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,7 @@ export class ProfilePage implements OnInit {
   badges: Award[] = [];
   user: User = new User();
 
-  constructor(private router: Router, private userService: UserService, private af: AngularFireAuth, private awardService: ArwardService) {
+  constructor(private router: Router, private userService: UserService, private af: AngularFireAuth, private awardService: ArwardService, private authService: AuthService) {
   }
 
   ionViewWillEnter() {
@@ -58,5 +59,8 @@ export class ProfilePage implements OnInit {
     await alert.onDidDismiss();
   }
 
+  loggout(){
+    this.authService.logout();
+  }
 
 }
