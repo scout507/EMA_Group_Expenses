@@ -48,10 +48,21 @@
         <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
           <ion-row>
             <ion-col align="left"><ion-avatar><img src="{{transaction.otherUser.profilePic}}"></ion-avatar></ion-col>
-          <ion-col>
-            <div>{{transaction.purpose}}</div>
-            <div style="font-size: small">{{transaction.groupName? transaction.groupName : "Gruppenname" }}, {{transaction.otherUser.displayName}}</div>
+          <ion-col *ngIf = "getDateDifference(transaction) < 1.5" style="color:red">
+            <div>{{transaction.otherUser.displayName}}</div>
+            <div style="font-size: small">{{transaction.purpose}}</div>
+            <div style="font-size: small">{{transaction.groupName? transaction.groupName : "Gruppenname" }}</div>
           </ion-col>
+            <ion-col *ngIf = "getDateDifference(transaction) < 4 && getDateDifference(transaction) > 1.5" style="color:orange">
+              <div>{{transaction.otherUser.displayName}}</div>
+              <div style="font-size: small">{{transaction.purpose}}</div>
+              <div style="font-size: small">{{transaction.groupName? transaction.groupName : "Gruppenname" }}</div>
+            </ion-col>
+            <ion-col *ngIf = "getDateDifference(transaction) > 3">
+              <div>{{transaction.otherUser.displayName}}</div>
+              <div style="font-size: small">{{transaction.purpose}}</div>
+              <div style="font-size: small">{{transaction.groupName? transaction.groupName : "Gruppenname" }}</div>
+            </ion-col>
           <ion-col align="right" >{{transaction.amount}}€</ion-col>
             <ion-col *ngIf="confirmView"><ion-button (click)="confirmTransaction()">x</ion-button></ion-col>
           </ion-row>

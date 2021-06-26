@@ -90,7 +90,7 @@ export class HomePage {
         this.transactionService.saveLocally(transaction);
         this.router.navigate(['transaction-details']);
       }
-    })
+    });
   }
 
   updateTransactions(){
@@ -174,7 +174,10 @@ export class HomePage {
     //console.log(this.simpleTransactions);
   }
 
-
+  getDateDifference(transcation: Transaction){
+    // @ts-ignore
+    return ((new Date(transcation.dueDate ) - new Date())/86400000);
+  }
 
   doSearch() {
     this.filterTransaction(this.search);
