@@ -58,25 +58,35 @@ export class FriendsService {
     });
   }
 
-  addFriend(email: string, currentUserID: string){
-    this.userService.findByEmail(email.toLocaleLowerCase()).then(user => {
+  addFriend(email: string, currentUserID: string): Promise<string>{
+    return this.userService.findByEmail(email.toLocaleLowerCase()).then(user => {
+      console.log(user);
+      let alreadyFriends = false;
+      //the actual user is in a somewhat random spot in the "user" array.
       if(user) {
         user.forEach(u => {
               if(u) {
-                this.userService.findById(currentUserID).then(curUser => {
+                console.log(user);
+                  this.userService.findById(currentUserID).then(async curUser => {
                   curUser.friends.forEach(friend =>{
-                    if(friend === u.id) return 'bereits befreundet';
-                  })
-                  curUser.friends.push(u.id);
-                  u.friends.push(currentUserID);
-                  this.update(u);
-                  this.update(curUser);
-                  return 'erfolgreich hinzugefügt';
+                    if(friend === u.id) {
+                      alreadyFriends = true;
+                      return 'bereits befreundet';
+                    }
+                  });
+                  if(!alreadyFriends) {
+                    curUser.friends.push(u.id);
+                    u.friends.push(currentUserID);
+                    this.update(u);
+                    this.update(curUser);
+                    return 'erfolgreich hinzugefügt';
+                  }
                 });
               }
         });
       }
       else{
+
         return 'Nutzer nicht vorhanden';
       }
     });

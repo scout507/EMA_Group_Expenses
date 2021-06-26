@@ -128,7 +128,6 @@ export class TransactionService {
 
   deleteAllTransactionsByUser(user: User){
     this.userService.findById("QWgrWPALVhaZPnB1ZCiqbOELYbJ2").then(deletedUser =>{
-      console.log(deletedUser);
       this.getAllTransactionByUser(user).then(transactions => {
         transactions.forEach(transaction => {
           if(transaction.creator.id === user.id){
