@@ -75,6 +75,16 @@ export class AuthService {
       })
   }
 
+  delete(){
+    this.auth.currentUser.then(user => {
+      user.delete().then(() => {
+        // User deleted.
+      }).catch((error) => {
+        console.log(error.message);
+      });
+    });
+  }
+
   changePassword(email){
     this.auth.sendPasswordResetEmail(email).then(() => {
         this.router.navigate(['login']);
