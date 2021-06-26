@@ -48,7 +48,7 @@ export class GroupDetailsPage implements OnInit {
   async delete(): Promise<void>{
     const alert = await this.alertController.create({
       header: 'Gruppe löschen',
-      message: `Bist du dir sicher das du die Gruppe ${this.group.name} löschen möchtest?`,
+      message: `Bist du dir sicher, dass du die Gruppe ${this.group.name} löschen möchtest?`,
       buttons: [
         {
           text: 'Abbrechen',
@@ -58,6 +58,27 @@ export class GroupDetailsPage implements OnInit {
           text: 'Löschen',
           handler: () => {
             this.groupService.delete(this.group.id);
+            this.navCtrl.back();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async leaveGroup(): Promise<void>{
+    const alert = await this.alertController.create({
+      header: 'Gruppe verlassen',
+      message: `Bist du dir sicher, dass du die Gruppe ${this.group.name} verlassen möchtest?`,
+      buttons: [
+        {
+          text: 'Abbrechen',
+          role: 'cancel',
+        },
+        {
+          text: 'Verlassen',
+          handler: () => {
+            this.groupService.deleteUserFromGroup(this.currentUser, this.group);
             this.navCtrl.back();
           }
         }

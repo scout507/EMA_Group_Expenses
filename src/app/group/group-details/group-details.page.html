@@ -61,12 +61,15 @@
   </ion-list>
 
   <ion-buttons style="margin-top: 50px; justify-content: center">
-    <ng-container *ngIf="group && currentUser.id === group.creator.id">
-      <ion-button color="danger" style="margin-right: 20px" (click)="this.delete()">
+    <ng-container>
+      <ion-button *ngIf="group && currentUser.id === group.creator.id" color="danger" style="margin-right: 20px" (click)="this.delete()">
         <ion-icon name="trash-outline" size="large"></ion-icon>
       </ion-button>
-      <ion-button color="primary" style="margin-left: 20px" (click)="this.update()">
+      <ion-button *ngIf="group && currentUser.id === group.creator.id" color="primary" style="margin-left: 20px; margin-right: 20px" (click)="this.update()">
         <ion-icon name="save-outline" size="large"></ion-icon>
+      </ion-button>
+      <ion-button color="danger" style="margin-right: 20px" (click)="leaveGroup()">
+        <ion-icon name="log-out-outline" size="large"></ion-icon>
       </ion-button>
     </ng-container>
 
