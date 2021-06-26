@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { FriendsService } from '../../services/friends.service';
 import { UserService } from '../../services/user.service';
+import {Observable} from "rxjs";
+import {Transaction} from "../../models/transaction.model";
 
 @Component({
   selector: 'app-friends',
@@ -20,10 +22,11 @@ export class FriendsPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.af.authState.subscribe(user => {
+    const sub = this.af.authState.subscribe(user => {
       if (user) {
         this.userService.findById(user.uid).then(value => {
           this.currentUser = value;
+          sub.unsubscribe();
           this.friends = [];
           value.friends.forEach(async element => {
             await this.friendsService.findById(element).then(friend => {
@@ -51,7 +54,6 @@ export class FriendsPage implements OnInit {
     // @ts-ignore
     this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res =>{
       this.addFriendsOutput = res;
-      console.log(this.addFriendsOutput);
     });
   }
 }

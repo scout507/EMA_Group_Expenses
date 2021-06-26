@@ -12,6 +12,7 @@ export class Transaction{
   rhythm: string;
   photo: any;
   creator: User;
+  finished: boolean;
 
   participation: {user: User; stake: number}[];
   accepted: {user: User; accepted: boolean}[];
@@ -30,6 +31,7 @@ export class Transaction{
     this.rhythm = rhythm;
     this.photo = photo;
     this.creator = creator;
+    this.finished = false;
   }
 
 }
