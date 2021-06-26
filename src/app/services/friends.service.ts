@@ -10,11 +10,10 @@ import {AuthService} from "./auth.service";
 
 export class FriendsService {
   userCollection: AngularFirestoreCollection<User>;
-  currentUser: User;
+
   constructor(private afs: AngularFirestore, private userService: UserService, private authService: AuthService) {
     this.userCollection = afs.collection<User>('User');
     //do better than this vvvv
-    this.currentUser = authService.currentUser;
   }
 
   persist(id: string) {
@@ -46,7 +45,7 @@ export class FriendsService {
     return this.userCollection.doc(id).get().toPromise().then(res => {
       const ret = res.data();
       ret.id = res.id;
-      const friends = this.isFriends(ret, this.currentUser);
+      const friends = this.isFriends(ret, this.authService.currentUser);
       if (!ret.imagePublic && !friends)
         ret.profilePic = "https://bit.ly/2S904CS";
 

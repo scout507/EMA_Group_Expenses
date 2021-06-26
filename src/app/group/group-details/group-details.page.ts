@@ -18,7 +18,9 @@ export class GroupDetailsPage implements OnInit {
   id: string;
   group: Group;
   currentUser: User;
-  groupTransactions: Transaction[];
+  currentTransactions: Transaction[];
+  oldTransactions: Transaction[];
+  current = true;
 
   constructor(private groupService: GroupService,
               private route: ActivatedRoute,
@@ -65,13 +67,21 @@ export class GroupDetailsPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.groupTransactions = [];
+    this.currentTransactions = [];
+    this.oldTransactions = [];
     this.currentUser = this.authService.currentUser;
     const groupID = this.route.snapshot.paramMap.get('id');
     this.groupService.getGroupById(groupID).then(g => {
       this.group = g;
       this.transactionService.getAllTransactionByGroup(this.group).then(transactions =>{
-        this.groupTransactions = transactions;
+        transactions.forEach(transaction =>{
+          if(!this.transactionService.checkTransactionFinish(transaction)){
+            this.currentTransactions.push(transaction);
+          }
+          else{
+            this.oldTransactions.push(transaction);
+          }
+        });
       });
     });
   }
