@@ -106,7 +106,6 @@ export class TransactionService {
       transaction.id = doc.id;
       return transaction;
     }).forEach(document => {
-      //TODO: Check if transaction is active
       if(document.group.toString() === group.id){
         document.group = group;
         transactions.push(document);
@@ -218,7 +217,7 @@ export class TransactionService {
 
   checkAllTransactionsFinishedInGroup(group: Group): Promise<boolean>{
     let transactions: Transaction[];
-    let openTransactions: boolean = false;
+    let openTransactions = false;
     return this.getAllTransactionByGroup(group).then(t => {
       transactions = t;
       transactions.forEach(t => {
@@ -229,7 +228,7 @@ export class TransactionService {
       return openTransactions;
     });
   }
-  
+
   checkTransactionsFinishedInGroupByUser(group: Group, user: User){
     let transactions: Transaction[];
     let openTransactions: boolean = false;

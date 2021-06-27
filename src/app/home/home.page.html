@@ -58,7 +58,7 @@
               <div style="font-size: small">{{transaction.purpose}}</div>
               <div style="font-size: small">noch {{getDateDifference(transaction)}} Tage</div>
             </ion-col>
-            <ion-col *ngIf = "getDateDifference(transaction) > 4">
+            <ion-col *ngIf = "getDateDifference(transaction) >= 4">
               <div>{{transaction.otherUser.displayName}}</div>
               <div style="font-size: small">{{transaction.purpose}}</div>
               <div style="font-size: small">noch {{getDateDifference(transaction)}} Tage</div>
