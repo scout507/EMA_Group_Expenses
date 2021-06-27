@@ -71,6 +71,15 @@
       <ion-icon *ngIf="!transactionService.hasUserPaid(member, transaction)" name="close" color="red"></ion-icon>
     </ion-item>
   </div>
+  <div *ngIf="currentView === 'attachment'">
+    <ion-img *ngIf="transaction.photo" src="{{transaction.photo}}"></ion-img>
+    <ion-button *ngIf="!transaction.photo && authService.currentUser.id === transaction.creator.id">
+      <ion-icon name="add" (click)="takePicture()"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="transaction.photo && authService.currentUser.id === transaction.creator.id" (click)="transaction.photo = null; transactionService.update(transaction)">
+      <ion-icon name="trash" ></ion-icon>
+    </ion-button>
+  </div>
 </ion-content>
 
 <ion-footer>

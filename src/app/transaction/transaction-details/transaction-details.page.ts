@@ -5,6 +5,7 @@ import {TransactionService} from "../../services/transaction.service";
 import {AuthService} from "../../services/auth.service";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
+import {Camera, CameraResultType} from "@capacitor/camera";
 
 
 @Component({
@@ -100,5 +101,16 @@ export class TransactionDetailsPage implements OnInit {
   editTransaction(){
     this.transactionService.saveLocally(this.transaction);
     this.router.navigate(['transaction-create', {editMode: true}]);
+  }
+
+  async takePicture() {
+    await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Base64
+    }).then(data => {
+      this.transaction.photo = "data:image/jpeg;base64, " + data.base64String;
+      this.transactionService.update(this.transaction)
+    });
   }
 }
