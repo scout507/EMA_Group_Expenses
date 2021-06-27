@@ -7,6 +7,8 @@ import {User} from '../models/user.model';
 import { UserService } from './user.service';
 import {AddMembersPage} from '../group/add-members/add-members.page';
 import {ModalController} from '@ionic/angular';
+import {TransactionService} from "./transaction.service";
+import {Transaction} from "../models/transaction.model";
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +37,8 @@ export class GroupService {
   }
 
 
-  delete(id: string){
-    this.groupCollection.doc(id).delete();
+  delete(group: Group){
+    this.groupCollection.doc(group.id).delete();
   }
 
   async getGroupById(id: string): Promise<Group> {
@@ -130,7 +132,7 @@ export class GroupService {
         this.update(group);
       }
       else{
-        this.delete(group.id);
+        this.delete(group);
       }
     }
   }
@@ -139,7 +141,7 @@ export class GroupService {
     const modal = await this.modalController.create({
       component: AddMembersPage,
       componentProps: {
-        selectedFriendsParam: group.members,
+        groupParam: group,
         currentUserParam: currentUser
       }
     });
