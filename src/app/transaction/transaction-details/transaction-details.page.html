@@ -4,7 +4,7 @@
     <ion-button slot="end" (click)="editTransaction()">
       <ion-icon name="create"></ion-icon>
     </ion-button>
-    <ion-button slot="end" (click)="delete()">
+    <ion-button slot="end" (click)="delete()" *ngIf="transaction.creator.id === authService.currentUser.id">
       <ion-icon name="trash"></ion-icon>
     </ion-button>
   </ion-toolbar>
@@ -35,31 +35,38 @@
       <ion-label>Betrag</ion-label>
       <ion-text class="ion-text-right">{{ transaction.amount}}€</ion-text>
     </ion-item>
+    <ion-item *ngIf="hasStake">
+      <ion-label>Eigener Anteil</ion-label>
+      <ion-text class="ion-text-right">{{transactionService.getStakeForUser(authService.currentUser, transaction)}}€</ion-text>
+      <ion-icon *ngIf="transactionService.hasUserPaid(authService.currentUser, transaction) && !transactionService.wasPaymentAccepted(authService.currentUser, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
+      <ion-icon *ngIf="transactionService.wasPaymentAccepted(authService.currentUser, transaction)" name="checkmark" color="green"></ion-icon>
+      <ion-icon *ngIf="!transactionService.hasUserPaid(authService.currentUser, transaction)" name="close" color="red"></ion-icon>    </ion-item>
     <ion-item>
       <ion-label>Ersteller</ion-label>
       <ion-text
-        class="ion-text-right">{{ transaction.creator ? transaction.creator.displayName : transaction.creator.userName}}</ion-text>
+        class="ion-text-right">{{ transaction.creator.displayName}}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label>Rechnungsdatum</ion-label>
-      <ion-text class="ion-text-right">{{ transaction.purchaseDate}}</ion-text>
+      <ion-datetime [(ngModel)]="transaction.purchaseDate" displayFormat="DD.MM.YYYY" readonly="true"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Fälligkeitsdatum</ion-label>
-      <ion-text class="ion-text-right">{{ transaction.dueDate}}</ion-text>
-    </ion-item>
-    <ion-item>
+      <ion-datetime [(ngModel)]="transaction.dueDate" displayFormat="DD.MM.YYYY" readonly="true"></ion-datetime>
+    </ion-item>    <ion-item>
       <ion-label>Rhythmus</ion-label>
       <ion-text class="ion-text-right">{{ formatRhythm(transaction.rhythm)}}</ion-text>
     </ion-item>
-    <ion-button>Bezahlen</ion-button>
+    <ion-button (click)="payTransaction()">Bezahlen</ion-button>
   </div>
   <div *ngIf="currentView === 'members'">
     <ion-item *ngFor="let member of transactionService.getParticipants(transaction)">
-      <ion-avatar>{{member.profilePic}}</ion-avatar>
-      <ion-label>{{member.displayName ? member.displayName : member.userName}}</ion-label>
+      <ion-avatar>
+        <img src="{{member.profilePic}}">
+      </ion-avatar>
+      <ion-label>{{member.displayName}}</ion-label>
       <ion-text>{{transactionService.getStakeForUser(member, transaction)}}€</ion-text>
-      <ion-icon *ngIf="transactionService.hasUserPaid(member, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
+      <ion-icon *ngIf="transactionService.hasUserPaid(authService.currentUser, transaction) && !transactionService.wasPaymentAccepted(authService.currentUser, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
       <ion-icon *ngIf="transactionService.wasPaymentAccepted(member, transaction)" name="checkmark" color="green"></ion-icon>
       <ion-icon *ngIf="!transactionService.hasUserPaid(member, transaction)" name="close" color="red"></ion-icon>
     </ion-item>
@@ -72,18 +79,14 @@
       <ion-tab-bar>
         <ion-tab-button (click)="router.navigate(['home'])">
           <ion-icon name="home-outline"></ion-icon>
-          <ion-badge>6</ion-badge>
         </ion-tab-button>
-
-        <ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['transaction-create'])">
           <ion-icon name="cash-outline"></ion-icon>
         </ion-tab-button>
-
         <ion-tab-button (click)="router.navigate(['group-list'])">
           <ion-icon name="people-outline"></ion-icon>
         </ion-tab-button>
-
-        <ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['profile'])">
           <ion-icon name="person-outline"></ion-icon>
         </ion-tab-button>
       </ion-tab-bar>

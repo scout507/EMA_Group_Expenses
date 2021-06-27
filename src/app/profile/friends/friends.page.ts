@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { FriendsService } from '../../services/friends.service';
 import { UserService } from '../../services/user.service';
+import {Observable} from "rxjs";
+import {Transaction} from "../../models/transaction.model";
 
 @Component({
   selector: 'app-friends',
@@ -12,17 +14,22 @@ import { UserService } from '../../services/user.service';
 })
 export class FriendsPage implements OnInit {
   friends: User[] = [];
+  addFriendInput;
+  currentUser: User;
+  addFriendsOutput: string;
 
   constructor(private router: Router, private af: AngularFireAuth, private friendsService: FriendsService, private userService: UserService) {
   }
 
   ionViewWillEnter() {
-    this.af.authState.subscribe(user => {
+    const sub = this.af.authState.subscribe(user => {
       if (user) {
         this.userService.findById(user.uid).then(value => {
+          this.currentUser = value;
+          sub.unsubscribe();
           this.friends = [];
-          value.friends.forEach(element => {
-            this.friendsService.findById(element).then(friend => {
+          value.friends.forEach(async element => {
+            await this.friendsService.findById(element).then(friend => {
               this.friends.push(friend);
             });
           });
@@ -42,4 +49,11 @@ export class FriendsPage implements OnInit {
     this.router.navigate(['friend-profile', [id]]);
   }
 
+  addFriend(){
+    //TODO: this needs to reload the friends list and check if input was valid
+    // @ts-ignore
+    this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res =>{
+      this.addFriendsOutput = res;
+    });
+  }
 }

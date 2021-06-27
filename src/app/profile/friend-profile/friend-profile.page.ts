@@ -6,6 +6,7 @@ import { ArwardService } from 'src/app/services/award.service';
 import { FriendsService } from '../../services/friends.service';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-friend-profile',
@@ -15,8 +16,9 @@ import { UserService } from '../../services/user.service';
 export class FriendProfilePage implements OnInit {
   badges: Award[] = [];
   user: User = new User();
+  isfriend= false;
 
-  constructor(private route: ActivatedRoute, private router: Router, private awardService: ArwardService, private af: AngularFireAuth, private userService:UserService,  private friendsService: FriendsService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private awardService: ArwardService, private af: AngularFireAuth, private userService:UserService,  private friendsService: FriendsService, private authService: AuthService) { }
 
   ionViewWillEnter() {
     this.route.params.subscribe(item => {
@@ -28,6 +30,7 @@ export class FriendProfilePage implements OnInit {
             this.badges.push(item3);
           });
         });
+        this.isfriend = this.friendsService.isFriends(this.user,this.authService.currentUser);
       });
     });
   }
@@ -37,6 +40,10 @@ export class FriendProfilePage implements OnInit {
 
   backBttn() {
     this.router.navigate(['friends']);
+  }
+
+  addFriend(){
+    this.friendsService.addFriend(this.user.email, this.authService.currentUser.id);
   }
 
   async badgeDescription(badgename, badgeDescription) {
@@ -49,5 +56,4 @@ export class FriendProfilePage implements OnInit {
     await alert.present();
     await alert.onDidDismiss();
   }
-
 }

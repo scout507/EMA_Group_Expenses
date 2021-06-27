@@ -10,6 +10,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-item lines="full">
+    <ion-input [(ngModel)]="addFriendInput" placeholder="Email eingeben.."></ion-input>
+    <ion-button (click)="addFriend()">Hinzufügen</ion-button>
+  </ion-item>
   <ion-list lines="full">
     <ion-item button *ngFor="let item of friends" (click)="friendBttn(item.id)">
       <ion-grid>
@@ -25,3 +29,24 @@
     </ion-item>
   </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button (click)="router.navigate(['home'])">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['transaction-create'])">
+          <ion-icon name="cash-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['group-list'])">
+          <ion-icon name="people-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['profile'])">
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

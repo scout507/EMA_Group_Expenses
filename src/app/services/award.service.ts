@@ -11,7 +11,7 @@ export class ArwardService {
   userCollection: AngularFirestoreCollection<User>;
 
   constructor(private afs: AngularFirestore) {
-    this.userCollection = afs.collection<User>('Achivement');
+    this.userCollection = afs.collection<User>('Achievement');
   }
 
   findById(id: string) {

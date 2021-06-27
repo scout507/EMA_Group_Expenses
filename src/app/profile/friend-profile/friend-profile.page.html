@@ -5,7 +5,10 @@
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="ion-text-center" style="margin-right: 40px;">Freundes Profil</ion-title>
+    <ion-title class="ion-text-center" style="margin-right: 40px;">Freunde</ion-title>
+    <ion-button *ngIf="!isfriend" slot="end" (click)="addFriend()">
+      <ion-icon name="person-add-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -35,3 +38,24 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button (click)="router.navigate(['home'])">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['transaction-create'])">
+          <ion-icon name="cash-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['group-list'])">
+          <ion-icon name="people-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['profile'])">
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

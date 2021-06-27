@@ -28,7 +28,7 @@ export class RegisterPage implements OnInit {
         }
       });
     }else{
-      this.errorMessage = 'Passwörter ungleich'
+      this.errorMessage = 'Passwörter nicht identisch';
     }
   }
 

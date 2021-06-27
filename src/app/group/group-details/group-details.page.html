@@ -14,31 +14,85 @@
       class="ion-text-end"
       [(ngModel)]="group.name"
       type="text"
-      [disabled]="group.creator.id != currentUser.id">
+      [disabled]="group.creator.id !== currentUser.id">
     </ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label>Mitglieder:</ion-label>
-    <ion-button (click)="this.addMembers()" *ngIf="group && currentUser.id === group.creator.id">
-      <ion-icon name="add"></ion-icon>
-    </ion-button>
+  <ion-item button (click)="viewMembers()">
+    <ion-label>Mitglieder</ion-label>
   </ion-item>
 
-  <ion-list *ngIf="group">
-    <ion-item *ngFor="let member of group.members">
-      <ion-label class="ion-text-center" *ngIf="member.id == group.creator.id">{{member.displayName}}  (Admin)</ion-label>
-      <ion-label class="ion-text-center" *ngIf="member.id != group.creator.id">{{member.displayName}}</ion-label>
+  <ion-grid>
+    <ion-row class="ion-justify-content-evenly">
+      <ion-col class="ion-no-padding">
+        <ion-button expand="full" (click)="current=true">Aktuelle Transaktionen</ion-button>
+      </ion-col>
+      <ion-col class="ion-no-padding">
+        <ion-button expand="full" (click)="current=false">Archiv</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list *ngIf="current">
+    <ion-item button *ngFor="let transaction of currentTransactions" (click)="viewTransaction(transaction)" lines="full">
+      <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
+        <ion-row>
+          <ion-col align="left"><ion-avatar><img src="{{transaction.creator.profilePic}}"></ion-avatar></ion-col>
+          <ion-col>
+            <div>{{transaction.purpose}}</div>
+            <div style="font-size: small">{{transaction.creator.displayName}}</div>
+          </ion-col>
+          <ion-col align="right" >{{transaction.amount}}€</ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
+  <ion-list *ngIf="!current">
+    <ion-item button *ngFor="let transaction of oldTransactions" (click)="viewTransaction(transaction)" lines="full">
+      <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
+        <ion-row>
+          <ion-col align="left"><ion-avatar><img src="{{transaction.creator.profilePic}}"></ion-avatar></ion-col>
+          <ion-col>
+            <div>{{transaction.purpose}}</div>
+            <div style="font-size: small">{{transaction.creator.displayName}}</div>
+          </ion-col>
+          <ion-col align="right" >{{transaction.amount}}€</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
   <ion-buttons style="margin-top: 50px; justify-content: center">
-    <ng-container *ngIf="group && currentUser.id == group.creator.id">
-      <ion-button color="danger" style="margin-right: 20px" (click)="this.delete()">
+    <ng-container>
+      <ion-button *ngIf="group && currentUser.id === group.creator.id" color="danger" style="margin-right: 20px" (click)="this.delete()">
         <ion-icon name="trash-outline" size="large"></ion-icon>
       </ion-button>
-      <ion-button color="primary" style="margin-left: 20px" (click)="this.update()">
+      <ion-button *ngIf="group && currentUser.id === group.creator.id" color="primary" style="margin-left: 20px; margin-right: 20px" (click)="this.update()">
         <ion-icon name="save-outline" size="large"></ion-icon>
+      </ion-button>
+      <ion-button color="danger" style="margin-right: 20px" (click)="leaveGroup()">
+        <ion-icon name="log-out-outline" size="large"></ion-icon>
       </ion-button>
     </ng-container>
 
   </ion-buttons>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button (click)="router.navigate(['home'])">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['transaction-create'])">
+          <ion-icon name="cash-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['group-list'])">
+          <ion-icon name="people-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['profile'])">
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

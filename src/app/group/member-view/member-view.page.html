@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="this.navCtrl.back()" fill="clear" slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title>Mitglieder</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Neu hinzufügen</ion-label>
+      <ion-button (click)="this.addMembers()" *ngIf="group && currentUser.id === group.creator.id">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <ion-list *ngIf="group">
+    <ion-item button *ngFor="let member of group.members" (click)="viewUser(member.id)">
+      <ion-avatar align="left"><img src="{{member.profilePic}}"></ion-avatar>
+      <ion-label class="ion-text-center" *ngIf="member.id === group.creator.id">{{member.displayName}}  (Admin)</ion-label>
+      <ion-label class="ion-text-center" *ngIf="member.id !== group.creator.id">{{member.displayName}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

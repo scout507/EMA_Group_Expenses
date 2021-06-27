@@ -39,7 +39,10 @@ export class TransactionCreatePage implements OnInit {
               private groupService: GroupService,
               private authService : AuthService) {
     if (!this.editMode) {
-      this.transaction = new Transaction("", 0, "", "cost", "once", authService.currentUser, new Date(), null);
+      this.transaction = new Transaction("", null, "", "cost", "once", authService.currentUser, new Date().toDateString(), new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toDateString());
+      this.transaction.paid = [];
+      this.transaction.accepted = [];
+      this.transaction.participation = [];
     }
   }
 
@@ -47,8 +50,8 @@ export class TransactionCreatePage implements OnInit {
     let stake: number = this.transaction.amount / this.transaction.group.members.length;
     for (let user of this.transaction.group.members) {
       let stakeEntry = {user, stake};
-      let paid = false;
-      let accepted = false;
+      let paid = user.id === this.transaction.creator.id;
+      let accepted = user.id === this.transaction.creator.id;
       let paidEntry = {user, paid};
       let acceptedEntry = {user, accepted};
       this.transaction.participation.push(stakeEntry);
@@ -65,19 +68,13 @@ export class TransactionCreatePage implements OnInit {
     if (!this.transaction.amount){
       this.errors.set('amount', 'Bitte geben Sie einen Betrag an.');
     }
+    if(this.transaction.amount < 0){
+      this.errors.set('amount', 'Betrag darf nicht negativ sein.');
+    }
     if (!this.transaction.group){
       this.errors.set('group', 'Bitte wählen Sie eine Gruppe aus.');
     }
     if (this.errors.size === 0){
-      if (!this.transaction.participation) {
-        this.transaction.participation = [];
-      }
-      if (!this.transaction.accepted) {
-        this.transaction.accepted = [];
-      }
-      if (!this.transaction.paid) {
-        this.transaction.paid = [];
-      }
       if (this.selectAllUsers && this.fairlyDistributedPrice) {
         this.calculateStakes();
         if(!this.editMode) {
@@ -90,11 +87,10 @@ export class TransactionCreatePage implements OnInit {
       }
       if (!this.selectAllUsers) {
         this.transactionService.saveLocally(this.transaction);
-        this.router.navigate(['transaction-participation', {'fairlyDistributedPrice': JSON.stringify(this.fairlyDistributedPrice)}]);
+        this.router.navigate(['transaction-participants', {'fairlyDistributedPrice': JSON.stringify(this.fairlyDistributedPrice)}]);
         return;
       }
       if (!this.fairlyDistributedPrice) {
-
         this.transactionService.saveLocally(this.transaction);
         this.router.navigate(['transaction-stakes']);
         return;
