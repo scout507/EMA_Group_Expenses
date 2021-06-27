@@ -48,9 +48,6 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    this.sub = this.transactionService.findAllSync().subscribe(next => {
-      console.log('neue Transaction');
-    });
     this.outgoingView = true;
     this.confirmView = false;
     this.incomingView = false;
@@ -195,7 +192,7 @@ export class HomePage {
 
   getDateDifference(transcation: Transaction){
     // @ts-ignore
-    return ((new Date(transcation.dueDate ) - new Date())/86400000);
+    return Math.round((new Date(transcation.dueDate ) - new Date())/86400000)+1;
   }
 
   doSearch() {

@@ -7,12 +7,14 @@ import {GroupService} from './group.service';
 import {AuthService} from './auth.service';
 import {Group} from '../models/group.model';
 import { UserService } from './user.service';
+import { TransactionTracker } from "../models/transactionTracker.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
   transactionCollection: AngularFirestoreCollection<Transaction>;
+  recTransactionCollection: AngularFirestoreCollection<TransactionTracker>;
 
   constructor(private afs: AngularFirestore, private groupService: GroupService, private authService: AuthService, private userService: UserService) {
     this.transactionCollection = afs.collection<Transaction>('Transaction');
@@ -204,6 +206,15 @@ export class TransactionService {
     let participants: User[] = [];
     transaction.participation.forEach(participant => participants.push(participant.user));
     return participants;
+  }
+
+  async handleRecTransactions(user: User){
+    const snapshot = await this.recTransactionCollection.get().toPromise();
+    await snapshot.docs.map(doc => {
+      const transactionHandler = doc.data();
+      transactionHandler.id = doc.id;
+    });
+
   }
 
   private copyAndPrepare(transaction: Transaction) {

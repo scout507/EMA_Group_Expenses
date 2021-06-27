@@ -51,17 +51,17 @@
           <ion-col *ngIf = "getDateDifference(transaction) < 1.5" style="color:red">
             <div>{{transaction.otherUser.displayName}}</div>
             <div style="font-size: small">{{transaction.purpose}}</div>
-            <div style="font-size: small">{{transaction.groupName? transaction.groupName : "Gruppenname" }}</div>
+            <div style="font-size: small">noch {{getDateDifference(transaction)}} Tage</div>
           </ion-col>
             <ion-col *ngIf = "getDateDifference(transaction) < 4 && getDateDifference(transaction) > 1.5" style="color:orange">
               <div>{{transaction.otherUser.displayName}}</div>
               <div style="font-size: small">{{transaction.purpose}}</div>
-              <div style="font-size: small">{{transaction.groupName? transaction.groupName : "Gruppenname" }}</div>
+              <div style="font-size: small">noch {{getDateDifference(transaction)}} Tage</div>
             </ion-col>
-            <ion-col *ngIf = "getDateDifference(transaction) > 3">
+            <ion-col *ngIf = "getDateDifference(transaction) > 4">
               <div>{{transaction.otherUser.displayName}}</div>
               <div style="font-size: small">{{transaction.purpose}}</div>
-              <div style="font-size: small">{{transaction.groupName? transaction.groupName : "Gruppenname" }}</div>
+              <div style="font-size: small">noch {{getDateDifference(transaction)}} Tage</div>
             </ion-col>
           <ion-col align="right"><ion-text>{{transaction.amount}}€</ion-text></ion-col>
           </ion-row>
