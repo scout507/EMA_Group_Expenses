@@ -3,6 +3,8 @@ import {IonSearchbar, ModalController, NavParams} from "@ionic/angular";
 import { UserService } from 'src/app/services/user.service';
 import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
+import {Group} from "../../models/group.model";
+import {TransactionService} from "../../services/transaction.service";
 
 @Component({
   selector: 'app-add-members',
@@ -14,6 +16,7 @@ export class AddMembersPage implements OnInit {
   public friends: User[] = [];
   public selectedFriends: User[] = [];
   public newSelectedFriends: User[] = [];
+  group: Group;
   currentUser: User;
   filteredFriends: User[] = [];
   searchbarVisible = false;
@@ -21,8 +24,10 @@ export class AddMembersPage implements OnInit {
   constructor(private modalController: ModalController,
               public navParams: NavParams,
               public authService: AuthService,
+              public transactionService: TransactionService,
               public userService: UserService) {
-    this.selectedFriends = navParams.get('selectedFriendsParam');
+    this.group = navParams.get('groupParam');
+    this.selectedFriends = this.group.members;
     this.currentUser = navParams.get('currentUserParam');
     this.currentUser.friends.forEach(id => {
       if(id.toString().length > 9){
@@ -78,8 +83,30 @@ export class AddMembersPage implements OnInit {
     return ret;
   }
 
-  add(){
-    this.modalController.dismiss(this.newSelectedFriends);
+  async add(){
+    let removedFriend: User[] = [];
+    let friendsWithOpenTransactions: User[] = [];
+    this.selectedFriends.forEach(friend => {
+      if(!this.newSelectedFriends.includes(friend)){
+        removedFriend.push(friend)
+      }
+    });
+    for (const friend of removedFriend) {
+      let open = await this.transactionService.checkTransactionsFinishedInGroupByUser(this.group, friend);
+      if(open){
+        friendsWithOpenTransactions.push(friend);
+      }
+    }
+    if(friendsWithOpenTransactions.length > 0){
+      let msg = `Diese Auswahl kann nicht bestätigt werden, da noch folgende Freunde offene Transaktionen haben:\n`;
+      friendsWithOpenTransactions.forEach(friend => {
+        msg += `${friend.displayName}\n`
+      });
+      this.newSelectedFriends = this.selectedFriends;
+      alert(msg)
+    }else{
+      await this.modalController.dismiss(this.newSelectedFriends);
+    }
   }
 
   ngOnInit() {
