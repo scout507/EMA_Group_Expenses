@@ -6,6 +6,8 @@ import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {IonSearchbar} from "@ionic/angular";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-group-list',
@@ -22,6 +24,8 @@ export class GroupListPage implements OnInit {
 
   constructor(private groupService: GroupService,
               private authService: AuthService,
+              private af: AngularFireAuth,
+              private userService: UserService,
               private router: Router) {
 
   }
@@ -53,21 +57,28 @@ export class GroupListPage implements OnInit {
 
   ionViewWillEnter() {
     this.searchbarVisible = false;
-    this.currentUser = this.authService.currentUser;
-    this.subGroups = this.groupService.getAll().subscribe(groups => {
-      let newGroups: any[] = [];
-      groups.forEach(group => {
-        group.members.forEach(member => {
-          if (member.toString() == this.currentUser.id) {
-            newGroups.push(group)
-          }
-        })
-      });
-      this.groups = [];
-      newGroups.forEach(group => {
-        this.groups.push(this.groupService.createGroup(group, group.id));
-      });
-      this.filteredGroups.splice(0, this.filteredGroups.length, ...this.groups);
+    const sub = this.af.authState.subscribe(user => {
+      if (user) {
+        this.userService.findById(user.uid).then(result => {
+          this.currentUser = result;
+          sub.unsubscribe();
+          this.subGroups = this.groupService.getAll().subscribe(groups => {
+            let newGroups: any[] = [];
+            groups.forEach(group => {
+              group.members.forEach(member => {
+                if (member.toString() == this.currentUser.id) {
+                  newGroups.push(group)
+                }
+              })
+            });
+            this.groups = [];
+            newGroups.forEach(group => {
+              this.groups.push(this.groupService.createGroup(group, group.id));
+            });
+            this.filteredGroups.splice(0, this.filteredGroups.length, ...this.groups);
+          });
+        });
+      }
     });
   }
 

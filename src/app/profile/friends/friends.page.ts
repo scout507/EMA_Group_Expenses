@@ -29,7 +29,7 @@ export class FriendsPage implements OnInit {
           sub.unsubscribe();
           this.friends = [];
           value.friends.forEach(async element => {
-            await this.friendsService.findById(element).then(friend => {
+            await this.friendsService.findById(element, this.currentUser).then(friend => {
               this.friends.push(friend);
             });
           });
@@ -52,6 +52,7 @@ export class FriendsPage implements OnInit {
   addFriend(){
     //TODO: this needs to reload the friends list and check if input was valid
     // @ts-ignore
+    console.log(this.currentUser);
     this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res =>{
       this.addFriendsOutput = res;
     });
