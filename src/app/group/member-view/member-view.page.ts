@@ -6,6 +6,8 @@ import {AuthService} from "../../services/auth.service";
 import {TransactionService} from "../../services/transaction.service";
 import {Group} from "../../models/group.model";
 import {User} from "../../models/user.model";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-member-view',
@@ -24,7 +26,9 @@ export class MemberViewPage implements OnInit {
               private alertController: AlertController,
               private authService: AuthService,
               private transactionService: TransactionService,
-              private router: Router) {
+              private router: Router,
+              private af: AngularFireAuth,
+              private userService: UserService) {
   }
 
   addMembers(){
@@ -35,10 +39,17 @@ export class MemberViewPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.currentUser = this.authService.currentUser;
-    const groupID = this.route.snapshot.paramMap.get('id');
-    this.groupService.getGroupById(groupID).then(g => {
-      this.group = g;
+    const sub = this.af.authState.subscribe(user => {
+      if (user) {
+        this.userService.findById(user.uid).then(result => {
+          this.currentUser = result;
+          const groupID = this.route.snapshot.paramMap.get('id');
+          this.groupService.getGroupById(groupID).then(g => {
+            this.group = g;
+          });
+          sub.unsubscribe();
+        });
+      }
     });
   }
 

@@ -1,14 +1,15 @@
 import {Component} from '@angular/core';
 import {TransactionService} from '../services/transaction.service';
 import {Transaction} from '../models/transaction.model';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {User} from '../models/user.model';
 import {AuthService} from '../services/auth.service';
 import {GroupService} from '../services/group.service';
 import {Router} from '@angular/router';
 import {SimpleTransaction} from '../models/simpleTransaction.model';
-import {AngularFireAuth} from "@angular/fire/auth";
-import {UserService} from "../services/user.service";
+import {AngularFireAuth} from '@angular/fire/auth';
+// @ts-ignore
+import {UserService} from '../services/user.service';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class HomePage {
   simpleTransactions: SimpleTransaction[] = [];
   filteredTransactions: SimpleTransaction[] = [];
   currentUser: User;
+  sub: Subscription;
 
   private incoming: number;
   private pending: number;
@@ -46,6 +48,9 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    this.sub = this.transactionService.findAllSync().subscribe(next => {
+      console.log('neue Transaction');
+    });
     this.outgoingView = true;
     this.confirmView = false;
     this.incomingView = false;
@@ -90,7 +95,7 @@ export class HomePage {
         this.transactionService.saveLocally(transaction);
         this.router.navigate(['transaction-details']);
       }
-    })
+    });
   }
 
   updateTransactions(){
@@ -141,11 +146,9 @@ export class HomePage {
     let outgoing = true;
     let cost: number;
     let pending: boolean;
-    //THIS IS NOT WORKING RIGHT NOW; NEED TO WAIT FOR THE DB to contain participation
-    //TODO: add pending
     if(transaction.creator.id !== this.currentUser.id){
       otherUser = transaction.creator;
-      if(transaction.type === "income") outgoing = false;
+      if(transaction.type === 'income') {outgoing = false;}
 
       for(let i = 0; i < transaction.participation.length; i++){
         if(transaction.accepted[i].accepted !== true && transaction.participation[i].user.id === this.currentUser.id) {
@@ -157,7 +160,7 @@ export class HomePage {
       }
     }
     else{
-      if(transaction.type === "cost") outgoing = false;
+      if(transaction.type === 'cost') {outgoing = false;}
 
       for(let i = 0; i < transaction.participation.length; i++){
         if(transaction.participation[i].user.id !== this.currentUser.id){
@@ -174,7 +177,26 @@ export class HomePage {
     //console.log(this.simpleTransactions);
   }
 
+  async confirmDialog(transactionID: string, userID: string, userName: string){
+    const alert = document.createElement('ion-alert');
+    alert.header = 'Hast du die Zahlung von ' + userName + ' erhalten?';
+    alert.buttons = [{ text: 'Ja', role: 'yes' },{ text: 'Details', role: 'detail' },{ text: 'Abbrechen'}];
 
+    document.body.appendChild(alert);
+    await alert.present();
+    const rsl = await alert.onDidDismiss();
+    if (rsl.role === 'yes') {
+        this.confirmTransaction(transactionID,userID);
+    }
+    else if(rsl.role === 'detail'){
+      this.viewTransaction(transactionID, userID);
+    }
+  }
+
+  getDateDifference(transcation: Transaction){
+    // @ts-ignore
+    return ((new Date(transcation.dueDate ) - new Date())/86400000);
+  }
 
   doSearch() {
     this.filterTransaction(this.search);
@@ -194,7 +216,6 @@ export class HomePage {
     this.searchbarVisible = true;
   }
 
-
   buttonHandler(type: number) {
     this.incomingView = false;
     this.outgoingView = false;
@@ -207,34 +228,18 @@ export class HomePage {
     else {this.confirmView = true;}
   }
 
-  redirect(target: string){
-    switch (target) {
-      case 'transaction': {
-        this.router.navigate(['transaction-create']);
-        break;
-      }
-      case 'group':{
-        this.router.navigate(['group-list']);
-        break;
-      }
-      case 'profile':{
-        this.router.navigate(['profile']);
-        break;
-      }
-    }
-  }
-
-  confirmTransaction(transactionId: string, user: User) {
-    console.log("not active, read comment in home.page.ts confirmTransaction");
-    /*
-    TODO: activate this, as soon as you fix the button over button issue
-    this.transactions.forEach(transaction =>{
-      if(transaction.id === transactionId){
-        transaction.accepted.forEach(a =>{
-          if(a.user = user) a.accepted = true;
+  confirmTransaction(transactionID: string, userID: string){
+    this.transactions.forEach(transaction => {
+      if(transaction.id === transactionID){
+        transaction.accepted.forEach(a => {
+          if(a.user.id === userID){
+            a.accepted = true;
+            transaction.finished = this.transactionService.checkTransactionFinish(transaction);
+            this.transactionService.update(transaction);
+            this.updateTransactions();
+          }
         });
       }
     });
-     */
   }
 }

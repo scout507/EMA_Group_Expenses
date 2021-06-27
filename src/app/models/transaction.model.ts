@@ -12,14 +12,15 @@ export class Transaction{
   rhythm: string;
   photo: any;
   creator: User;
+  finished: boolean;
 
-  participation : {user: User, stake: number}[];
-  accepted : {user: User, accepted: boolean}[];
-  paid : {user: User, paid: boolean}[];
+  participation: {user: User; stake: number}[];
+  accepted: {user: User; accepted: boolean}[];
+  paid: {user: User; paid: boolean}[];
 
   //TODO figure out photo & person
 
-  constructor(id : string, amount: number, purpose: string, type: string, rhythm: string, creator: User, purchaseDate? : string, dueDate? : string, photo? : any,  group? : Group){
+  constructor(id: string, amount: number, purpose: string, type: string, rhythm: string, creator: User, purchaseDate? : string, dueDate? : string, photo? : any,  group? : Group){
     this.group = group;
     this.id = id;
     this.amount = amount;
@@ -30,6 +31,7 @@ export class Transaction{
     this.rhythm = rhythm;
     this.photo = photo;
     this.creator = creator;
+    this.finished = false;
   }
 
 }

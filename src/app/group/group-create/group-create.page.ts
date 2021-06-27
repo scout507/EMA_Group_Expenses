@@ -6,6 +6,8 @@ import {AddMembersPage} from "../add-members/add-members.page";
 import {GroupService} from "../../services/group.service";
 import {Group} from "../../models/group.model";
 import {AuthService} from "../../services/auth.service";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-group-create',
@@ -21,6 +23,8 @@ export class GroupCreatePage implements OnInit {
               private modalController: ModalController,
               private authService: AuthService,
               private groupService: GroupService,
+              private af: AngularFireAuth,
+              private userService: UserService,
               private navCtrl: NavController) {
 
   }
@@ -45,7 +49,14 @@ export class GroupCreatePage implements OnInit {
 
 
   ngOnInit() {
-    this.currentUser = this.authService.currentUser;
+    const sub = this.af.authState.subscribe(user => {
+      if (user) {
+        this.userService.findById(user.uid).then(result => {
+          this.currentUser = result;
+          sub.unsubscribe();
+        });
+      }
+    });
   }
 
 }

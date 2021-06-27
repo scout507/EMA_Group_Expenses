@@ -18,7 +18,9 @@ export class GroupDetailsPage implements OnInit {
   id: string;
   group: Group;
   currentUser: User;
-  groupTransactions: Transaction[];
+  currentTransactions: Transaction[];
+  oldTransactions: Transaction[];
+  current = true;
 
   constructor(private groupService: GroupService,
               private route: ActivatedRoute,
@@ -46,7 +48,7 @@ export class GroupDetailsPage implements OnInit {
   async delete(): Promise<void>{
     const alert = await this.alertController.create({
       header: 'Gruppe löschen',
-      message: `Bist du dir sicher das du die Gruppe ${this.group.name} löschen möchtest?`,
+      message: `Bist du dir sicher, dass du die Gruppe ${this.group.name} löschen möchtest?`,
       buttons: [
         {
           text: 'Abbrechen',
@@ -64,14 +66,43 @@ export class GroupDetailsPage implements OnInit {
     await alert.present();
   }
 
+  async leaveGroup(): Promise<void>{
+    const alert = await this.alertController.create({
+      header: 'Gruppe verlassen',
+      message: `Bist du dir sicher, dass du die Gruppe ${this.group.name} verlassen möchtest?`,
+      buttons: [
+        {
+          text: 'Abbrechen',
+          role: 'cancel',
+        },
+        {
+          text: 'Verlassen',
+          handler: () => {
+            this.groupService.deleteUserFromGroup(this.currentUser, this.group);
+            this.navCtrl.back();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   ionViewWillEnter() {
-    this.groupTransactions = [];
+    this.currentTransactions = [];
+    this.oldTransactions = [];
     this.currentUser = this.authService.currentUser;
     const groupID = this.route.snapshot.paramMap.get('id');
     this.groupService.getGroupById(groupID).then(g => {
       this.group = g;
       this.transactionService.getAllTransactionByGroup(this.group).then(transactions =>{
-        this.groupTransactions = transactions;
+        transactions.forEach(transaction =>{
+          if(!this.transactionService.checkTransactionFinish(transaction)){
+            this.currentTransactions.push(transaction);
+          }
+          else{
+            this.oldTransactions.push(transaction);
+          }
+        });
       });
     });
   }

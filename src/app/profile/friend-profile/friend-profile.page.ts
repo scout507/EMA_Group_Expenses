@@ -30,9 +30,7 @@ export class FriendProfilePage implements OnInit {
             this.badges.push(item3);
           });
         });
-        this.user.friends.forEach(friend => {
-          if(friend === this.authService.currentUser.id) this.isfriend = true;
-        });
+        this.isfriend = this.friendsService.isFriends(this.user,this.authService.currentUser);
       });
     });
   }
@@ -57,22 +55,5 @@ export class FriendProfilePage implements OnInit {
     document.body.appendChild(alert);
     await alert.present();
     await alert.onDidDismiss();
-  }
-
-  redirect(target: string){
-    switch (target) {
-      case 'transaction': {
-        this.router.navigate(['transaction-create']);
-        break;
-      }
-      case 'group':{
-        this.router.navigate(['group-list']);
-        break;
-      }
-      case 'home':{
-        this.router.navigate(['home']);
-        break;
-      }
-    }
   }
 }

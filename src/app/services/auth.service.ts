@@ -19,7 +19,7 @@ export class AuthService {
         this.userservice.persist(result.user.uid, email.toLocaleLowerCase(), username);
         this.userservice.findById(result.user.uid).then(user => {
           this.currentUser = user;
-          this.router.navigate(['home']);
+          this.router.navigate(['profile']);
         });
       })
       .catch((error) => {
@@ -73,6 +73,16 @@ export class AuthService {
       .catch((error) => {
         console.log(error.message);
       })
+  }
+
+  delete(){
+    this.auth.currentUser.then(user => {
+      user.delete().then(() => {
+        // User deleted.
+      }).catch((error) => {
+        console.log(error.message);
+      });
+    });
   }
 
   changePassword(email){
