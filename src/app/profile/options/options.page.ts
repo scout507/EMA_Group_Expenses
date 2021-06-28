@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-options',
@@ -13,7 +15,7 @@ export class OptionsPage implements OnInit {
   user: User = new User();
   userOld: User = new User();
 
-  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private af: AngularFireAuth) { }
+  constructor(private sanitizer: DomSanitizer, private router: Router, private route: ActivatedRoute, private userService: UserService, private af: AngularFireAuth) { }
 
   ngOnInit() { }
 
@@ -67,9 +69,13 @@ export class OptionsPage implements OnInit {
     }
   }
 
-  profileImageChange() {
-    // TODO: Foto hochladen
-    console.log("Test");
+  async profileImageChange() {
+    const image = await Camera.getPhoto({
+      quality: 100,
+      allowEditing: true,
+      resultType: CameraResultType.Base64
+    });
+    this.user.profilePic = "data:image/png;base64, " + image.base64String;
   }
 
   payment() {
@@ -106,5 +112,4 @@ export class OptionsPage implements OnInit {
       this.router.navigate([site]);
     }
   }
-
 }

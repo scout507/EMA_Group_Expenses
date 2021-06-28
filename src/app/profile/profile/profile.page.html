@@ -23,7 +23,7 @@
   <ion-grid class="grid">
     <ion-row class="row">
       <ion-col class="profileImgCol">
-        <img class="profileImg" src={{user.profilePic}}>
+        <img class="profileImg" [src]="sanitizer.bypassSecurityTrustUrl(user.profilePic)">
       </ion-col>
       <ion-col class="profileDescriptionCol">
         <ion-row>

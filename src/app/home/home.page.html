@@ -47,7 +47,7 @@
       <ion-item button *ngFor="let transaction of filteredTransactions" (click)="viewTransaction(transaction.id, transaction.otherUser.id)" lines="full">
         <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
           <ion-row>
-            <ion-col align="left"><ion-avatar><img src="{{transaction.otherUser.profilePic}}"></ion-avatar></ion-col>
+            <ion-col align="left"><ion-avatar><img [src]="sanitizer.bypassSecurityTrustUrl(transaction.otherUser.profilePic)"></ion-avatar></ion-col>
             <ion-col>
               <div>{{transaction.otherUser.displayName}}</div>
               <div style="font-size: small">{{transaction.purpose}}</div>
@@ -64,7 +64,7 @@
     <ion-item button *ngFor="let transaction of filteredTransactions" lines="full" (click)="confirmDialog(transaction.id, transaction.otherUser.id, transaction.otherUser.displayName)">
       <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
         <ion-row>
-          <ion-col align="left"><ion-avatar><img src="{{transaction.otherUser.profilePic}}"></ion-avatar></ion-col>
+          <ion-col align="left"><ion-avatar><img [src]="sanitizer.bypassSecurityTrustUrl(transaction.otherUser.profilePic)"></ion-avatar></ion-col>
           <ion-col *ngIf = "getDateDifference(transaction) > 3">
             <div>{{transaction.otherUser.displayName}}</div>
             <div style="font-size: small">{{transaction.purpose}}</div>
