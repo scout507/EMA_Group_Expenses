@@ -91,7 +91,7 @@ export class HomePage {
       if(transaction.id === transactionID){
         localStorage.setItem('otherUser', JSON.stringify(userID));
         this.transactionService.saveLocally(transaction);
-        this.router.navigate(['transaction-details']);
+        this.router.navigate(['transaction-details', {id: this.currentUser.id}]);
       }
     });
   }
