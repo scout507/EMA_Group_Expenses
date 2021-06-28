@@ -6,6 +6,7 @@ import { FriendsService } from '../../services/friends.service';
 import { UserService } from '../../services/user.service';
 import {Observable} from "rxjs";
 import {Transaction} from "../../models/transaction.model";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-friends',
@@ -18,7 +19,7 @@ export class FriendsPage implements OnInit {
   currentUser: User;
   addFriendsOutput: string;
 
-  constructor(private router: Router, private af: AngularFireAuth, private friendsService: FriendsService, private userService: UserService) {
+  constructor(private sanitizer: DomSanitizer, private router: Router, private af: AngularFireAuth, private friendsService: FriendsService, private userService: UserService) {
   }
 
   ionViewWillEnter() {
