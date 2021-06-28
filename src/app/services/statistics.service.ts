@@ -13,7 +13,6 @@ export class StatisticsService{
     let statistic = new Statistic(new Date(transactions[0].purchaseDate), today)
 
     transactions.forEach(transaction => {
-      console.log(this.getDays(new Date(transaction.purchaseDate),today));
       transaction.amount = Math.round(transaction.amount*100)/100
       statistic.allTimeTotal ++;
       if(transaction.type === "cost") statistic.allTimeCost += transaction.amount;
@@ -45,7 +44,6 @@ export class StatisticsService{
         else  statistic.lastWeekIncome += transaction.amount;
       }
     });
-    console.log(statistic);
     return statistic;
   }
 
