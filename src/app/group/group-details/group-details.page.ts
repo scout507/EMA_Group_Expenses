@@ -7,6 +7,8 @@ import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-group-details',
@@ -28,6 +30,8 @@ export class GroupDetailsPage implements OnInit {
               private navCtrl: NavController,
               private alertController: AlertController,
               private authService: AuthService,
+              private af: AngularFireAuth,
+              private userService: UserService,
               private transactionService: TransactionService,
               private router: Router) {
   }
@@ -104,7 +108,14 @@ export class GroupDetailsPage implements OnInit {
   ionViewWillEnter() {
     this.currentTransactions = [];
     this.oldTransactions = [];
-    this.currentUser = this.authService.currentUser;
+    const sub = this.af.authState.subscribe(user => {
+      if (user) {
+        this.userService.findById(user.uid).then(result => {
+          this.currentUser = result;
+          sub.unsubscribe();
+        });
+      }
+    });
     const groupID = this.route.snapshot.paramMap.get('id');
     this.groupService.getGroupById(groupID).then(g => {
       this.group = g;

@@ -41,11 +41,11 @@ export class FriendsService {
         }));
   }
 
-  findById(id: string) {
+  findById(id: string, currentUser: User) {
     return this.userCollection.doc(id).get().toPromise().then(res => {
       const ret = res.data();
       ret.id = res.id;
-      const friends = this.isFriends(ret, this.authService.currentUser);
+      const friends = this.isFriends(ret, currentUser);
       if (!ret.imagePublic && !friends)
         ret.profilePic = "https://bit.ly/2S904CS";
 
