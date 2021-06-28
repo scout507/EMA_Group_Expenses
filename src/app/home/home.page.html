@@ -14,6 +14,24 @@
                    placeholder="Suche">
     </ion-searchbar>
   </ion-toolbar>
+  <ion-segment>
+    <ion-segment-button value="out">
+      <ion-label>{{outgoing}}€</ion-label>
+      <ion-label>Ausgaben</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="in">
+      <ion-label>{{incoming}}€</ion-label>
+      <ion-label>Einnahmen</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pen">
+      <ion-label>{{pending}}</ion-label>
+      <ion-label>Ausstehend</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="con">
+      <ion-label>{{confirm}}</ion-label>
+      <ion-label>Bestätigen</ion-label>
+    </ion-segment-button>
+  </ion-segment>
   <ion-grid>
     <ion-row class="ion-justify-content-evenly">
       <ion-col class="ion-no-padding">
