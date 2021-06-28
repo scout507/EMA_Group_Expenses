@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Group} from "../../models/group.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {NavController} from "@ionic/angular";
+import {ActionSheetController, NavController} from "@ionic/angular";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
 import {GroupService} from "../../services/group.service";
 import {AuthService} from "../../services/auth.service";
+import {Camera, CameraResultType} from "@capacitor/camera";
 
 @Component({
   selector: 'app-transaction-create',
@@ -104,7 +105,16 @@ export class TransactionCreatePage implements OnInit {
     this.navCtrl.pop();
   }
 
-  ngOnInit() {
+  async takePicture() {
+    await Camera.getPhoto({
+        quality: 90,
+        allowEditing: true,
+        resultType: CameraResultType.Base64
+      }).then(data => {
+        this.transaction.photo = "data:image/jpeg;base64, " + data.base64String;
+      });
   }
 
+  ngOnInit() {
+  }
 }

@@ -25,6 +25,7 @@ export class GroupDetailsPage implements OnInit {
   currentTransactions: Transaction[];
   oldTransactions: Transaction[];
   current = true;
+  errorMessage: string;
 
   constructor(private groupService: GroupService,
               private route: ActivatedRoute,
@@ -64,8 +65,14 @@ export class GroupDetailsPage implements OnInit {
         {
           text: 'Löschen',
           handler: () => {
-            this.groupService.delete(this.group.id);
-            this.navCtrl.back();
+            this.transactionService.checkAllTransactionsFinishedInGroup(this.group).then(openTransactions => {
+              if(openTransactions){
+                this.errorMessage = "Es bestehen noch offene Transaktionen";
+              }else{
+                this.groupService.delete(this.group);
+                this.navCtrl.back();
+              }
+            });
           }
         }
       ]
@@ -85,8 +92,15 @@ export class GroupDetailsPage implements OnInit {
         {
           text: 'Verlassen',
           handler: () => {
-            this.groupService.deleteUserFromGroup(this.currentUser, this.group);
-            this.navCtrl.back();
+            this.transactionService.checkTransactionsFinishedInGroupByUser(this.group, this.currentUser).then(openTransactions => {
+              if(openTransactions){
+                this.errorMessage = "Sie haben noch offene Rechnungen"
+              }else{
+                this.groupService.deleteUserFromGroup(this.currentUser, this.group);
+                this.navCtrl.back();
+              }
+            });
+
           }
         }
       ]

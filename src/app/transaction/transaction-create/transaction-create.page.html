@@ -10,9 +10,9 @@
     <ion-select-option *ngFor="let groupChoice of groups"
                        [value]="groupChoice">{{groupChoice.name}}</ion-select-option>
   </ion-select>
-  <ion-item *ngIf="groups.length === 0">
+  <div *ngIf="groups.length === 0" class="center">
     <ion-text>Keine Gruppe gefunden.</ion-text>
-  </ion-item>
+  </div>
   <ion-item *ngIf="editMode" class="ion-text-center">
     <ion-label>{{transaction.group.name}}</ion-label>
   </ion-item>
@@ -58,7 +58,16 @@
     <ion-label>Fair aufteilen</ion-label>
     <ion-toggle [(ngModel)]="fairlyDistributedPrice"></ion-toggle>
   </ion-item>
-  <ion-button>Bild hinzufügen</ion-button>
+  <div class="center">
+    <h6>Beleg</h6>
+    <ion-img *ngIf="transaction.photo" src="{{transaction.photo}}"></ion-img>
+    <ion-button *ngIf="!transaction.photo" (click)="takePicture()">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+    <ion-button  *ngIf="transaction.photo" (click)="transaction.photo = null">
+      <ion-icon name="trash"></ion-icon>
+    </ion-button>
+  </div>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
   <ion-fab-button (click)="nextPage()">
     <ion-icon *ngIf="fairlyDistributedPrice && selectAllUsers" name="checkmark"></ion-icon>

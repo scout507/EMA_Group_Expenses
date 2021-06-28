@@ -106,7 +106,6 @@ export class TransactionService {
       transaction.id = doc.id;
       return transaction;
     }).forEach(document => {
-      //TODO: Check if transaction is active
       if(document.group.toString() === group.id){
         document.group = group;
         transactions.push(document);
@@ -214,7 +213,38 @@ export class TransactionService {
       const transactionHandler = doc.data();
       transactionHandler.id = doc.id;
     });
+  }
 
+  checkAllTransactionsFinishedInGroup(group: Group): Promise<boolean>{
+    let transactions: Transaction[];
+    let openTransactions = false;
+    return this.getAllTransactionByGroup(group).then(t => {
+      transactions = t;
+      transactions.forEach(t => {
+        if(!this.checkTransactionFinish(t)){
+          openTransactions = true;
+        }
+      });
+      return openTransactions;
+    });
+  }
+
+  checkTransactionsFinishedInGroupByUser(group: Group, user: User){
+    let transactions: Transaction[];
+    let openTransactions: boolean = false;
+    let participants: User[] = [];
+    return this.getAllTransactionByGroup(group).then(t => {
+      transactions = t;
+      transactions.forEach(t => {
+        participants = this.getParticipants(t);
+        participants.forEach(p => {
+          if(p.id === user.id && (!this.hasUserPaid(user, t) || !this.wasPaymentAccepted(user, t))){
+            openTransactions = true;
+          }
+        })
+      });
+      return openTransactions;
+    })
   }
 
   private copyAndPrepare(transaction: Transaction) {
