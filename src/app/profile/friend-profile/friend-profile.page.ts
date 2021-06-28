@@ -7,6 +7,7 @@ import { FriendsService } from '../../services/friends.service';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import {AuthService} from "../../services/auth.service";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-friend-profile',
@@ -19,7 +20,7 @@ export class FriendProfilePage implements OnInit {
   isfriend= false;
   currentUser: User;
 
-  constructor(private route: ActivatedRoute, private router: Router, private awardService: ArwardService, private af: AngularFireAuth, private userService:UserService,  private friendsService: FriendsService, private authService: AuthService) { }
+  constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private router: Router, private awardService: ArwardService, private af: AngularFireAuth, private userService:UserService,  private friendsService: FriendsService, private authService: AuthService) { }
 
   ionViewWillEnter() {
     const sub = this.af.authState.subscribe(user => {

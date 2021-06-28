@@ -19,7 +19,7 @@
       <ion-grid>
         <ion-row>
           <ion-col class="profileImgCol">
-            <img class="profileImg" src={{item.profilePic}}>
+            <img class="profileImg" [src]="sanitizer.bypassSecurityTrustUrl(item.profilePic)">
           </ion-col>
           <ion-col style="margin-top: auto; margin-bottom: auto; margin-left: 20px;">
             {{item.displayName}}

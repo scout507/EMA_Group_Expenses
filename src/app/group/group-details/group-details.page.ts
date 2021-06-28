@@ -9,6 +9,7 @@ import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {UserService} from "../../services/user.service";
+import { DomSanitizer } from '@angular/platform-browser';
 import {StatisticsService} from "../../services/statistics.service";
 import {Statistic} from "../../models/statistics.model";
 
@@ -42,6 +43,7 @@ export class GroupDetailsPage implements OnInit {
               private af: AngularFireAuth,
               private userService: UserService,
               private transactionService: TransactionService,
+              private sanitizer: DomSanitizer,
               private statisticsService: StatisticsService,
               private router: Router) {
   }
