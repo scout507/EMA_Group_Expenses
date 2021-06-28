@@ -9,6 +9,7 @@ import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {UserService} from "../../services/user.service";
+import {StatisticsService} from "../../services/statistics.service";
 
 @Component({
   selector: 'app-group-details',
@@ -20,6 +21,7 @@ export class GroupDetailsPage implements OnInit {
   id: string;
   group: Group;
   currentUser: User;
+  allTransactions: Transaction[];
   currentTransactions: Transaction[];
   oldTransactions: Transaction[];
   current = true;
@@ -32,6 +34,7 @@ export class GroupDetailsPage implements OnInit {
               private af: AngularFireAuth,
               private userService: UserService,
               private transactionService: TransactionService,
+              private statisticsService: StatisticsService,
               private router: Router) {
   }
 
@@ -94,6 +97,7 @@ export class GroupDetailsPage implements OnInit {
   ionViewWillEnter() {
     this.currentTransactions = [];
     this.oldTransactions = [];
+    this.allTransactions = [];
     const sub = this.af.authState.subscribe(user => {
       if (user) {
         this.userService.findById(user.uid).then(result => {
@@ -109,11 +113,14 @@ export class GroupDetailsPage implements OnInit {
         transactions.forEach(transaction =>{
           if(!this.transactionService.checkTransactionFinish(transaction)){
             this.currentTransactions.push(transaction);
+            this.allTransactions.push(transaction);
           }
           else{
             this.oldTransactions.push(transaction);
+            //this.allTransactions.push(transaction);
           }
         });
+        this.statisticsService.getGroupStatistics(this.allTransactions);
       });
     });
   }
