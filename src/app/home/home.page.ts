@@ -10,6 +10,7 @@ import {SimpleTransaction} from '../models/simpleTransaction.model';
 import {AngularFireAuth} from '@angular/fire/auth';
 // @ts-ignore
 import {UserService} from '../services/user.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -44,7 +45,7 @@ export class HomePage {
 
 
   // eslint-disable-next-line max-len
-  constructor(private transactionService: TransactionService, private authService: AuthService, private userService: UserService,private groupService: GroupService, private router: Router, private af: AngularFireAuth) {
+  constructor(private sanitizer: DomSanitizer, private transactionService: TransactionService, private authService: AuthService, private userService: UserService,private groupService: GroupService, private router: Router, private af: AngularFireAuth) {
   }
 
   ionViewWillEnter() {
