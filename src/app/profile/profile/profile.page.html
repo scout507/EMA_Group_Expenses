@@ -38,6 +38,19 @@
         </ion-row>
       </ion-col>
     </ion-row>
+
+    <ion-row style="margin-top: 10px; justify-content: center;">
+      <ion-col *ngIf="this.user.cash" style="max-width: 50px; margin-right: 30px;"><img (click)="paymentDescription('Bar', 'Barzahlung ist möglich.')" src="https://cdn.discordapp.com/attachments/798632008569061446/859421641096560650/money.png"></ion-col>
+      <ion-col *ngIf="this.user.ec_card" style="max-width: 50px; margin-right: 30px;"><img (click)="paymentDescription('EC-Karte', 'Bezahlung mit EC-Karte ist möglich.')" src="https://image.flaticon.com/icons/png/512/893/893081.png"></ion-col>
+      <ion-col *ngIf="this.user.kreditcard" style="max-width: 50px; margin-right: 30px;"><img (click)="paymentDescription('Kreditkarte', 'Bezahlung mit Kreditkarte ist möglich.')" src="https://image.flaticon.com/icons/png/512/147/147258.png"></ion-col>
+      <ion-col *ngIf="this.user.paypal" style="max-width: 50px;"><img (click)="paymentDescription('PayPal', 'Bezahlung mit PayPal ist möglich.')" src="https://image.flaticon.com/icons/png/512/888/888870.png"></ion-col>
+
+      <ion-col *ngIf="!this.user.cash" style="max-width: 50px; margin-right: 30px;"><img style="filter: grayscale(100%);" (click)="paymentDescription('Bar', 'Barzahlung ist nicht möglich.')" src="https://cdn.discordapp.com/attachments/798632008569061446/859421641096560650/money.png"></ion-col>
+      <ion-col *ngIf="!this.user.ec_card" style="max-width: 50px; margin-right: 30px;"><img style="filter: grayscale(100%);" (click)="paymentDescription('EC-Karte', 'Bezahlung mit EC-Karte ist nicht möglich.')" src="https://image.flaticon.com/icons/png/512/893/893081.png"></ion-col>
+      <ion-col *ngIf="!this.user.kreditcard" style="max-width: 50px; margin-right: 30px;"><img style="filter: grayscale(100%);" (click)="paymentDescription('Kreditkarte', 'Bezahlung mit Kreditkarte ist nicht möglich.')" src="https://image.flaticon.com/icons/png/512/147/147258.png"></ion-col>
+      <ion-col *ngIf="!this.user.paypal" style="max-width: 50px;"><img style="filter: grayscale(100%);" (click)="paymentDescription('PayPal', 'Bezahlung mit PayPal ist nicht möglich.')" src="https://image.flaticon.com/icons/png/512/888/888870.png"></ion-col>
+    </ion-row>
+
     <ion-row class="row">
       <ion-col class="iconsCol icons" *ngFor="let i of badges">
         <img class="icons" (click)="badgeDescription(i.name, i.description)" src={{i.image}}>

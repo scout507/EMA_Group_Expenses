@@ -5,7 +5,7 @@ import { Award } from '../../models/award.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import { ArwardService } from 'src/app/services/award.service';
-import {AuthService} from "../../services/auth.service";
+import { AuthService } from "../../services/auth.service";
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -14,7 +14,6 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
   badges: Award[] = [];
   user: User = new User();
 
@@ -58,10 +57,24 @@ export class ProfilePage implements OnInit {
     document.body.appendChild(alert);
     await alert.present();
     await alert.onDidDismiss();
+    this.user.ec_card
+    this.user.kreditcard
+    this.user.paypal
   }
 
-  loggout(){
+  loggout() {
     this.authService.logout();
+  }
+
+  async paymentDescription(name: string, discription: string) {
+    const alert = document.createElement('ion-alert');
+    alert.header = name;
+    alert.message = discription;
+    alert.buttons = [{ text: "schließen" }];
+
+    document.body.appendChild(alert);
+    await alert.present();
+    await alert.onDidDismiss();
   }
 
 }
