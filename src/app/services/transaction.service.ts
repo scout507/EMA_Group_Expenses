@@ -288,25 +288,25 @@ export class TransactionService {
         tracker.lastDate = new Date(tracker.lastDate.seconds * 1000);
         console.log(tracker);
         if (tracker.lastDate.getTime() <= currentDate) {
-          console.log('New transaction needs to be created...');
-          let missedEntries = Math.abs((currentDate - tracker.lastDate.getTime()) / tracker.rhythm);
+          let missedEntries = Math.ceil((currentDate - tracker.lastDate.getTime()) / tracker.rhythm);
           if (missedEntries > 0) {
             console.log(`There's ${missedEntries} transactions that need to be created...`);
             for (let i = 0; i < missedEntries; i++) {
               let transactionContinuation: Transaction = transaction;
               this.groupService.getGroupById(transaction.group).then(group => {
-                this.userService.findById(transaction.creator).then(creator => {
+                this.userService.findById(tracker.creator).then(creator => {
                   transactionContinuation.photo = null;
                   transactionContinuation.creator = creator;
                   transactionContinuation.group = group;
                   transactionContinuation.purchaseDate = transaction.dueDate;
                   transactionContinuation.dueDate = new Date(tracker.lastDate.getTime() + this.getRhythmMiliseconds(tracker.originalTransaction.rhythm)).toDateString();
                   tracker.lastDate = new Date(transactionContinuation.dueDate);
+                  tracker.creator = creator;
                   console.log(transactionContinuation.dueDate);
                   console.log(tracker);
                   console.log(transactionContinuation);
-                  //this.persist(transactionContinuation);
-                  //this.updateTracker(tracker);
+                  this.persist(transactionContinuation);
+                  this.updateTracker(tracker);
                 });
               });
             }
@@ -345,8 +345,9 @@ export class TransactionService {
   private copyAndPrepareTracker(tracker: TransactionTracker) {
     const copy: any = {...tracker};
     delete copy.id;
-    delete copy.originalTransaction.group;
-    copy.group = tracker.originalTransaction.group.id;
+    //delete copy.originalTransaction.group;
+    copy.creator = tracker.creator.id;
+    copy.originalTransaction.group = tracker.originalTransaction.group.id;
     return copy;
   }
 }

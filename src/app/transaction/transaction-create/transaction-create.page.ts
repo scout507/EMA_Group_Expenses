@@ -24,7 +24,6 @@ export class TransactionCreatePage implements OnInit {
   errors: Map<string, string> = new Map<string, string>();
 
   ionViewWillEnter(){
-    this.transactionService.createTransactionContinuation();
     if (this.route.snapshot.paramMap.get('editMode')) {
       this.editMode = true;
       this.transaction = this.transactionService.getLocally();
@@ -87,7 +86,12 @@ export class TransactionCreatePage implements OnInit {
             if (this.transaction.rhythm !== 'once') {
               this.transactionService.getTransactionById(docRef.id).then((doc: any) => {
                 let transaction: Transaction = doc;
-                let tracker = new TransactionTracker(transaction, transaction.creator, new Date(transaction.purchaseDate), new Date(new Date(this.transaction.dueDate).getTime() + this.transactionService.getRhythmMiliseconds(this.transaction.rhythm)), new Date(this.transaction.dueDate), this.transactionService.getRhythmMiliseconds(this.transaction.rhythm))
+                let tracker = new TransactionTracker(transaction,
+                  transaction.creator,
+                  new Date(transaction.dueDate),
+                  new Date(new Date(this.transaction.dueDate).getTime() + this.transactionService.getRhythmMiliseconds(this.transaction.rhythm)),
+                  new Date(this.transaction.dueDate),
+                  this.transactionService.getRhythmMiliseconds(this.transaction.rhythm));
                 this.transactionService.persistTracker(tracker);
               });
             }
