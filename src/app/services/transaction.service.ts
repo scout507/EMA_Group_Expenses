@@ -211,18 +211,18 @@ export class TransactionService {
     return Math.round(stake * 100) / 100;
   }
 
-  hasUserPaid(member: User, transaction: Transaction): boolean {
+  hasUserPaid(member: string, transaction: Transaction): boolean {
     let paid: boolean = false;
     transaction.paid.forEach(payment => {
-      if (payment.user.id === member.id) paid = payment.paid;
+      if (payment.user.id === member) paid = payment.paid;
     });
     return paid;
   }
 
-  wasPaymentAccepted(member: User, transaction: Transaction): boolean {
+  wasPaymentAccepted(member: string, transaction: Transaction): boolean {
     let accepted: boolean = false;
     transaction.accepted.forEach(entry => {
-      if (entry.user.id === member.id) accepted = entry.accepted;
+      if (entry.user.id === member) accepted = entry.accepted;
     });
     return accepted;
   }
@@ -256,7 +256,7 @@ export class TransactionService {
       transactions.forEach(t => {
         participants = this.getParticipants(t);
         participants.forEach(p => {
-          if (p.id === user.id && (!this.hasUserPaid(user, t) || !this.wasPaymentAccepted(user, t))) {
+          if (p.id === user.id && (!this.hasUserPaid(user.id, t) || !this.wasPaymentAccepted(user.id, t))) {
             openTransactions = true;
           }
         })

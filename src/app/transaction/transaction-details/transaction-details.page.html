@@ -38,9 +38,9 @@
     <ion-item *ngIf="hasStake">
       <ion-label>Eigener Anteil</ion-label>
       <ion-text class="ion-text-right">{{transactionService.getStakeForUser(authService.currentUser, transaction)}}€</ion-text>
-      <ion-icon *ngIf="transactionService.hasUserPaid(authService.currentUser, transaction) && !transactionService.wasPaymentAccepted(authService.currentUser, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
-      <ion-icon *ngIf="transactionService.wasPaymentAccepted(authService.currentUser, transaction)" name="checkmark" color="green"></ion-icon>
-      <ion-icon *ngIf="!transactionService.hasUserPaid(authService.currentUser, transaction)" name="close" color="red"></ion-icon>    </ion-item>
+      <ion-icon *ngIf="transactionService.hasUserPaid(authService.currentUser.id, transaction) && !transactionService.wasPaymentAccepted(authService.currentUser.id, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
+      <ion-icon *ngIf="transactionService.wasPaymentAccepted(authService.currentUser.id, transaction)" name="checkmark" color="green"></ion-icon>
+      <ion-icon *ngIf="!transactionService.hasUserPaid(authService.currentUser.id, transaction)" name="close" color="red"></ion-icon>    </ion-item>
     <ion-item>
       <ion-label>Ersteller</ion-label>
       <ion-text
@@ -57,7 +57,8 @@
       <ion-label>Rhythmus</ion-label>
       <ion-text class="ion-text-right">{{ formatRhythm(transaction.rhythm)}}</ion-text>
     </ion-item>
-    <ion-button (click)="payTransaction()">Bezahlen</ion-button>
+    <ion-button (click)="payTransaction()" *ngIf="!transactionService.hasUserPaid(authService.currentUser.id, transaction)">Bezahlen</ion-button>
+    <ion-button (click)="payTransaction()" *ngIf="(transaction.type === 'income')">Bezahlen</ion-button>
   </div>
   <div *ngIf="currentView === 'members'">
     <ion-item *ngFor="let member of transactionService.getParticipants(transaction)">
@@ -66,9 +67,9 @@
       </ion-avatar>
       <ion-label>{{member.displayName}}</ion-label>
       <ion-text>{{transactionService.getStakeForUser(member, transaction)}}€</ion-text>
-      <ion-icon *ngIf="transactionService.hasUserPaid(authService.currentUser, transaction) && !transactionService.wasPaymentAccepted(authService.currentUser, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
-      <ion-icon *ngIf="transactionService.wasPaymentAccepted(member, transaction)" name="checkmark" color="green"></ion-icon>
-      <ion-icon *ngIf="!transactionService.hasUserPaid(member, transaction)" name="close" color="red"></ion-icon>
+      <ion-icon *ngIf="transactionService.hasUserPaid(authService.currentUser.id, transaction) && !transactionService.wasPaymentAccepted(authService.currentUser.id, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
+      <ion-icon *ngIf="transactionService.wasPaymentAccepted(member.id, transaction)" name="checkmark" color="green"></ion-icon>
+      <ion-icon *ngIf="!transactionService.hasUserPaid(member.id, transaction)" name="close" color="red"></ion-icon>
     </ion-item>
   </div>
   <div *ngIf="currentView === 'attachment'">

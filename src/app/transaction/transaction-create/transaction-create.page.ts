@@ -124,7 +124,7 @@ export class TransactionCreatePage implements OnInit {
   async takePicture() {
     await Camera.getPhoto({
         quality: 90,
-        allowEditing: true,
+        allowEditing: false,
         resultType: CameraResultType.Base64
       }).then(data => {
         this.transaction.photo = "data:image/jpeg;base64, " + data.base64String;
