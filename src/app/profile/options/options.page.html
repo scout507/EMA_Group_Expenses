@@ -18,7 +18,7 @@
   <ion-grid>
     <ion-row>
       <ion-col class="profileImgCol">
-        <img (click)="profileImageChange()" class="profileImg" src={{user.profilePic}}>
+        <img (click)="profileImageChange()" class="profileImg" [src]="sanitizer.bypassSecurityTrustUrl(user.profilePic)">
       </ion-col>
       <ion-col>
         <ion-row>

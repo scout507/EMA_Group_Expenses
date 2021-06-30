@@ -7,6 +7,11 @@ import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {UserService} from "../../services/user.service";
+import { DomSanitizer } from '@angular/platform-browser';
+import {StatisticsService} from "../../services/statistics.service";
+import {Statistic} from "../../models/statistics.model";
 
 @Component({
   selector: 'app-group-details',
@@ -18,17 +23,28 @@ export class GroupDetailsPage implements OnInit {
   id: string;
   group: Group;
   currentUser: User;
+  allTransactions: Transaction[];
   currentTransactions: Transaction[];
   oldTransactions: Transaction[];
-  current = true;
+  statistic: Statistic;
+  view = 0;
   errorMessage: string;
+  statsArray = ["Insgesamt", "Letztes Jahr", "Letzte 6 Monate", "Letzte 3 Monate", "Letzter Monat", "Letzte Woche"]
+  currentStats = 0;
+  currentTotal = 0;
+  currentCost = 0;
+  currentIncome = 0;
 
   constructor(private groupService: GroupService,
               private route: ActivatedRoute,
               private navCtrl: NavController,
               private alertController: AlertController,
               private authService: AuthService,
+              private af: AngularFireAuth,
+              private userService: UserService,
               private transactionService: TransactionService,
+              private sanitizer: DomSanitizer,
+              private statisticsService: StatisticsService,
               private router: Router) {
   }
 
@@ -104,12 +120,21 @@ export class GroupDetailsPage implements OnInit {
   ionViewWillEnter() {
     this.currentTransactions = [];
     this.oldTransactions = [];
-    this.currentUser = this.authService.currentUser;
+    this.allTransactions = [];
+    const sub = this.af.authState.subscribe(user => {
+      if (user) {
+        this.userService.findById(user.uid).then(result => {
+          this.currentUser = result;
+          sub.unsubscribe();
+        });
+      }
+    });
     const groupID = this.route.snapshot.paramMap.get('id');
     this.groupService.getGroupById(groupID).then(g => {
       this.group = g;
       this.transactionService.getAllTransactionByGroup(this.group).then(transactions =>{
         transactions.forEach(transaction =>{
+          this.allTransactions.push(transaction);
           if(!this.transactionService.checkTransactionFinish(transaction)){
             this.currentTransactions.push(transaction);
           }
@@ -117,6 +142,10 @@ export class GroupDetailsPage implements OnInit {
             this.oldTransactions.push(transaction);
           }
         });
+        this.statistic = this.statisticsService.getGroupStatistics(this.allTransactions);
+        this.currentTotal = this.statistic.allTimeTotal;
+        this.currentCost = this.statistic.allTimeCost;
+        this.currentIncome = this.statistic.allTimeIncome;
       });
     });
   }
@@ -134,4 +163,46 @@ export class GroupDetailsPage implements OnInit {
   ngOnInit() {
   }
 
+  statsButton(back: boolean) {
+    if(back && this.currentStats>0) this.currentStats--;
+    else if(!back && this.currentStats<5) this.currentStats++;
+    switch (this.currentStats){
+      case 0: {
+        this.currentTotal = this.statistic.allTimeTotal;
+        this.currentCost = this.statistic.allTimeCost;
+        this.currentIncome = this.statistic.allTimeIncome;
+        break;
+      }
+      case 1: {
+        this.currentTotal = this.statistic.lastYearTotal;
+        this.currentCost = this.statistic.lastYearCost;
+        this.currentIncome = this.statistic.lastYearIncome;
+        break;
+      }
+      case 2: {
+        this.currentTotal = this.statistic.lastSixMonthsTotal;
+        this.currentCost = this.statistic.lastSixMonthsCost;
+        this.currentIncome = this.statistic.lastSixMonthsIncome;
+        break;
+      }
+      case 3: {
+        this.currentTotal = this.statistic.lastThreeMonthsTotal;
+        this.currentCost = this.statistic.lastThreeMonthsCost;
+        this.currentIncome = this.statistic.lastThreeMonthsIncome;
+        break;
+      }
+      case 4: {
+        this.currentTotal = this.statistic.lastMonthTotal;
+        this.currentCost = this.statistic.lastMonthCost
+        this.currentIncome = this.statistic.lastMonthIncome;
+        break;
+      }
+      case 5: {
+        this.currentTotal = this.statistic.lastWeekTotal;
+        this.currentCost = this.statistic.lastWeekCost
+        this.currentIncome = this.statistic.lastWeekIncome;
+        break;
+      }
+    }
+  }
 }

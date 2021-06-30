@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import { ArwardService } from 'src/app/services/award.service';
 import {AuthService} from "../../services/auth.service";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,7 @@ export class ProfilePage implements OnInit {
   badges: Award[] = [];
   user: User = new User();
 
-  constructor(private router: Router, private userService: UserService, private af: AngularFireAuth, private awardService: ArwardService, private authService: AuthService) {
+  constructor(private sanitizer: DomSanitizer, private router: Router, private userService: UserService, private af: AngularFireAuth, private awardService: ArwardService, private authService: AuthService) {
   }
 
   ionViewWillEnter() {

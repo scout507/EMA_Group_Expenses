@@ -86,9 +86,10 @@ export class AddMembersPage implements OnInit {
   async add(){
     let removedFriend: User[] = [];
     let friendsWithOpenTransactions: User[] = [];
-    this.selectedFriends.forEach(friend => {
+    // vvvvv this was this.selectedFriends vvvvv
+    this.filteredFriends.forEach(friend => {
       if(!this.newSelectedFriends.includes(friend)){
-        removedFriend.push(friend)
+        removedFriend.push(friend);
       }
     });
     for (const friend of removedFriend) {

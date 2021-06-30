@@ -10,6 +10,7 @@ import {SimpleTransaction} from '../models/simpleTransaction.model';
 import {AngularFireAuth} from '@angular/fire/auth';
 // @ts-ignore
 import {UserService} from '../services/user.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -44,13 +45,10 @@ export class HomePage {
 
 
   // eslint-disable-next-line max-len
-  constructor(private transactionService: TransactionService, private authService: AuthService, private userService: UserService,private groupService: GroupService, private router: Router, private af: AngularFireAuth) {
+  constructor(private sanitizer: DomSanitizer, private transactionService: TransactionService, private authService: AuthService, private userService: UserService,private groupService: GroupService, private router: Router, private af: AngularFireAuth) {
   }
 
   ionViewWillEnter() {
-    this.sub = this.transactionService.findAllSync().subscribe(next => {
-      console.log('neue Transaction');
-    });
     this.outgoingView = true;
     this.confirmView = false;
     this.incomingView = false;
@@ -93,7 +91,7 @@ export class HomePage {
       if(transaction.id === transactionID){
         localStorage.setItem('otherUser', JSON.stringify(userID));
         this.transactionService.saveLocally(transaction);
-        this.router.navigate(['transaction-details']);
+        this.router.navigate(['transaction-details', {id: this.currentUser.id}]);
       }
     });
   }
@@ -195,7 +193,7 @@ export class HomePage {
 
   getDateDifference(transcation: Transaction){
     // @ts-ignore
-    return ((new Date(transcation.dueDate ) - new Date())/86400000);
+    return Math.round((new Date(transcation.dueDate ) - new Date())/86400000)+1;
   }
 
   doSearch() {

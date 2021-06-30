@@ -6,6 +6,7 @@ import { FriendsService } from '../../services/friends.service';
 import { UserService } from '../../services/user.service';
 import {Observable} from "rxjs";
 import {Transaction} from "../../models/transaction.model";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-friends',
@@ -18,7 +19,7 @@ export class FriendsPage implements OnInit {
   currentUser: User;
   addFriendsOutput: string;
 
-  constructor(private router: Router, private af: AngularFireAuth, private friendsService: FriendsService, private userService: UserService) {
+  constructor(private sanitizer: DomSanitizer, private router: Router, private af: AngularFireAuth, private friendsService: FriendsService, private userService: UserService) {
   }
 
   ionViewWillEnter() {
@@ -29,7 +30,7 @@ export class FriendsPage implements OnInit {
           sub.unsubscribe();
           this.friends = [];
           value.friends.forEach(async element => {
-            await this.friendsService.findById(element).then(friend => {
+            await this.friendsService.findById(element, this.currentUser).then(friend => {
               this.friends.push(friend);
             });
           });
@@ -52,6 +53,7 @@ export class FriendsPage implements OnInit {
   addFriend(){
     //TODO: this needs to reload the friends list and check if input was valid
     // @ts-ignore
+    console.log(this.currentUser);
     this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res =>{
       this.addFriendsOutput = res;
     });

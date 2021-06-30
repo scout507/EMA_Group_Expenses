@@ -55,9 +55,7 @@ export class TransactionService {
       const transaction = doc.data();
       transaction.id = doc.id;
       return transaction;
-    }).forEach(document => {
-      transactions.push(document);
-    });
+    }).forEach(document => {transactions.push(document);});
     await Promise.all(transactions.map(async (transaction) => {
       await this.userService.findById(transaction.creator.id).then(user => transaction.creator = user);
       await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
@@ -82,7 +80,7 @@ export class TransactionService {
       transaction.id = doc.id;
       return transaction;
     }).forEach(document => {
-      if (!document.finished) {
+      if(!document.finished) {
         if (document.creator.toString() === user.id) {
           transactions.push(document);
         } else {
@@ -118,7 +116,7 @@ export class TransactionService {
       return transaction;
     }).forEach(document => {
       //TODO: Check if transaction is active
-      if (document.group.toString() === group.id) {
+      if(document.group.toString() === group.id){
         document.group = group;
         transactions.push(document);
       }
@@ -180,15 +178,7 @@ export class TransactionService {
     return this.transactionCollection.valueChanges({idField: 'id'});
   }
 
-  async delete(id: string) {
-    /*
-    let trackers = await this.getAllTransactionTracker();
-    trackers.forEach(tracker => {
-      if (tracker.transaction.id === id) {
-        this.deleteTracker(tracker);
-      }
-    });
-     */
+  delete(id: string) {
     this.transactionCollection.doc(id).delete();
   }
 
@@ -245,7 +235,7 @@ export class TransactionService {
 
   checkAllTransactionsFinishedInGroup(group: Group): Promise<boolean> {
     let transactions: Transaction[];
-    let openTransactions: boolean = false;
+    let openTransactions = false;
     return this.getAllTransactionByGroup(group).then(t => {
       transactions = t;
       transactions.forEach(t => {
