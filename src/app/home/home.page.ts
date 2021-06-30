@@ -50,6 +50,14 @@ export class HomePage {
 
   // eslint-disable-next-line max-len
   constructor(private sanitizer: DomSanitizer, private transactionService: TransactionService, private authService: AuthService, private userService: UserService,private groupService: GroupService, private router: Router, private af: AngularFireAuth, private modalController: ModalController) {
+
+  }
+
+  ionViewWillEnter() {
+    this.outgoingView = true;
+    this.confirmView = false;
+    this.incomingView = false;
+    this.pendingView = false;
     const sub = this.af.authState.subscribe(user => {
       if (user) {
         this.userService.findById(user.uid).then(result => {
@@ -59,13 +67,6 @@ export class HomePage {
         });
       }
     });
-  }
-
-  ionViewWillEnter() {
-    this.outgoingView = true;
-    this.confirmView = false;
-    this.incomingView = false;
-    this.pendingView = false;
   }
 
   filterTransaction(searchTerm: string) {
@@ -114,7 +115,8 @@ export class HomePage {
     });
     await modal.present();
     const result = await modal.onDidDismiss();
-    if(result.data.toString().length > 0){
+
+    if(result.data !== undefined){
       Share.share({
         title: `Zahlungserinnerung von ${this.currentUser.displayName}`,
         text: result.data,
