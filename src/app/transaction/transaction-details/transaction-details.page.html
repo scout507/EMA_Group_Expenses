@@ -57,8 +57,8 @@
       <ion-label>Rhythmus</ion-label>
       <ion-text class="ion-text-right">{{ formatRhythm(transaction.rhythm)}}</ion-text>
     </ion-item>
-    <ion-button *ngIf="transaction.type === 'cost' && !transactionService.hasUserPaid(authService.currentUser, transaction)" (click)="payTransaction()">Bezahlen</ion-button>
-    <ion-button *ngIf="transaction.type === 'income' && transaction.creator.id === authService.currentUser.id" (click)="payTransaction()">Bezahlen</ion-button>
+    <ion-button *ngIf="transaction.type === 'cost' && !transactionService.hasUserPaid(authService.currentUser.id, transaction)" (click)="payTransaction()">Bezahlen</ion-button>
+    <ion-button *ngIf="transaction.type === 'income' && transaction.creator.id === authService.currentUser.id && !transactionService.hasUserPaid(otherUserId, transaction)" (click)="payTransaction()">Bezahlen</ion-button>
   </div>
   <div *ngIf="currentView === 'members'">
     <ion-item *ngFor="let member of transactionService.getParticipants(transaction)">
@@ -67,7 +67,7 @@
       </ion-avatar>
       <ion-label>{{member.displayName}}</ion-label>
       <ion-text>{{transactionService.getStakeForUser(member, transaction)}}€</ion-text>
-      <ion-icon *ngIf="transactionService.hasUserPaid(authService.currentUser.id, transaction) && !transactionService.wasPaymentAccepted(authService.currentUser.id, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
+      <ion-icon *ngIf="transactionService.hasUserPaid(member.id, transaction) && !transactionService.wasPaymentAccepted(member.id, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
       <ion-icon *ngIf="transactionService.wasPaymentAccepted(member.id, transaction)" name="checkmark" color="green"></ion-icon>
       <ion-icon *ngIf="!transactionService.hasUserPaid(member.id, transaction)" name="close" color="red"></ion-icon>
     </ion-item>
