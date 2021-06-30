@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title *ngIf="!searchbarVisible">Übersicht</ion-title>
@@ -23,13 +22,16 @@
         </ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-        <ion-button expand="full" (click)="buttonHandler(1); filterTransaction(this.search)">{{incoming}}€ Einnahmen</ion-button>
+        <ion-button expand="full" (click)="buttonHandler(1); filterTransaction(this.search)">{{incoming}}€ Einnahmen
+        </ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-        <ion-button expand="full" (click)="buttonHandler(2); filterTransaction(this.search)">{{pending}} Ausstehend</ion-button>
+        <ion-button expand="full" (click)="buttonHandler(2); filterTransaction(this.search)">{{pending}}Ausstehend
+        </ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-        <ion-button expand="full" (click)="buttonHandler(3); filterTransaction(this.search)">{{confirm}} Bestätigen</ion-button>
+        <ion-button expand="full" (click)="buttonHandler(3); filterTransaction(this.search)">{{confirm}}Bestätigen
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -44,32 +46,56 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-list *ngIf="!confirmView">
-      <ion-item button *ngFor="let transaction of filteredTransactions" (click)="viewTransaction(transaction.id, transaction.otherUser.id)" lines="full">
+    <ion-item-sliding *ngFor="let transaction of filteredTransactions">
+      <ion-item-options side="end" *ngIf="incomingView || pendingView">
+        <ion-item-option color="primary" (click)="createPaymentReminder(transaction)">
+          <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item button
+                (click)="viewTransaction(transaction.id, transaction.otherUser.id)" lines="full">
         <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
           <ion-row>
-            <ion-col align="left"><ion-avatar><img [src]="sanitizer.bypassSecurityTrustUrl(transaction.otherUser.profilePic)"></ion-avatar></ion-col>
+            <ion-col align="left">
+              <ion-avatar><img [src]="sanitizer.bypassSecurityTrustUrl(transaction.otherUser.profilePic)"></ion-avatar>
+            </ion-col>
             <ion-col>
               <div>{{transaction.otherUser.displayName}}</div>
               <div style="font-size: small">{{transaction.purpose}}</div>
-              <div style="font-size: small; color: darkred" *ngIf = "getDateDifference(transaction) <= 1.5">noch {{getDateDifference(transaction)}} Tag</div>
-              <div style="font-size: small; color: coral"  *ngIf = "getDateDifference(transaction) <= 4 && getDateDifference(transaction) > 1.5">noch {{getDateDifference(transaction)}} Tage</div>
-              <div style="font-size: small" *ngIf = "getDateDifference(transaction) > 4">noch {{getDateDifference(transaction)}} Tage</div>
+              <div style="font-size: small; color: darkred" *ngIf="getDateDifference(transaction) <= 1.5">
+                noch {{getDateDifference(transaction)}} Tag
+              </div>
+              <div style="font-size: small; color: coral"
+                   *ngIf="getDateDifference(transaction) <= 4 && getDateDifference(transaction) > 1.5">
+                noch {{getDateDifference(transaction)}} Tage
+              </div>
+              <div style="font-size: small" *ngIf="getDateDifference(transaction) > 4">
+                noch {{getDateDifference(transaction)}} Tage
+              </div>
             </ion-col>
-          <ion-col align="right"><ion-text>{{transaction.amount}}€</ion-text></ion-col>
+            <ion-col align="right">
+                <ion-text>{{transaction.amount}}€</ion-text>
+            </ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
+    </ion-item-sliding>
   </ion-list>
   <ion-list *ngIf="confirmView">
-    <ion-item button *ngFor="let transaction of filteredTransactions" lines="full" (click)="confirmDialog(transaction.id, transaction.otherUser.id, transaction.otherUser.displayName)">
+    <ion-item button *ngFor="let transaction of filteredTransactions" lines="full"
+              (click)="confirmDialog(transaction.id, transaction.otherUser.id, transaction.otherUser.displayName)">
       <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">
         <ion-row>
-          <ion-col align="left"><ion-avatar><img [src]="sanitizer.bypassSecurityTrustUrl(transaction.otherUser.profilePic)"></ion-avatar></ion-col>
-          <ion-col *ngIf = "getDateDifference(transaction) > 3">
+          <ion-col align="left">
+            <ion-avatar><img [src]="sanitizer.bypassSecurityTrustUrl(transaction.otherUser.profilePic)"></ion-avatar>
+          </ion-col>
+          <ion-col *ngIf="getDateDifference(transaction) > 3">
             <div>{{transaction.otherUser.displayName}}</div>
             <div style="font-size: small">{{transaction.purpose}}</div>
           </ion-col>
-          <ion-col align="right"><ion-text>{{transaction.amount}}€</ion-text></ion-col>
+          <ion-col align="right">
+            <ion-text>{{transaction.amount}}€</ion-text>
+          </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>

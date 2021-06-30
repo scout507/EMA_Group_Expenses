@@ -102,6 +102,10 @@ const routes: Routes = [
     path: 'member-view',
     loadChildren: () => import('./group/member-view/member-view.module').then( m => m.MemberViewPageModule)
   },
+  {
+    path: 'payment-reminder',
+    loadChildren: () => import('./payment-reminder/payment-reminder.module').then( m => m.PaymentReminderPageModule)
+  },
 
 
 

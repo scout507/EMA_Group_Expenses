@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Zahlungserinnerung an {{displayName_otherUser}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding-top ion-margin-bottom">{{firstMsg}}</div>
+  <ion-textarea [(ngModel)]="secondMsg" rows="8" placeholder="Hier könne Sie Ihre Nachricht schreiben.">
+  </ion-textarea>
+  <div class="angular-with-newlines ion-margin-top">{{thirdMsg}}</div>
+  <ion-buttons class="ion-justify-content-center ion-margin-top">
+    <ion-button (click)="this.modalController.dismiss()" color="danger">Abbrechen</ion-button>
+    <ion-button (click)="createPaymentReminder()" color="primary">
+      Bestätigen
+    </ion-button>
+  </ion-buttons>
+</ion-content>
