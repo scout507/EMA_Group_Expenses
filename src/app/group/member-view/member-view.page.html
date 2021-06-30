@@ -17,7 +17,7 @@
 
   <ion-list *ngIf="group">
     <ion-item button *ngFor="let member of group.members" (click)="viewUser(member.id)">
-      <ion-avatar align="left"><img src="{{member.profilePic}}"></ion-avatar>
+      <ion-avatar align="left"><img [src]="sanitizer.bypassSecurityTrustUrl(member.profilePic)"></ion-avatar>
       <ion-label class="ion-text-center" *ngIf="member.id === group.creator.id">{{member.displayName}}  (Admin)</ion-label>
       <ion-label class="ion-text-center" *ngIf="member.id !== group.creator.id">{{member.displayName}}</ion-label>
     </ion-item>

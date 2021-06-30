@@ -52,4 +52,44 @@ export class StatisticsService{
     return Math.round(((date2 - date1)/ 86400000))
   }
 
+  getAllExpensesOfTime(days:number, transactions:Transaction[]){
+    var costs:number = 0;
+    var ammount:number = 0;
+    transactions.forEach(item => {
+      if (item.type === "cost"){
+        if (this.getDays(new Date (item.purchaseDate), new Date()) <= days || days == -1){
+          costs += item.amount;
+          ammount++;
+        }
+      }
+    });
+    return [costs, ammount];
+  }
+
+  getAllIncomeOfTime(days:number, transactions:Transaction[]){
+    var costs:number = 0;
+    var ammount:number = 0;
+    transactions.forEach(item => {
+      if (item.type === "income"){
+        if (this.getDays(new Date (item.purchaseDate), new Date()) <= days || days == -1){
+          costs += item.amount;
+          ammount++;
+        }
+      }
+    });
+    return [costs, ammount];
+  }
+
+  getAllSelfmadeTransactionsOfTime(userid:string, days:number, transactions:Transaction[]){
+    var ammount:number = 0;
+    transactions.forEach(item => {
+      if (item.creator.id === userid){
+        if (this.getDays(new Date (item.purchaseDate), new Date()) <= days || days == -1){
+          ammount++;
+        }
+      }
+    });
+    return ammount;
+  }
+
 }
