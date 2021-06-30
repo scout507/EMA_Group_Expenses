@@ -86,19 +86,23 @@ export class AddMembersPage implements OnInit {
   async add(){
     let removedFriend: User[] = [];
     let friendsWithOpenTransactions: User[] = [];
-    // vvvvv this was this.selectedFriends vvvvv
-    this.filteredFriends.forEach(friend => {
-      if(!this.newSelectedFriends.includes(friend)){
-        removedFriend.push(friend);
+    let groupSizeGreaterOne: boolean = true;
+    if(this.selectedFriends){
+      this.selectedFriends.forEach(friend => {
+        if(!this.newSelectedFriends.includes(friend)){
+          removedFriend.push(friend);
+        }
+      });
+      for (const friend of removedFriend) {
+        let open = await this.transactionService.checkTransactionsFinishedInGroupByUser(this.group, friend);
+        if(open){
+          friendsWithOpenTransactions.push(friend);
+        }
       }
-    });
-    for (const friend of removedFriend) {
-      let open = await this.transactionService.checkTransactionsFinishedInGroupByUser(this.group, friend);
-      if(open){
-        friendsWithOpenTransactions.push(friend);
-      }
+    }else{
+      groupSizeGreaterOne = false;
     }
-    if(friendsWithOpenTransactions.length > 0){
+    if(groupSizeGreaterOne && friendsWithOpenTransactions.length > 0){
       let msg = `Diese Auswahl kann nicht bestätigt werden, da noch folgende Freunde offene Transaktionen haben:\n`;
       friendsWithOpenTransactions.forEach(friend => {
         msg += `${friend.displayName}\n`
