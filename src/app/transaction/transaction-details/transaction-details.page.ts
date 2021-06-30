@@ -86,10 +86,7 @@ export class TransactionDetailsPage implements OnInit {
         }
         else{
           this.transaction.paid.forEach(p => {
-            console.log(p.user.id);
-            console.log(this.otherUserId);
           if(p.user.id === this.otherUserId) {
-            console.log("hallo");
             p.paid = true;
             this.transactionService.update(this.transaction);
             this.router.navigate(['home']);
@@ -98,6 +95,7 @@ export class TransactionDetailsPage implements OnInit {
       }
     }
   }
+
 
   editTransaction(){
     this.transactionService.saveLocally(this.transaction);
