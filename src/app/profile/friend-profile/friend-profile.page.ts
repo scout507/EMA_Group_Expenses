@@ -66,4 +66,15 @@ export class FriendProfilePage implements OnInit {
     await alert.present();
     await alert.onDidDismiss();
   }
+
+  async paymentDescription(name: string, discription: string) {
+    const alert = document.createElement('ion-alert');
+    alert.header = name;
+    alert.message = discription;
+    alert.buttons = [{ text: "schließen" }];
+
+    document.body.appendChild(alert);
+    await alert.present();
+    await alert.onDidDismiss();
+  }
 }
