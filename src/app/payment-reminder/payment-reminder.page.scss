@@ -1,0 +1,12 @@
+ion-content {
+  text-align: center;
+  .angular-with-newlines {
+    white-space: pre-wrap;
+  }
+  ion-textarea {
+    border: #0d0d0d 2px solid;
+    border-radius: 5px;
+    width: 60%;
+    margin: 10px auto;
+  }
+}

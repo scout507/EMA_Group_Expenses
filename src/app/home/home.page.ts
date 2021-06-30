@@ -8,9 +8,13 @@ import {GroupService} from '../services/group.service';
 import {Router} from '@angular/router';
 import {SimpleTransaction} from '../models/simpleTransaction.model';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {Share} from '@capacitor/share';
 // @ts-ignore
 import {UserService} from '../services/user.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import {DomSanitizer} from '@angular/platform-browser';
+import {AddMembersPage} from "../group/add-members/add-members.page";
+import {ModalController} from "@ionic/angular";
+import {PaymentReminderPage} from "../payment-reminder/payment-reminder.page";
 
 
 @Component({
@@ -43,9 +47,15 @@ export class HomePage {
   private confirm: number;
 
 
-
   // eslint-disable-next-line max-len
-  constructor(private sanitizer: DomSanitizer, private transactionService: TransactionService, private authService: AuthService, private userService: UserService,private groupService: GroupService, private router: Router, private af: AngularFireAuth) {
+  constructor(private sanitizer: DomSanitizer,
+              private transactionService: TransactionService,
+              private authService: AuthService,
+              private userService: UserService,
+              private groupService: GroupService,
+              private router: Router,
+              private af: AngularFireAuth,
+              private modalController: ModalController) {
   }
 
   ionViewWillEnter() {
@@ -66,20 +76,17 @@ export class HomePage {
 
   filterTransaction(searchTerm: string) {
     this.filteredTransactions = [];
-    this.simpleTransactions.forEach(transaction =>{
-      if(transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+    this.simpleTransactions.forEach(transaction => {
+      if (transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
         transaction.otherUser.displayName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
         transaction.groupName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())) {
-        if(this.outgoingView && transaction.outgoing && !transaction.pending){
+        if (this.outgoingView && transaction.outgoing && !transaction.pending) {
           this.filteredTransactions.push(transaction);
-        }
-        else if(this.incomingView && !transaction.outgoing && !transaction.pending){
+        } else if (this.incomingView && !transaction.outgoing && !transaction.pending) {
           this.filteredTransactions.push(transaction);
-        }
-        else if(this.pendingView && transaction.outgoing && transaction.pending){
+        } else if (this.pendingView && transaction.outgoing && transaction.pending) {
           this.filteredTransactions.push(transaction);
-        }
-        else if(this.confirmView && !transaction.outgoing && transaction.pending){
+        } else if (this.confirmView && !transaction.outgoing && transaction.pending) {
           this.filteredTransactions.push(transaction);
         }
       }
@@ -87,8 +94,8 @@ export class HomePage {
   }
 
   viewTransaction(transactionID: string, userID: string) {
-    this.transactions.forEach(transaction =>{
-      if(transaction.id === transactionID){
+    this.transactions.forEach(transaction => {
+      if (transaction.id === transactionID) {
         localStorage.setItem('otherUser', JSON.stringify(userID));
         this.transactionService.saveLocally(transaction);
         this.router.navigate(['transaction-details', {id: this.currentUser.id}]);
@@ -96,12 +103,36 @@ export class HomePage {
     });
   }
 
-  updateTransactions(){
+  async createPaymentReminder(transaction: SimpleTransaction) {
+    const modal = await this.modalController.create({
+      component: PaymentReminderPage,
+      componentProps: {
+        displayName_otherUser: transaction.otherUser.displayName,
+        groupName: transaction.groupName,
+        purpose: transaction.purpose,
+        amount: transaction.amount.toString(),
+        dueDate: transaction.dueDate,
+        displayName_currentUser: this.currentUser.displayName
+      }
+    });
+    await modal.present();
+    const result = await modal.onDidDismiss();
+    if(result.data.toString().length > 0){
+      Share.share({
+        title: `Zahlungserinnerung von ${this.currentUser.displayName}`,
+        text: result.data,
+        dialogTitle: 'Zahlungserinnerung'
+      }).then(() => console.log("Sharing supported"))
+        .catch(error => console.log(error));
+    }
+  }
+
+  updateTransactions() {
     this.transactions = [];
     this.simpleTransactions = [];
     this.search = '';
-    this.transactionService.getAllTransactionByUser(this.currentUser).then( result => {
-      result.forEach( transaction => {
+    this.transactionService.getAllTransactionByUser(this.currentUser).then(result => {
+      result.forEach(transaction => {
         this.createSimpleTransaction(transaction);
       });
       this.transactions.push(...result);
@@ -114,16 +145,13 @@ export class HomePage {
       this.confirm = 0;
       //TODO: add pending
       this.simpleTransactions.forEach(transaction => {
-        if(transaction.outgoing && !transaction.pending){
+        if (transaction.outgoing && !transaction.pending) {
           this.outgoing += transaction.amount;
-        }
-        else if(!transaction.outgoing && !transaction.pending){
+        } else if (!transaction.outgoing && !transaction.pending) {
           this.incoming += transaction.amount;
-        }
-        else if(transaction.outgoing && transaction.pending){
-          this.pending ++;
-        }
-        else if(!transaction.outgoing && transaction.pending){
+        } else if (transaction.outgoing && transaction.pending) {
+          this.pending++;
+        } else if (!transaction.outgoing && transaction.pending) {
           this.confirm++;
         }
       });
@@ -139,30 +167,33 @@ export class HomePage {
     }, 200);
   }
 
-  createSimpleTransaction(transaction: Transaction){
+  createSimpleTransaction(transaction: Transaction) {
     let otherUser: User;
     let outgoing = true;
     let cost: number;
     let pending: boolean;
-    if(transaction.creator.id !== this.currentUser.id){
+    if (transaction.creator.id !== this.currentUser.id) {
       otherUser = transaction.creator;
-      if(transaction.type === 'income') {outgoing = false;}
+      if (transaction.type === 'income') {
+        outgoing = false;
+      }
 
-      for(let i = 0; i < transaction.participation.length; i++){
-        if(transaction.accepted[i].accepted !== true && transaction.participation[i].user.id === this.currentUser.id) {
+      for (let i = 0; i < transaction.participation.length; i++) {
+        if (transaction.accepted[i].accepted !== true && transaction.participation[i].user.id === this.currentUser.id) {
           cost = Math.round(transaction.participation[i].stake * 100) / 100;
           pending = transaction.paid[i].paid;
           // eslint-disable-next-line max-len
-          this.simpleTransactions.push(new SimpleTransaction(transaction.id,cost,transaction.purpose,outgoing,pending,otherUser,transaction.group.name,transaction.dueDate));
+          this.simpleTransactions.push(new SimpleTransaction(transaction.id, cost, transaction.purpose, outgoing, pending, otherUser, transaction.group.name, transaction.dueDate));
         }
       }
-    }
-    else{
-      if(transaction.type === 'cost') {outgoing = false;}
+    } else {
+      if (transaction.type === 'cost') {
+        outgoing = false;
+      }
 
-      for(let i = 0; i < transaction.participation.length; i++){
-        if(transaction.participation[i].user.id !== this.currentUser.id){
-          if(transaction.accepted[i].accepted !== true) {
+      for (let i = 0; i < transaction.participation.length; i++) {
+        if (transaction.participation[i].user.id !== this.currentUser.id) {
+          if (transaction.accepted[i].accepted !== true) {
             otherUser = transaction.participation[i].user;
             cost = Math.round(transaction.participation[i].stake * 100) / 100;
             pending = transaction.paid[i].paid;
@@ -175,25 +206,24 @@ export class HomePage {
     //console.log(this.simpleTransactions);
   }
 
-  async confirmDialog(transactionID: string, userID: string, userName: string){
+  async confirmDialog(transactionID: string, userID: string, userName: string) {
     const alert = document.createElement('ion-alert');
     alert.header = 'Hast du die Zahlung von ' + userName + ' erhalten?';
-    alert.buttons = [{ text: 'Ja', role: 'yes' },{ text: 'Details', role: 'detail' },{ text: 'Abbrechen'}];
+    alert.buttons = [{text: 'Ja', role: 'yes'}, {text: 'Details', role: 'detail'}, {text: 'Abbrechen'}];
 
     document.body.appendChild(alert);
     await alert.present();
     const rsl = await alert.onDidDismiss();
     if (rsl.role === 'yes') {
-        this.confirmTransaction(transactionID,userID);
-    }
-    else if(rsl.role === 'detail'){
+      this.confirmTransaction(transactionID, userID);
+    } else if (rsl.role === 'detail') {
       this.viewTransaction(transactionID, userID);
     }
   }
 
-  getDateDifference(transcation: Transaction){
+  getDateDifference(transcation: Transaction) {
     // @ts-ignore
-    return Math.round((new Date(transcation.dueDate ) - new Date())/86400000)+1;
+    return Math.round((new Date(transcation.dueDate) - new Date()) / 86400000) + 1;
   }
 
   doSearch() {
@@ -220,17 +250,22 @@ export class HomePage {
     this.pendingView = false;
     this.confirmView = false;
 
-    if (type === 0) {this.outgoingView = true;}
-    else if (type === 1) {this.incomingView = true;}
-    else if (type === 2) {this.pendingView = true;}
-    else {this.confirmView = true;}
+    if (type === 0) {
+      this.outgoingView = true;
+    } else if (type === 1) {
+      this.incomingView = true;
+    } else if (type === 2) {
+      this.pendingView = true;
+    } else {
+      this.confirmView = true;
+    }
   }
 
-  confirmTransaction(transactionID: string, userID: string){
+  confirmTransaction(transactionID: string, userID: string) {
     this.transactions.forEach(transaction => {
-      if(transaction.id === transactionID){
+      if (transaction.id === transactionID) {
         transaction.accepted.forEach(a => {
-          if(a.user.id === userID){
+          if (a.user.id === userID) {
             a.accepted = true;
             transaction.finished = this.transactionService.checkTransactionFinish(transaction);
             this.transactionService.update(transaction);
