@@ -62,7 +62,7 @@
   <div *ngIf="currentView === 'members'">
     <ion-item *ngFor="let member of transactionService.getParticipants(transaction)">
       <ion-avatar>
-        <img src="{{member.profilePic}}">
+        <img [src]="sanitizer.bypassSecurityTrustUrl(member.profilePic)">
       </ion-avatar>
       <ion-label>{{member.displayName}}</ion-label>
       <ion-text>{{transactionService.getStakeForUser(member, transaction)}}€</ion-text>
