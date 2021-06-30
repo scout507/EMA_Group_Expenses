@@ -3,6 +3,7 @@ import {User} from "../../models/user.model";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import { DomSanitizer } from '@angular/platform-browser';
 import {TransactionTracker} from "../../models/transactionTracker.model";
 
 @Component({
@@ -19,7 +20,8 @@ export class TransactionParticipantsPage implements OnInit {
 
   constructor(private transactionService : TransactionService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private sanitizer: DomSanitizer) {
     this.fairlyDistributedCosts = JSON.parse(route.snapshot.paramMap.get('fairlyDistributedPrice'));
     this.transaction = this.transactionService.getLocally();
     this.transaction.group.members.forEach(user => {
