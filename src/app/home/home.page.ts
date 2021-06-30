@@ -46,13 +46,6 @@ export class HomePage {
 
   // eslint-disable-next-line max-len
   constructor(private sanitizer: DomSanitizer, private transactionService: TransactionService, private authService: AuthService, private userService: UserService,private groupService: GroupService, private router: Router, private af: AngularFireAuth) {
-  }
-
-  ionViewWillEnter() {
-    this.outgoingView = true;
-    this.confirmView = false;
-    this.incomingView = false;
-    this.pendingView = false;
     const sub = this.af.authState.subscribe(user => {
       if (user) {
         this.userService.findById(user.uid).then(result => {
@@ -62,6 +55,13 @@ export class HomePage {
         });
       }
     });
+  }
+
+  ionViewWillEnter() {
+    this.outgoingView = true;
+    this.confirmView = false;
+    this.incomingView = false;
+    this.pendingView = false;
   }
 
   filterTransaction(searchTerm: string) {
@@ -100,7 +100,7 @@ export class HomePage {
     this.transactions = [];
     this.simpleTransactions = [];
     this.search = '';
-    this.transactionService.getAllTransactionByUser(this.currentUser).then( result => {
+    this.transactionService.getAllTransactionByUser(this.currentUser, false).then( result => {
       result.forEach( transaction => {
         this.createSimpleTransaction(transaction);
       });

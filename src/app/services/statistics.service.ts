@@ -18,27 +18,27 @@ export class StatisticsService{
       if(transaction.type === "cost") statistic.allTimeCost += transaction.amount;
       else  statistic.allTimeIncome += transaction.amount;
 
-      if(this.getDays(new Date(transaction.purchaseDate), today) <= 360){
+      if(this.getDays(new Date(transaction.purchaseDate), today) <= 360 && this.getDays(new Date(transaction.purchaseDate), today) >= 0){
         statistic.lastYearTotal ++;
         if(transaction.type === "cost") statistic.lastYearCost += transaction.amount;
         else  statistic.lastYearIncome += transaction.amount;
       }
-      if(this.getDays(new Date(transaction.purchaseDate), today) <= 180){
+      if(this.getDays(new Date(transaction.purchaseDate), today) <= 180 && this.getDays(new Date(transaction.purchaseDate), today) >= 0){
         statistic.lastSixMonthsTotal ++;
         if(transaction.type === "cost") statistic.lastSixMonthsCost += transaction.amount;
         else  statistic.lastSixMonthsIncome += transaction.amount;
       }
-      if(this.getDays(new Date(transaction.purchaseDate), today) <= 90){
+      if(this.getDays(new Date(transaction.purchaseDate), today) <= 90 && this.getDays(new Date(transaction.purchaseDate), today) >= 0){
         statistic.lastThreeMonthsTotal ++;
         if(transaction.type === "cost") statistic.lastThreeMonthsCost += transaction.amount;
         else  statistic.lastThreeMonthsIncome += transaction.amount;
       }
-      if(this.getDays(new Date(transaction.purchaseDate), today) <= 30){
+      if(this.getDays(new Date(transaction.purchaseDate), today) <= 30 && this.getDays(new Date(transaction.purchaseDate), today) >= 0){
         statistic.lastMonthTotal ++;
         if(transaction.type === "cost") statistic.lastMonthCost += transaction.amount;
         else  statistic.lastMonthIncome += transaction.amount;
       }
-      if(this.getDays(new Date(transaction.purchaseDate), today) <= 7){
+      if(this.getDays(new Date(transaction.purchaseDate), today) <= 7 && this.getDays(new Date(transaction.purchaseDate), today) >= 0){
         statistic.lastWeekTotal ++;
         if(transaction.type === "cost") statistic.lastWeekCost += transaction.amount;
         else  statistic.lastWeekIncome += transaction.amount;
