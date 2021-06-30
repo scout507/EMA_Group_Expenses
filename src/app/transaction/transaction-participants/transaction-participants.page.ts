@@ -4,6 +4,7 @@ import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { DomSanitizer } from '@angular/platform-browser';
+import {TransactionTracker} from "../../models/transactionTracker.model";
 
 @Component({
   selector: 'app-transaction-participants',
@@ -46,14 +47,27 @@ export class TransactionParticipantsPage implements OnInit {
       }
   }
 
-  handleSubmit(){
+  handleSubmit() {
     this.calculateStakes();
     if (this.fairlyDistributedCosts) {
-      this.transactionService.persist(this.transaction);
-      this.router.navigate(['home']);
-    } else {
-      this.transactionService.saveLocally(this.transaction);
-      this.router.navigate(['transaction-stakes']);
+      this.transactionService.persist(this.transaction).then(docRef => {
+        if (this.transaction.rhythm !== 'once') {
+          this.transactionService.getTransactionById(docRef.id).then((doc: any) => {
+            let transaction: Transaction = doc;
+            let tracker = new TransactionTracker(transaction,
+              transaction.creator,
+              new Date(transaction.dueDate),
+              new Date(new Date(this.transaction.dueDate).getTime() + this.transactionService.getRhythmMiliseconds(this.transaction.rhythm)),
+              new Date(this.transaction.dueDate),
+              this.transactionService.getRhythmMiliseconds(this.transaction.rhythm));
+            this.transactionService.persistTracker(tracker);
+          });
+          this.router.navigate(['home']);
+        } else {
+          this.transactionService.saveLocally(this.transaction);
+          this.router.navigate(['transaction-stakes']);
+        }
+      });
     }
   }
 

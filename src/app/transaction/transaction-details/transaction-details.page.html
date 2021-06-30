@@ -73,8 +73,8 @@
   </div>
   <div *ngIf="currentView === 'attachment'">
     <ion-img *ngIf="transaction.photo" src="{{transaction.photo}}"></ion-img>
-    <ion-button *ngIf="!transaction.photo && authService.currentUser.id === transaction.creator.id">
-      <ion-icon name="add" (click)="takePicture()"></ion-icon>
+    <ion-button *ngIf="!transaction.photo && authService.currentUser.id === transaction.creator.id" (click)="takePicture()">
+      <ion-icon name="add"></ion-icon>
     </ion-button>
     <ion-button *ngIf="transaction.photo && authService.currentUser.id === transaction.creator.id" (click)="transaction.photo = null; transactionService.update(transaction)">
       <ion-icon name="trash" ></ion-icon>
