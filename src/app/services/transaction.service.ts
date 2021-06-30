@@ -64,7 +64,7 @@ export class TransactionService {
 
   }
 
-  async getAllTransactionByUser(user: User): Promise<Transaction[]> {
+  async getAllTransactionByUser(user: User, withOld: boolean): Promise<Transaction[]> {
     const loading = document.createElement('ion-loading');
     loading.cssClass = 'loading';
     loading.message = 'Lade Daten';
@@ -80,7 +80,19 @@ export class TransactionService {
       transaction.id = doc.id;
       return transaction;
     }).forEach(document => {
-      if(!document.finished) {
+      if(!withOld) {
+        if (!document.finished) {
+          if (document.creator.toString() === user.id) {
+            transactions.push(document);
+          } else {
+            document.participation.forEach(part => {
+              if (part.user.id === user.id) {
+                transactions.push(document);
+              }
+            });
+          }
+        }
+      }else{
         if (document.creator.toString() === user.id) {
           transactions.push(document);
         } else {
@@ -97,7 +109,7 @@ export class TransactionService {
       await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
     }));
     // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-    transactions.sort(function (b, a): any {
+    transactions.sort(function(b,a): any{
       // @ts-ignore
       return new Date(b.dueDate) - new Date(a.dueDate);
     });
@@ -115,7 +127,6 @@ export class TransactionService {
       transaction.id = doc.id;
       return transaction;
     }).forEach(document => {
-      //TODO: Check if transaction is active
       if(document.group.toString() === group.id){
         document.group = group;
         transactions.push(document);
@@ -149,13 +160,28 @@ export class TransactionService {
     return tracker;
   }
 
-  deleteAllTransactionsByUser(user: User) {
-    this.userService.findById("QWgrWPALVhaZPnB1ZCiqbOELYbJ2").then(deletedUser => {
-      this.getAllTransactionByUser(user).then(transactions => {
+  deleteAllTransactionsByUser(user: User){
+    this.userService.findById("QWgrWPALVhaZPnB1ZCiqbOELYbJ2").then(deletedUser =>{
+      this.getAllTransactionByUser(user,true).then(transactions => {
         transactions.forEach(transaction => {
-          if (transaction.creator.id === user.id) {
-            this.delete(transaction.id);
-          } else {
+          if(transaction.creator.id === user.id){
+            if(transaction.finished){
+              transaction.creator = deletedUser;
+              for (let i = 0; i < transaction.participation.length; i++) {
+                if (transaction.participation[i].user.id === user.id) {
+                  transaction.participation[i].user = deletedUser;
+                }
+                if (transaction.paid[i].user.id === user.id) {
+                  transaction.paid[i].user = deletedUser;
+                }
+                if (transaction.accepted[i].user.id === user.id) {
+                  transaction.accepted[i].user = deletedUser;
+                }
+              }
+            }
+            else this.delete(transaction.id);
+          }
+          else {
             for (let i = 0; i < transaction.participation.length; i++) {
               if (transaction.participation[i].user.id === user.id) {
                 transaction.participation[i].user = deletedUser;

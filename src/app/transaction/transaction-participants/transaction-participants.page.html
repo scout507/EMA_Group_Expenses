@@ -15,7 +15,7 @@
   <ion-list>
     <ion-item *ngFor="let participant of participation">
       <ion-avatar slot="start">
-        <img src="{{participant.user.profilePic}}">
+        <img [src]="sanitizer.bypassSecurityTrustUrl(participant.user.profilePic)">
       </ion-avatar>
       <ion-text>{{participant.user.displayName ? participant.user.displayName : participant.user.userName}}</ion-text>
       <ion-toggle [(ngModel)]="participant.participates" slot="end"></ion-toggle>

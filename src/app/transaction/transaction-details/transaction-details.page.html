@@ -57,13 +57,13 @@
       <ion-label>Rhythmus</ion-label>
       <ion-text class="ion-text-right">{{ formatRhythm(transaction.rhythm)}}</ion-text>
     </ion-item>
-    <ion-button (click)="payTransaction()" *ngIf="!transactionService.hasUserPaid(authService.currentUser.id, transaction)">Bezahlen</ion-button>
-    <ion-button (click)="payTransaction()" *ngIf="(transaction.type === 'income')">Bezahlen</ion-button>
+    <ion-button *ngIf="transaction.type === 'cost' && !transactionService.hasUserPaid(authService.currentUser, transaction)" (click)="payTransaction()">Bezahlen</ion-button>
+    <ion-button *ngIf="transaction.type === 'income' && transaction.creator.id === authService.currentUser.id" (click)="payTransaction()">Bezahlen</ion-button>
   </div>
   <div *ngIf="currentView === 'members'">
     <ion-item *ngFor="let member of transactionService.getParticipants(transaction)">
       <ion-avatar>
-        <img src="{{member.profilePic}}">
+        <img [src]="sanitizer.bypassSecurityTrustUrl(member.profilePic)">
       </ion-avatar>
       <ion-label>{{member.displayName}}</ion-label>
       <ion-text>{{transactionService.getStakeForUser(member, transaction)}}€</ion-text>
@@ -77,7 +77,7 @@
     <ion-button *ngIf="!transaction.photo && authService.currentUser.id === transaction.creator.id" (click)="takePicture()">
       <ion-icon name="add"></ion-icon>
     </ion-button>
-    <ion-button *ngIf="transaction.photo && authService.currentUser.id === transaction.creator.id" (click)="transaction.photo = null; transactionService.update(transaction)">
+    <ion-button *ngIf="transaction.photo && authService.currentUser.id === transaction.creator.id " (click)="transaction.photo = null; transactionService.update(transaction)">
       <ion-icon name="trash" ></ion-icon>
     </ion-button>
   </div>

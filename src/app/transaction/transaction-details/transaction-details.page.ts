@@ -6,6 +6,7 @@ import {AuthService} from "../../services/auth.service";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
 import {Camera, CameraResultType} from "@capacitor/camera";
+import {DomSanitizer} from "@angular/platform-browser";
 
 
 @Component({
@@ -19,7 +20,7 @@ export class TransactionDetailsPage implements OnInit {
   otherUserId: string;
   hasStake: boolean = false;
 
-  constructor(private route: ActivatedRoute, private transactionService : TransactionService, private router: Router, private authService: AuthService, private userService: UserService) {
+  constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer, private transactionService : TransactionService, private router: Router, private authService: AuthService, private userService: UserService) {
     this.transaction = this.transactionService.getLocally();
     this.otherUserId = JSON.parse(localStorage.getItem('otherUser'));
     this.transaction.participation.forEach(entry => {
@@ -85,10 +86,7 @@ export class TransactionDetailsPage implements OnInit {
         }
         else{
           this.transaction.paid.forEach(p => {
-            console.log(p.user.id);
-            console.log(this.otherUserId);
           if(p.user.id === this.otherUserId) {
-            console.log("hallo");
             p.paid = true;
             this.transactionService.update(this.transaction);
             this.router.navigate(['home']);
@@ -97,6 +95,7 @@ export class TransactionDetailsPage implements OnInit {
       }
     }
   }
+
 
   editTransaction(){
     this.transactionService.saveLocally(this.transaction);
