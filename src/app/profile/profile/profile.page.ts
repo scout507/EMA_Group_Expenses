@@ -5,8 +5,11 @@ import { Award } from '../../models/award.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import { ArwardService } from 'src/app/services/award.service';
-import {AuthService} from "../../services/auth.service";
+import { AuthService } from "../../services/auth.service";
 import { DomSanitizer } from '@angular/platform-browser';
+import { StatisticsService } from 'src/app/services/statistics.service';
+import { TransactionService } from 'src/app/services/transaction.service';
+import { Transaction } from 'src/app/models/transaction.model';
 
 @Component({
   selector: 'app-profile',
@@ -14,11 +17,14 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
   badges: Award[] = [];
   user: User = new User();
+  transactions: Transaction[];
+  income: number = 0;
+  outcome: number = 0;
+  self: number = 0;
 
-  constructor(private sanitizer: DomSanitizer, private router: Router, private userService: UserService, private af: AngularFireAuth, private awardService: ArwardService, private authService: AuthService) {
+  constructor(private transactionsservice: TransactionService, private stats: StatisticsService, private sanitizer: DomSanitizer, private router: Router, private userService: UserService, private af: AngularFireAuth, private awardService: ArwardService, private authService: AuthService) {
   }
 
   ionViewWillEnter() {
@@ -32,6 +38,10 @@ export class ProfilePage implements OnInit {
               this.badges.push(item);
             });
           });
+          this.transactionsservice.getAllTransactionByUser(this.user).then(res => {
+            this.transactions = res;
+            this.changeStats(30);
+          });
         });
         sub.unsubscribe();
       }
@@ -41,7 +51,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
   }
 
-  friendlist() {
+  async friendlist() {
     this.router.navigate(['friends']);
   }
 
@@ -58,10 +68,29 @@ export class ProfilePage implements OnInit {
     document.body.appendChild(alert);
     await alert.present();
     await alert.onDidDismiss();
+    this.user.ec_card
+    this.user.kreditcard
+    this.user.paypal
   }
 
-  loggout(){
+  loggout() {
     this.authService.logout();
   }
 
+  async paymentDescription(name: string, discription: string) {
+    const alert = document.createElement('ion-alert');
+    alert.header = name;
+    alert.message = discription;
+    alert.buttons = [{ text: "schließen" }];
+
+    document.body.appendChild(alert);
+    await alert.present();
+    await alert.onDidDismiss();
+  }
+
+  async changeStats(days: number) {
+    this.income = this.stats.getAllIncomeOfTime(days, this.transactions)[0];
+    this.outcome = this.stats.getAllExpensesOfTime(days, this.transactions)[0];
+    this.self = this.stats.getAllSelfmadeTransactionsOfTime(this.user.id, days, this.transactions);
+  }
 }

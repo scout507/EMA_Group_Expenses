@@ -8,6 +8,7 @@ import {Group} from "../../models/group.model";
 import {User} from "../../models/user.model";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {UserService} from "../../services/user.service";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-member-view',
@@ -21,6 +22,7 @@ export class MemberViewPage implements OnInit {
   currentUser: User;
 
   constructor(private groupService: GroupService,
+              private sanitizer:DomSanitizer,
               private route: ActivatedRoute,
               private navCtrl: NavController,
               private alertController: AlertController,
