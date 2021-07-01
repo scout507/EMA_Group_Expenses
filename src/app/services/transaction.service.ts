@@ -68,7 +68,7 @@ export class TransactionService {
     const loading = document.createElement('ion-loading');
     loading.cssClass = 'loading';
     loading.message = 'Lade Daten';
-    loading.duration = 10000;
+    loading.duration = 100000;
     document.body.appendChild(loading);
     await loading.present();
 

@@ -20,6 +20,9 @@
   <ion-item button (click)="viewMembers()">
     <ion-label>Mitglieder</ion-label>
   </ion-item>
+  <ion-item>
+    <ion-input>addresse/invite?id={{group? group.id : ''}}</ion-input>
+  </ion-item>
 
   <ion-grid>
     <ion-row class="ion-justify-content-evenly">

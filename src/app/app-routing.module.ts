@@ -106,6 +106,10 @@ const routes: Routes = [
     path: 'payment-reminder',
     loadChildren: () => import('./payment-reminder/payment-reminder.module').then( m => m.PaymentReminderPageModule)
   },
+  {
+    path: 'invite',
+    loadChildren: () => import('./group/invite/invite.module').then( m => m.InvitePageModule)
+  },
 
 
 
