@@ -38,9 +38,9 @@
 <ion-content>
   <ion-refresher id="refresher" slot="fixed" pullFactor="0.3" (ionRefresh)="refreshHandler($event)">
     <ion-refresher-content
-      pullingText="Pull to refresh"
+      pullingText="Ziehen um neu zu laden"
       pullingIcon="chevron-down-circle-outline"
-      refreshingText="Refreshing...">
+      refreshingText="Lade neue Daten...">
     </ion-refresher-content>
   </ion-refresher>
   <ion-list *ngIf="!confirmView">
