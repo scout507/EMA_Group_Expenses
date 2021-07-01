@@ -189,7 +189,6 @@ export class HomePage {
     }
     else{
       if(transaction.type === 'cost') {outgoing = false;}
-
       for(let i = 0; i < transaction.participation.length; i++){
         if(transaction.participation[i].user.id !== this.currentUser.id){
           if(transaction.accepted[i].accepted !== true) {
