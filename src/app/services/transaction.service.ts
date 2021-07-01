@@ -35,8 +35,8 @@ export class TransactionService {
     return this.transactionCollection.add(this.copyAndPrepare(transaction));
   }
 
-  update(transaction: Transaction): void {
-    this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
+  async update(transaction: Transaction): Promise<void> {
+    await this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
   async getTransactionById(id: string) {
