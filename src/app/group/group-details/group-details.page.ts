@@ -205,4 +205,5 @@ export class GroupDetailsPage implements OnInit {
       }
     }
   }
+
 }
