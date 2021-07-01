@@ -47,11 +47,11 @@ export class GroupService {
     const group: Group = new Group();
     group.id = snapshot.id;
     const members = [];
-    await temp.members.forEach(member => {
-      this.userService.findById(member.toString()).then(user => {
+    for(let member of temp.members){
+      await this.userService.findById(member.toString()).then(user => {
         members.push(user);
       });
-    });
+    }
     group.creator = await this.userService.findById(temp.creator.toString());
     group.members = members;
     group.name = temp.name;
@@ -150,6 +150,10 @@ export class GroupService {
     return result.data;
   }
 
+  addUserToGroup(group: Group, user: User){
+    group.members.push(user);
+    this.update(group);
+  }
 
   copyAndPrepare(group: Group): Group{
     const copy: any = {...group};
