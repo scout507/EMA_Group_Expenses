@@ -35,8 +35,8 @@ export class TransactionService {
     return this.transactionCollection.add(this.copyAndPrepare(transaction));
   }
 
-  update(transaction: Transaction): void {
-    this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
+  async update(transaction: Transaction): Promise<void> {
+    await this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
   async getTransactionById(id: string) {
@@ -68,7 +68,7 @@ export class TransactionService {
     const loading = document.createElement('ion-loading');
     loading.cssClass = 'loading';
     loading.message = 'Lade Daten';
-    loading.duration = 10000;
+    loading.duration = 100000;
     document.body.appendChild(loading);
     await loading.present();
 

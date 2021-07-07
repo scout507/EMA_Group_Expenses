@@ -89,8 +89,8 @@ export class ProfilePage implements OnInit {
   }
 
   async changeStats(days: number) {
-    this.income = this.stats.getAllIncomeOfTime(days, this.transactions)[0];
-    this.outcome = this.stats.getAllExpensesOfTime(days, this.transactions)[0];
+    this.income = this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id)[0];
+    this.outcome = this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)[0];
     this.self = this.stats.getAllSelfmadeTransactionsOfTime(this.user.id, days, this.transactions);
   }
 }

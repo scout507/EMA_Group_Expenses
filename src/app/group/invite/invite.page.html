@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="this.router.navigate(['group-list'])" fill="clear" slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title>Einladung</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid style="text-align: center">
+    <ion-row>
+      <ion-col>
+        <ion-label>Gruppe: {{group.name}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button *ngIf="groupFound" (click)="addToGroup()">Beitreten</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>{{message}}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

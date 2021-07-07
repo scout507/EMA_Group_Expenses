@@ -189,7 +189,6 @@ export class HomePage {
     }
     else{
       if(transaction.type === 'cost') {outgoing = false;}
-
       for(let i = 0; i < transaction.participation.length; i++){
         if(transaction.participation[i].user.id !== this.currentUser.id){
           if(transaction.accepted[i].accepted !== true) {
@@ -259,14 +258,25 @@ export class HomePage {
   confirmTransaction(transactionID: string, userID: string){
     this.transactions.forEach(transaction => {
       if(transaction.id === transactionID){
-        transaction.accepted.forEach(a => {
-          if(a.user.id === userID){
-            a.accepted = true;
-            transaction.finished = this.transactionService.checkTransactionFinish(transaction);
-            this.transactionService.update(transaction);
-            this.updateTransactions();
-          }
-        });
+        if(transaction.type === "cost") {
+          transaction.accepted.forEach(a => {
+            if (a.user.id === userID) {
+              a.accepted = true;
+              transaction.finished = this.transactionService.checkTransactionFinish(transaction);
+              this.transactionService.update(transaction);
+              this.updateTransactions();
+            }
+          });
+        }else{
+          transaction.accepted.forEach(a => {
+            if (a.user.id === this.currentUser.id) {
+              a.accepted = true;
+              transaction.finished = this.transactionService.checkTransactionFinish(transaction);
+              this.transactionService.update(transaction);
+              this.updateTransactions();
+            }
+          });
+        }
       }
     });
   }

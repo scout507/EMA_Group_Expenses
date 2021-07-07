@@ -49,6 +49,7 @@ export class AuthService {
       .then((result) => {
         this.userservice.findById(result.user.uid).then(user => {
           this.currentUser = user;
+
           this.router.navigate(['home']);
         });
       })

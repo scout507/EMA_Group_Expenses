@@ -111,6 +111,10 @@ const routes: Routes = [
     path: 'tutorial',
     loadChildren: () => import('./tutorial/tutorial.module').then( m => m.TutorialPageModule)
   },
+  {
+    path: 'invite',
+    loadChildren: () => import('./group/invite/invite.module').then( m => m.InvitePageModule)
+  },
 
 
 
