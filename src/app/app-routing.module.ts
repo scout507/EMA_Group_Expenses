@@ -98,13 +98,18 @@ const routes: Routes = [
   {
     path: 'add-members',
     loadChildren: () => import('./group/add-members/add-members.module').then( m => m.AddMembersPageModule)
-  },  {
+  },
+  {
     path: 'member-view',
     loadChildren: () => import('./group/member-view/member-view.module').then( m => m.MemberViewPageModule)
   },
   {
     path: 'payment-reminder',
     loadChildren: () => import('./payment-reminder/payment-reminder.module').then( m => m.PaymentReminderPageModule)
+  },
+  {
+    path: 'tutorial',
+    loadChildren: () => import('./tutorial/tutorial.module').then( m => m.TutorialPageModule)
   },
 
 

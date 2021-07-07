@@ -38,7 +38,7 @@ export class ProfilePage implements OnInit {
               this.badges.push(item);
             });
           });
-          this.transactionsservice.getAllTransactionByUser(this.user).then(res => {
+          this.transactionsservice.getAllTransactionByUser(this.user, true).then(res => {
             this.transactions = res;
             this.changeStats(30);
           });

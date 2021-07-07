@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/auth";
 import {Router} from "@angular/router";
 import { UserService } from './user.service';
+import {Platform} from "@ionic/angular";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { UserService } from './user.service';
 export class AuthService {
   currentUser = null;
 
-  constructor(private auth: AngularFireAuth, private router: Router, private userservice: UserService) {
+  constructor(private auth: AngularFireAuth, private router: Router, private userservice: UserService, public platform: Platform) {
   }
 
   async register(email: string, password: string, username: string): Promise<void | string>{
@@ -19,7 +20,11 @@ export class AuthService {
         this.userservice.persist(result.user.uid, email.toLocaleLowerCase(), username);
         this.userservice.findById(result.user.uid).then(user => {
           this.currentUser = user;
-          this.router.navigate(['profile']);
+          if(this.platform.is('desktop')){
+            this.router.navigate(['profile']);
+          }else{
+            this.router.navigate(['tutorial']);
+          }
         });
       })
       .catch((error) => {
