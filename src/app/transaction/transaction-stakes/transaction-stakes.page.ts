@@ -3,6 +3,7 @@ import {User} from "../../models/user.model";
 import {Router} from "@angular/router";
 import {TransactionService} from "../../services/transaction.service";
 import {Transaction} from "../../models/transaction.model";
+import {TransactionTracker} from "../../models/transactionTracker.model";
 
 @Component({
   selector: 'app-transaction-stakes',
@@ -34,17 +35,30 @@ export class TransactionStakesPage implements OnInit {
     return sum;
   }
 
-  handleSubmit(){
+  handleSubmit() {
     this.errors.clear();
-    if(this.getCurrentAmount() > this.transaction.amount){
+    if (this.getCurrentAmount() > this.transaction.amount) {
       this.errors.set('amount', 'Bitte nicht mehr als den Betrag auf die Teilnehmer verteilen.');
     }
-    if (this.getCurrentAmount() < this.transaction.amount){
+    if (this.getCurrentAmount() < this.transaction.amount) {
       this.errors.set('amount', 'Bitte den vollen Betrag auf die Teilnehmer verteilen');
     }
-    if (this.errors.size === 0){
-      this.transactionService.persist(this.transaction);
-      this.router.navigate(['home']);
+    if (this.errors.size === 0) {
+      this.transactionService.persist(this.transaction).then(docRef => {
+        if (this.transaction.rhythm !== 'once') {
+          this.transactionService.getTransactionById(docRef.id).then((doc: any) => {
+            let transaction: Transaction = doc;
+            let tracker = new TransactionTracker(transaction,
+              transaction.creator,
+              new Date(transaction.dueDate),
+              new Date(new Date(this.transaction.dueDate).getTime() + this.transactionService.getRhythmMiliseconds(this.transaction.rhythm)),
+              new Date(this.transaction.dueDate),
+              this.transactionService.getRhythmMiliseconds(this.transaction.rhythm));
+            this.transactionService.persistTracker(tracker);
+          });
+          this.router.navigate(['home']);
+        }
+      });
     }
   }
 

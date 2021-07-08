@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {Platform} from "@ionic/angular";
 
 @Component({
   selector: 'app-register',
@@ -22,9 +23,6 @@ export class RegisterPage implements OnInit {
       this.authService.register(this.email, this.password, this.username).then(ret => {
         if(ret){
           this.errorMessage = ret;
-        }else{
-          console.log(ret);
-          this.router.navigate(['home']);
         }
       });
     }else{

@@ -8,9 +8,13 @@ import {GroupService} from '../services/group.service';
 import {Router} from '@angular/router';
 import {SimpleTransaction} from '../models/simpleTransaction.model';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {Share} from '@capacitor/share';
 // @ts-ignore
 import {UserService} from '../services/user.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import {DomSanitizer} from '@angular/platform-browser';
+import {AddMembersPage} from "../group/add-members/add-members.page";
+import {ModalController} from "@ionic/angular";
+import {PaymentReminderPage} from "../payment-reminder/payment-reminder.page";
 
 
 @Component({
@@ -45,7 +49,8 @@ export class HomePage {
 
 
   // eslint-disable-next-line max-len
-  constructor(private sanitizer: DomSanitizer, private transactionService: TransactionService, private authService: AuthService, private userService: UserService,private groupService: GroupService, private router: Router, private af: AngularFireAuth) {
+  constructor(private sanitizer: DomSanitizer, private transactionService: TransactionService, private authService: AuthService, private userService: UserService,private groupService: GroupService, private router: Router, private af: AngularFireAuth, private modalController: ModalController) {
+
   }
 
   ionViewWillEnter() {
@@ -66,8 +71,8 @@ export class HomePage {
 
   filterTransaction(searchTerm: string) {
     this.filteredTransactions = [];
-    this.simpleTransactions.forEach(transaction =>{
-      if(transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+    this.simpleTransactions.forEach(transaction => {
+      if (transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
         transaction.otherUser.displayName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
         transaction.groupName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())) {
         if(this.outgoingView && transaction.outgoing && !transaction.pending){
@@ -96,11 +101,36 @@ export class HomePage {
     });
   }
 
-  updateTransactions(){
+  async createPaymentReminder(transaction: SimpleTransaction) {
+    const modal = await this.modalController.create({
+      component: PaymentReminderPage,
+      componentProps: {
+        displayName_otherUser: transaction.otherUser.displayName,
+        groupName: transaction.groupName,
+        purpose: transaction.purpose,
+        amount: transaction.amount.toString(),
+        dueDate: transaction.dueDate,
+        displayName_currentUser: this.currentUser.displayName
+      }
+    });
+    await modal.present();
+    const result = await modal.onDidDismiss();
+
+    if(result.data !== undefined){
+      Share.share({
+        title: `Zahlungserinnerung von ${this.currentUser.displayName}`,
+        text: result.data,
+        dialogTitle: 'Zahlungserinnerung'
+      }).then(() => console.log("Sharing supported"))
+        .catch(error => console.log(error));
+    }
+  }
+
+  updateTransactions() {
     this.transactions = [];
     this.simpleTransactions = [];
     this.search = '';
-    this.transactionService.getAllTransactionByUser(this.currentUser).then( result => {
+    this.transactionService.getAllTransactionByUser(this.currentUser, false).then( result => {
       result.forEach( transaction => {
         this.createSimpleTransaction(transaction);
       });
@@ -159,7 +189,6 @@ export class HomePage {
     }
     else{
       if(transaction.type === 'cost') {outgoing = false;}
-
       for(let i = 0; i < transaction.participation.length; i++){
         if(transaction.participation[i].user.id !== this.currentUser.id){
           if(transaction.accepted[i].accepted !== true) {
@@ -229,14 +258,25 @@ export class HomePage {
   confirmTransaction(transactionID: string, userID: string){
     this.transactions.forEach(transaction => {
       if(transaction.id === transactionID){
-        transaction.accepted.forEach(a => {
-          if(a.user.id === userID){
-            a.accepted = true;
-            transaction.finished = this.transactionService.checkTransactionFinish(transaction);
-            this.transactionService.update(transaction);
-            this.updateTransactions();
-          }
-        });
+        if(transaction.type === "cost") {
+          transaction.accepted.forEach(a => {
+            if (a.user.id === userID) {
+              a.accepted = true;
+              transaction.finished = this.transactionService.checkTransactionFinish(transaction);
+              this.transactionService.update(transaction);
+              this.updateTransactions();
+            }
+          });
+        }else{
+          transaction.accepted.forEach(a => {
+            if (a.user.id === this.currentUser.id) {
+              a.accepted = true;
+              transaction.finished = this.transactionService.checkTransactionFinish(transaction);
+              this.transactionService.update(transaction);
+              this.updateTransactions();
+            }
+          });
+        }
       }
     });
   }

@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Group} from "../../models/group.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ActionSheetController, NavController} from "@ionic/angular";
+import {NavController} from "@ionic/angular";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionService} from "../../services/transaction.service";
 import {GroupService} from "../../services/group.service";
 import {AuthService} from "../../services/auth.service";
 import {Camera, CameraResultType} from "@capacitor/camera";
+import {TransactionTracker} from "../../models/transactionTracker.model";
 
 @Component({
   selector: 'app-transaction-create',
@@ -76,10 +77,25 @@ export class TransactionCreatePage implements OnInit {
       this.errors.set('group', 'Bitte wählen Sie eine Gruppe aus.');
     }
     if (this.errors.size === 0){
+      if (!this.transaction.photo) this.transaction.photo = null;
+
       if (this.selectAllUsers && this.fairlyDistributedPrice) {
         this.calculateStakes();
         if(!this.editMode) {
-          this.transactionService.persist(this.transaction);
+          this.transactionService.persist(this.transaction).then(docRef => {
+            if (this.transaction.rhythm !== 'once') {
+              this.transactionService.getTransactionById(docRef.id).then((doc: any) => {
+                let transaction: Transaction = doc;
+                let tracker = new TransactionTracker(transaction,
+                  transaction.creator,
+                  new Date(transaction.dueDate),
+                  new Date(new Date(this.transaction.dueDate).getTime() + this.transactionService.getRhythmMiliseconds(this.transaction.rhythm)),
+                  new Date(this.transaction.dueDate),
+                  this.transactionService.getRhythmMiliseconds(this.transaction.rhythm));
+                this.transactionService.persistTracker(tracker);
+              });
+            }
+          });
         } else {
           this.transactionService.update(this.transaction);
         }
@@ -108,7 +124,7 @@ export class TransactionCreatePage implements OnInit {
   async takePicture() {
     await Camera.getPhoto({
         quality: 90,
-        allowEditing: true,
+        allowEditing: false,
         resultType: CameraResultType.Base64
       }).then(data => {
         this.transaction.photo = "data:image/jpeg;base64, " + data.base64String;
