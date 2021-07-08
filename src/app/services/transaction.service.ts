@@ -85,7 +85,7 @@ export class TransactionService {
     });
     await Promise.all(transactions.map(async (transaction) => {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
-      await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
+      //await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
     }));
     // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
     transactions.sort(function(b,a): any{

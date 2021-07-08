@@ -70,7 +70,7 @@ export class FriendsService {
                   curUser.friends.forEach(friend =>{
                     if(friend === u.id) {
                       alreadyFriends = true;
-                      return 'bereits befreundet';
+                      return "bereits befreundet";
                     }
                   });
                   if(!alreadyFriends) {
@@ -78,7 +78,7 @@ export class FriendsService {
                     u.friends.push(currentUserID);
                     this.update(u);
                     this.update(curUser);
-                    return 'erfolgreich hinzugefügt';
+                    return "erfolgreich hinzugefügt";
                   }
                 });
               }
@@ -86,7 +86,7 @@ export class FriendsService {
       }
       else{
 
-        return 'Nutzer nicht vorhanden';
+        return "Nutzer nicht vorhanden";
       }
     });
   }

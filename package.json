@@ -28,6 +28,7 @@
     "@ionic-native/file-chooser": "^4.20.0",
     "@ionic-native/image-picker": "^5.33.1",
     "@ionic/angular": "^5.5.2",
+    "chart.js": "^3.4.1",
     "cordova-plugin-camera": "^5.0.2",
     "cordova-plugin-filechooser": "^1.2.0",
     "cordova-plugin-telerik-imagepicker": "^2.3.6",

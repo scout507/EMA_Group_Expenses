@@ -16,6 +16,7 @@ export class FriendsPage implements OnInit {
   addFriendInput;
   currentUser: User;
   addFriendsOutput: string;
+  errors: Map<string, string> = new Map<string, string>();
 
   constructor(
     public sanitizer: DomSanitizer,
@@ -55,9 +56,10 @@ export class FriendsPage implements OnInit {
   addFriend() {
     //TODO: this needs to reload the friends list and check if input was valid
     // @ts-ignore
-    console.log(this.currentUser);
     this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res => {
       this.addFriendsOutput = res;
+      console.log(res);
+      this.errors.set("addFriendsOutput", this.addFriendsOutput);
     });
   }
 }
