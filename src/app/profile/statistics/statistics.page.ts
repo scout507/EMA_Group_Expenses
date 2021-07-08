@@ -37,7 +37,7 @@ export class StatisticsPage implements OnInit {
       if (afuser) {
         this.userService.findById(afuser.uid).then(user => {
           this.user = user;
-          this.transactionsservice.getAllTransactionByUser(user).then(res => {
+          this.transactionsservice.getAllTransactionByUser(user, true).then(res => {
             this.transactions = res;
             this.createPieChart(30);
             this.changeStats(30);
