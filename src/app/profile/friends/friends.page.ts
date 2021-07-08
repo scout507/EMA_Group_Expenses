@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { FriendsService } from '../../services/friends.service';
 import { UserService } from '../../services/user.service';
-import {Observable} from "rxjs";
-import {Transaction} from "../../models/transaction.model";
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -18,9 +16,14 @@ export class FriendsPage implements OnInit {
   addFriendInput;
   currentUser: User;
   addFriendsOutput: string;
+  errors: Map<string, string> = new Map<string, string>();
 
-  constructor(private sanitizer: DomSanitizer, private router: Router, private af: AngularFireAuth, private friendsService: FriendsService, private userService: UserService) {
-  }
+  constructor(
+    public sanitizer: DomSanitizer,
+    public router: Router,
+    private af: AngularFireAuth,
+    private friendsService: FriendsService,
+    private userService: UserService) { }
 
   ionViewWillEnter() {
     const sub = this.af.authState.subscribe(user => {
@@ -50,12 +53,13 @@ export class FriendsPage implements OnInit {
     this.router.navigate(['friend-profile', [id]]);
   }
 
-  addFriend(){
+  addFriend() {
     //TODO: this needs to reload the friends list and check if input was valid
     // @ts-ignore
-    console.log(this.currentUser);
-    this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res =>{
+    this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res => {
       this.addFriendsOutput = res;
+      console.log(res);
+      this.errors.set("addFriendsOutput", this.addFriendsOutput);
     });
   }
 }

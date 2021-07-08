@@ -4,16 +4,19 @@
       <ion-button (click)="friendlist()">
         <ion-icon name="people-outline"></ion-icon>
       </ion-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center">Profil</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="loggout()">
-        <ion-icon name="log-out-outline"></ion-icon>
+      <ion-button (click)="router.navigate(['statistics'])">
+        <ion-icon name="analytics-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+
+    <ion-title class="ion-text-center">Profil</ion-title>
+
     <ion-buttons slot="end">
       <ion-button (click)="profileSettings()">
         <ion-icon name="settings-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="loggout()">
+        <ion-icon name="log-out-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -72,30 +75,6 @@
     <ion-row class="row">
       <ion-col class="iconsCol icons" *ngFor="let i of badges">
         <img class="icons" (click)="badgeDescription(i.name, i.description)" src={{i.image}}>
-      </ion-col>
-    </ion-row>
-
-    <ion-row style="margin-top: 20px;">
-      <ion-col>
-        <ion-button (click)="changeStats(1)">1 Tag</ion-button>
-        <ion-button (click)="changeStats(7)">1 Woche</ion-button>
-        <ion-button (click)="changeStats(30)">1 Monat</ion-button>
-        <ion-button (click)="changeStats(90)">3 Monate</ion-button>
-        <ion-button (click)="changeStats(180)">6 Monate</ion-button>
-        <ion-button (click)="changeStats(365)">1 Jahr</ion-button>
-        <ion-button (click)="changeStats(-1)">Gesamt</ion-button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        Einnahmen {{income}}
-      </ion-col>
-      <ion-col>
-        Ausgaben {{outcome}}
-      </ion-col>
-      <ion-col>
-        Selbst angelegt {{self}}
       </ion-col>
     </ion-row>
   </ion-grid>
