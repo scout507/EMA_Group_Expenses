@@ -17,7 +17,15 @@ export class PrivacyPage implements OnInit {
   userOld: User = new User();
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private af: AngularFireAuth, private groupService: GroupService, private transactionService: TransactionService, private authService: AuthService) { }
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private userService: UserService, 
+    private af: AngularFireAuth, 
+    private groupService: GroupService, 
+    private transactionService: TransactionService, 
+    private authService: AuthService
+    ) { }
 
   ngOnInit() {
   }
