@@ -4,16 +4,19 @@
       <ion-button (click)="friendlist()">
         <ion-icon name="people-outline"></ion-icon>
       </ion-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center">Profil</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="loggout()">
-        <ion-icon name="log-out-outline"></ion-icon>
+      <ion-button (click)="friendlist()">
+        <ion-icon name="analytics-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+
+    <ion-title class="ion-text-center">Profil</ion-title>
+
     <ion-buttons slot="end">
       <ion-button (click)="profileSettings()">
         <ion-icon name="settings-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="loggout()">
+        <ion-icon name="log-out-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -75,7 +78,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row style="margin-top: 20px;">
+    <ion-row style="margin-top: 20px; justify-content: center;">
       <ion-col>
         <ion-button (click)="changeStats(1)">1 Tag</ion-button>
         <ion-button (click)="changeStats(7)">1 Woche</ion-button>
@@ -88,15 +91,15 @@
     </ion-row>
 
     <ion-row>
-      <ion-col>
-        Einnahmen {{income}}
-      </ion-col>
-      <ion-col>
-        Ausgaben {{outcome}}
-      </ion-col>
-      <ion-col>
-        Selbst angelegt {{self}}
-      </ion-col>
+      <ion-col>Einnahmen: {{income}}€</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Ausgaben {{outcome}}€</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Selbst angelegt: {{self}}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

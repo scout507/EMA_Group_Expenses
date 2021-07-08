@@ -24,8 +24,15 @@ export class ProfilePage implements OnInit {
   outcome: number = 0;
   self: number = 0;
 
-  constructor(private transactionsservice: TransactionService, private stats: StatisticsService, private sanitizer: DomSanitizer, private router: Router, private userService: UserService, private af: AngularFireAuth, private awardService: ArwardService, private authService: AuthService) {
-  }
+  constructor(
+    private transactionsservice: TransactionService,
+    private stats: StatisticsService,
+    public sanitizer: DomSanitizer,
+    public router: Router,
+    private userService: UserService,
+    private af: AngularFireAuth,
+    private awardService: ArwardService,
+    private authService: AuthService) {}
 
   ionViewWillEnter() {
     var sub = this.af.authState.subscribe(user => {
