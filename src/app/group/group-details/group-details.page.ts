@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Group} from "../../models/group.model";
 import {GroupService} from "../../services/group.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -12,6 +12,7 @@ import {UserService} from "../../services/user.service";
 import { DomSanitizer } from '@angular/platform-browser';
 import {StatisticsService} from "../../services/statistics.service";
 import {Statistic} from "../../models/statistics.model";
+import Chart from "chart.js/auto";
 
 @Component({
   selector: 'app-group-details',
@@ -34,6 +35,9 @@ export class GroupDetailsPage implements OnInit {
   currentTotal = 0;
   currentCost = 0;
   currentIncome = 0;
+  pie: Chart;
+
+  @ViewChild('pieChart') pieChart;
 
   constructor(private groupService: GroupService,
               private route: ActivatedRoute,
@@ -163,6 +167,37 @@ export class GroupDetailsPage implements OnInit {
   ngOnInit() {
   }
 
+  switchToStats(){
+    this.view = 2;
+    this.createPieChart(30);
+  }
+
+
+
+  createPieChart(days: number) {
+    this.pie = new Chart(this.pieChart.nativeElement, {
+      type: 'pie',
+      data: {
+        labels: ['Einnahmen', 'Ausgaben'],
+        datasets: [
+          {
+            label: 'Dataset 1',
+            data: [this.currentIncome, this.currentCost],
+            backgroundColor: ["rgba(104, 237, 136, 1)", "rgba(237, 104, 104, 1)"],
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          }
+        }
+      },
+    });
+  }
+
   statsButton(back: boolean) {
     if(back && this.currentStats>0) this.currentStats--;
     else if(!back && this.currentStats<5) this.currentStats++;
@@ -204,6 +239,10 @@ export class GroupDetailsPage implements OnInit {
         break;
       }
     }
+    this.pie.data.datasets.forEach((dataset) => {
+      dataset.data = [this.currentIncome, this.currentCost];
+    });
+    this.pie.update();
   }
 
 }

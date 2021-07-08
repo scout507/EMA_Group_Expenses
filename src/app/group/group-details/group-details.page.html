@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content>
+  <ion-card mode="md">
   <ion-item *ngIf="group">
     <ion-label>Name</ion-label>
     <ion-input
@@ -23,20 +24,25 @@
   <ion-item>
     <ion-input>addresse/invite?id={{group? group.id : ''}}</ion-input>
   </ion-item>
+  </ion-card>
 
-  <ion-grid>
-    <ion-row class="ion-justify-content-evenly">
-      <ion-col class="ion-no-padding">
-        <ion-button expand="full" (click)="view = 0">Aktuell</ion-button>
-      </ion-col>
-      <ion-col class="ion-no-padding">
-        <ion-button expand="full" (click)="view = 1">Archiv</ion-button>
-      </ion-col>
-      <ion-col class="ion-no-padding">
-        <ion-button expand="full" (click)="view = 2">Statistik</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+  <ion-card mode="md">
+    <ion-card-header>
+    <ion-grid>
+      <ion-row class="ion-justify-content-evenly">
+        <ion-col class="ion-no-padding">
+          <ion-button expand="full" (click)="view = 0">Aktuell</ion-button>
+        </ion-col>
+        <ion-col class="ion-no-padding">
+          <ion-button expand="full" (click)="view = 1">Archiv</ion-button>
+        </ion-col>
+        <ion-col class="ion-no-padding">
+          <ion-button expand="full" (click)="switchToStats()">Statistik</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </ion-card-header>
   <ion-list *ngIf="view == 0">
     <ion-item button *ngFor="let transaction of currentTransactions" (click)="viewTransaction(transaction)"
               lines="full">
@@ -80,17 +86,11 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col><ion-label>Transaktionen: {{this.currentTotal}}</ion-label></ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col><ion-label>Ausgaben: {{this.currentCost}}€</ion-label></ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col><ion-label>Einnahmen: {{this.currentIncome}}€</ion-label></ion-col>
+        <ion-col><canvas #pieChart></canvas></ion-col>
       </ion-row>
     </ion-grid>
-
   </div>
+  </ion-card>
   <ion-grid>
     <ion-row>
       <ion-col align="center">
