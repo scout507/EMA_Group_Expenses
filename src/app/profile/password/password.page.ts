@@ -13,7 +13,10 @@ export class PasswordPage implements OnInit {
   newPassword2: string;
   errors: Map<string, string> = new Map<string, string>();
 
-  constructor(private router: Router, public authservice: AngularFireAuth) { }
+  constructor(
+    private router: Router, 
+    public authservice: AngularFireAuth
+    ) { }
 
   ngOnInit() {
   }

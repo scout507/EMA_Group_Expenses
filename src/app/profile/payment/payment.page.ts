@@ -13,8 +13,12 @@ export class PaymentPage implements OnInit {
   user: User = new User();
   userOld: User = new User();
 
-  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private af: AngularFireAuth) {
-  }
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private userService: UserService, 
+    private af: AngularFireAuth
+    ) { }
 
   ngOnInit() {
   }

@@ -1,9 +1,60 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>statistics</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="router.navigate(['profile']);">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" style="margin-right: 40px;">Statistiken</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row style="margin-top: 20px; justify-content: center;">
+      <ion-col style="justify-content: center;">
+        <ion-button (click)="changeStats(1)">1 Tag</ion-button>
+        <ion-button (click)="changeStats(7)">1 Woche</ion-button>
+        <ion-button (click)="changeStats(30)">1 Monat</ion-button>
+        <ion-button (click)="changeStats(90)">3 Monate</ion-button>
+        <ion-button (click)="changeStats(180)">6 Monate</ion-button>
+        <ion-button (click)="changeStats(365)">1 Jahr</ion-button>
+        <ion-button (click)="changeStats(-1)">Gesamt</ion-button>
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col>Einnahmen: {{income}}€</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Ausgaben {{outcome}}€</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>Selbst angelegt: {{self}}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button (click)="router.navigate(['home'])">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['transaction-create'])">
+          <ion-icon name="cash-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="router.navigate(['group-list'])">
+          <ion-icon name="people-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button>
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

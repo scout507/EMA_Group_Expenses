@@ -15,7 +15,13 @@ export class OptionsPage implements OnInit {
   user: User = new User();
   userOld: User = new User();
 
-  constructor(private sanitizer: DomSanitizer, private router: Router, private route: ActivatedRoute, private userService: UserService, private af: AngularFireAuth) { }
+  constructor(
+    public sanitizer: DomSanitizer, 
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private userService: UserService, 
+    private af: AngularFireAuth
+    ) { }
 
   ngOnInit() { }
 
