@@ -14,7 +14,7 @@
     <ion-input [(ngModel)]="addFriendInput" placeholder="Email eingeben.."></ion-input>
     <ion-button (click)="addFriend()">Hinzufügen</ion-button>
   </ion-item>
-  <p class="ion-text-end ion-padding-end" style="color:var(--ion-color-danger)" *ngIf="errors.get('addFriendsOutput')">
+  <p class="ion-text-start ion-padding-start" [ngStyle]="{'color': errors.get('addFriendsOutputColor')}" *ngIf="errors.get('addFriendsOutput')">
     {{errors.get("addFriendsOutput")}}</p>
 
   <ion-list lines="full">
