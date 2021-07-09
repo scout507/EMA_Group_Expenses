@@ -59,36 +59,36 @@ export class FriendsService {
     });
   }
 
-  addFriend(email: string, currentUserID: string): Promise<string>{
-    return this.userService.findByEmail(email.toLocaleLowerCase()).then(user => {
+  async addFriend(email: string, currentUserID: string): Promise<string>{
+    let output = "Nutzer nicht vorhanden"
+    return await this.userService.findByEmail(email.toLocaleLowerCase()).then(async user => {
       let alreadyFriends = false;
       //the actual user is in a somewhat random spot in the "user" array.
-      if(user) {
-        user.forEach(u => {
-              if(u) {
-                  this.userService.findById(currentUserID).then(async curUser => {
-                  curUser.friends.forEach(friend =>{
-                    if(friend === u.id) {
-                      alreadyFriends = true;
-                      return "bereits befreundet";
+      for(let u of user){
+        if(u != undefined) {
+
+                    await this.userService.findById(currentUserID).then(async curUser => {
+                    curUser.friends.forEach(friend =>{
+                      if(friend === u.id) {
+                        console.log("hallo");
+                        alreadyFriends = true;
+                        output = "bereits befreundet";
+                        console.log(output);
+                      }
+                    });
+                    if(!alreadyFriends) {
+                      curUser.friends.push(u.id);
+                      u.friends.push(currentUserID);
+                      this.update(u);
+                      this.update(curUser);
+                      output = "erfolgreich hinzugefügt";
                     }
                   });
-                  if(!alreadyFriends) {
-                    curUser.friends.push(u.id);
-                    u.friends.push(currentUserID);
-                    this.update(u);
-                    this.update(curUser);
-                    return "erfolgreich hinzugefügt";
-                  }
-                });
-              }
-        });
+        }
       }
-      else{
-
-        return "Nutzer nicht vorhanden";
-      }
+        return output;
     });
+    return "wtf";
   }
 
   isFriends(user1: User, user2: User): boolean{

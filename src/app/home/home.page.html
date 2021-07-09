@@ -59,7 +59,8 @@
               <div>{{transaction.otherUser.displayName}}</div>
               <div style="font-size: small">{{transaction.purpose}}</div>
               <div style="font-size: small; color: darkred" *ngIf = "getDateDifference(transaction) < 0">fällig seit {{-1*getDateDifference(transaction)}} Tagen</div>
-              <div style="font-size: small; color: darkred" *ngIf = "getDateDifference(transaction) <= 1.5 && getDateDifference(transaction) >= 0">noch {{getDateDifference(transaction)}} Tag</div>
+              <div style="font-size: small; color: darkred" *ngIf = "getDateDifference(transaction) == 0">heute fällig</div>
+              <div style="font-size: small; color: darkred" *ngIf = "getDateDifference(transaction) <= 1.5 && getDateDifference(transaction) > 0">noch {{getDateDifference(transaction)}} Tag</div>
               <div style="font-size: small; color: coral"  *ngIf = "getDateDifference(transaction) <= 4 && getDateDifference(transaction) > 1.5">noch {{getDateDifference(transaction)}} Tage</div>
               <div style="font-size: small" *ngIf = "getDateDifference(transaction) > 4">noch {{getDateDifference(transaction)}} Tage</div>
             </ion-col>

@@ -9,7 +9,6 @@ import {Router} from '@angular/router';
 import {SimpleTransaction} from '../models/simpleTransaction.model';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Share} from '@capacitor/share';
-// @ts-ignore
 import {UserService} from '../services/user.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {AddMembersPage} from "../group/add-members/add-members.page";

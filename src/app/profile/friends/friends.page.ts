@@ -15,7 +15,7 @@ export class FriendsPage implements OnInit {
   friends: User[] = [];
   addFriendInput;
   currentUser: User;
-  addFriendsOutput: string;
+  addFriendsOutput = "";
   errors: Map<string, string> = new Map<string, string>();
 
   constructor(
@@ -26,6 +26,7 @@ export class FriendsPage implements OnInit {
     private userService: UserService) { }
 
   ionViewWillEnter() {
+    this.addFriendsOutput = "";
     const sub = this.af.authState.subscribe(user => {
       if (user) {
         this.userService.findById(user.uid).then(value => {
@@ -58,7 +59,6 @@ export class FriendsPage implements OnInit {
     // @ts-ignore
     this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res => {
       this.addFriendsOutput = res;
-      console.log(res);
       this.errors.set("addFriendsOutput", this.addFriendsOutput);
     });
   }
