@@ -60,6 +60,10 @@ export class FriendsPage implements OnInit {
     this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res => {
       this.addFriendsOutput = res;
       this.errors.set("addFriendsOutput", this.addFriendsOutput);
+      if (res === "Nutzer nicht vorhanden")
+        this.errors.set("addFriendsOutputColor", "var(--ion-color-danger)");
+      else 
+      this.errors.set("addFriendsOutputColor", "#006600");
     });
   }
 }
