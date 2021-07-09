@@ -55,7 +55,6 @@ export class UserService {
       this.findById(friend).then(result => {
         const index = result.friends.indexOf(user.id, 0);
         if(index > -1) {
-          console.log("gefunden");
           result.friends.splice(index, 1);
         }
         this.update(result);
