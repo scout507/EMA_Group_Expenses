@@ -13,6 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {StatisticsService} from "../../services/statistics.service";
 import {Statistic} from "../../models/statistics.model";
 import Chart from "chart.js/auto";
+import { menuController } from '@ionic/core';
 
 @Component({
   selector: 'app-group-details',
@@ -172,7 +173,9 @@ export class GroupDetailsPage implements OnInit {
     this.createPieChart(30);
   }
 
-
+  async openMenu(){
+    await menuController.open();
+  }
 
   createPieChart(days: number) {
     this.pie = new Chart(this.pieChart.nativeElement, {
