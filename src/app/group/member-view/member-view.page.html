@@ -8,9 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <ion-item *ngIf="group && currentUser.id === group.creator.id">
     <ion-label>Neu hinzufügen</ion-label>
-      <ion-button (click)="this.addMembers()" *ngIf="group && currentUser.id === group.creator.id">
+      <ion-button (click)="this.addMembers()">
       <ion-icon name="add"></ion-icon>
     </ion-button>
   </ion-item>
