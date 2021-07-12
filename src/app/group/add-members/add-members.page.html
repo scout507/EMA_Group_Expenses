@@ -15,7 +15,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let friend of filteredFriends" (click)="select(friend)">
+    <ion-item *ngFor="let friend of filteredFriendsAndMembers" (click)="select(friend)">
       <ion-label>
         {{friend.displayName}}
       </ion-label>
@@ -23,7 +23,7 @@
     </ion-item>
   </ion-list>
   <ion-buttons>
-    <ion-button (click)="this.modalController.dismiss(this.selectedFriends)" color="danger">Abbrechen</ion-button>
+    <ion-button (click)="this.modalController.dismiss(this.group.members)" color="danger">Abbrechen</ion-button>
     <ion-button (click)="add()" color="primary">
       Bestätigen
     </ion-button>
