@@ -50,9 +50,9 @@ export class GroupService {
     for(let member of temp.members){
       await this.userService.findById(member.toString()).then(user => {
         members.push(user);
+        if(user.id === temp.creator.toString())  group.creator = user;
       });
     }
-    group.creator = await this.userService.findById(temp.creator.toString());
     group.members = members;
     group.name = temp.name;
     return group;
