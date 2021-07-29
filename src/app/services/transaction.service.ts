@@ -15,7 +15,7 @@ import {TransactionTracker} from "../models/transactionTracker.model";
 export class TransactionService {
   transactionCollection: AngularFirestoreCollection<Transaction>;
   transactionTrackerCollection: AngularFirestoreCollection<TransactionTracker>;
-   userTransactionCollection: AngularFirestoreCollection<Transaction>;
+  userTransactionCollection: AngularFirestoreCollection<Transaction>;
 
   constructor(private afs: AngularFirestore, private groupService: GroupService, private authService: AuthService, private userService: UserService) {
     this.transactionCollection = afs.collection<Transaction>('Transaction');
@@ -38,6 +38,7 @@ export class TransactionService {
   }
 
   async update(transaction: Transaction): Promise<void> {
+    console.log(transaction);
     await this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
@@ -110,7 +111,7 @@ export class TransactionService {
     });
     await Promise.all(transactions.map(async (transaction) => {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
-      //await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
+      await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
     }));
     // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
     transactions.sort(function(b,a): any{

@@ -27,7 +27,13 @@ export class TransactionCreatePage implements OnInit {
     if (this.route.snapshot.paramMap.get('editMode')) {
       this.editMode = true;
       this.transaction = this.transactionService.getLocally();
-    } else {
+    }
+    else if(this.route.snapshot.paramMap.get('fromGroup')){
+        this.groupService.getGroupById(this.route.snapshot.paramMap.get('groupID')).then(group =>{
+            //TODO: hier muss Gruppe hinzugefügt und direkt ausgewählt werden.
+        });
+    }
+    else {
       this.groupService.getGroupsByUserId(this.authService.currentUser.id).then(groups => {
         this.groups = groups;
       });
