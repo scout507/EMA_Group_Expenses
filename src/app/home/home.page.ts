@@ -135,7 +135,6 @@ export class HomePage {
       });
       this.transactions.push(...result);
       this.filterTransaction(this.search);
-
       //for the counter
       this.outgoing = 0;
       this.incoming = 0;
@@ -176,7 +175,6 @@ export class HomePage {
     if(transaction.creator.id !== this.currentUser.id){
       otherUser = transaction.creator;
       if(transaction.type === 'income') {outgoing = false;}
-
       for(let i = 0; i < transaction.participation.length; i++){
         if(transaction.accepted[i].accepted !== true && transaction.participation[i].user.id === this.currentUser.id) {
           cost = Math.round(transaction.participation[i].stake * 100) / 100;
