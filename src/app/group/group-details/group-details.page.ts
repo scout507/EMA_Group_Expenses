@@ -40,6 +40,7 @@ export class GroupDetailsPage implements OnInit {
 
   @ViewChild('pieChart') pieChart;
 
+
   constructor(private groupService: GroupService,
               private route: ActivatedRoute,
               private navCtrl: NavController,
@@ -140,7 +141,7 @@ export class GroupDetailsPage implements OnInit {
       this.transactionService.getAllTransactionByGroup(this.group).then(transactions =>{
         transactions.forEach(transaction =>{
           this.allTransactions.push(transaction);
-          if(!this.transactionService.checkTransactionFinish(transaction)){
+          if(!transaction.finished){
             this.currentTransactions.push(transaction);
           }
           else{
@@ -164,41 +165,51 @@ export class GroupDetailsPage implements OnInit {
     this.router.navigate(['member-view', {id: this.group.id}])
   }
 
+  createTransaction(){
+    this.router.navigate(['transaction-create', {fromGroup: true, groupID: this.group.id}]);
+  }
 
   ngOnInit() {
   }
 
   switchToStats(){
-    this.view = 2;
-    this.createPieChart(30);
+    if(this.view != 2) {
+      this.view = 2;
+      this.createPieChart();
+    }
   }
 
   async openMenu(){
     await menuController.open();
   }
 
-  createPieChart(days: number) {
-    this.pie = new Chart(this.pieChart.nativeElement, {
-      type: 'pie',
-      data: {
-        labels: ['Einnahmen', 'Ausgaben'],
-        datasets: [
-          {
-            label: 'Dataset 1',
-            data: [this.currentIncome, this.currentCost],
-            backgroundColor: ["rgba(104, 237, 136, 1)", "rgba(237, 104, 104, 1)"],
+  createPieChart() {
+    if(this.pieChart != undefined) {
+      this.pie = new Chart(this.pieChart.nativeElement, {
+        type: 'pie',
+        data: {
+          labels: ['Einnahmen', 'Ausgaben'],
+          datasets: [
+            {
+              label: 'Dataset 1',
+              data: [this.currentIncome, this.currentCost],
+              backgroundColor: ["rgba(104, 237, 136, 1)", "rgba(237, 104, 104, 1)"],
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            }
           }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          }
-        }
-      },
-    });
+        },
+      });
+    }
+    else{
+      setTimeout( () => { this.createPieChart() }, 100 );
+    }
   }
 
   statsButton(back: boolean) {
