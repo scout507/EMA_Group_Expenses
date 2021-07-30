@@ -63,11 +63,11 @@ export class TransactionParticipantsPage implements OnInit {
             this.transactionService.persistTracker(tracker);
           });
           this.router.navigate(['home']);
-        } else {
-          this.transactionService.saveLocally(this.transaction);
-          this.router.navigate(['transaction-stakes']);
         }
       });
+    } else {
+      this.transactionService.saveLocally(this.transaction);
+      this.router.navigate(['transaction-stakes']);
     }
   }
 

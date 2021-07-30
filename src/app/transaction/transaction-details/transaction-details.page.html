@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>{{transaction.purpose}}</ion-title>
-    <ion-button slot="end" (click)="editTransaction()">
-      <ion-icon name="create"></ion-icon>
+    <ion-button slot="end" (click)="deleteTracker()" *ngIf="(transaction.rhythm != 'once' && transaction.rhythm != 'deleted') && transaction.creator.id === authService.currentUser.id">
+      <ion-icon name="remove-circle"></ion-icon>
     </ion-button>
     <ion-button slot="end" (click)="delete()" *ngIf="transaction.creator.id === authService.currentUser.id">
       <ion-icon name="trash"></ion-icon>

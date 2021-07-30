@@ -9,6 +9,10 @@ import {Group} from '../models/group.model';
 import {UserService} from './user.service';
 import {TransactionTracker} from "../models/transactionTracker.model";
 
+
+/***
+ *
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -215,6 +219,16 @@ export class TransactionService {
 
   deleteTracker(tracker: TransactionTracker) {
     this.transactionTrackerCollection.doc(tracker.id).delete();
+  }
+
+  findTrackerById(transactionID: string){
+    return this.getAllTransactionTracker().then(trackerList => {
+      for (let tracker of trackerList){
+        if (tracker.originalTransaction.id == transactionID){
+          return tracker;
+        }
+      }
+    })
   }
 
   saveLocally(transaction: Transaction) {
