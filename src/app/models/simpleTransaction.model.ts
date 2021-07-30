@@ -14,12 +14,10 @@ export class SimpleTransaction{
 
   dueDate: string;
 
-  //TODO: change pending to be required
 
 
-  // eslint-disable-next-line max-len
+
   constructor(id: string, amount: number, purpose: string, outgoing: boolean, pending: boolean, otherUser: User, groupName: string, dueDate? : string){
-
     this.id = id;
     this.amount = amount;
     this.purpose = purpose;
