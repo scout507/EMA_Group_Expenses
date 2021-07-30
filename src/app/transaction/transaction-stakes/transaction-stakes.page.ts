@@ -56,8 +56,8 @@ export class TransactionStakesPage implements OnInit {
               this.transactionService.getRhythmMiliseconds(this.transaction.rhythm));
             this.transactionService.persistTracker(tracker);
           });
-          this.router.navigate(['home']);
         }
+        this.router.navigate(['home']);
       });
     }
   }

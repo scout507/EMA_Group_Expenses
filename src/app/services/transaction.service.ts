@@ -9,6 +9,10 @@ import {Group} from '../models/group.model';
 import {UserService} from './user.service';
 import {TransactionTracker} from "../models/transactionTracker.model";
 
+
+/***
+ *
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -110,7 +114,7 @@ export class TransactionService {
     });
     await Promise.all(transactions.map(async (transaction) => {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
-      //await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
+      await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
     }));
     // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
     transactions.sort(function(b,a): any{
@@ -214,6 +218,16 @@ export class TransactionService {
 
   deleteTracker(tracker: TransactionTracker) {
     this.transactionTrackerCollection.doc(tracker.id).delete();
+  }
+
+  findTrackerById(transactionID: string){
+    return this.getAllTransactionTracker().then(trackerList => {
+      for (let tracker of trackerList){
+        if (tracker.originalTransaction.id == transactionID){
+          return tracker;
+        }
+      }
+    })
   }
 
   saveLocally(transaction: Transaction) {
