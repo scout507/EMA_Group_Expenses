@@ -15,7 +15,6 @@ import {TransactionTracker} from "../models/transactionTracker.model";
 export class TransactionService {
   transactionCollection: AngularFirestoreCollection<Transaction>;
   transactionTrackerCollection: AngularFirestoreCollection<TransactionTracker>;
-  userTransactionCollection: AngularFirestoreCollection<Transaction>;
 
   constructor(private afs: AngularFirestore, private groupService: GroupService, private authService: AuthService, private userService: UserService) {
     this.transactionCollection = afs.collection<Transaction>('Transaction');
@@ -23,22 +22,11 @@ export class TransactionService {
 
   }
 
-
-  isTransactionPending(transaction: Transaction): boolean {
-    transaction.accepted.forEach(entry => {
-      if (!entry) {
-        return false;
-      }
-    });
-    return true;
-  }
-
   persist(transaction: Transaction) {
     return this.transactionCollection.add(this.copyAndPrepare(transaction));
   }
 
   async update(transaction: Transaction): Promise<void> {
-    console.log(transaction);
     await this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
@@ -68,8 +56,6 @@ export class TransactionService {
   }
 
   async getAllTransactionByUser(user: User, withOld: boolean): Promise<Transaction[]> {
-    //this.userTransactionCollection = this.afs.collection<Transaction>('Transaction', ref => ref.where('creator', "==", user.id));
-
     const loading = document.createElement('ion-loading');
     loading.cssClass = 'loading';
     loading.message = 'Lade Daten';

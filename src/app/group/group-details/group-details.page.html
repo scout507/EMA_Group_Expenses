@@ -4,9 +4,6 @@
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-button>
     <ion-title>{{group? group.name : ""}}</ion-title>
-    <ion-button *ngIf="group && currentUser.id === group.creator.id" fill="clear" slot="end">
-      <ion-icon name="settings-outline"></ion-icon>
-    </ion-button>
   </ion-toolbar>
 </ion-header>
 

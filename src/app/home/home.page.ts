@@ -1,7 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {TransactionService} from '../services/transaction.service';
 import {Transaction} from '../models/transaction.model';
-import {Subscription} from 'rxjs';
 import {User} from '../models/user.model';
 import {AuthService} from '../services/auth.service';
 import {GroupService} from '../services/group.service';
@@ -14,13 +13,15 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {IonSearchbar, ModalController} from "@ionic/angular";
 import {PaymentReminderPage} from "../payment-reminder/payment-reminder.page";
 
+/**
+ *
+ */
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-
 
 
 export class HomePage {
@@ -33,32 +34,49 @@ export class HomePage {
     }
   }
 
-  searchbarVisible: boolean;
-  search: string;
 
+  transactions: Transaction[] = [];
+  simpleTransactions: SimpleTransaction[] = [];
+  filteredTransactions: SimpleTransaction[] = [];
+  currentUser: User;
+
+  //current View
   outgoingView: boolean;
   confirmView: boolean;
   incomingView: boolean;
   pendingView: boolean;
 
-  outgoing: number;
 
-  testing: boolean;
-  transactions: Transaction[] = [];
-  simpleTransactions: SimpleTransaction[] = [];
-  filteredTransactions: SimpleTransaction[] = [];
-  currentUser: User;
-  sub: Subscription;
-
+  //numbers for display on the filter-buttons
   private incoming: number;
   private pending: number;
   private confirm: number;
+  private outgoing: number;
 
+  // search & search-bar
+  searchbarVisible: boolean;
+  search: string;
 
-
-  // eslint-disable-next-line max-len
-  constructor(private sanitizer: DomSanitizer, private transactionService: TransactionService, private authService: AuthService, private userService: UserService,private groupService: GroupService, private router: Router, private af: AngularFireAuth, private modalController: ModalController) {
-
+  /**
+   * @ignore
+   * @param sanitizer
+   * @param transactionService
+   * @param authService
+   * @param userService
+   * @param groupService
+   * @param router
+   * @param af
+   * @param modalController
+   */
+  
+  constructor(private sanitizer: DomSanitizer,
+              private transactionService: TransactionService,
+              private authService: AuthService,
+              private userService: UserService,
+              private groupService: GroupService,
+              private router: Router,
+              private af: AngularFireAuth,
+              private modalController: ModalController) {
   }
 
   ionViewWillEnter() {
@@ -77,6 +95,10 @@ export class HomePage {
     });
   }
 
+  /**
+   * filters all displayed transactions for the given search term (search for purpose, user name, group name). Results get pushed into filteredTransactions.
+   * @param searchTerm
+   */
   filterTransaction(searchTerm: string) {
     this.filteredTransactions = [];
     this.simpleTransactions.forEach(transaction => {
@@ -99,6 +121,11 @@ export class HomePage {
     });
   }
 
+  /**
+   * Navigates to transaction-details-view on click. The transaction gets localy saved for the transaction view to load.
+   * @param transactionID
+   * @param userID the current user's id.
+   */
   viewTransaction(transactionID: string, userID: string) {
     this.transactions.forEach(transaction =>{
       if(transaction.id === transactionID){
@@ -109,6 +136,10 @@ export class HomePage {
     });
   }
 
+  /**
+   * Creates the PaymentReminder modal.
+   * @param transaction
+   */
   async createPaymentReminder(transaction: SimpleTransaction) {
     const modal = await this.modalController.create({
       component: PaymentReminderPage,
@@ -134,6 +165,11 @@ export class HomePage {
     }
   }
 
+  /**
+   * Reloads all of the users active transactions. Transactions get parsed into SimpleTransaction format and pushed into transactions.
+   * Calls filterTransaction with the current search.
+   * Updates the counters for amounts displayed.
+   */
   updateTransactions() {
     this.transactions = [];
     this.simpleTransactions = [];
@@ -170,12 +206,24 @@ export class HomePage {
     });
   }
 
+  /**
+   * Calls updateTransactions() when the refresher is activated.
+   * @param event
+   */
   refreshHandler(event) {
     this.updateTransactions();
     setTimeout(() => {
       event.target.complete();
     }, 200);
   }
+
+  /**
+   * Formats the transaction recived from the TransactionService into the SimpleTransaction format.
+   * SimpleTransactions only contain the necessary information for display in home-view and are based on a one-to-one user relationship.
+   * In some cases multiple SimpleTransactions have to be created for one Transaction.
+   *
+   * @param transaction transaction to be parsed into SimpleTransaction(s)
+   */
 
   createSimpleTransaction(transaction: Transaction){
     let otherUser: User;
@@ -209,9 +257,14 @@ export class HomePage {
         }
       }
     }
-    //console.log(this.simpleTransactions);
   }
 
+  /**
+   * Displays the confirmDialog alert.
+   * @param transactionID
+   * @param userID The other user's id
+   * @param userName The other user's name
+   */
   async confirmDialog(transactionID: string, userID: string, userName: string){
     const alert = document.createElement('ion-alert');
     alert.header = 'Hast du die Zahlung von ' + userName + ' erhalten?';
@@ -228,29 +281,49 @@ export class HomePage {
     }
   }
 
+  /**
+   * Calculates and returns the difference of the transaction.dueDate to the current date.
+   * @param transcation
+   */
   getDateDifference(transcation: Transaction){
     // @ts-ignore
     return Math.round((new Date(transcation.dueDate ) - new Date())/86400000)+1;
   }
 
+  /**
+   * Calls the filter-Method
+   */
   doSearch() {
     this.filterTransaction(this.search);
   }
 
+  /**
+   * Cancels search, resets the search-term and displayed transactions and deactivates the search-bar.
+   */
   cancelSearch() {
     this.clearSearch();
     this.filterTransaction(this.search);
     this.searchbarVisible = false;
   }
 
+  /**
+   * Empties the search sting
+   */
   clearSearch() {
     this.search = '';
   }
 
+  /**
+   * Activates the search-bar
+   */
   startSearch() {
     this.searchbarVisible = true;
   }
 
+  /**
+   * Switches between different views (which type of transactions are displayed).
+   * @param type Number that corresponds to the view.
+   */
   buttonHandler(type: number) {
     this.incomingView = false;
     this.outgoingView = false;
@@ -263,6 +336,13 @@ export class HomePage {
     else {this.confirmView = true;}
   }
 
+  /**
+   * Confirmes a given transaction for a given user and refreshes the displayed transactions.
+   * If the transaction is of type 'cost' the other user needs to be flagged as accepted in the accepted array.
+   * If the transaction is of type 'income' the current user needs to be flagged as accepted in the accepted array (Because the current user is recieving money from the other user).
+   * @param transactionID Id of the transaction to be confirmed.
+   * @param userID The other user's ID.
+   */
   confirmTransaction(transactionID: string, userID: string){
     this.transactions.forEach(transaction => {
       if(transaction.id === transactionID){
