@@ -11,6 +11,9 @@ import {TransactionService} from "../../services/transaction.service";
   templateUrl: './add-members.page.html',
   styleUrls: ['./add-members.page.scss'],
 })
+/**
+ * This class is used to add new members to the group
+ */
 export class AddMembersPage implements OnInit {
 
   friendsAndMembers: User[] = [];
@@ -61,21 +64,34 @@ export class AddMembersPage implements OnInit {
     }
   }
 
+  /**
+   * this function makes the searchbar visible
+   */
   setVisible() {
     this.searchbarVisible = true;
   }
 
+  /**
+   * this function filters the friends and members with the value in search bar
+   */
   doSearch() {
     this.filteredFriendsAndMembers = this.friendsAndMembers.filter(r =>
       r.displayName.toLowerCase().includes(this.#searchbar.value.toLowerCase()))
   }
 
+  /**
+   * This function deactivates the searchbar and hides it
+   */
   cancelSearch() {
     this.#searchbar.value = "";
     this.filteredFriendsAndMembers = this.friendsAndMembers;
     this.searchbarVisible = false;
   }
 
+  /**
+   * This function is used to push or deleted the selected friend
+   * @param friend - the selected user
+   */
   select(friend: User) {
     if (this.checkSelectedFriendsContainFriend(friend)) {
       this.newSelectedMembers = this.newSelectedMembers.filter(f => f.id != friend.id);
@@ -84,6 +100,10 @@ export class AddMembersPage implements OnInit {
     }
   }
 
+  /**
+   * This function checks if the selected user is already a group member
+   * @param friend - the selected user
+   */
   checkSelectedFriendsContainFriend(friend: User): boolean {
     let ret = false;
     this.newSelectedMembers.forEach(f => {
@@ -94,6 +114,9 @@ export class AddMembersPage implements OnInit {
     return ret;
   }
 
+  /**
+   * This function adds the new selected user to the group
+   */
   async add() {
     let removedFriend: User[] = [];
     let friendsWithOpenTransactions: User[] = [];

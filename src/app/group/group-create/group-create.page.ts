@@ -14,6 +14,9 @@ import {UserService} from "../../services/user.service";
   templateUrl: './group-create.page.html',
   styleUrls: ['./group-create.page.scss'],
 })
+/**
+ * This class has functions to create a new group
+ */
 export class GroupCreatePage implements OnInit {
 
   currentUser: User;
@@ -29,12 +32,18 @@ export class GroupCreatePage implements OnInit {
 
   }
 
+  /**
+   * This function changes the group members to the new selected users
+   */
   async addMembers(){
     this.groupService.addMembers(this.group, this.currentUser).then(members => {
       this.group.members = members;
     })
   }
 
+  /**
+   * adds the new created group to firebase
+   */
   add(){
     if(this.group.name && this.group.name.length > 2){
       if(this.group.members && this.group.members.length > 0){
