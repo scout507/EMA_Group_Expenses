@@ -19,7 +19,7 @@ import {TransactionTracker} from "../models/transactionTracker.model";
 export class TransactionService {
   transactionCollection: AngularFirestoreCollection<Transaction>;
   transactionTrackerCollection: AngularFirestoreCollection<TransactionTracker>;
-   userTransactionCollection: AngularFirestoreCollection<Transaction>;
+  userTransactionCollection: AngularFirestoreCollection<Transaction>;
 
   constructor(private afs: AngularFirestore, private groupService: GroupService, private authService: AuthService, private userService: UserService) {
     this.transactionCollection = afs.collection<Transaction>('Transaction');
@@ -42,6 +42,7 @@ export class TransactionService {
   }
 
   async update(transaction: Transaction): Promise<void> {
+    console.log(transaction);
     await this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
