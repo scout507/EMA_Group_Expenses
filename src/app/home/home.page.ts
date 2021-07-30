@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {TransactionService} from '../services/transaction.service';
 import {Transaction} from '../models/transaction.model';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {User} from '../models/user.model';
 import {AuthService} from '../services/auth.service';
 import {GroupService} from '../services/group.service';
@@ -11,8 +11,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {Share} from '@capacitor/share';
 import {UserService} from '../services/user.service';
 import {DomSanitizer} from '@angular/platform-browser';
-import {AddMembersPage} from "../group/add-members/add-members.page";
-import {ModalController} from "@ionic/angular";
+import {IonSearchbar, ModalController} from "@ionic/angular";
 import {PaymentReminderPage} from "../payment-reminder/payment-reminder.page";
 
 
@@ -22,7 +21,17 @@ import {PaymentReminderPage} from "../payment-reminder/payment-reminder.page";
   styleUrls: ['home.page.scss'],
 })
 
+
+
 export class HomePage {
+
+  #searchbar: IonSearchbar;
+  @ViewChild(IonSearchbar) set searchbar(sb: IonSearchbar) {
+    if (sb) {
+      sb.setFocus();
+      this.#searchbar = sb;
+    }
+  }
 
   searchbarVisible: boolean;
   search: string;
@@ -263,7 +272,7 @@ export class HomePage {
               a.accepted = true;
               transaction.finished = this.transactionService.checkTransactionFinish(transaction);
               this.transactionService.update(transaction);
-              this.updateTransactions();
+              setTimeout( () => { this.updateTransactions(); }, 150 );
             }
           });
         }else{
@@ -272,7 +281,7 @@ export class HomePage {
               a.accepted = true;
               transaction.finished = this.transactionService.checkTransactionFinish(transaction);
               this.transactionService.update(transaction);
-              this.updateTransactions();
+              setTimeout( () => { this.updateTransactions(); }, 150 );
             }
           });
         }

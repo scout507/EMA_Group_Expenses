@@ -13,7 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {StatisticsService} from "../../services/statistics.service";
 import {Statistic} from "../../models/statistics.model";
 import Chart from "chart.js/auto";
-import { menuController } from '@ionic/core';
+
 
 @Component({
   selector: 'app-group-details',
@@ -172,15 +172,12 @@ export class GroupDetailsPage implements OnInit {
   ngOnInit() {
   }
 
+
   switchToStats(){
     if(this.view != 2) {
       this.view = 2;
       this.createPieChart();
     }
-  }
-
-  async openMenu(){
-    await menuController.open();
   }
 
   createPieChart() {
@@ -259,4 +256,8 @@ export class GroupDetailsPage implements OnInit {
     this.pie.update();
   }
 
+  dateFormat(oldDate: string): string{
+    const d = new Date(oldDate);
+    return '' + d.getDate() + "." + (d.getMonth()+1) + '.' + d.getFullYear();
+  }
 }

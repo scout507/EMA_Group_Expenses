@@ -64,7 +64,8 @@
               <div style="font-size: small; color: coral"  *ngIf = "getDateDifference(transaction) <= 4 && getDateDifference(transaction) > 1.5">noch {{getDateDifference(transaction)}} Tage</div>
               <div style="font-size: small" *ngIf = "getDateDifference(transaction) > 4">noch {{getDateDifference(transaction)}} Tage</div>
             </ion-col>
-          <ion-col align="right"><ion-text>{{transaction.amount}}€</ion-text></ion-col>
+          <ion-col *ngIf="!incomingView" align="right" style="color: #e04055"><ion-text>{{transaction.amount}}€</ion-text></ion-col>
+            <ion-col *ngIf="incomingView" align="right" style="color: darkgreen"><ion-text>{{transaction.amount}}€</ion-text></ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
@@ -80,7 +81,7 @@
             <div>{{transaction.otherUser.displayName}}</div>
             <div style="font-size: small">{{transaction.purpose}}</div>
           </ion-col>
-          <ion-col align="right"><ion-text>{{transaction.amount}}€</ion-text></ion-col>
+          <ion-col align="right"><ion-text style="color: darkgreen">{{transaction.amount}}€</ion-text></ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
