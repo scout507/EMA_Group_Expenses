@@ -8,6 +8,8 @@ import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import {AuthService} from "../../services/auth.service";
 import { DomSanitizer } from '@angular/platform-browser';
+import { TransactionService } from 'src/app/services/transaction.service';
+import { BadgeService } from 'src/app/services/badge.service';
 
 @Component({
   selector: 'app-friend-profile',
@@ -21,6 +23,7 @@ export class FriendProfilePage implements OnInit {
   currentUser: User;
 
   constructor(
+    private transactionsservice: TransactionService,
     public sanitizer: DomSanitizer, 
     private route: ActivatedRoute, 
     public router: Router, 
@@ -28,7 +31,9 @@ export class FriendProfilePage implements OnInit {
     private af: AngularFireAuth, 
     private userService:UserService,  
     private friendsService: FriendsService, 
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private badgeService: BadgeService
+    ) { }
 
   ionViewWillEnter() {
     const sub = this.af.authState.subscribe(user => {
@@ -39,9 +44,12 @@ export class FriendProfilePage implements OnInit {
             this.friendsService.findById(item[0], this.currentUser).then(item2 =>{
               this.user = item2;
               this.badges = [];
-              this.user.awards.forEach(element => {
-                this.awardService.findById(element).then(item3 =>{
-                  this.badges.push(item3);
+              this.transactionsservice.getAllTransactionByUser(user, true).then(transactions => {
+                this.badgeService.setBadges(user, transactions);
+                this.user.awards.forEach(element => {
+                  this.awardService.findById(element).then(item => {
+                    this.badges.push(item);
+                  });
                 });
               });
               this.isfriend = this.friendsService.isFriends(this.user,this.currentUser);
