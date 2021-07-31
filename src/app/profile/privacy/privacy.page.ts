@@ -3,20 +3,33 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
-import {GroupService} from "../../services/group.service";
-import {TransactionService} from "../../services/transaction.service";
-import {AuthService} from "../../services/auth.service";
+import { GroupService } from "../../services/group.service";
+import { TransactionService } from "../../services/transaction.service";
+import { AuthService } from "../../services/auth.service";
+
+/**
+ * This class is needed for the privacy page.
+ */
 
 @Component({
   selector: 'app-privacy',
   templateUrl: './privacy.page.html',
   styleUrls: ['./privacy.page.scss'],
 })
-export class PrivacyPage implements OnInit {
+export class PrivacyPage {
   user: User = new User();
   userOld: User = new User();
 
-
+  /**
+   * @ignore
+   * @param router 
+   * @param route 
+   * @param userService 
+   * @param af 
+   * @param groupService 
+   * @param transactionService 
+   * @param authService 
+   */
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -25,11 +38,14 @@ export class PrivacyPage implements OnInit {
     private groupService: GroupService,
     private transactionService: TransactionService,
     private authService: AuthService
-    ) { }
+  ) { }
 
-  ngOnInit() {
-  }
-
+  /**
+    * When the page is opened, all the required information 
+    * is loaded from the services and stored in the variables 
+    * provided for this purpose. Important here is the check 
+    * whether the user is logged in, otherwise no data will be loaded.
+    */
   ionViewWillEnter() {
     this.af.authState.subscribe(user => {
       if (user) {
@@ -41,6 +57,12 @@ export class PrivacyPage implements OnInit {
     });
   }
 
+  /**
+   * This function navigates back to the option page. It checks whether the user 
+   * has changed data, if this is the case, then an Ionic alert is created, which 
+   * asks again whether the changes should be discarded. If there are no changes, then 
+   * it is simply navigated back.
+   */
   async backBtn() {
     if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
       const alert = document.createElement('ion-alert');
@@ -60,6 +82,12 @@ export class PrivacyPage implements OnInit {
     }
   }
 
+  /**
+    * This function navigates back to the option page. It checks whether the user 
+    * has changed data, if this is the case, then an Ionic alert is created, which 
+    * asks again whether the changes should be saved. If there are no changes, then 
+    * it is simply navigated back.
+    */
   async saveBtn() {
     if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
       const alert = document.createElement('ion-alert');
@@ -86,23 +114,23 @@ export class PrivacyPage implements OnInit {
    * 1. Delete user from friendlist, 2. delete user from groups, 3. Delete user from transactions
    * 4. delete user from User-Collection, 5. delete user from Auth, 6. Loggout
    */
-  async deleteBtn(){
-      const alert = document.createElement('ion-alert');
-      alert.header = 'Möchtest du deinen Account wirklich löschen? Dies kann nicht rückgängig gemacht werden!';
-      alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
+  async deleteBtn() {
+    const alert = document.createElement('ion-alert');
+    alert.header = 'Möchtest du deinen Account wirklich löschen? Dies kann nicht rückgängig gemacht werden!';
+    alert.buttons = [{ text: "Ja", role: "yes" }, { text: "Abbrechen" }];
 
-      document.body.appendChild(alert);
-      await alert.present();
-      var rsl = await alert.onDidDismiss();
+    document.body.appendChild(alert);
+    await alert.present();
+    var rsl = await alert.onDidDismiss();
 
-      if (rsl.role == "yes") {
-        await this.userService.deleteUserFromFriends(this.user);
-        await this.groupService.deleteUserFromAllGroups(this.user);
-        await this.transactionService.deleteAllTransactionsByUser(this.user);
-        this.userService.delete(this.user.id);
-        this.authService.delete();
-        this.authService.logout();
-      }
+    if (rsl.role == "yes") {
+      await this.userService.deleteUserFromFriends(this.user);
+      await this.groupService.deleteUserFromAllGroups(this.user);
+      await this.transactionService.deleteAllTransactionsByUser(this.user);
+      this.userService.delete(this.user.id);
+      this.authService.delete();
+      this.authService.logout();
+    }
   }
 
 }

@@ -10,15 +10,30 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { BadgeService } from 'src/app/services/badge.service';
 
+/**
+ * This class is needed for the profile-page.
+ */
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
-export class ProfilePage implements OnInit {
+export class ProfilePage {
   badges: Award[] = [];
   user: User = new User();
 
+  /**
+   * @ignore
+   * @param transactionsservice 
+   * @param sanitizer 
+   * @param router 
+   * @param userService 
+   * @param af 
+   * @param awardService 
+   * @param authService 
+   * @param badgeService 
+   */
   constructor(
     private transactionsservice: TransactionService,
     public sanitizer: DomSanitizer,
@@ -30,6 +45,12 @@ export class ProfilePage implements OnInit {
     private badgeService: BadgeService
   ) { }
 
+  /**
+   * When the page is opened, all the required information 
+   * is loaded from the services and stored in the variables 
+   * provided for this purpose. Important here is the check 
+   * whether the user is logged in, otherwise no data will be loaded.
+   */
   ionViewWillEnter() {
     var sub = this.af.authState.subscribe(userAf => {
       if (userAf) {
@@ -50,17 +71,27 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-
+  /**
+   * This function navigates to the friends page.
+   */
   async friendlist() {
     this.router.navigate(['friends']);
   }
 
+  /**
+   * This function navigates to the options page.
+   */
   profileSettings() {
     this.router.navigate(['options']);
   }
 
+   /**
+   * This functionality creates an Ionic alert, this contains only a title and a description, 
+   * furthermore there is a close button to close the Ionic alert. Used when you click on 
+   * the badge icons.
+   * @param badgename Required for the title.
+   * @param badgeDescription Required for the description.
+   */
   async badgeDescription(badgename, badgeDescription) {
     const alert = document.createElement('ion-alert');
     alert.header = badgename;
@@ -75,10 +106,20 @@ export class ProfilePage implements OnInit {
     this.user.paypal
   }
 
+  /**
+   * This function logs out the user.
+   */
   loggout() {
     this.authService.logout();
   }
 
+  /**
+   * This functionality creates an Ionic alert, this contains only a title and a description, 
+   * furthermore there is a close button to close the Ionic alert. Used when clicking on 
+   * the icons of the payment methods.
+   * @param name Required for the title.
+   * @param discription Required for the description.
+   */
   async paymentDescription(name: string, discription: string) {
     const alert = document.createElement('ion-alert');
     alert.header = name;

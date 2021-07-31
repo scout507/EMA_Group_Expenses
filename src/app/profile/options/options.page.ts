@@ -104,7 +104,7 @@ export class OptionsPage {
   }
 
   /**
-   * This function opens the camera of the device and saves it in Base64 format, 
+   * This function opens the photo app of the device and saves it in Base64 format, 
    * afterwards it is saved in the variable User. Here the plugin "Camera" from 
    * Capicitor is used.
    */
