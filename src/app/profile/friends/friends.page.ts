@@ -54,15 +54,17 @@ export class FriendsPage implements OnInit {
     this.router.navigate(['friend-profile', [id]]);
   }
 
+  /**
+   * Takes the email from the inputfield and calls friendService.addFriend with the given email.
+   * The return value of friendService.addFriend (string which confirms if the action was successful) gets displayed via error.
+   */
   addFriend() {
-    //TODO: this needs to reload the friends list and check if input was valid
-    // @ts-ignore
     this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res => {
       this.addFriendsOutput = res;
       this.errors.set("addFriendsOutput", this.addFriendsOutput);
       if (res === "Nutzer nicht vorhanden")
         this.errors.set("addFriendsOutputColor", "var(--ion-color-danger)");
-      else 
+      else
       this.errors.set("addFriendsOutputColor", "#006600");
     });
   }

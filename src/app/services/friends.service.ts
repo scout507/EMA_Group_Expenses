@@ -13,7 +13,6 @@ export class FriendsService {
 
   constructor(private afs: AngularFirestore, private userService: UserService, private authService: AuthService) {
     this.userCollection = afs.collection<User>('User');
-    //do better than this vvvv
   }
 
   persist(id: string) {
@@ -68,30 +67,27 @@ export class FriendsService {
         if(u != undefined) {
 
                     await this.userService.findById(currentUserID).then(async curUser => {
-                    curUser.friends.forEach(friend =>{
-                      if(friend === u.id) {
-                        console.log("hallo");
-                        alreadyFriends = true;
-                        output = "bereits befreundet";
-                        console.log(output);
+                      alreadyFriends = this.isFriends(curUser, u)
+                      if(!alreadyFriends) {
+                        curUser.friends.push(u.id);
+                        u.friends.push(currentUserID);
+                        this.update(u);
+                        this.update(curUser);
+                        output = "erfolgreich hinzugefügt";
                       }
-                    });
-                    if(!alreadyFriends) {
-                      curUser.friends.push(u.id);
-                      u.friends.push(currentUserID);
-                      this.update(u);
-                      this.update(curUser);
-                      output = "erfolgreich hinzugefügt";
-                    }
+                      else{
+                        output = "bereits befreundet";
+                      }
                   });
         }
       }
         return output;
     });
-    return "wtf";
+    return "error";
   }
 
   isFriends(user1: User, user2: User): boolean{
+    if(user1.id == user2.id) return true;
     for(let i in user1.friends){
       if(user1.friends[i] === user2.id) return true;
     }

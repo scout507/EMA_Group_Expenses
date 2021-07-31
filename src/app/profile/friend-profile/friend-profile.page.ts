@@ -24,13 +24,13 @@ export class FriendProfilePage implements OnInit {
 
   constructor(
     private transactionsservice: TransactionService,
-    public sanitizer: DomSanitizer, 
-    private route: ActivatedRoute, 
-    public router: Router, 
-    private awardService: ArwardService, 
-    private af: AngularFireAuth, 
-    private userService:UserService,  
-    private friendsService: FriendsService, 
+    public sanitizer: DomSanitizer,
+    private route: ActivatedRoute,
+    public router: Router,
+    private awardService: ArwardService,
+    private af: AngularFireAuth,
+    private userService:UserService,
+    private friendsService: FriendsService,
     private authService: AuthService,
     private badgeService: BadgeService
     ) { }
