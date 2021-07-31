@@ -1,10 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="backBtn()">
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-button (click)="this.navCtrl.back()" fill="clear" slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
     <ion-title class="ion-text-center" style="margin-right: 40px;">Freunde</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,21 +12,18 @@
     <ion-input [(ngModel)]="addFriendInput" placeholder="Email eingeben.."></ion-input>
     <ion-button (click)="addFriend()">Hinzufügen</ion-button>
   </ion-item>
-  <p class="ion-text-start ion-padding-start" [ngStyle]="{'color': errors.get('addFriendsOutputColor')}" *ngIf="errors.get('addFriendsOutput')">
+  <p class="ion-text-start ion-padding-start" [ngStyle]="{'color': errors.get('addFriendsOutputColor')}"
+    *ngIf="errors.get('addFriendsOutput')">
     {{errors.get("addFriendsOutput")}}</p>
 
   <ion-list lines="full">
     <ion-item button *ngFor="let item of friends" (click)="friendBttn(item.id)">
-      <ion-grid>
-        <ion-row>
-          <ion-col class="profileImgCol">
-            <img class="profileImg" [src]="sanitizer.bypassSecurityTrustUrl(item.profilePic)">
-          </ion-col>
-          <ion-col style="margin-top: auto; margin-bottom: auto; margin-left: 20px;">
-            {{item.displayName}}
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-avatar>
+        <img [src]="sanitizer.bypassSecurityTrustUrl(item.profilePic)">
+      </ion-avatar>
+      <ion-label class="ion-text-center">
+        {{item.displayName}}
+      </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
