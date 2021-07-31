@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalController} from "@ionic/angular";;
+import {ModalController} from "@ionic/angular";
 import {UserService} from "../../services/user.service";
 import {GroupService} from "../../services/group.service";
 import {AngularFireAuth} from "@angular/fire/auth";
@@ -8,7 +8,9 @@ import {Group} from "../../models/group.model";
 import {Router} from "@angular/router";
 
 
-
+/**
+ * This class lets a user join a group with a invite link
+ */
 @Component({
   selector: 'app-invite',
   templateUrl: './invite.page.html',
@@ -20,6 +22,14 @@ export class InvitePage implements OnInit {
   message = "";
   groupFound = false;
 
+  /**
+   * @ignore
+   * @param modalController
+   * @param af
+   * @param groupService
+   * @param userService
+   * @param router
+   */
   constructor(private modalController: ModalController,
               private af: AngularFireAuth,
               private groupService: GroupService,
@@ -28,6 +38,9 @@ export class InvitePage implements OnInit {
 
   }
 
+  /**
+   * @ignore
+   */
   ngOnInit() {
     const sub = this.af.authState.subscribe(user => {
       if (user) {
@@ -41,6 +54,9 @@ export class InvitePage implements OnInit {
     });
   }
 
+  /**
+   * search for group with the invite link
+   */
   async findGroup(){
     const loading = document.createElement('ion-loading');
     loading.cssClass = 'loading';
@@ -63,6 +79,9 @@ export class InvitePage implements OnInit {
     loading.dismiss();
   }
 
+  /**
+   * adds the user to the group
+   */
   addToGroup(){
     for (let i in this.group.members) {
       if (this.group.members[i].id === this.currentUser.id){

@@ -9,6 +9,9 @@ import {IonSearchbar} from "@ionic/angular";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {UserService} from "../../services/user.service";
 
+/**
+ * This class shows all groups the user is a member
+ */
 @Component({
   selector: 'app-group-list',
   templateUrl: './group-list.page.html',
@@ -22,6 +25,14 @@ export class GroupListPage implements OnInit {
   filteredGroups: Group[] = [];
   searchbarVisible = false;
 
+  /**
+   * @ignore
+   * @param groupService
+   * @param authService
+   * @param af
+   * @param userService
+   * @param router
+   */
   constructor(private groupService: GroupService,
               private authService: AuthService,
               private af: AngularFireAuth,
@@ -39,15 +50,24 @@ export class GroupListPage implements OnInit {
     }
   }
 
+  /**
+   * makes the searchbar visible
+   */
   setVisible() {
     this.searchbarVisible = true;
   }
 
+  /**
+   * filters the groups with the value from searchbar
+   */
   doSearch() {
     this.filteredGroups = this.groups.filter(r =>
       r.name.toLowerCase().includes(this.#searchbar.value.toLowerCase()));
   }
 
+  /**
+   * hides searchbar and unfilters groups
+   */
   cancelSearch() {
     this.#searchbar.value = "";
     this.filteredGroups = this.groups;
@@ -55,6 +75,9 @@ export class GroupListPage implements OnInit {
   }
 
 
+  /**
+   * @ignore
+   */
   ionViewWillEnter() {
     this.searchbarVisible = false;
     const sub = this.af.authState.subscribe(user => {
@@ -82,18 +105,31 @@ export class GroupListPage implements OnInit {
     });
   }
 
+  /**
+   * @ignore
+   */
   ionViewDidLeave() {
     this.subGroups.unsubscribe();
   }
 
+  /**
+   * navigates to the page to create a new group
+   */
   createGroup() {
     this.router.navigate(['group-create'])
   }
 
+  /**
+   * navigates to the selected group
+   * @param group - selected group
+   */
   showGroup(group: Group) {
     this.router.navigate(['group-details', {id: group.id}])
   }
 
+  /**
+   * @ignore
+   */
   ngOnInit() {
   }
 }

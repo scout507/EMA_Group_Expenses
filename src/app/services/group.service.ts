@@ -7,9 +7,10 @@ import {User} from '../models/user.model';
 import { UserService } from './user.service';
 import {AddMembersPage} from '../group/add-members/add-members.page';
 import {ModalController} from '@ionic/angular';
-import {TransactionService} from "./transaction.service";
-import {Transaction} from "../models/transaction.model";
 
+/**
+ * functions for groups
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +18,13 @@ export class GroupService {
 
   private groupCollection: AngularFirestoreCollection<Group>;
 
+  /**
+   * @ignore
+   * @param afs
+   * @param authService
+   * @param userService
+   * @param modalController
+   */
   constructor(private afs: AngularFirestore,
               private authService: AuthService,
               private userService: UserService,
@@ -24,23 +32,42 @@ export class GroupService {
     this.groupCollection = afs.collection<Group>('Group');
   }
 
+  /**
+   * get all groups from database
+   * returns an Observable of a array of group
+   */
   getAll(): Observable<Group[]>{
     return this.groupCollection.valueChanges({idField: 'id'});
   }
 
+  /**
+   * creates a new group in the database
+   * @param group - new created group
+   */
   new(group: Group){
     this.groupCollection.add(this.copyAndPrepare(group));
   }
 
+  /**
+   * updates a group in the database
+   * @param group - group with updates
+   */
   update(group: Group) {
     this.groupCollection.doc(group.id).update(this.copyAndPrepare(group));
   }
 
-
+  /**
+   * deletes a group in the database
+   * @param group - group that gets deleted
+   */
   delete(group: Group){
     this.groupCollection.doc(group.id).delete();
   }
 
+  /**
+   * find group with id
+   * @param id - id from group
+   */
   async getGroupById(id: string): Promise<Group> {
     const snapshot = await this.groupCollection.doc(id).get().toPromise();
     const temp: any = snapshot.data();
@@ -58,6 +85,11 @@ export class GroupService {
     return group;
   }
 
+  /**
+   * find all groups from a user
+   * @param id - id from user
+   * returns a array of all groups from user
+   */
   getGroupsByUserId(id: string): Promise<Group[]>{
     return this.groupCollection.get().toPromise().then(doc => {
       const groups: Group[] = [];
@@ -72,6 +104,11 @@ export class GroupService {
     });
   }
 
+  /**
+   * creates new group with old group and id
+   * @param group - old group without id
+   * @param id - id from group
+   */
   createGroup(group: Group, id: string): Group {
     const members: User[] = [];
     group.members.forEach(m => {
@@ -85,6 +122,10 @@ export class GroupService {
     return group;
   }
 
+  /**
+   * deletes user from all groups
+   * @param user
+   */
   async deleteUserFromAllGroups(user: User){
     const snapshot = await this.groupCollection.get().toPromise();
     const groups: Group[] = [];
@@ -110,6 +151,11 @@ export class GroupService {
     }
   }
 
+  /**
+   * deletes user from a group
+   * @param user
+   * @param group
+   */
   deleteUserFromGroup(user: User, group: Group){
     let index = -1;
     for(let i = 0; i < group.members.length; i++){
@@ -137,6 +183,11 @@ export class GroupService {
     }
   }
 
+  /**
+   * add Members to a existing group
+   * @param group
+   * @param currentUser
+   */
   async addMembers(group: Group, currentUser: User): Promise<User[]> {
     const modal = await this.modalController.create({
       component: AddMembersPage,
@@ -150,11 +201,20 @@ export class GroupService {
     return result.data;
   }
 
+  /**
+   * add a user to a group
+   * @param group
+   * @param user
+   */
   addUserToGroup(group: Group, user: User){
     group.members.push(user);
     this.update(group);
   }
 
+  /**
+   * changing the group object to fit in the database
+   * @param group
+   */
   copyAndPrepare(group: Group): Group{
     const copy: any = {...group};
     delete copy.id;

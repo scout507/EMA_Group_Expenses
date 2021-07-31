@@ -10,6 +10,9 @@ import {AngularFireAuth} from "@angular/fire/auth";
 import {UserService} from "../../services/user.service";
 import { DomSanitizer } from '@angular/platform-browser';
 
+/**
+ * This class shows all members of the group
+ */
 @Component({
   selector: 'app-member-view',
   templateUrl: './member-view.page.html',
@@ -21,6 +24,19 @@ export class MemberViewPage implements OnInit {
   group: Group;
   currentUser: User;
 
+  /**
+   * @ignore
+   * @param groupService
+   * @param sanitizer
+   * @param route
+   * @param navCtrl
+   * @param alertController
+   * @param authService
+   * @param transactionService
+   * @param router
+   * @param af
+   * @param userService
+   */
   constructor(private groupService: GroupService,
               private sanitizer:DomSanitizer,
               private route: ActivatedRoute,
@@ -33,6 +49,9 @@ export class MemberViewPage implements OnInit {
               private userService: UserService) {
   }
 
+  /**
+   * navigates to the addMembers page and adds the new selected users
+   */
   addMembers(){
     this.groupService.addMembers(this.group, this.currentUser).then(members => {
 
@@ -41,6 +60,9 @@ export class MemberViewPage implements OnInit {
     });
   }
 
+  /**
+   * @ignore
+   */
   ionViewWillEnter() {
     const sub = this.af.authState.subscribe(user => {
       if (user) {
@@ -56,10 +78,17 @@ export class MemberViewPage implements OnInit {
     });
   }
 
+  /**
+   * navigates to the selected user
+   * @param id - id from the selected user
+   */
   viewUser(id: string) {
     this.router.navigate(['friend-profile', [id]]);
   }
 
+  /**
+   * @ignore
+   */
   ngOnInit() {
   }
 

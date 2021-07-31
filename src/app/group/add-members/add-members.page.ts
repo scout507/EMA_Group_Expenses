@@ -6,23 +6,45 @@ import {AuthService} from "../../services/auth.service";
 import {Group} from "../../models/group.model";
 import {TransactionService} from "../../services/transaction.service";
 
+/**
+ * This class is used to add new members to the group
+ */
 @Component({
   selector: 'app-add-members',
   templateUrl: './add-members.page.html',
   styleUrls: ['./add-members.page.scss'],
 })
-/**
- * This class is used to add new members to the group
- */
+
 export class AddMembersPage implements OnInit {
 
+  /**
+   array of all friends and group members
+   */
   friendsAndMembers: User[] = [];
+  /**
+   new selected user
+   */
   newSelectedMembers: User[] = [];
+  /**
+   the selected group from user
+   */
   group: Group;
+  /**
+   the user who currently uses the app
+   */
   currentUser: User;
+  /**
+   array of all friends and members with filter from searchbar
+   */
   filteredFriendsAndMembers: User[] = [];
+  /**
+   boolean if searchbar visible or not
+   */
   searchbarVisible = false;
 
+  /**
+   * @ignore
+   */
   constructor(private modalController: ModalController,
               public navParams: NavParams,
               public authService: AuthService,
@@ -148,6 +170,9 @@ export class AddMembersPage implements OnInit {
     }
   }
 
+  /**
+   * @ignore
+   */
   ngOnInit() {
   }
 
