@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import {Observable} from "rxjs";
-import {Transaction} from "../models/transaction.model";
+
 
 
 @Injectable({
@@ -49,7 +48,11 @@ export class UserService {
   delete(id: string) {
     this.userCollection.doc(id).delete();
   }
-  //not sure if delete() is needed, that's why I created a new one @Marcel please fix this
+
+  /**
+   * Deletes a given user from all his friends friends-lists (user.friends) and updates the friend in the user-collection.
+   * @param user The user to be deleted
+   */
   deleteUserFromFriends(user: User){
     user.friends.forEach(friend => {
       this.findById(friend).then(result => {

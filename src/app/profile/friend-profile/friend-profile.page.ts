@@ -21,14 +21,13 @@ export class FriendProfilePage implements OnInit {
   currentUser: User;
 
   constructor(
-    public sanitizer: DomSanitizer, 
-    private route: ActivatedRoute, 
-    public router: Router, 
-    private awardService: ArwardService, 
-    private af: AngularFireAuth, 
-    private userService:UserService,  
-    private friendsService: FriendsService, 
-    private authService: AuthService) { }
+    public sanitizer: DomSanitizer,
+    private route: ActivatedRoute,
+    public router: Router,
+    private awardService: ArwardService,
+    private af: AngularFireAuth,
+    private userService:UserService,
+    private friendsService: FriendsService) { }
 
   ionViewWillEnter() {
     const sub = this.af.authState.subscribe(user => {
