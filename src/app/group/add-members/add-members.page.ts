@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonSearchbar, ModalController, NavParams} from "@ionic/angular";
-import { UserService } from 'src/app/services/user.service';
+import {UserService} from 'src/app/services/user.service';
 import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
 import {Group} from "../../models/group.model";
@@ -11,14 +11,16 @@ import {TransactionService} from "../../services/transaction.service";
   templateUrl: './add-members.page.html',
   styleUrls: ['./add-members.page.scss'],
 })
+/**
+ * This class is used to add new members to the group
+ */
 export class AddMembersPage implements OnInit {
 
-  public friends: User[] = [];
-  public selectedFriends: User[] = [];
-  public newSelectedFriends: User[] = [];
+  friendsAndMembers: User[] = [];
+  newSelectedMembers: User[] = [];
   group: Group;
   currentUser: User;
-  filteredFriends: User[] = [];
+  filteredFriendsAndMembers: User[] = [];
   searchbarVisible = false;
 
   constructor(private modalController: ModalController,
@@ -27,18 +29,29 @@ export class AddMembersPage implements OnInit {
               public transactionService: TransactionService,
               public userService: UserService) {
     this.group = navParams.get('groupParam');
-    this.selectedFriends = this.group.members;
     this.currentUser = navParams.get('currentUserParam');
-    this.currentUser.friends.forEach(id => {
-      if(id.toString().length > 9){
-        this.userService.findById(id.toString()).then(user => {
-          this.friends.push(user);
-          this.filteredFriends.push(user);
+    this.group.members.forEach(member => {
+      this.friendsAndMembers.push(member);
+      this.filteredFriendsAndMembers.push(member);
+    });
+    let friendIsMember;
+    for(let friend of this.currentUser.friends){
+      friendIsMember = false;
+      for(let member of this.group.members){
+        if(friend.toString() == member.id){
+          friendIsMember = true;
+          break;
+        }
+      }
+      if(!friendIsMember){
+        this.userService.findById(friend.toString()).then(user => {
+          this.friendsAndMembers.push(user);
+          this.filteredFriendsAndMembers.push(user);
         });
       }
-    });
-    if(this.selectedFriends){
-      this.newSelectedFriends.splice(0, this.newSelectedFriends.length, ...this.selectedFriends);
+    }
+    if (this.group.members) {
+      this.newSelectedMembers.splice(0, this.newSelectedMembers.length, ...this.group.members);
     }
   }
 
@@ -50,67 +63,88 @@ export class AddMembersPage implements OnInit {
       this.#searchbar = sb;
     }
   }
-  setVisible(){
+
+  /**
+   * this function makes the searchbar visible
+   */
+  setVisible() {
     this.searchbarVisible = true;
   }
 
-  doSearch(){
-    this.filteredFriends = this.friends.filter(r =>
+  /**
+   * this function filters the friends and members with the value in search bar
+   */
+  doSearch() {
+    this.filteredFriendsAndMembers = this.friendsAndMembers.filter(r =>
       r.displayName.toLowerCase().includes(this.#searchbar.value.toLowerCase()))
   }
 
-  cancelSearch(){
+  /**
+   * This function deactivates the searchbar and hides it
+   */
+  cancelSearch() {
     this.#searchbar.value = "";
-    this.filteredFriends = this.friends;
+    this.filteredFriendsAndMembers = this.friendsAndMembers;
     this.searchbarVisible = false;
   }
 
-  select(friend: User){
-    if(this.checkSelectedFriendsContainFriend(friend)){
-      this.newSelectedFriends = this.newSelectedFriends.filter(f => f.id != friend.id);
-    }else{
-      this.newSelectedFriends.push(friend);
+  /**
+   * This function is used to push or deleted the selected friend
+   * @param friend - the selected user
+   */
+  select(friend: User) {
+    if (this.checkSelectedFriendsContainFriend(friend)) {
+      this.newSelectedMembers = this.newSelectedMembers.filter(f => f.id != friend.id);
+    } else {
+      this.newSelectedMembers.push(friend);
     }
   }
 
-  checkSelectedFriendsContainFriend(friend: User): boolean{
+  /**
+   * This function checks if the selected user is already a group member
+   * @param friend - the selected user
+   */
+  checkSelectedFriendsContainFriend(friend: User): boolean {
     let ret = false;
-    this.newSelectedFriends.forEach(f => {
-      if(f.id == friend.id){
+    this.newSelectedMembers.forEach(f => {
+      if (f.id == friend.id) {
         ret = true;
       }
     });
     return ret;
   }
 
-  async add(){
+  /**
+   * This function adds the new selected user to the group
+   */
+  async add() {
     let removedFriend: User[] = [];
     let friendsWithOpenTransactions: User[] = [];
     let groupSizeGreaterOne: boolean = true;
-    if(this.selectedFriends){
-      this.selectedFriends.forEach(friend => {
-        if(!this.newSelectedFriends.includes(friend)){
+    if (this.group.members) {
+      this.group.members.forEach(friend => {
+        if (!this.newSelectedMembers.includes(friend)) {
           removedFriend.push(friend);
         }
       });
       for (const friend of removedFriend) {
         let open = await this.transactionService.checkTransactionsFinishedInGroupByUser(this.group, friend);
-        if(open){
+        if (open) {
           friendsWithOpenTransactions.push(friend);
         }
       }
-    }else{
+    } else {
       groupSizeGreaterOne = false;
     }
-    if(groupSizeGreaterOne && friendsWithOpenTransactions.length > 0){
+    if (groupSizeGreaterOne && friendsWithOpenTransactions.length > 0) {
       let msg = `Diese Auswahl kann nicht bestätigt werden, da noch folgende Freunde offene Transaktionen haben:\n`;
       friendsWithOpenTransactions.forEach(friend => {
         msg += `${friend.displayName}\n`
       });
-      this.newSelectedFriends = this.selectedFriends;
+      this.newSelectedMembers = this.group.members;
       alert(msg)
-    }else{
-      await this.modalController.dismiss(this.newSelectedFriends);
+    } else {
+      await this.modalController.dismiss(this.newSelectedMembers);
     }
   }
 

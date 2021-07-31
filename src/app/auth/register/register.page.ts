@@ -8,6 +8,10 @@ import {Platform} from "@ionic/angular";
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
+
+/**
+ * This class has functions to register a new user
+ */
 export class RegisterPage implements OnInit {
 
   username: string;
@@ -18,6 +22,9 @@ export class RegisterPage implements OnInit {
 
   constructor(public authService: AuthService, public router: Router) { }
 
+  /**
+   * This function registers a new User into firebase
+   */
   register(){
     if(this.password === this.secondPassword){
       this.authService.register(this.email, this.password, this.username).then(ret => {

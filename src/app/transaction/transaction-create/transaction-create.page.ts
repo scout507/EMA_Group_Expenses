@@ -20,24 +20,11 @@ export class TransactionCreatePage implements OnInit {
   selectAllUsers: boolean = true;
   fairlyDistributedPrice: boolean = true;
   editMode: boolean = false;
-
+  currentDate: string = new Date().toISOString();
+  maxDate = new Date().getFullYear() + 3;
   errors: Map<string, string> = new Map<string, string>();
 
   ionViewWillEnter(){
-    if (this.route.snapshot.paramMap.get('editMode')) {
-      this.editMode = true;
-      this.transaction = this.transactionService.getLocally();
-    }
-    else if(this.route.snapshot.paramMap.get('fromGroup')){
-        this.groupService.getGroupById(this.route.snapshot.paramMap.get('groupID')).then(group =>{
-            //TODO: hier muss Gruppe hinzugefügt und direkt ausgewählt werden.
-        });
-    }
-    else {
-      this.groupService.getGroupsByUserId(this.authService.currentUser.id).then(groups => {
-        this.groups = groups;
-      });
-    }
   }
 
   constructor(private router: Router,
@@ -46,12 +33,16 @@ export class TransactionCreatePage implements OnInit {
               private transactionService: TransactionService,
               private groupService: GroupService,
               private authService : AuthService) {
-    if (!this.editMode) {
       this.transaction = new Transaction("", null, "", "cost", "once", authService.currentUser, new Date().toDateString(), new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toDateString());
       this.transaction.paid = [];
       this.transaction.accepted = [];
       this.transaction.participation = [];
+    if (this.route.snapshot.paramMap.get('fromGroup')) {
+      this.groupService.getGroupById(this.route.snapshot.paramMap.get('groupID')).then(group => {this.transaction.group = group});
     }
+    this.groupService.getGroupsByUserId(this.authService.currentUser.id).then(groups => {
+      this.groups = groups;
+    });
   }
 
   calculateStakes() {
