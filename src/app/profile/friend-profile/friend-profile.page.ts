@@ -10,6 +10,7 @@ import { AuthService } from "../../services/auth.service";
 import { DomSanitizer } from '@angular/platform-browser';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { BadgeService } from 'src/app/services/badge.service';
+import { NavController } from '@ionic/angular';
 
 /**
  * Die Klasse wird für die Friend-Profil Page benötigt.
@@ -51,7 +52,8 @@ export class FriendProfilePage {
     private userService: UserService,
     private friendsService: FriendsService,
     private authService: AuthService,
-    private badgeService: BadgeService
+    private badgeService: BadgeService,
+    private navCtrl: NavController
   ) { }
 
   /**
