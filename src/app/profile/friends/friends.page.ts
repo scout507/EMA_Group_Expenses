@@ -5,26 +5,45 @@ import { User } from 'src/app/models/user.model';
 import { FriendsService } from '../../services/friends.service';
 import { UserService } from '../../services/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NavController } from '@ionic/angular';
+
+/**
+ * Die Klasse wird für die Friend Page benötigt.
+ */
 
 @Component({
   selector: 'app-friends',
   templateUrl: './friends.page.html',
   styleUrls: ['./friends.page.scss'],
 })
-export class FriendsPage implements OnInit {
+export class FriendsPage {
   friends: User[] = [];
   addFriendInput;
   currentUser: User;
   addFriendsOutput = "";
   errors: Map<string, string> = new Map<string, string>();
 
+  /**
+   * @ignore
+   * @param sanitizer 
+   * @param router 
+   * @param af 
+   * @param friendsService 
+   * @param userService 
+   */
   constructor(
     public sanitizer: DomSanitizer,
     public router: Router,
     private af: AngularFireAuth,
     private friendsService: FriendsService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private navCtrl: NavController
+  ) { }
 
+  /**
+   * Beim öffnen der Seite werden alle benötigten Informationen über die Services geladen und in den 
+   * dafür vorgsehenen Variablen gespeichert.
+   */
   ionViewWillEnter() {
     this.addFriendsOutput = "";
     const sub = this.af.authState.subscribe(user => {
@@ -43,13 +62,6 @@ export class FriendsPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-
-  async backBtn() {
-    this.router.navigate(['profile']);
-  }
-
   friendBttn(id: string) {
     this.router.navigate(['friend-profile', [id]]);
   }
@@ -62,8 +74,8 @@ export class FriendsPage implements OnInit {
       this.errors.set("addFriendsOutput", this.addFriendsOutput);
       if (res === "Nutzer nicht vorhanden")
         this.errors.set("addFriendsOutputColor", "var(--ion-color-danger)");
-      else 
-      this.errors.set("addFriendsOutputColor", "#006600");
+      else
+        this.errors.set("addFriendsOutputColor", "#006600");
     });
   }
 }
