@@ -22,7 +22,7 @@ export class AddMembersPage implements OnInit {
    */
   friendsAndMembers: User[] = [];
   /**
-   new selected user
+   new selected user for group
    */
   newSelectedMembers: User[] = [];
   /**
@@ -52,28 +52,32 @@ export class AddMembersPage implements OnInit {
               public userService: UserService) {
     this.group = navParams.get('groupParam');
     this.currentUser = navParams.get('currentUserParam');
-    this.group.members.forEach(member => {
-      this.friendsAndMembers.push(member);
-      this.filteredFriendsAndMembers.push(member);
-    });
+    if (this.group.members) {
+      this.group.members.forEach(member => {
+        if (this.currentUser.id != member.id) {
+          this.friendsAndMembers.push(member);
+          this.filteredFriendsAndMembers.push(member);
+        }
+      });
+      this.newSelectedMembers.splice(0, this.newSelectedMembers.length, ...this.group.members);
+    }
     let friendIsMember;
-    for(let friend of this.currentUser.friends){
+    for (let friend of this.currentUser.friends) {
       friendIsMember = false;
-      for(let member of this.group.members){
-        if(friend.toString() == member.id){
-          friendIsMember = true;
-          break;
+      if (this.group.members) {
+        for (let member of this.group.members) {
+          if (friend.toString() == member.id) {
+            friendIsMember = true;
+            break;
+          }
         }
       }
-      if(!friendIsMember){
+      if (!friendIsMember) {
         this.userService.findById(friend.toString()).then(user => {
           this.friendsAndMembers.push(user);
           this.filteredFriendsAndMembers.push(user);
         });
       }
-    }
-    if (this.group.members) {
-      this.newSelectedMembers.splice(0, this.newSelectedMembers.length, ...this.group.members);
     }
   }
 

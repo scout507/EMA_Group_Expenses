@@ -54,9 +54,13 @@ export class MemberViewPage implements OnInit {
    */
   addMembers(){
     this.groupService.addMembers(this.group, this.currentUser).then(members => {
+      if(members && members.length > 1){
+        this.group.members.splice(0, this.group.members.length, ...members);
+        this.groupService.update(this.group);
+      }else{
+        alert("mind. 1 Mitglied muss in der Gruppe sein (ohne Admin)");
+      }
 
-      this.group.members.splice(0, this.group.members.length, ...members);
-      this.groupService.update(this.group);
     });
   }
 

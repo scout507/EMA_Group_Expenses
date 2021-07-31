@@ -88,11 +88,13 @@ export class GroupListPage implements OnInit {
           this.subGroups = this.groupService.getAll().subscribe(groups => {
             let newGroups: any[] = [];
             groups.forEach(group => {
-              group.members.forEach(member => {
-                if (member.toString() == this.currentUser.id) {
-                  newGroups.push(group)
-                }
-              })
+              if(group.members){
+                group.members.forEach(member => {
+                  if (member.toString() == this.currentUser.id) {
+                    newGroups.push(group)
+                  }
+                })
+              }
             });
             this.groups = [];
             newGroups.forEach(group => {
