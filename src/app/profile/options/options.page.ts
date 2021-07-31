@@ -36,7 +36,10 @@ export class OptionsPage {
     ) { }
 
   /**
-   * 
+   * When the page is opened, all the required information 
+   * is loaded from the services and stored in the variables 
+   * provided for this purpose. Important here is the check 
+   * whether the user is logged in, otherwise no data will be loaded.
    */
   ionViewWillEnter() {
     this.af.authState.subscribe(user => {
@@ -49,6 +52,12 @@ export class OptionsPage {
     });
   }
 
+  /**
+   * This function navigates back to the Profile page. It checks whether the user 
+   * has changed data, if this is the case, then an Ionic alert is created, which 
+   * asks again whether the changes should be discarded. If there are no changes, then 
+   * it is simply navigated back.
+   */
   async backBtn() {
     if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
       const alert = document.createElement('ion-alert');
@@ -68,6 +77,12 @@ export class OptionsPage {
     }
   }
 
+  /**
+   * This function navigates back to the Profile page. It checks whether the user 
+   * has changed data, if this is the case, then an Ionic alert is created, which 
+   * asks again whether the changes should be saved. If there are no changes, then 
+   * it is simply navigated back.
+   */
   async saveBtn() {
     if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
       const alert = document.createElement('ion-alert');
@@ -88,6 +103,11 @@ export class OptionsPage {
     }
   }
 
+  /**
+   * This function opens the camera of the device and saves it in Base64 format, 
+   * afterwards it is saved in the variable User. Here the plugin "Camera" from 
+   * Capicitor is used.
+   */
   async profileImageChange() {
     const image = await Camera.getPhoto({
       quality: 100,
@@ -97,18 +117,34 @@ export class OptionsPage {
     this.user.profilePic = "data:image/png;base64, " + image.base64String;
   }
 
+  /**
+   * Calls the save Alert function with a parameter = "payment".
+   */
   payment() {
     this.saveAlert("payment");
   }
 
+   /**
+   * Calls the save Alert function with a parameter = "password".
+   */
   passwordchange() {
     this.saveAlert('password');
   }
 
+   /**
+   * Calls the save Alert function with a parameter = "privacy".
+   */
   privacy() {
     this.saveAlert('privacy');
   }
 
+  /**
+   * This function navigates back to the page that comes with the parameter. It checks 
+   * whether the user has changed data, if this is the case, then an Ionic alert is created, which 
+   * asks again whether the changes should be saved. If there are no changes, then 
+   * it is simply navigated to the page from the parameter.
+   * @param site Is needed to navigate to the right page.
+   */
   async saveAlert(site: string) {
     if (JSON.stringify(this.user) !== JSON.stringify(this.userOld)) {
       const alert = document.createElement('ion-alert');
