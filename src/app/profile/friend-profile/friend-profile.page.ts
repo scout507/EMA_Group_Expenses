@@ -72,15 +72,24 @@ export class FriendProfilePage {
           this.currentUser = result;
           this.route.params.subscribe(item => {
             this.friendsService.findById(item[0], this.currentUser).then(item2 => {
-              this.user = item2;
+              this.user = {... item2};
               this.badges = [];
+              if(!this.user.descriptionPublic){
+                this.user.description = "";
+              }
+              if(!this.user.imagePublic){
+                this.user.profilePic = "https://bit.ly/2S904CS";
+              }
               this.transactionsservice.getAllTransactionByUser(item2, true).then(transactions => {
                 this.badgeService.setBadges(item2, transactions);
-                this.user.awards.forEach(element => {
-                  this.awardService.findById(element).then(item => {
-                    this.badges.push(item);
+                if (this.user.awardsPublic) {
+                  this.user.awards.forEach(element => {
+                    this.awardService.findById(element).then(item => {
+                      this.badges.push(item);
+                    });
+
                   });
-                });
+                }
               });
               this.isfriend = this.friendsService.isFriends(this.user, this.currentUser);
             });
