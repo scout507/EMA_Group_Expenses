@@ -8,6 +8,7 @@ import { ArwardService } from 'src/app/services/award.service';
 import { AuthService } from "../../services/auth.service";
 import { DomSanitizer } from '@angular/platform-browser';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { BadgeService } from 'src/app/services/badge.service';
 
 @Component({
   selector: 'app-profile',
@@ -25,20 +26,24 @@ export class ProfilePage implements OnInit {
     private userService: UserService,
     private af: AngularFireAuth,
     private awardService: ArwardService,
-    private authService: AuthService
+    private authService: AuthService,
+    private badgeService: BadgeService
   ) { }
 
   ionViewWillEnter() {
-    var sub = this.af.authState.subscribe(user => {
-      if (user) {
-        this.userService.findById(user.uid).then(value => {
-          this.user = { ...value };
+    var sub = this.af.authState.subscribe(userAf => {
+      if (userAf) {
+        this.userService.findById(userAf.uid).then(user => {
+          this.user = { ...user };
           this.badges = [];
-          this.user.awards.forEach(element => {
-            this.awardService.findById(element).then(item => {
-              this.badges.push(item);
+          this.transactionsservice.getAllTransactionByUser(user, true).then(transactions => {
+            this.badgeService.setBadges(user, transactions);
+            this.user.awards.forEach(element => {
+              this.awardService.findById(element).then(item => {
+                this.badges.push(item);
+              });
             });
-          });
+          }); 
         });
         sub.unsubscribe();
       }

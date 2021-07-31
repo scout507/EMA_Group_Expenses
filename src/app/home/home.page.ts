@@ -14,7 +14,7 @@ import {IonSearchbar, ModalController} from "@ionic/angular";
 import {PaymentReminderPage} from "../payment-reminder/payment-reminder.page";
 
 /**
- *
+ * Class used for Home-view. HomePage for displaying the users active Transactions.
  */
 
 @Component({
@@ -34,7 +34,7 @@ export class HomePage {
     }
   }
 
-
+  //data
   transactions: Transaction[] = [];
   simpleTransactions: SimpleTransaction[] = [];
   filteredTransactions: SimpleTransaction[] = [];
@@ -48,10 +48,10 @@ export class HomePage {
 
 
   //numbers for display on the filter-buttons
-  private incoming: number;
-  private pending: number;
-  private confirm: number;
-  private outgoing: number;
+  incoming: number;
+  pending: number;
+  confirm: number;
+  outgoing: number;
 
   // search & search-bar
   searchbarVisible: boolean;
@@ -59,7 +59,7 @@ export class HomePage {
 
   /**
    * @ignore
-   * @param sanitizer
+   * @param sanitizer used for the avatar images
    * @param transactionService
    * @param authService
    * @param userService
@@ -68,7 +68,7 @@ export class HomePage {
    * @param af
    * @param modalController
    */
-  
+
   constructor(private sanitizer: DomSanitizer,
               private transactionService: TransactionService,
               private authService: AuthService,
@@ -79,6 +79,9 @@ export class HomePage {
               private modalController: ModalController) {
   }
 
+  /**
+   * @ignore
+   */
   ionViewWillEnter() {
     this.outgoingView = true;
     this.confirmView = false;
@@ -96,7 +99,7 @@ export class HomePage {
   }
 
   /**
-   * filters all displayed transactions for the given search term (search for purpose, user name, group name). Results get pushed into filteredTransactions.
+   * Filters all displayed transactions for the given search term (search for purpose, user name, group name). Results get pushed into filteredTransactions.
    * @param searchTerm
    */
   filterTransaction(searchTerm: string) {
@@ -261,7 +264,7 @@ export class HomePage {
 
   /**
    * Displays the confirmDialog alert.
-   * @param transactionID
+   * @param transactionID ID of the transaction to be confirmed.
    * @param userID The other user's id
    * @param userName The other user's name
    */
