@@ -34,11 +34,11 @@
   <ion-text color="danger" *ngIf="errors.get('amount')">{{errors.get('amount')}}</ion-text>
   <ion-item>
     <ion-label>Rechnungsdatum</ion-label>
-    <ion-datetime [(ngModel)]="transaction.purchaseDate" displayFormat="DD.MM.YYYY"></ion-datetime>
+    <ion-datetime [(ngModel)]="transaction.purchaseDate" displayFormat="DD.MM.YYYY" max="{{maxDate}}"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label>Fälligkeitsdatum</ion-label>
-    <ion-datetime [(ngModel)]="transaction.dueDate" displayFormat="DD.MM.YYYY"></ion-datetime>
+    <ion-datetime [(ngModel)]="transaction.dueDate" displayFormat="DD.MM.YYYY" min="{{currentDate}}" max="{{maxDate}}"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label>Rhythmus</ion-label>

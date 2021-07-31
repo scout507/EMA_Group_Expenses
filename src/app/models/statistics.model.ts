@@ -1,3 +1,6 @@
+/**
+ * Class used to hold Group statistics.
+ */
 
 export class Statistic{
   startDate: Date;
@@ -28,7 +31,11 @@ export class Statistic{
   lastWeekCost = 0;
   lastWeekIncome = 0;
 
-
+  /**
+   *
+   * @param startDate transaction.purchaseDate
+   * @param newestDate new Date()
+   */
   constructor(startDate: Date, newestDate: Date) {
     this.startDate = startDate;
     this.newestDate = newestDate;

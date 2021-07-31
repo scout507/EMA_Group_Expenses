@@ -6,20 +6,45 @@ import {AuthService} from "../../services/auth.service";
 import {Group} from "../../models/group.model";
 import {TransactionService} from "../../services/transaction.service";
 
+/**
+ * This class is used to add new members to the group
+ */
 @Component({
   selector: 'app-add-members',
   templateUrl: './add-members.page.html',
   styleUrls: ['./add-members.page.scss'],
 })
+
 export class AddMembersPage implements OnInit {
 
+  /**
+   array of all friends and group members
+   */
   friendsAndMembers: User[] = [];
+  /**
+   new selected user for group
+   */
   newSelectedMembers: User[] = [];
+  /**
+   the selected group from user
+   */
   group: Group;
+  /**
+   the user who currently uses the app
+   */
   currentUser: User;
+  /**
+   array of all friends and members with filter from searchbar
+   */
   filteredFriendsAndMembers: User[] = [];
+  /**
+   boolean if searchbar visible or not
+   */
   searchbarVisible = false;
 
+  /**
+   * @ignore
+   */
   constructor(private modalController: ModalController,
               public navParams: NavParams,
               public authService: AuthService,
@@ -27,28 +52,32 @@ export class AddMembersPage implements OnInit {
               public userService: UserService) {
     this.group = navParams.get('groupParam');
     this.currentUser = navParams.get('currentUserParam');
-    this.group.members.forEach(member => {
-      this.friendsAndMembers.push(member);
-      this.filteredFriendsAndMembers.push(member);
-    });
+    if (this.group.members) {
+      this.group.members.forEach(member => {
+        if (this.currentUser.id != member.id) {
+          this.friendsAndMembers.push(member);
+          this.filteredFriendsAndMembers.push(member);
+        }
+      });
+      this.newSelectedMembers.splice(0, this.newSelectedMembers.length, ...this.group.members);
+    }
     let friendIsMember;
-    for(let friend of this.currentUser.friends){
+    for (let friend of this.currentUser.friends) {
       friendIsMember = false;
-      for(let member of this.group.members){
-        if(friend.toString() == member.id){
-          friendIsMember = true;
-          break;
+      if (this.group.members) {
+        for (let member of this.group.members) {
+          if (friend.toString() == member.id) {
+            friendIsMember = true;
+            break;
+          }
         }
       }
-      if(!friendIsMember){
+      if (!friendIsMember) {
         this.userService.findById(friend.toString()).then(user => {
           this.friendsAndMembers.push(user);
           this.filteredFriendsAndMembers.push(user);
         });
       }
-    }
-    if (this.group.members) {
-      this.newSelectedMembers.splice(0, this.newSelectedMembers.length, ...this.group.members);
     }
   }
 
@@ -61,21 +90,34 @@ export class AddMembersPage implements OnInit {
     }
   }
 
+  /**
+   * this function makes the searchbar visible
+   */
   setVisible() {
     this.searchbarVisible = true;
   }
 
+  /**
+   * this function filters the friends and members with the value in search bar
+   */
   doSearch() {
     this.filteredFriendsAndMembers = this.friendsAndMembers.filter(r =>
       r.displayName.toLowerCase().includes(this.#searchbar.value.toLowerCase()))
   }
 
+  /**
+   * This function deactivates the searchbar and hides it
+   */
   cancelSearch() {
     this.#searchbar.value = "";
     this.filteredFriendsAndMembers = this.friendsAndMembers;
     this.searchbarVisible = false;
   }
 
+  /**
+   * This function is used to push or deleted the selected friend
+   * @param friend - the selected user
+   */
   select(friend: User) {
     if (this.checkSelectedFriendsContainFriend(friend)) {
       this.newSelectedMembers = this.newSelectedMembers.filter(f => f.id != friend.id);
@@ -84,6 +126,10 @@ export class AddMembersPage implements OnInit {
     }
   }
 
+  /**
+   * This function checks if the selected user is already a group member
+   * @param friend - the selected user
+   */
   checkSelectedFriendsContainFriend(friend: User): boolean {
     let ret = false;
     this.newSelectedMembers.forEach(f => {
@@ -94,6 +140,9 @@ export class AddMembersPage implements OnInit {
     return ret;
   }
 
+  /**
+   * This function adds the new selected user to the group
+   */
   async add() {
     let removedFriend: User[] = [];
     let friendsWithOpenTransactions: User[] = [];
@@ -125,6 +174,9 @@ export class AddMembersPage implements OnInit {
     }
   }
 
+  /**
+   * @ignore
+   */
   ngOnInit() {
   }
 

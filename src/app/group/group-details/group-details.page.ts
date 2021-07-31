@@ -14,6 +14,9 @@ import {StatisticsService} from "../../services/statistics.service";
 import {Statistic} from "../../models/statistics.model";
 import Chart from "chart.js/auto";
 
+/**
+ * This class shows the details from the selected group
+ */
 @Component({
   selector: 'app-group-details',
   templateUrl: './group-details.page.html',
@@ -39,6 +42,21 @@ export class GroupDetailsPage implements OnInit {
 
   @ViewChild('pieChart') pieChart;
 
+
+  /**
+   * @ignore
+   * @param groupService
+   * @param route
+   * @param navCtrl
+   * @param alertController
+   * @param authService
+   * @param af
+   * @param userService
+   * @param transactionService
+   * @param sanitizer
+   * @param statisticsService
+   * @param router
+   */
   constructor(private groupService: GroupService,
               private route: ActivatedRoute,
               private navCtrl: NavController,
@@ -53,6 +71,9 @@ export class GroupDetailsPage implements OnInit {
   }
 
 
+  /**
+   * updates the existing group with new details
+   */
   update(){
     if(this.group.name.length > 2){
       if(this.group.members.length > 1){
@@ -66,6 +87,9 @@ export class GroupDetailsPage implements OnInit {
     }
   }
 
+  /**
+   * deletes the selected group
+   */
   async delete(): Promise<void>{
     const alert = await this.alertController.create({
       header: 'Gruppe löschen',
@@ -93,6 +117,9 @@ export class GroupDetailsPage implements OnInit {
     await alert.present();
   }
 
+  /**
+   * lets the user leave the selected group
+   */
   async leaveGroup(): Promise<void>{
     const alert = await this.alertController.create({
       header: 'Gruppe verlassen',
@@ -121,6 +148,9 @@ export class GroupDetailsPage implements OnInit {
     await alert.present();
   }
 
+  /**
+   * @ignore
+   */
   ionViewWillEnter() {
     this.currentTransactions = [];
     this.oldTransactions = [];
@@ -139,7 +169,7 @@ export class GroupDetailsPage implements OnInit {
       this.transactionService.getAllTransactionByGroup(this.group).then(transactions =>{
         transactions.forEach(transaction =>{
           this.allTransactions.push(transaction);
-          if(!this.transactionService.checkTransactionFinish(transaction)){
+          if(!transaction.finished){
             this.currentTransactions.push(transaction);
           }
           else{
@@ -154,50 +184,81 @@ export class GroupDetailsPage implements OnInit {
     });
   }
 
+  /**
+   * navigates to the selected transaction
+   * @param transaction - selected transaction
+   */
   viewTransaction(transaction: Transaction) {
     this.transactionService.saveLocally(transaction);
     this.router.navigate(['transaction-details']);
   }
 
+  /**
+   * shows all members from the selected group
+   */
   viewMembers(){
     this.router.navigate(['member-view', {id: this.group.id}])
   }
 
+  /**
+   * lets the user create a new transaction with the group
+   */
+  createTransaction(){
+    this.router.navigate(['transaction-create', {fromGroup: true, groupID: this.group.id}]);
+  }
 
+  /**
+   * @ignore
+   */
   ngOnInit() {
   }
 
+  /**
+   * lets the user see the statistics of the group
+   */
   switchToStats(){
-    this.view = 2;
-    this.createPieChart(30);
+    if(this.view != 2) {
+      this.view = 2;
+      this.createPieChart();
+    }
   }
 
-
-
-  createPieChart(days: number) {
-    this.pie = new Chart(this.pieChart.nativeElement, {
-      type: 'pie',
-      data: {
-        labels: ['Einnahmen', 'Ausgaben'],
-        datasets: [
-          {
-            label: 'Dataset 1',
-            data: [this.currentIncome, this.currentCost],
-            backgroundColor: ["rgba(104, 237, 136, 1)", "rgba(237, 104, 104, 1)"],
+  /**
+   * creates a pie chart with the statistics of the group
+   */
+  createPieChart() {
+    if(this.pieChart != undefined) {
+      this.pie = new Chart(this.pieChart.nativeElement, {
+        type: 'pie',
+        data: {
+          labels: ['Einnahmen', 'Ausgaben'],
+          datasets: [
+            {
+              label: 'Dataset 1',
+              data: [this.currentIncome, this.currentCost],
+              backgroundColor: ["rgba(104, 237, 136, 1)", "rgba(237, 104, 104, 1)"],
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            }
           }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          }
-        }
-      },
-    });
+        },
+      });
+    }
+    else{
+      setTimeout( () => { this.createPieChart() }, 100 );
+    }
   }
 
+  /**
+   * sets the time frame for the statistics of the group
+   * @param back - checks if back or forward is pressed
+   */
   statsButton(back: boolean) {
     if(back && this.currentStats>0) this.currentStats--;
     else if(!back && this.currentStats<5) this.currentStats++;
@@ -228,13 +289,13 @@ export class GroupDetailsPage implements OnInit {
       }
       case 4: {
         this.currentTotal = this.statistic.lastMonthTotal;
-        this.currentCost = this.statistic.lastMonthCost
+        this.currentCost = this.statistic.lastMonthCost;
         this.currentIncome = this.statistic.lastMonthIncome;
         break;
       }
       case 5: {
         this.currentTotal = this.statistic.lastWeekTotal;
-        this.currentCost = this.statistic.lastWeekCost
+        this.currentCost = this.statistic.lastWeekCost;
         this.currentIncome = this.statistic.lastWeekIncome;
         break;
       }
@@ -245,4 +306,12 @@ export class GroupDetailsPage implements OnInit {
     this.pie.update();
   }
 
+  /**
+   * creates the desired date format
+   * @param oldDate - date format that needs to be changed
+   */
+  dateFormat(oldDate: string): string{
+    const d = new Date(oldDate);
+    return '' + d.getDate() + "." + (d.getMonth()+1) + '.' + d.getFullYear();
+  }
 }

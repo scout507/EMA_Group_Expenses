@@ -2,23 +2,42 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../models/user.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ModalController, NavController} from "@ionic/angular";
-import {AddMembersPage} from "../add-members/add-members.page";
 import {GroupService} from "../../services/group.service";
 import {Group} from "../../models/group.model";
 import {AuthService} from "../../services/auth.service";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {UserService} from "../../services/user.service";
 
+/**
+ * This class has functions to create a new group
+ */
 @Component({
   selector: 'app-group-create',
   templateUrl: './group-create.page.html',
   styleUrls: ['./group-create.page.scss'],
 })
+
 export class GroupCreatePage implements OnInit {
 
+  /**
+   user who currently uses the app
+   */
   currentUser: User;
+  /**
+   the new group that the user creates
+   */
   group: Group = new Group();
 
+  /**
+   * @ignore
+   * @param activatedRoute
+   * @param modalController
+   * @param authService
+   * @param groupService
+   * @param af
+   * @param userService
+   * @param navCtrl
+   */
   constructor(private activatedRoute: ActivatedRoute,
               private modalController: ModalController,
               private authService: AuthService,
@@ -29,12 +48,18 @@ export class GroupCreatePage implements OnInit {
 
   }
 
+  /**
+   * This function changes the group members to the new selected users
+   */
   async addMembers(){
     this.groupService.addMembers(this.group, this.currentUser).then(members => {
       this.group.members = members;
     })
   }
 
+  /**
+   * adds the new created group to firebase
+   */
   add(){
     if(this.group.name && this.group.name.length > 2){
       if(this.group.members && this.group.members.length > 0){
@@ -51,6 +76,9 @@ export class GroupCreatePage implements OnInit {
   }
 
 
+  /**
+   * @ignore
+   */
   ngOnInit() {
     const sub = this.af.authState.subscribe(user => {
       if (user) {

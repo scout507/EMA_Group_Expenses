@@ -62,14 +62,29 @@ export class TransactionDetailsPage implements OnInit {
       case 'yearly': {
         return 'Jährlich';
       }
+      case 'deleted': {
+        return 'Beendet';
+      }
     }
   }
 
   delete(){
-    let confirmation = confirm('Are you sure you want to delete this transaction?');
+    let confirmation = confirm('Wollen Sie die Transaktion wirklich löschen?');
     if (confirmation) {
       this.transactionService.delete(this.transaction.id);
       this.router.navigate(['home']);
+    }
+  }
+
+  deleteTracker(){
+    let confirmation = confirm('Wollen Sie das Wiederkehren dieser Transaktion wirklich beenden?');
+    if (confirmation) {
+      this.transactionService.findTrackerById(this.transaction.id).then(tracker => {
+        this.transaction.rhythm = 'deleted';
+        this.transactionService.deleteTracker(tracker);
+      }).finally(() => {
+        this.transactionService.update(this.transaction);
+      })
     }
   }
 

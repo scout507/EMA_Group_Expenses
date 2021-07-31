@@ -9,28 +9,21 @@ import {Group} from '../models/group.model';
 import {UserService} from './user.service';
 import {TransactionTracker} from "../models/transactionTracker.model";
 
+
+/***
+ *
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
   transactionCollection: AngularFirestoreCollection<Transaction>;
   transactionTrackerCollection: AngularFirestoreCollection<TransactionTracker>;
-   userTransactionCollection: AngularFirestoreCollection<Transaction>;
 
   constructor(private afs: AngularFirestore, private groupService: GroupService, private authService: AuthService, private userService: UserService) {
     this.transactionCollection = afs.collection<Transaction>('Transaction');
     this.transactionTrackerCollection = afs.collection<TransactionTracker>('TransactionTracker');
 
-  }
-
-
-  isTransactionPending(transaction: Transaction): boolean {
-    transaction.accepted.forEach(entry => {
-      if (!entry) {
-        return false;
-      }
-    });
-    return true;
   }
 
   persist(transaction: Transaction) {
@@ -67,8 +60,6 @@ export class TransactionService {
   }
 
   async getAllTransactionByUser(user: User, withOld: boolean): Promise<Transaction[]> {
-    //this.userTransactionCollection = this.afs.collection<Transaction>('Transaction', ref => ref.where('creator', "==", user.id));
-
     const loading = document.createElement('ion-loading');
     loading.cssClass = 'loading';
     loading.message = 'Lade Daten';
@@ -110,7 +101,7 @@ export class TransactionService {
     });
     await Promise.all(transactions.map(async (transaction) => {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
-      //await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
+      await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
     }));
     // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
     transactions.sort(function(b,a): any{
@@ -214,6 +205,16 @@ export class TransactionService {
 
   deleteTracker(tracker: TransactionTracker) {
     this.transactionTrackerCollection.doc(tracker.id).delete();
+  }
+
+  findTrackerById(transactionID: string){
+    return this.getAllTransactionTracker().then(trackerList => {
+      for (let tracker of trackerList){
+        if (tracker.originalTransaction.id == transactionID){
+          return tracker;
+        }
+      }
+    })
   }
 
   saveLocally(transaction: Transaction) {
