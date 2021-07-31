@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+    <ion-button (click)="this.navCtrl.back()" fill="clear" slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
     <ion-title class="ion-text-center" style="margin-right: 40px;">Freunde</ion-title>
     <ion-button *ngIf="!isfriend" slot="end" (click)="addFriend()">
       <ion-icon name="person-add-outline"></ion-icon>
