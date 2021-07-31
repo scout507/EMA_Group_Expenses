@@ -6,15 +6,27 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 
+/**
+ * This class is needed for the option-page.
+ */
+
 @Component({
   selector: 'app-options',
   templateUrl: './options.page.html',
   styleUrls: ['./options.page.scss'],
 })
-export class OptionsPage implements OnInit {
+export class OptionsPage {
   user: User = new User();
   userOld: User = new User();
 
+  /**
+   * @ignore
+   * @param sanitizer 
+   * @param router 
+   * @param route 
+   * @param userService 
+   * @param af 
+   */
   constructor(
     public sanitizer: DomSanitizer, 
     private router: Router, 
@@ -23,8 +35,9 @@ export class OptionsPage implements OnInit {
     private af: AngularFireAuth
     ) { }
 
-  ngOnInit() { }
-
+  /**
+   * 
+   */
   ionViewWillEnter() {
     this.af.authState.subscribe(user => {
       if (user) {

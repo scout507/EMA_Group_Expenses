@@ -13,7 +13,7 @@ import { BadgeService } from 'src/app/services/badge.service';
 import { NavController } from '@ionic/angular';
 
 /**
- * Die Klasse wird für die Friend-Profil Page benötigt.
+ * The class is needed for the Friend Profile Page.
  */
 
 @Component({
@@ -57,10 +57,12 @@ export class FriendProfilePage {
   ) { }
 
   /**
-   * Beim öffnen der Seite werden alle benötigten Informationen über die Services geladen und in den 
-   * dafür vorgsehenen Variablen gespeichert. Dabei werden ebenfalls die Archievments berechnet und sollte
-   * es neue geben, werden diese in der Datenbank gespeichert. Wichtig hierbei ist die Überprüfung ob der
-   * User eingeloggt ist, sonst werden keine Daten geladen.
+   * When the page is opened, all the required information 
+   * is loaded from the services and stored in the variables 
+   * provided for this purpose. The archievments are also 
+   * calculated and if there should be there are new ones, these 
+   * are stored in the data base. Important here is the check 
+   * whether the user is logged in, otherwise no data will be loaded.
    */
 
   ionViewWillEnter() {
@@ -90,18 +92,18 @@ export class FriendProfilePage {
   }
 
   /**
-  * Über die Funktion können Freunde hinzugefügt werden.
+  * Friends can be added via the function.
   */
   addFriend() {
     this.friendsService.addFriend(this.user.email, this.currentUser.id);
   }
 
   /**
-   * Diese Funktionalität erstellt einen Ionic-Alert, dieser enthält nur einen Titel und eine Beschreibung,
-   * des Weiteren gibt es einen Schließen-Button um den Ionic-Alert zu schließen. Wird benutzt wenn man auf
-   * die Icons der Badges klickt.
-   * @param badgename Wird benötigt für den Titel.
-   * @param badgeDescription Wird benötigt für die Beschreibung.
+   * This functionality creates an Ionic alert, this contains only a title and a description, 
+   * furthermore there is a close button to close the Ionic alert. Used when you click on 
+   * the badge icons.
+   * @param badgename Required for the title.
+   * @param badgeDescription Required for the description.
    */
   async badgeDescription(badgename, badgeDescription) {
     const alert = document.createElement('ion-alert');
@@ -115,11 +117,11 @@ export class FriendProfilePage {
   }
 
   /**
-   * Diese Funktionalität erstellt einen Ionic-Alert, dieser enthält nur einen Titel und eine Beschreibung,
-   * des Weiteren gibt es einen Schließen-Button um den Ionic-Alert zu schließen. Wird benutzt wenn man auf
-   * die Icons der Bezahlmethoden klickt.
-   * @param name Benötigt für den Titel.
-   * @param discription Benötigt für die Beschreibung.
+   * This functionality creates an Ionic alert, this contains only a title and a description, 
+   * furthermore there is a close button to close the Ionic alert. Used when clicking on 
+   * the icons of the payment methods.
+   * @param name Required for the title.
+   * @param discription Required for the description.
    */
   async paymentDescription(name: string, discription: string) {
     const alert = document.createElement('ion-alert');

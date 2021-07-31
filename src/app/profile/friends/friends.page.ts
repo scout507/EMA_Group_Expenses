@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { NavController } from '@ionic/angular';
 
 /**
- * Die Klasse wird für die Friend Page benötigt.
+ * The class is needed for the Friend Page.
  */
 
 @Component({
@@ -41,8 +41,11 @@ export class FriendsPage {
   ) { }
 
   /**
-   * Beim öffnen der Seite werden alle benötigten Informationen über die Services geladen und in den 
-   * dafür vorgsehenen Variablen gespeichert.
+   * When the page is opened, 
+   * all the required information is loaded from the services and 
+   * stored in the variables provided for this purpose. Important 
+   * here is the check whether the user is logged in, otherwise 
+   * no data will be loaded.
    */
   ionViewWillEnter() {
     this.addFriendsOutput = "";
@@ -62,13 +65,20 @@ export class FriendsPage {
     });
   }
 
+
+  /**
+   * This function navigates to the Friend-Profile page, 
+   * passing on the ID of the clicked user.
+   * @param id Is needed to identify the clicked user.
+   */
   friendBttn(id: string) {
     this.router.navigate(['friend-profile', [id]]);
   }
 
   /**
    * Takes the email from the inputfield and calls friendService.addFriend with the given email.
-   * The return value of friendService.addFriend (string which confirms if the action was successful) gets displayed via error.
+   * The return value of friendService.addFriend (string which confirms if the action was successful) 
+   * gets displayed via error.
    */
   addFriend() {
     this.friendsService.addFriend(this.addFriendInput, this.currentUser.id).then(res => {
@@ -77,7 +87,7 @@ export class FriendsPage {
       if (res === "Nutzer nicht vorhanden")
         this.errors.set("addFriendsOutputColor", "var(--ion-color-danger)");
       else
-      this.errors.set("addFriendsOutputColor", "#006600");
+        this.errors.set("addFriendsOutputColor", "#006600");
     });
   }
 }
