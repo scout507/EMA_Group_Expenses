@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {TransactionService} from "../../services/transaction.service";
 import {Transaction} from "../../models/transaction.model";
 import {TransactionTracker} from "../../models/transactionTracker.model";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-transaction-stakes',
@@ -22,7 +23,8 @@ export class TransactionStakesPage implements OnInit {
    * @param transactionService
    */
   constructor(private router: Router,
-              private transactionService: TransactionService) {
+              private transactionService: TransactionService,
+              public sanitizer: DomSanitizer) {
     this.transaction = transactionService.getLocally();
     if(this.transaction.participation.length === 0){
       let stake = this.transaction.amount / this.transaction.group.members.length;
