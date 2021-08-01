@@ -1,0 +1,2303 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>group-expenses documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">group-expenses documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  HomePage</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/home/home.page.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Class used for Home-view. HomePage for displaying the users active Transactions.</p>
+
+    </p>
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-home</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>home.page.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>home.page.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="##searchbar" >#searchbar</a>
+                            </li>
+                            <li>
+                                <a href="#confirm" >confirm</a>
+                            </li>
+                            <li>
+                                <a href="#confirmView" >confirmView</a>
+                            </li>
+                            <li>
+                                <a href="#currentUser" >currentUser</a>
+                            </li>
+                            <li>
+                                <a href="#filteredTransactions" >filteredTransactions</a>
+                            </li>
+                            <li>
+                                <a href="#incoming" >incoming</a>
+                            </li>
+                            <li>
+                                <a href="#incomingView" >incomingView</a>
+                            </li>
+                            <li>
+                                <a href="#outgoing" >outgoing</a>
+                            </li>
+                            <li>
+                                <a href="#outgoingView" >outgoingView</a>
+                            </li>
+                            <li>
+                                <a href="#pending" >pending</a>
+                            </li>
+                            <li>
+                                <a href="#pendingView" >pendingView</a>
+                            </li>
+                            <li>
+                                <a href="#search" >search</a>
+                            </li>
+                            <li>
+                                <a href="#searchbarVisible" >searchbarVisible</a>
+                            </li>
+                            <li>
+                                <a href="#simpleTransactions" >simpleTransactions</a>
+                            </li>
+                            <li>
+                                <a href="#transactions" >transactions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#buttonHandler" >buttonHandler</a>
+                            </li>
+                            <li>
+                                <a href="#cancelSearch" >cancelSearch</a>
+                            </li>
+                            <li>
+                                <a href="#clearSearch" >clearSearch</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#confirmDialog" >confirmDialog</a>
+                            </li>
+                            <li>
+                                <a href="#confirmTransaction" >confirmTransaction</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createPaymentReminder" >createPaymentReminder</a>
+                            </li>
+                            <li>
+                                <a href="#createSimpleTransaction" >createSimpleTransaction</a>
+                            </li>
+                            <li>
+                                <a href="#doSearch" >doSearch</a>
+                            </li>
+                            <li>
+                                <a href="#filterTransaction" >filterTransaction</a>
+                            </li>
+                            <li>
+                                <a href="#getDateDifference" >getDateDifference</a>
+                            </li>
+                            <li>
+                                <a href="#refreshHandler" >refreshHandler</a>
+                            </li>
+                            <li>
+                                <a href="#startSearch" >startSearch</a>
+                            </li>
+                            <li>
+                                <a href="#updateTransactions" >updateTransactions</a>
+                            </li>
+                            <li>
+                                <a href="#viewTransaction" >viewTransaction</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#searchbar" >searchbar</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buttonHandler"></a>
+                    <span class="name">
+                        <span ><b>buttonHandler</b></span>
+                        <a href="#buttonHandler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>buttonHandler(type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="330"
+                            class="link-to-prism">src/app/home/home.page.ts:330</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Switches between different views (which type of transactions are displayed).</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Number that corresponds to the view.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelSearch"></a>
+                    <span class="name">
+                        <span ><b>cancelSearch</b></span>
+                        <a href="#cancelSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelSearch()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="306"
+                            class="link-to-prism">src/app/home/home.page.ts:306</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cancels search, resets the search-term and displayed transactions and deactivates the search-bar.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearSearch"></a>
+                    <span class="name">
+                        <span ><b>clearSearch</b></span>
+                        <a href="#clearSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearSearch()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="315"
+                            class="link-to-prism">src/app/home/home.page.ts:315</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Empties the search sting</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmDialog"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>confirmDialog</b></span>
+                        <a href="#confirmDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>confirmDialog(transactionID: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userID: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="271"
+                            class="link-to-prism">src/app/home/home.page.ts:271</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Displays the confirmDialog alert.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>transactionID</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>ID of the transaction to be confirmed.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>userID</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The other user&#39;s id</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>userName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The other user&#39;s name</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmTransaction"></a>
+                    <span class="name">
+                        <span ><b>confirmTransaction</b></span>
+                        <a href="#confirmTransaction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmTransaction(transactionID: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userID: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="349"
+                            class="link-to-prism">src/app/home/home.page.ts:349</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Confirmes a given transaction for a given user and refreshes the displayed transactions.
+If the transaction is of type &#39;cost&#39; the other user needs to be flagged as accepted in the accepted array.
+If the transaction is of type &#39;income&#39; the current user needs to be flagged as accepted in the accepted array (Because the current user is recieving money from the other user).</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>transactionID</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Id of the transaction to be confirmed.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>userID</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The other user&#39;s ID.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createPaymentReminder"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createPaymentReminder</b></span>
+                        <a href="#createPaymentReminder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createPaymentReminder(transaction: <a href="../classes/SimpleTransaction.html" target="_self">SimpleTransaction</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/app/home/home.page.ts:146</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates the PaymentReminder modal.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>transaction</td>
+                                    <td>
+                                                <code><a href="../classes/SimpleTransaction.html" target="_self" >SimpleTransaction</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createSimpleTransaction"></a>
+                    <span class="name">
+                        <span ><b>createSimpleTransaction</b></span>
+                        <a href="#createSimpleTransaction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createSimpleTransaction(transaction: <a href="../classes/Transaction.html" target="_self">Transaction</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="231"
+                            class="link-to-prism">src/app/home/home.page.ts:231</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formats the transaction recived from the TransactionService into the SimpleTransaction format.
+SimpleTransactions only contain the necessary information for display in home-view and are based on a one-to-one user relationship.
+In some cases multiple SimpleTransactions have to be created for one Transaction.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>transaction</td>
+                                    <td>
+                                                <code><a href="../classes/Transaction.html" target="_self" >Transaction</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>transaction to be parsed into SimpleTransaction(s)</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="doSearch"></a>
+                    <span class="name">
+                        <span ><b>doSearch</b></span>
+                        <a href="#doSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>doSearch()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="299"
+                            class="link-to-prism">src/app/home/home.page.ts:299</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Calls the filter-Method</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterTransaction"></a>
+                    <span class="name">
+                        <span ><b>filterTransaction</b></span>
+                        <a href="#filterTransaction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterTransaction(searchTerm: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/app/home/home.page.ts:105</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Filters all displayed transactions for the given search term (search for purpose, user name, group name). Results get pushed into filteredTransactions.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>searchTerm</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDateDifference"></a>
+                    <span class="name">
+                        <span ><b>getDateDifference</b></span>
+                        <a href="#getDateDifference"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDateDifference(transcation: <a href="../classes/Transaction.html" target="_self">Transaction</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="291"
+                            class="link-to-prism">src/app/home/home.page.ts:291</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Calculates and returns the difference of the transaction.dueDate to the current date.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>transcation</td>
+                                    <td>
+                                                <code><a href="../classes/Transaction.html" target="_self" >Transaction</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refreshHandler"></a>
+                    <span class="name">
+                        <span ><b>refreshHandler</b></span>
+                        <a href="#refreshHandler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>refreshHandler(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="216"
+                            class="link-to-prism">src/app/home/home.page.ts:216</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Calls updateTransactions() when the refresher is activated.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startSearch"></a>
+                    <span class="name">
+                        <span ><b>startSearch</b></span>
+                        <a href="#startSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>startSearch()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="322"
+                            class="link-to-prism">src/app/home/home.page.ts:322</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Activates the search-bar</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateTransactions"></a>
+                    <span class="name">
+                        <span ><b>updateTransactions</b></span>
+                        <a href="#updateTransactions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateTransactions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="176"
+                            class="link-to-prism">src/app/home/home.page.ts:176</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reloads all of the users active transactions. Transactions get parsed into SimpleTransaction format and pushed into transactions.
+Calls filterTransaction with the current search.
+Updates the counters for amounts displayed.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewTransaction"></a>
+                    <span class="name">
+                        <span ><b>viewTransaction</b></span>
+                        <a href="#viewTransaction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>viewTransaction(transactionID: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userID: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/app/home/home.page.ts:132</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Navigates to transaction-details-view on click. The transaction gets localy saved for the transaction view to load.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>transactionID</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>userID</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the current user&#39;s id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="#searchbar"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>#searchbar</b></span>
+                        <a href="##searchbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>IonSearchbar</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/home/home.page.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirm"></a>
+                    <span class="name">
+                        <span ><b>confirm</b></span>
+                        <a href="#confirm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/home/home.page.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmView"></a>
+                    <span class="name">
+                        <span ><b>confirmView</b></span>
+                        <a href="#confirmView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/home/home.page.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUser"></a>
+                    <span class="name">
+                        <span ><b>currentUser</b></span>
+                        <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/home/home.page.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredTransactions"></a>
+                    <span class="name">
+                        <span ><b>filteredTransactions</b></span>
+                        <a href="#filteredTransactions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SimpleTransaction[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/home/home.page.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="incoming"></a>
+                    <span class="name">
+                        <span ><b>incoming</b></span>
+                        <a href="#incoming"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/home/home.page.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="incomingView"></a>
+                    <span class="name">
+                        <span ><b>incomingView</b></span>
+                        <a href="#incomingView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/home/home.page.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="outgoing"></a>
+                    <span class="name">
+                        <span ><b>outgoing</b></span>
+                        <a href="#outgoing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/home/home.page.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="outgoingView"></a>
+                    <span class="name">
+                        <span ><b>outgoingView</b></span>
+                        <a href="#outgoingView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/home/home.page.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pending"></a>
+                    <span class="name">
+                        <span ><b>pending</b></span>
+                        <a href="#pending"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/home/home.page.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pendingView"></a>
+                    <span class="name">
+                        <span ><b>pendingView</b></span>
+                        <a href="#pendingView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/home/home.page.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="search"></a>
+                    <span class="name">
+                        <span ><b>search</b></span>
+                        <a href="#search"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/home/home.page.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchbarVisible"></a>
+                    <span class="name">
+                        <span ><b>searchbarVisible</b></span>
+                        <a href="#searchbarVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/home/home.page.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="simpleTransactions"></a>
+                    <span class="name">
+                        <span ><b>simpleTransactions</b></span>
+                        <a href="#simpleTransactions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SimpleTransaction[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/home/home.page.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="transactions"></a>
+                    <span class="name">
+                        <span ><b>transactions</b></span>
+                        <a href="#transactions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Transaction[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/home/home.page.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchbar"></a>
+                        <span class="name"><b>searchbar</b><a href="#searchbar"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>searchbar(sb: IonSearchbar)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/home/home.page.ts:30</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>sb</td>
+                                                    
+                                                            <td>
+                                                                        <code>IonSearchbar</code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, ViewChild} from &#x27;@angular/core&#x27;;
+import {TransactionService} from &#x27;../services/transaction.service&#x27;;
+import {Transaction} from &#x27;../models/transaction.model&#x27;;
+import {User} from &#x27;../models/user.model&#x27;;
+import {AuthService} from &#x27;../services/auth.service&#x27;;
+import {GroupService} from &#x27;../services/group.service&#x27;;
+import {Router} from &#x27;@angular/router&#x27;;
+import {SimpleTransaction} from &#x27;../models/simpleTransaction.model&#x27;;
+import {AngularFireAuth} from &#x27;@angular/fire/auth&#x27;;
+import {Share} from &#x27;@capacitor/share&#x27;;
+import {UserService} from &#x27;../services/user.service&#x27;;
+import {DomSanitizer} from &#x27;@angular/platform-browser&#x27;;
+import {IonSearchbar, ModalController} from &quot;@ionic/angular&quot;;
+import {PaymentReminderPage} from &quot;../payment-reminder/payment-reminder.page&quot;;
+
+/**
+ * Class used for Home-view. HomePage for displaying the users active Transactions.
+ */
+
+@Component({
+  selector: &#x27;app-home&#x27;,
+  templateUrl: &#x27;home.page.html&#x27;,
+  styleUrls: [&#x27;home.page.scss&#x27;],
+})
+
+
+export class HomePage {
+
+  #searchbar: IonSearchbar;
+  @ViewChild(IonSearchbar) set searchbar(sb: IonSearchbar) {
+    if (sb) {
+      sb.setFocus();
+      this.#searchbar &#x3D; sb;
+    }
+  }
+
+  //data
+  transactions: Transaction[] &#x3D; [];
+  simpleTransactions: SimpleTransaction[] &#x3D; [];
+  filteredTransactions: SimpleTransaction[] &#x3D; [];
+  currentUser: User;
+
+  //current View
+  outgoingView: boolean;
+  confirmView: boolean;
+  incomingView: boolean;
+  pendingView: boolean;
+
+
+  //numbers for display on the filter-buttons
+  incoming: number;
+  pending: number;
+  confirm: number;
+  outgoing: number;
+
+  // search &amp; search-bar
+  searchbarVisible: boolean;
+  search: string;
+
+  /**
+   * @ignore
+   * @param sanitizer used for the avatar images
+   * @param transactionService
+   * @param authService
+   * @param userService
+   * @param groupService
+   * @param router
+   * @param af
+   * @param modalController
+   */
+
+  constructor(private sanitizer: DomSanitizer,
+              private transactionService: TransactionService,
+              private authService: AuthService,
+              private userService: UserService,
+              private groupService: GroupService,
+              private router: Router,
+              private af: AngularFireAuth,
+              private modalController: ModalController) {
+  }
+
+  /**
+   * @ignore
+   */
+  ionViewWillEnter() {
+    this.outgoingView &#x3D; true;
+    this.confirmView &#x3D; false;
+    this.incomingView &#x3D; false;
+    this.pendingView &#x3D; false;
+    const sub &#x3D; this.af.authState.subscribe(user &#x3D;&gt; {
+      if (user) {
+        this.userService.findById(user.uid).then(result &#x3D;&gt; {
+          this.currentUser &#x3D; result;
+          this.updateTransactions();
+          sub.unsubscribe();
+        });
+      }
+    });
+  }
+
+  /**
+   * Filters all displayed transactions for the given search term (search for purpose, user name, group name). Results get pushed into filteredTransactions.
+   * @param searchTerm
+   */
+  filterTransaction(searchTerm: string) {
+    this.filteredTransactions &#x3D; [];
+    this.simpleTransactions.forEach(transaction &#x3D;&gt; {
+      if (transaction.purpose.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+        transaction.otherUser.displayName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+        transaction.groupName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())) {
+        if(this.outgoingView &amp;&amp; transaction.outgoing &amp;&amp; !transaction.pending){
+          this.filteredTransactions.push(transaction);
+        }
+        else if(this.incomingView &amp;&amp; !transaction.outgoing &amp;&amp; !transaction.pending){
+          this.filteredTransactions.push(transaction);
+        }
+        else if(this.pendingView &amp;&amp; transaction.outgoing &amp;&amp; transaction.pending){
+          this.filteredTransactions.push(transaction);
+        }
+        else if(this.confirmView &amp;&amp; !transaction.outgoing &amp;&amp; transaction.pending){
+          this.filteredTransactions.push(transaction);
+        }
+      }
+    });
+  }
+
+  /**
+   * Navigates to transaction-details-view on click. The transaction gets localy saved for the transaction view to load.
+   * @param transactionID
+   * @param userID the current user&#x27;s id.
+   */
+  viewTransaction(transactionID: string, userID: string) {
+    this.transactions.forEach(transaction &#x3D;&gt;{
+      if(transaction.id &#x3D;&#x3D;&#x3D; transactionID){
+        localStorage.setItem(&#x27;otherUser&#x27;, JSON.stringify(userID));
+        this.transactionService.saveLocally(transaction);
+        this.router.navigate([&#x27;transaction-details&#x27;, {id: this.currentUser.id}]);
+      }
+    });
+  }
+
+  /**
+   * Creates the PaymentReminder modal.
+   * @param transaction
+   */
+  async createPaymentReminder(transaction: SimpleTransaction) {
+    const modal &#x3D; await this.modalController.create({
+      component: PaymentReminderPage,
+      componentProps: {
+        displayName_otherUser: transaction.otherUser.displayName,
+        groupName: transaction.groupName,
+        purpose: transaction.purpose,
+        amount: transaction.amount.toString(),
+        dueDate: transaction.dueDate,
+        displayName_currentUser: this.currentUser.displayName
+      }
+    });
+    await modal.present();
+    const result &#x3D; await modal.onDidDismiss();
+
+    if(result.data !&#x3D;&#x3D; undefined){
+      Share.share({
+        title: &#x60;Zahlungserinnerung von ${this.currentUser.displayName}&#x60;,
+        text: result.data,
+        dialogTitle: &#x27;Zahlungserinnerung&#x27;
+      }).then(() &#x3D;&gt; console.log(&quot;Sharing supported&quot;))
+        .catch(error &#x3D;&gt; console.log(error));
+    }
+  }
+
+  /**
+   * Reloads all of the users active transactions. Transactions get parsed into SimpleTransaction format and pushed into transactions.
+   * Calls filterTransaction with the current search.
+   * Updates the counters for amounts displayed.
+   */
+  updateTransactions() {
+    this.transactions &#x3D; [];
+    this.simpleTransactions &#x3D; [];
+    this.search &#x3D; &#x27;&#x27;;
+    this.transactionService.getAllTransactionByUser(this.currentUser, false).then( result &#x3D;&gt; {
+      result.forEach( transaction &#x3D;&gt; {
+        this.createSimpleTransaction(transaction);
+      });
+      this.transactions.push(...result);
+      this.filterTransaction(this.search);
+
+      //for the counter
+      this.outgoing &#x3D; 0;
+      this.incoming &#x3D; 0;
+      this.pending &#x3D; 0;
+      this.confirm &#x3D; 0;
+      //TODO: add pending
+      this.simpleTransactions.forEach(transaction &#x3D;&gt; {
+        if(transaction.outgoing &amp;&amp; !transaction.pending){
+          this.outgoing +&#x3D; transaction.amount;
+        }
+        else if(!transaction.outgoing &amp;&amp; !transaction.pending){
+          this.incoming +&#x3D; transaction.amount;
+        }
+        else if(transaction.outgoing &amp;&amp; transaction.pending){
+          this.pending ++;
+        }
+        else if(!transaction.outgoing &amp;&amp; transaction.pending){
+          this.confirm++;
+        }
+      });
+      this.outgoing &#x3D; Math.round(this.outgoing);
+      this.incoming &#x3D; Math.round(this.incoming);
+    });
+  }
+
+  /**
+   * Calls updateTransactions() when the refresher is activated.
+   * @param event
+   */
+  refreshHandler(event) {
+    this.updateTransactions();
+    setTimeout(() &#x3D;&gt; {
+      event.target.complete();
+    }, 200);
+  }
+
+  /**
+   * Formats the transaction recived from the TransactionService into the SimpleTransaction format.
+   * SimpleTransactions only contain the necessary information for display in home-view and are based on a one-to-one user relationship.
+   * In some cases multiple SimpleTransactions have to be created for one Transaction.
+   *
+   * @param transaction transaction to be parsed into SimpleTransaction(s)
+   */
+
+  createSimpleTransaction(transaction: Transaction){
+    let otherUser: User;
+    let outgoing &#x3D; true;
+    let cost: number;
+    let pending: boolean;
+    if(transaction.creator.id !&#x3D;&#x3D; this.currentUser.id){
+      otherUser &#x3D; transaction.creator;
+      if(transaction.type &#x3D;&#x3D;&#x3D; &#x27;income&#x27;) {outgoing &#x3D; false;}
+
+      for(let i &#x3D; 0; i &lt; transaction.participation.length; i++){
+        if(transaction.accepted[i].accepted !&#x3D;&#x3D; true &amp;&amp; transaction.participation[i].user.id &#x3D;&#x3D;&#x3D; this.currentUser.id) {
+          cost &#x3D; Math.round(transaction.participation[i].stake * 100) / 100;
+          pending &#x3D; transaction.paid[i].paid;
+          // eslint-disable-next-line max-len
+          this.simpleTransactions.push(new SimpleTransaction(transaction.id,cost,transaction.purpose,outgoing,pending,otherUser,transaction.group.name,transaction.dueDate));
+        }
+      }
+    }
+    else{
+      if(transaction.type &#x3D;&#x3D;&#x3D; &#x27;cost&#x27;) {outgoing &#x3D; false;}
+      for(let i &#x3D; 0; i &lt; transaction.participation.length; i++){
+        if(transaction.participation[i].user.id !&#x3D;&#x3D; this.currentUser.id){
+          if(transaction.accepted[i].accepted !&#x3D;&#x3D; true) {
+            otherUser &#x3D; transaction.participation[i].user;
+            cost &#x3D; Math.round(transaction.participation[i].stake * 100) / 100;
+            pending &#x3D; transaction.paid[i].paid;
+            // eslint-disable-next-line max-len
+            this.simpleTransactions.push(new SimpleTransaction(transaction.id, cost, transaction.purpose, outgoing, pending, otherUser, transaction.group.name, transaction.dueDate));
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Displays the confirmDialog alert.
+   * @param transactionID ID of the transaction to be confirmed.
+   * @param userID The other user&#x27;s id
+   * @param userName The other user&#x27;s name
+   */
+  async confirmDialog(transactionID: string, userID: string, userName: string){
+    const alert &#x3D; document.createElement(&#x27;ion-alert&#x27;);
+    alert.header &#x3D; &#x27;Hast du die Zahlung von &#x27; + userName + &#x27; erhalten?&#x27;;
+    alert.buttons &#x3D; [{ text: &#x27;Ja&#x27;, role: &#x27;yes&#x27; },{ text: &#x27;Details&#x27;, role: &#x27;detail&#x27; },{ text: &#x27;Abbrechen&#x27;}];
+
+    document.body.appendChild(alert);
+    await alert.present();
+    const rsl &#x3D; await alert.onDidDismiss();
+    if (rsl.role &#x3D;&#x3D;&#x3D; &#x27;yes&#x27;) {
+        this.confirmTransaction(transactionID,userID);
+    }
+    else if(rsl.role &#x3D;&#x3D;&#x3D; &#x27;detail&#x27;){
+      this.viewTransaction(transactionID, userID);
+    }
+  }
+
+  /**
+   * Calculates and returns the difference of the transaction.dueDate to the current date.
+   * @param transcation
+   */
+  getDateDifference(transcation: Transaction){
+    // @ts-ignore
+    return Math.round((new Date(transcation.dueDate ) - new Date())/86400000)+1;
+  }
+
+  /**
+   * Calls the filter-Method
+   */
+  doSearch() {
+    this.filterTransaction(this.search);
+  }
+
+  /**
+   * Cancels search, resets the search-term and displayed transactions and deactivates the search-bar.
+   */
+  cancelSearch() {
+    this.clearSearch();
+    this.filterTransaction(this.search);
+    this.searchbarVisible &#x3D; false;
+  }
+
+  /**
+   * Empties the search sting
+   */
+  clearSearch() {
+    this.search &#x3D; &#x27;&#x27;;
+  }
+
+  /**
+   * Activates the search-bar
+   */
+  startSearch() {
+    this.searchbarVisible &#x3D; true;
+  }
+
+  /**
+   * Switches between different views (which type of transactions are displayed).
+   * @param type Number that corresponds to the view.
+   */
+  buttonHandler(type: number) {
+    this.incomingView &#x3D; false;
+    this.outgoingView &#x3D; false;
+    this.pendingView &#x3D; false;
+    this.confirmView &#x3D; false;
+
+    if (type &#x3D;&#x3D;&#x3D; 0) {this.outgoingView &#x3D; true;}
+    else if (type &#x3D;&#x3D;&#x3D; 1) {this.incomingView &#x3D; true;}
+    else if (type &#x3D;&#x3D;&#x3D; 2) {this.pendingView &#x3D; true;}
+    else {this.confirmView &#x3D; true;}
+  }
+
+  /**
+   * Confirmes a given transaction for a given user and refreshes the displayed transactions.
+   * If the transaction is of type &#x27;cost&#x27; the other user needs to be flagged as accepted in the accepted array.
+   * If the transaction is of type &#x27;income&#x27; the current user needs to be flagged as accepted in the accepted array (Because the current user is recieving money from the other user).
+   * @param transactionID Id of the transaction to be confirmed.
+   * @param userID The other user&#x27;s ID.
+   */
+  confirmTransaction(transactionID: string, userID: string){
+    this.transactions.forEach(transaction &#x3D;&gt; {
+      if(transaction.id &#x3D;&#x3D;&#x3D; transactionID){
+        if(transaction.type &#x3D;&#x3D;&#x3D; &quot;cost&quot;) {
+          transaction.accepted.forEach(a &#x3D;&gt; {
+            if (a.user.id &#x3D;&#x3D;&#x3D; userID) {
+              a.accepted &#x3D; true;
+              transaction.finished &#x3D; this.transactionService.checkTransactionFinish(transaction);
+              this.transactionService.update(transaction);
+              setTimeout( () &#x3D;&gt; { this.updateTransactions(); }, 150 );
+            }
+          });
+        }else{
+          transaction.accepted.forEach(a &#x3D;&gt; {
+            if (a.user.id &#x3D;&#x3D;&#x3D; this.currentUser.id) {
+              a.accepted &#x3D; true;
+              transaction.finished &#x3D; this.transactionService.checkTransactionFinish(transaction);
+              this.transactionService.update(transaction);
+              setTimeout( () &#x3D;&gt; { this.updateTransactions(); }, 150 );
+            }
+          });
+        }
+      }
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">
+&lt;ion-header&gt;
+  &lt;ion-toolbar color&#x3D;&quot;primary&quot;&gt;
+    &lt;ion-title *ngIf&#x3D;&quot;!searchbarVisible&quot;&gt;Übersicht&lt;/ion-title&gt;
+    &lt;ion-button *ngIf&#x3D;&quot;!searchbarVisible&quot; (click)&#x3D;&quot;startSearch()&quot; slot&#x3D;&quot;end&quot;&gt;
+      &lt;ion-icon slot&#x3D;&quot;icon-only&quot; name&#x3D;&quot;search&quot;&gt;&lt;/ion-icon&gt;
+    &lt;/ion-button&gt;
+    &lt;ion-searchbar [(ngModel)]&#x3D;&quot;search&quot; *ngIf&#x3D;&quot;searchbarVisible&quot;
+                   (ionChange)&#x3D;&quot;doSearch()&quot;
+                   (ionCancel)&#x3D;&quot;cancelSearch()&quot;
+                   (ionClear)&#x3D;&quot;clearSearch()&quot;
+                   [showCancelButton]&#x3D;&quot;true&quot;
+                   [showClearButton]&#x3D;&quot;true&quot;
+                   placeholder&#x3D;&quot;Suche&quot;&gt;
+    &lt;/ion-searchbar&gt;
+  &lt;/ion-toolbar&gt;
+  &lt;ion-grid&gt;
+    &lt;ion-row class&#x3D;&quot;ion-justify-content-evenly&quot;&gt;
+      &lt;ion-col class&#x3D;&quot;ion-no-padding&quot;&gt;
+        &lt;ion-button expand&#x3D;&quot;full&quot; (click)&#x3D;&quot;buttonHandler(0); filterTransaction(this.search)&quot;&gt;
+          &lt;ion-text&gt;&lt;/ion-text&gt;
+          &lt;ion-text&gt;{{outgoing}}€ Ausgaben&lt;/ion-text&gt;
+        &lt;/ion-button&gt;
+      &lt;/ion-col&gt;
+      &lt;ion-col class&#x3D;&quot;ion-no-padding&quot;&gt;
+        &lt;ion-button expand&#x3D;&quot;full&quot; (click)&#x3D;&quot;buttonHandler(1); filterTransaction(this.search)&quot;&gt;{{incoming}}€ Einnahmen&lt;/ion-button&gt;
+      &lt;/ion-col&gt;
+      &lt;ion-col class&#x3D;&quot;ion-no-padding&quot;&gt;
+        &lt;ion-button expand&#x3D;&quot;full&quot; (click)&#x3D;&quot;buttonHandler(2); filterTransaction(this.search)&quot;&gt;{{pending}} Ausstehend&lt;/ion-button&gt;
+      &lt;/ion-col&gt;
+      &lt;ion-col class&#x3D;&quot;ion-no-padding&quot;&gt;
+        &lt;ion-button expand&#x3D;&quot;full&quot; (click)&#x3D;&quot;buttonHandler(3); filterTransaction(this.search)&quot;&gt;{{confirm}} Bestätigen&lt;/ion-button&gt;
+      &lt;/ion-col&gt;
+    &lt;/ion-row&gt;
+  &lt;/ion-grid&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content&gt;
+  &lt;ion-refresher id&#x3D;&quot;refresher&quot; slot&#x3D;&quot;fixed&quot; pullFactor&#x3D;&quot;0.3&quot; (ionRefresh)&#x3D;&quot;refreshHandler($event)&quot;&gt;
+    &lt;ion-refresher-content
+      pullingText&#x3D;&quot;Ziehen um neu zu laden&quot;
+      pullingIcon&#x3D;&quot;chevron-down-circle-outline&quot;
+      refreshingText&#x3D;&quot;Lade neue Daten...&quot;&gt;
+    &lt;/ion-refresher-content&gt;
+  &lt;/ion-refresher&gt;
+  &lt;ion-list *ngIf&#x3D;&quot;!confirmView&quot;&gt;
+    &lt;ion-item-sliding *ngFor&#x3D;&quot;let transaction of filteredTransactions&quot;&gt;
+      &lt;ion-item-options side&#x3D;&quot;end&quot; *ngIf&#x3D;&quot;incomingView || pendingView&quot;&gt;
+        &lt;ion-item-option color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;createPaymentReminder(transaction)&quot;&gt;
+          &lt;ion-icon slot&#x3D;&quot;icon-only&quot; name&#x3D;&quot;mail-outline&quot;&gt;&lt;/ion-icon&gt;
+        &lt;/ion-item-option&gt;
+      &lt;/ion-item-options&gt;
+      &lt;ion-item button
+                (click)&#x3D;&quot;viewTransaction(transaction.id, transaction.otherUser.id)&quot; lines&#x3D;&quot;full&quot;&gt;
+        &lt;ion-grid style&#x3D;&quot; margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;&quot;&gt;
+          &lt;ion-row&gt;
+            &lt;ion-col align&#x3D;&quot;left&quot;&gt;&lt;ion-avatar&gt;&lt;img [src]&#x3D;&quot;sanitizer.bypassSecurityTrustUrl(transaction.otherUser.profilePic)&quot;&gt;&lt;/ion-avatar&gt;&lt;/ion-col&gt;
+            &lt;ion-col&gt;
+              &lt;div&gt;{{transaction.otherUser.displayName}}&lt;/div&gt;
+              &lt;div style&#x3D;&quot;font-size: small&quot;&gt;{{transaction.purpose}}&lt;/div&gt;
+              &lt;div style&#x3D;&quot;font-size: small; color: darkred&quot; *ngIf &#x3D; &quot;getDateDifference(transaction) &lt; 0&quot;&gt;fällig seit {{-1*getDateDifference(transaction)}} Tagen&lt;/div&gt;
+              &lt;div style&#x3D;&quot;font-size: small; color: darkred&quot; *ngIf &#x3D; &quot;getDateDifference(transaction) &#x3D;&#x3D; 0&quot;&gt;heute fällig&lt;/div&gt;
+              &lt;div style&#x3D;&quot;font-size: small; color: darkred&quot; *ngIf &#x3D; &quot;getDateDifference(transaction) &lt;&#x3D; 1.5 &amp;&amp; getDateDifference(transaction) &gt; 0&quot;&gt;noch {{getDateDifference(transaction)}} Tag&lt;/div&gt;
+              &lt;div style&#x3D;&quot;font-size: small; color: coral&quot;  *ngIf &#x3D; &quot;getDateDifference(transaction) &lt;&#x3D; 4 &amp;&amp; getDateDifference(transaction) &gt; 1.5&quot;&gt;noch {{getDateDifference(transaction)}} Tage&lt;/div&gt;
+              &lt;div style&#x3D;&quot;font-size: small&quot; *ngIf &#x3D; &quot;getDateDifference(transaction) &gt; 4&quot;&gt;noch {{getDateDifference(transaction)}} Tage&lt;/div&gt;
+            &lt;/ion-col&gt;
+          &lt;ion-col *ngIf&#x3D;&quot;!incomingView&quot; align&#x3D;&quot;right&quot; style&#x3D;&quot;color: #e04055&quot;&gt;&lt;ion-text&gt;{{transaction.amount}}€&lt;/ion-text&gt;&lt;/ion-col&gt;
+            &lt;ion-col *ngIf&#x3D;&quot;incomingView&quot; align&#x3D;&quot;right&quot; style&#x3D;&quot;color: darkgreen&quot;&gt;&lt;ion-text&gt;{{transaction.amount}}€&lt;/ion-text&gt;&lt;/ion-col&gt;
+          &lt;/ion-row&gt;
+        &lt;/ion-grid&gt;
+      &lt;/ion-item&gt;
+    &lt;/ion-item-sliding&gt;
+  &lt;/ion-list&gt;
+  &lt;ion-list *ngIf&#x3D;&quot;confirmView&quot;&gt;
+    &lt;ion-item button *ngFor&#x3D;&quot;let transaction of filteredTransactions&quot; lines&#x3D;&quot;full&quot;
+              (click)&#x3D;&quot;confirmDialog(transaction.id, transaction.otherUser.id, transaction.otherUser.displayName)&quot;&gt;
+      &lt;ion-grid style&#x3D;&quot; margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;&quot;&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col align&#x3D;&quot;left&quot;&gt;&lt;ion-avatar&gt;&lt;img [src]&#x3D;&quot;sanitizer.bypassSecurityTrustUrl(transaction.otherUser.profilePic)&quot;&gt;&lt;/ion-avatar&gt;&lt;/ion-col&gt;
+          &lt;ion-col&gt;
+            &lt;div&gt;{{transaction.otherUser.displayName}}&lt;/div&gt;
+            &lt;div style&#x3D;&quot;font-size: small&quot;&gt;{{transaction.purpose}}&lt;/div&gt;
+          &lt;/ion-col&gt;
+          &lt;ion-col align&#x3D;&quot;right&quot;&gt;&lt;ion-text style&#x3D;&quot;color: darkgreen&quot;&gt;{{transaction.amount}}€&lt;/ion-text&gt;&lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+      &lt;/ion-grid&gt;
+    &lt;/ion-item&gt;
+  &lt;/ion-list&gt;
+
+&lt;/ion-content&gt;
+
+&lt;ion-footer&gt;
+  &lt;ion-toolbar&gt;
+    &lt;ion-tabs&gt;
+      &lt;ion-tab-bar&gt;
+        &lt;ion-tab-button&gt;
+          &lt;ion-icon name&#x3D;&quot;home-outline&quot;&gt;&lt;/ion-icon&gt;
+        &lt;/ion-tab-button&gt;
+        &lt;ion-tab-button (click)&#x3D;&quot;router.navigate([&#x27;transaction-create&#x27;])&quot;&gt;
+          &lt;ion-icon name&#x3D;&quot;cash-outline&quot;&gt;&lt;/ion-icon&gt;
+        &lt;/ion-tab-button&gt;
+        &lt;ion-tab-button (click)&#x3D;&quot;router.navigate([&#x27;group-list&#x27;])&quot;&gt;
+          &lt;ion-icon name&#x3D;&quot;people-outline&quot;&gt;&lt;/ion-icon&gt;
+        &lt;/ion-tab-button&gt;
+        &lt;ion-tab-button (click)&#x3D;&quot;router.navigate([&#x27;profile&#x27;])&quot;&gt;
+          &lt;ion-icon name&#x3D;&quot;person-outline&quot;&gt;&lt;/ion-icon&gt;
+        &lt;/ion-tab-button&gt;
+      &lt;/ion-tab-bar&gt;
+    &lt;/ion-tabs&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-footer&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>home.page.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+.loading {
+  background: #222;
+  spinner-color: #fff;
+
+  color: #fff;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar color="primary">    <ion-title *ngIf="!searchbarVisible">Übersicht</ion-title>    <ion-button *ngIf="!searchbarVisible" (click)="startSearch()" slot="end">      <ion-icon slot="icon-only" name="search"></ion-icon>    </ion-button>    <ion-searchbar [(ngModel)]="search" *ngIf="searchbarVisible"                   (ionChange)="doSearch()"                   (ionCancel)="cancelSearch()"                   (ionClear)="clearSearch()"                   [showCancelButton]="true"                   [showClearButton]="true"                   placeholder="Suche">    </ion-searchbar>  </ion-toolbar>  <ion-grid>    <ion-row class="ion-justify-content-evenly">      <ion-col class="ion-no-padding">        <ion-button expand="full" (click)="buttonHandler(0); filterTransaction(this.search)">          <ion-text></ion-text>          <ion-text>{{outgoing}}€ Ausgaben</ion-text>        </ion-button>      </ion-col>      <ion-col class="ion-no-padding">        <ion-button expand="full" (click)="buttonHandler(1); filterTransaction(this.search)">{{incoming}}€ Einnahmen</ion-button>      </ion-col>      <ion-col class="ion-no-padding">        <ion-button expand="full" (click)="buttonHandler(2); filterTransaction(this.search)">{{pending}} Ausstehend</ion-button>      </ion-col>      <ion-col class="ion-no-padding">        <ion-button expand="full" (click)="buttonHandler(3); filterTransaction(this.search)">{{confirm}} Bestätigen</ion-button>      </ion-col>    </ion-row>  </ion-grid></ion-header><ion-content>  <ion-refresher id="refresher" slot="fixed" pullFactor="0.3" (ionRefresh)="refreshHandler($event)">    <ion-refresher-content      pullingText="Ziehen um neu zu laden"      pullingIcon="chevron-down-circle-outline"      refreshingText="Lade neue Daten...">    </ion-refresher-content>  </ion-refresher>  <ion-list *ngIf="!confirmView">    <ion-item-sliding *ngFor="let transaction of filteredTransactions">      <ion-item-options side="end" *ngIf="incomingView || pendingView">        <ion-item-option color="primary" (click)="createPaymentReminder(transaction)">          <ion-icon slot="icon-only" name="mail-outline"></ion-icon>        </ion-item-option>      </ion-item-options>      <ion-item button                (click)="viewTransaction(transaction.id, transaction.otherUser.id)" lines="full">        <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">          <ion-row>            <ion-col align="left"><ion-avatar><img [src]="sanitizer.bypassSecurityTrustUrl(transaction.otherUser.profilePic)"></ion-avatar></ion-col>            <ion-col>              <div>{{transaction.otherUser.displayName}}</div>              <div style="font-size: small">{{transaction.purpose}}</div>              <div style="font-size: small; color: darkred" *ngIf = "getDateDifference(transaction) < 0">fällig seit {{-1*getDateDifference(transaction)}} Tagen</div>              <div style="font-size: small; color: darkred" *ngIf = "getDateDifference(transaction) == 0">heute fällig</div>              <div style="font-size: small; color: darkred" *ngIf = "getDateDifference(transaction) <= 1.5 && getDateDifference(transaction) > 0">noch {{getDateDifference(transaction)}} Tag</div>              <div style="font-size: small; color: coral"  *ngIf = "getDateDifference(transaction) <= 4 && getDateDifference(transaction) > 1.5">noch {{getDateDifference(transaction)}} Tage</div>              <div style="font-size: small" *ngIf = "getDateDifference(transaction) > 4">noch {{getDateDifference(transaction)}} Tage</div>            </ion-col>          <ion-col *ngIf="!incomingView" align="right" style="color: #e04055"><ion-text>{{transaction.amount}}€</ion-text></ion-col>            <ion-col *ngIf="incomingView" align="right" style="color: darkgreen"><ion-text>{{transaction.amount}}€</ion-text></ion-col>          </ion-row>        </ion-grid>      </ion-item>    </ion-item-sliding>  </ion-list>  <ion-list *ngIf="confirmView">    <ion-item button *ngFor="let transaction of filteredTransactions" lines="full"              (click)="confirmDialog(transaction.id, transaction.otherUser.id, transaction.otherUser.displayName)">      <ion-grid style=" margin-bottom: 1%; margin-top: 1%; width: 100%; height: 100%;">        <ion-row>          <ion-col align="left"><ion-avatar><img [src]="sanitizer.bypassSecurityTrustUrl(transaction.otherUser.profilePic)"></ion-avatar></ion-col>          <ion-col>            <div>{{transaction.otherUser.displayName}}</div>            <div style="font-size: small">{{transaction.purpose}}</div>          </ion-col>          <ion-col align="right"><ion-text style="color: darkgreen">{{transaction.amount}}€</ion-text></ion-col>        </ion-row>      </ion-grid>    </ion-item>  </ion-list></ion-content><ion-footer>  <ion-toolbar>    <ion-tabs>      <ion-tab-bar>        <ion-tab-button>          <ion-icon name="home-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'transaction-create\'])">          <ion-icon name="cash-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'group-list\'])">          <ion-icon name="people-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'profile\'])">          <ion-icon name="person-outline"></ion-icon>        </ion-tab-button>      </ion-tab-bar>    </ion-tabs>  </ion-toolbar></ion-footer></div>'
+    var COMPONENTS = [{'name': 'AddMembersPage', 'selector': 'app-add-members'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'FriendProfilePage', 'selector': 'app-friend-profile'},{'name': 'FriendsPage', 'selector': 'app-friends'},{'name': 'GroupCreatePage', 'selector': 'app-group-create'},{'name': 'GroupDetailsPage', 'selector': 'app-group-details'},{'name': 'GroupListPage', 'selector': 'app-group-list'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'InvitePage', 'selector': 'app-invite'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MemberViewPage', 'selector': 'app-member-view'},{'name': 'OptionsPage', 'selector': 'app-options'},{'name': 'PasswordPage', 'selector': 'app-password'},{'name': 'PaymentPage', 'selector': 'app-payment'},{'name': 'PaymentReminderPage', 'selector': 'app-payment-reminder'},{'name': 'PrivacyPage', 'selector': 'app-privacy'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'StatisticsPage', 'selector': 'app-statistics'},{'name': 'TransactionCreatePage', 'selector': 'app-transaction-create'},{'name': 'TransactionDetailsPage', 'selector': 'app-transaction-details'},{'name': 'TransactionParticipantsPage', 'selector': 'app-transaction-participants'},{'name': 'TransactionStakesPage', 'selector': 'app-transaction-stakes'},{'name': 'TutorialPage', 'selector': 'app-tutorial'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'HomePage'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HomePage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

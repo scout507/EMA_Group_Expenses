@@ -1,0 +1,982 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>group-expenses documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">group-expenses documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  FriendProfilePage</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/profile/friend-profile/friend-profile.page.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The class is needed for the Friend Profile Page.</p>
+
+    </p>
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-friend-profile</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./friend-profile.page.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./friend-profile.page.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#badges" >badges</a>
+                            </li>
+                            <li>
+                                <a href="#currentUser" >currentUser</a>
+                            </li>
+                            <li>
+                                <a href="#isfriend" >isfriend</a>
+                            </li>
+                            <li>
+                                <a href="#user" >user</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addFriend" >addFriend</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#badgeDescription" >badgeDescription</a>
+                            </li>
+                            <li>
+                                <a href="#ionViewWillEnter" >ionViewWillEnter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#paymentDescription" >paymentDescription</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addFriend"></a>
+                    <span class="name">
+                        <span ><b>addFriend</b></span>
+                        <a href="#addFriend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addFriend()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:106</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Friends can be added via the function.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="badgeDescription"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>badgeDescription</b></span>
+                        <a href="#badgeDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>badgeDescription(badgename, badgeDescription)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:117</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This functionality creates an Ionic alert, this contains only a title and a description,
+furthermore there is a close button to close the Ionic alert. Used when you click on
+the badge icons.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>badgename</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Required for the title.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>badgeDescription</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Required for the description.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ionViewWillEnter"></a>
+                    <span class="name">
+                        <span ><b>ionViewWillEnter</b></span>
+                        <a href="#ionViewWillEnter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ionViewWillEnter()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:68</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>When the page is opened, all the required information
+is loaded from the services and stored in the variables
+provided for this purpose. The archievments are also
+calculated and if there should be there are new ones, these
+are stored in the data base. Important here is the check
+whether the user is logged in, otherwise no data will be loaded.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paymentDescription"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>paymentDescription</b></span>
+                        <a href="#paymentDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>paymentDescription(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, discription: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:135</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This functionality creates an Ionic alert, this contains only a title and a description,
+furthermore there is a close button to close the Ionic alert. Used when clicking on
+the icons of the payment methods.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Required for the title.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>discription</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Required for the description.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="badges"></a>
+                    <span class="name">
+                        <span ><b>badges</b></span>
+                        <a href="#badges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Award.html" target="_self" >Award[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUser"></a>
+                    <span class="name">
+                        <span ><b>currentUser</b></span>
+                        <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isfriend"></a>
+                    <span class="name">
+                        <span ><b>isfriend</b></span>
+                        <a href="#isfriend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="user"></a>
+                    <span class="name">
+                        <span ><b>user</b></span>
+                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new User()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { AngularFireAuth } from &#x27;@angular/fire/auth&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { Award } from &#x27;../../models/award.model&#x27;;
+import { ArwardService } from &#x27;src/app/services/award.service&#x27;;
+import { FriendsService } from &#x27;../../services/friends.service&#x27;;
+import { User } from &#x27;src/app/models/user.model&#x27;;
+import { UserService } from &#x27;../../services/user.service&#x27;;
+import { AuthService } from &quot;../../services/auth.service&quot;;
+import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
+import { TransactionService } from &#x27;src/app/services/transaction.service&#x27;;
+import { BadgeService } from &#x27;src/app/services/badge.service&#x27;;
+import { NavController } from &#x27;@ionic/angular&#x27;;
+
+/**
+ * The class is needed for the Friend Profile Page.
+ */
+
+@Component({
+  selector: &#x27;app-friend-profile&#x27;,
+  templateUrl: &#x27;./friend-profile.page.html&#x27;,
+  styleUrls: [&#x27;./friend-profile.page.scss&#x27;],
+})
+
+export class FriendProfilePage {
+  badges: Award[] &#x3D; [];
+  user: User &#x3D; new User();
+  isfriend &#x3D; false;
+  currentUser: User;
+
+  /**
+   * @ignore
+   * @param transactionsservice 
+   * @param sanitizer 
+   * @param route 
+   * @param router 
+   * @param awardService 
+   * @param af 
+   * @param userService 
+   * @param friendsService 
+   * @param authService 
+   * @param badgeService 
+   */
+
+  constructor(
+    private transactionsservice: TransactionService,
+    public sanitizer: DomSanitizer,
+    private route: ActivatedRoute,
+    public router: Router,
+    private awardService: ArwardService,
+    private af: AngularFireAuth,
+    private userService: UserService,
+    private friendsService: FriendsService,
+    private authService: AuthService,
+    private badgeService: BadgeService,
+    private navCtrl: NavController
+  ) { }
+
+  /**
+   * When the page is opened, all the required information 
+   * is loaded from the services and stored in the variables 
+   * provided for this purpose. The archievments are also 
+   * calculated and if there should be there are new ones, these 
+   * are stored in the data base. Important here is the check 
+   * whether the user is logged in, otherwise no data will be loaded.
+   */
+
+  ionViewWillEnter() {
+    const sub &#x3D; this.af.authState.subscribe(user &#x3D;&gt; {
+      if (user) {
+        this.userService.findById(user.uid).then(result &#x3D;&gt; {
+          this.currentUser &#x3D; result;
+          this.route.params.subscribe(item &#x3D;&gt; {
+            this.friendsService.findById(item[0], this.currentUser).then(item2 &#x3D;&gt; {
+              this.user &#x3D; {... item2};
+              this.badges &#x3D; [];
+              if(!this.user.descriptionPublic){
+                this.user.description &#x3D; &quot;&quot;;
+              }
+              if(!this.user.imagePublic){
+                this.user.profilePic &#x3D; &quot;https://bit.ly/2S904CS&quot;;
+              }
+              this.transactionsservice.getAllTransactionByUser(item2, true).then(transactions &#x3D;&gt; {
+                this.badgeService.setBadges(item2, transactions);
+                if (this.user.awardsPublic) {
+                  this.user.awards.forEach(element &#x3D;&gt; {
+                    this.awardService.findById(element).then(item &#x3D;&gt; {
+                      this.badges.push(item);
+                    });
+
+                  });
+                }
+              });
+              this.isfriend &#x3D; this.friendsService.isFriends(this.user, this.currentUser);
+            });
+          });
+          sub.unsubscribe();
+        });
+      }
+    });
+  }
+
+  /**
+  * Friends can be added via the function.
+  */
+  addFriend() {
+    this.friendsService.addFriend(this.user.email, this.currentUser.id);
+  }
+
+  /**
+   * This functionality creates an Ionic alert, this contains only a title and a description, 
+   * furthermore there is a close button to close the Ionic alert. Used when you click on 
+   * the badge icons.
+   * @param badgename Required for the title.
+   * @param badgeDescription Required for the description.
+   */
+  async badgeDescription(badgename, badgeDescription) {
+    const alert &#x3D; document.createElement(&#x27;ion-alert&#x27;);
+    alert.header &#x3D; badgename;
+    alert.message &#x3D; badgeDescription;
+    alert.buttons &#x3D; [{ text: &quot;schließen&quot; }];
+
+    document.body.appendChild(alert);
+    await alert.present();
+    await alert.onDidDismiss();
+  }
+
+  /**
+   * This functionality creates an Ionic alert, this contains only a title and a description, 
+   * furthermore there is a close button to close the Ionic alert. Used when clicking on 
+   * the icons of the payment methods.
+   * @param name Required for the title.
+   * @param discription Required for the description.
+   */
+  async paymentDescription(name: string, discription: string) {
+    const alert &#x3D; document.createElement(&#x27;ion-alert&#x27;);
+    alert.header &#x3D; name;
+    alert.message &#x3D; discription;
+    alert.buttons &#x3D; [{ text: &quot;schließen&quot; }];
+
+    document.body.appendChild(alert);
+    await alert.present();
+    await alert.onDidDismiss();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-header&gt;
+  &lt;ion-toolbar&gt;
+    &lt;ion-button (click)&#x3D;&quot;this.navCtrl.back()&quot; fill&#x3D;&quot;clear&quot; slot&#x3D;&quot;start&quot;&gt;
+      &lt;ion-icon name&#x3D;&quot;arrow-back-outline&quot;&gt;&lt;/ion-icon&gt;
+    &lt;/ion-button&gt;
+    &lt;ion-title class&#x3D;&quot;ion-text-center&quot; style&#x3D;&quot;margin-right: 40px;&quot;&gt;Freunde&lt;/ion-title&gt;
+    &lt;ion-button *ngIf&#x3D;&quot;!isfriend&quot; slot&#x3D;&quot;end&quot; (click)&#x3D;&quot;addFriend()&quot;&gt;
+      &lt;ion-icon name&#x3D;&quot;person-add-outline&quot;&gt;&lt;/ion-icon&gt;
+    &lt;/ion-button&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content class&#x3D;&quot;global&quot;&gt;
+  &lt;ion-grid class&#x3D;&quot;grid&quot;&gt;
+    &lt;ion-row class&#x3D;&quot;row&quot;&gt;
+      &lt;ion-col class&#x3D;&quot;profileImgCol&quot;&gt;
+        &lt;img class&#x3D;&quot;profileImg&quot; [src]&#x3D;&quot;sanitizer.bypassSecurityTrustUrl(user.profilePic)&quot;&gt;
+      &lt;/ion-col&gt;
+      &lt;ion-col class&#x3D;&quot;profileDescriptionCol&quot;&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col class&#x3D;&quot;name&quot;&gt;
+            {{user.displayName}}
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col&gt;
+            {{user.description}}
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+      &lt;/ion-col&gt;
+    &lt;/ion-row&gt;
+
+    &lt;ion-row style&#x3D;&quot;margin-top: 10px; justify-content: center;&quot;&gt;
+      &lt;ion-col *ngIf&#x3D;&quot;this.user.cash&quot; style&#x3D;&quot;max-width: 50px; margin-right: 30px;&quot;&gt;&lt;img
+          (click)&#x3D;&quot;paymentDescription(&#x27;Bar&#x27;, &#x27;Barzahlung ist möglich.&#x27;)&quot;
+          src&#x3D;&quot;https://cdn.discordapp.com/attachments/798632008569061446/859421641096560650/money.png&quot;&gt;
+      &lt;/ion-col&gt;
+
+      &lt;ion-col *ngIf&#x3D;&quot;!this.user.cash&quot; style&#x3D;&quot;max-width: 50px; margin-right: 30px;&quot;&gt;&lt;img
+          style&#x3D;&quot;filter: grayscale(100%);&quot; (click)&#x3D;&quot;paymentDescription(&#x27;Bar&#x27;, &#x27;Barzahlung ist nicht möglich.&#x27;)&quot;
+          src&#x3D;&quot;https://cdn.discordapp.com/attachments/798632008569061446/859421641096560650/money.png&quot;&gt;
+      &lt;/ion-col&gt;
+
+      &lt;ion-col *ngIf&#x3D;&quot;this.user.ec_card&quot; style&#x3D;&quot;max-width: 50px; margin-right: 30px;&quot;&gt;&lt;img
+          (click)&#x3D;&quot;paymentDescription(&#x27;EC-Karte&#x27;, &#x27;Bezahlung mit EC-Karte ist möglich.&#x27;)&quot;
+          src&#x3D;&quot;https://image.flaticon.com/icons/png/512/893/893081.png&quot;&gt;
+      &lt;/ion-col&gt;
+
+      &lt;ion-col *ngIf&#x3D;&quot;!this.user.ec_card&quot; style&#x3D;&quot;max-width: 50px; margin-right: 30px;&quot;&gt;&lt;img
+          style&#x3D;&quot;filter: grayscale(100%);&quot;
+          (click)&#x3D;&quot;paymentDescription(&#x27;EC-Karte&#x27;, &#x27;Bezahlung mit EC-Karte ist nicht möglich.&#x27;)&quot;
+          src&#x3D;&quot;https://image.flaticon.com/icons/png/512/893/893081.png&quot;&gt;
+      &lt;/ion-col&gt;
+
+      &lt;ion-col *ngIf&#x3D;&quot;this.user.kreditcard&quot; style&#x3D;&quot;max-width: 50px; margin-right: 30px;&quot;&gt;&lt;img
+          (click)&#x3D;&quot;paymentDescription(&#x27;Kreditkarte&#x27;, &#x27;Bezahlung mit Kreditkarte ist möglich.&#x27;)&quot;
+          src&#x3D;&quot;https://image.flaticon.com/icons/png/512/147/147258.png&quot;&gt;
+      &lt;/ion-col&gt;
+
+      &lt;ion-col *ngIf&#x3D;&quot;!this.user.kreditcard&quot; style&#x3D;&quot;max-width: 50px; margin-right: 30px;&quot;&gt;&lt;img
+          style&#x3D;&quot;filter: grayscale(100%);&quot;
+          (click)&#x3D;&quot;paymentDescription(&#x27;Kreditkarte&#x27;, &#x27;Bezahlung mit Kreditkarte ist nicht möglich.&#x27;)&quot;
+          src&#x3D;&quot;https://image.flaticon.com/icons/png/512/147/147258.png&quot;&gt;
+      &lt;/ion-col&gt;
+
+      &lt;ion-col *ngIf&#x3D;&quot;this.user.paypal&quot; style&#x3D;&quot;max-width: 50px;&quot;&gt;&lt;img
+          (click)&#x3D;&quot;paymentDescription(&#x27;PayPal&#x27;, &#x27;Bezahlung mit PayPal ist möglich.&#x27;)&quot;
+          src&#x3D;&quot;https://image.flaticon.com/icons/png/512/888/888870.png&quot;&gt;
+      &lt;/ion-col&gt;
+
+      &lt;ion-col *ngIf&#x3D;&quot;!this.user.paypal&quot; style&#x3D;&quot;max-width: 50px;&quot;&gt;&lt;img style&#x3D;&quot;filter: grayscale(100%);&quot;
+          (click)&#x3D;&quot;paymentDescription(&#x27;PayPal&#x27;, &#x27;Bezahlung mit PayPal ist nicht möglich.&#x27;)&quot;
+          src&#x3D;&quot;https://image.flaticon.com/icons/png/512/888/888870.png&quot;&gt;
+      &lt;/ion-col&gt;
+    &lt;/ion-row&gt;
+
+    &lt;ion-row class&#x3D;&quot;row&quot;&gt;
+      &lt;ion-col class&#x3D;&quot;iconsCol icons&quot; *ngFor&#x3D;&quot;let i of badges&quot;&gt;
+        &lt;img class&#x3D;&quot;icons&quot; (click)&#x3D;&quot;badgeDescription(i.name, i.description)&quot; src&#x3D;{{i.image}}&gt;
+      &lt;/ion-col&gt;
+    &lt;/ion-row&gt;
+  &lt;/ion-grid&gt;
+&lt;/ion-content&gt;
+
+&lt;ion-footer&gt;
+  &lt;ion-toolbar&gt;
+    &lt;ion-tabs&gt;
+      &lt;ion-tab-bar&gt;
+        &lt;ion-tab-button (click)&#x3D;&quot;router.navigate([&#x27;home&#x27;])&quot;&gt;
+          &lt;ion-icon name&#x3D;&quot;home-outline&quot;&gt;&lt;/ion-icon&gt;
+        &lt;/ion-tab-button&gt;
+        &lt;ion-tab-button (click)&#x3D;&quot;router.navigate([&#x27;transaction-create&#x27;])&quot;&gt;
+          &lt;ion-icon name&#x3D;&quot;cash-outline&quot;&gt;&lt;/ion-icon&gt;
+        &lt;/ion-tab-button&gt;
+        &lt;ion-tab-button (click)&#x3D;&quot;router.navigate([&#x27;group-list&#x27;])&quot;&gt;
+          &lt;ion-icon name&#x3D;&quot;people-outline&quot;&gt;&lt;/ion-icon&gt;
+        &lt;/ion-tab-button&gt;
+        &lt;ion-tab-button (click)&#x3D;&quot;router.navigate([&#x27;profile&#x27;])&quot;&gt;
+          &lt;ion-icon name&#x3D;&quot;person-outline&quot;&gt;&lt;/ion-icon&gt;
+        &lt;/ion-tab-button&gt;
+      &lt;/ion-tab-bar&gt;
+    &lt;/ion-tabs&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-footer&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./friend-profile.page.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.profileImg {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.profileImgCol{
+    max-width: 110px;
+    //margin-left: auto;
+}
+
+.profileDescriptionCol{
+    max-width: 300px;
+    margin-left: 10px;
+    //margin-right: auto;
+}
+
+.grid{
+    margin-top: 20px;
+}
+
+.name{
+    font-weight: bold;
+}
+
+.icons{
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.iconsCol{
+    margin-top: 10px;
+}
+
+.row{
+    justify-content: center;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar>    <ion-button (click)="this.navCtrl.back()" fill="clear" slot="start">      <ion-icon name="arrow-back-outline"></ion-icon>    </ion-button>    <ion-title class="ion-text-center" style="margin-right: 40px;">Freunde</ion-title>    <ion-button *ngIf="!isfriend" slot="end" (click)="addFriend()">      <ion-icon name="person-add-outline"></ion-icon>    </ion-button>  </ion-toolbar></ion-header><ion-content class="global">  <ion-grid class="grid">    <ion-row class="row">      <ion-col class="profileImgCol">        <img class="profileImg" [src]="sanitizer.bypassSecurityTrustUrl(user.profilePic)">      </ion-col>      <ion-col class="profileDescriptionCol">        <ion-row>          <ion-col class="name">            {{user.displayName}}          </ion-col>        </ion-row>        <ion-row>          <ion-col>            {{user.description}}          </ion-col>        </ion-row>      </ion-col>    </ion-row>    <ion-row style="margin-top: 10px; justify-content: center;">      <ion-col *ngIf="this.user.cash" style="max-width: 50px; margin-right: 30px;"><img          (click)="paymentDescription(\'Bar\', \'Barzahlung ist möglich.\')"          src="https://cdn.discordapp.com/attachments/798632008569061446/859421641096560650/money.png">      </ion-col>      <ion-col *ngIf="!this.user.cash" style="max-width: 50px; margin-right: 30px;"><img          style="filter: grayscale(100%);" (click)="paymentDescription(\'Bar\', \'Barzahlung ist nicht möglich.\')"          src="https://cdn.discordapp.com/attachments/798632008569061446/859421641096560650/money.png">      </ion-col>      <ion-col *ngIf="this.user.ec_card" style="max-width: 50px; margin-right: 30px;"><img          (click)="paymentDescription(\'EC-Karte\', \'Bezahlung mit EC-Karte ist möglich.\')"          src="https://image.flaticon.com/icons/png/512/893/893081.png">      </ion-col>      <ion-col *ngIf="!this.user.ec_card" style="max-width: 50px; margin-right: 30px;"><img          style="filter: grayscale(100%);"          (click)="paymentDescription(\'EC-Karte\', \'Bezahlung mit EC-Karte ist nicht möglich.\')"          src="https://image.flaticon.com/icons/png/512/893/893081.png">      </ion-col>      <ion-col *ngIf="this.user.kreditcard" style="max-width: 50px; margin-right: 30px;"><img          (click)="paymentDescription(\'Kreditkarte\', \'Bezahlung mit Kreditkarte ist möglich.\')"          src="https://image.flaticon.com/icons/png/512/147/147258.png">      </ion-col>      <ion-col *ngIf="!this.user.kreditcard" style="max-width: 50px; margin-right: 30px;"><img          style="filter: grayscale(100%);"          (click)="paymentDescription(\'Kreditkarte\', \'Bezahlung mit Kreditkarte ist nicht möglich.\')"          src="https://image.flaticon.com/icons/png/512/147/147258.png">      </ion-col>      <ion-col *ngIf="this.user.paypal" style="max-width: 50px;"><img          (click)="paymentDescription(\'PayPal\', \'Bezahlung mit PayPal ist möglich.\')"          src="https://image.flaticon.com/icons/png/512/888/888870.png">      </ion-col>      <ion-col *ngIf="!this.user.paypal" style="max-width: 50px;"><img style="filter: grayscale(100%);"          (click)="paymentDescription(\'PayPal\', \'Bezahlung mit PayPal ist nicht möglich.\')"          src="https://image.flaticon.com/icons/png/512/888/888870.png">      </ion-col>    </ion-row>    <ion-row class="row">      <ion-col class="iconsCol icons" *ngFor="let i of badges">        <img class="icons" (click)="badgeDescription(i.name, i.description)" src={{i.image}}>      </ion-col>    </ion-row>  </ion-grid></ion-content><ion-footer>  <ion-toolbar>    <ion-tabs>      <ion-tab-bar>        <ion-tab-button (click)="router.navigate([\'home\'])">          <ion-icon name="home-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'transaction-create\'])">          <ion-icon name="cash-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'group-list\'])">          <ion-icon name="people-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'profile\'])">          <ion-icon name="person-outline"></ion-icon>        </ion-tab-button>      </ion-tab-bar>    </ion-tabs>  </ion-toolbar></ion-footer></div>'
+    var COMPONENTS = [{'name': 'AddMembersPage', 'selector': 'app-add-members'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'FriendProfilePage', 'selector': 'app-friend-profile'},{'name': 'FriendsPage', 'selector': 'app-friends'},{'name': 'GroupCreatePage', 'selector': 'app-group-create'},{'name': 'GroupDetailsPage', 'selector': 'app-group-details'},{'name': 'GroupListPage', 'selector': 'app-group-list'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'InvitePage', 'selector': 'app-invite'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MemberViewPage', 'selector': 'app-member-view'},{'name': 'OptionsPage', 'selector': 'app-options'},{'name': 'PasswordPage', 'selector': 'app-password'},{'name': 'PaymentPage', 'selector': 'app-payment'},{'name': 'PaymentReminderPage', 'selector': 'app-payment-reminder'},{'name': 'PrivacyPage', 'selector': 'app-privacy'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'StatisticsPage', 'selector': 'app-statistics'},{'name': 'TransactionCreatePage', 'selector': 'app-transaction-create'},{'name': 'TransactionDetailsPage', 'selector': 'app-transaction-details'},{'name': 'TransactionParticipantsPage', 'selector': 'app-transaction-participants'},{'name': 'TransactionStakesPage', 'selector': 'app-transaction-stakes'},{'name': 'TutorialPage', 'selector': 'app-tutorial'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'FriendProfilePage'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FriendProfilePage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

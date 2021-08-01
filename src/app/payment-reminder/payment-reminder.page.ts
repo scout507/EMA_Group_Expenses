@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Share} from "@capacitor/share";
 import {ModalController, NavController, NavParams} from "@ionic/angular";
 
+/**
+ * This class is used to send payment reminder to other users
+ */
 @Component({
   selector: 'app-payment-reminder',
   templateUrl: './payment-reminder.page.html',
@@ -18,6 +20,12 @@ export class PaymentReminderPage implements OnInit {
   firstMsg: string;
   secondMsg: string = "";
   thirdMsg: string;
+
+  /**
+   * @ignore
+   * @param navParams
+   * @param modalController
+   */
   constructor(public navParams: NavParams, public modalController: ModalController) {
     this.displayName_otherUser = navParams.get('displayName_otherUser');
     this.groupName = navParams.get('groupName');
@@ -34,11 +42,17 @@ export class PaymentReminderPage implements OnInit {
   }
 
 
+  /**
+   * creates new Payment Reminder for another user
+   */
   createPaymentReminder() {
     let msg = this.firstMsg + this.secondMsg + "\n" + this.thirdMsg;
     this.modalController.dismiss(msg);
   }
 
+  /**
+   * @ignore
+   */
   ngOnInit() {
   }
 
