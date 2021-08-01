@@ -22,13 +22,13 @@ export class PrivacyPage {
 
   /**
    * @ignore
-   * @param router 
-   * @param route 
-   * @param userService 
-   * @param af 
-   * @param groupService 
-   * @param transactionService 
-   * @param authService 
+   * @param router
+   * @param route
+   * @param userService
+   * @param af
+   * @param groupService
+   * @param transactionService
+   * @param authService
    */
   constructor(
     private router: Router,
@@ -41,9 +41,9 @@ export class PrivacyPage {
   ) { }
 
   /**
-    * When the page is opened, all the required information 
-    * is loaded from the services and stored in the variables 
-    * provided for this purpose. Important here is the check 
+    * When the page is opened, all the required information
+    * is loaded from the services and stored in the variables
+    * provided for this purpose. Important here is the check
     * whether the user is logged in, otherwise no data will be loaded.
     */
   ionViewWillEnter() {
@@ -58,9 +58,9 @@ export class PrivacyPage {
   }
 
   /**
-   * This function navigates back to the option page. It checks whether the user 
-   * has changed data, if this is the case, then an Ionic alert is created, which 
-   * asks again whether the changes should be discarded. If there are no changes, then 
+   * This function navigates back to the option page. It checks whether the user
+   * has changed data, if this is the case, then an Ionic alert is created, which
+   * asks again whether the changes should be discarded. If there are no changes, then
    * it is simply navigated back.
    */
   async backBtn() {
@@ -83,9 +83,9 @@ export class PrivacyPage {
   }
 
   /**
-    * This function navigates back to the option page. It checks whether the user 
-    * has changed data, if this is the case, then an Ionic alert is created, which 
-    * asks again whether the changes should be saved. If there are no changes, then 
+    * This function navigates back to the option page. It checks whether the user
+    * has changed data, if this is the case, then an Ionic alert is created, which
+    * asks again whether the changes should be saved. If there are no changes, then
     * it is simply navigated back.
     */
   async saveBtn() {
@@ -125,10 +125,15 @@ export class PrivacyPage {
 
     if (rsl.role == "yes") {
       await this.userService.deleteUserFromFriends(this.user);
+      console.log("1");
       await this.groupService.deleteUserFromAllGroups(this.user);
+      console.log("2");
       await this.transactionService.deleteAllTransactionsByUser(this.user);
+      console.log("3");
       this.userService.delete(this.user.id);
+      console.log("4");
       this.authService.delete();
+      console.log("5");
       this.authService.logout();
     }
   }

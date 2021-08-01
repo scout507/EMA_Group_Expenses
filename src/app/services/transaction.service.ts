@@ -92,7 +92,7 @@ export class TransactionService {
     const loading = document.createElement('ion-loading');
     loading.cssClass = 'loading';
     loading.message = 'Lade Daten';
-    loading.duration = 100000;
+    loading.duration = 1000;
     document.body.appendChild(loading);
     await loading.present();
 
@@ -106,22 +106,22 @@ export class TransactionService {
     }).forEach(document => {
       if(!withOld) {
         if (!document.finished) {
-          if (document.creator.toString() === user.id) {
+          if (document.creator === user.id) {
             transactions.push(document);
           } else {
             document.participation.forEach(part => {
-              if (part.user.id === user.id) {
+              if (part.user === user.id) {
                 transactions.push(document);
               }
             });
           }
         }
       }else{
-        if (document.creator.toString() === user.id) {
+        if (document.creator === user.id) {
           transactions.push(document);
         } else {
           document.participation.forEach(part => {
-            if (part.user.id === user.id) {
+            if (part.user === user.id) {
               transactions.push(document);
             }
           });
@@ -134,7 +134,6 @@ export class TransactionService {
       for(let i in transaction.participation){
         if(!this.loadedUsers.get(transaction.participation[i].user)){
           await this.userService.findById(transaction.participation[i].user).then(user => {
-            console.log("lade aus DB");
             this.loadedUsers.set(transaction.participation[i].user, user);
             transaction.participation[i].user = user;
             transaction.paid[i].user = user;
@@ -142,10 +141,10 @@ export class TransactionService {
           });
         }
         else{
-          console.log("lade aus speicher");
-          transaction.participation[i].user = this.loadedUsers.get(transaction.participation[i].user);
-          transaction.paid[i].user = this.loadedUsers.get(transaction.participation[i].user);
-          transaction.accepted[i].user = this.loadedUsers.get(transaction.participation[i].user);
+          const u = this.loadedUsers.get(transaction.participation[i].user);
+          transaction.participation[i].user = u;
+          transaction.paid[i].user = u;
+          transaction.accepted[i].user = u;
         }
       }
     }));
@@ -182,7 +181,6 @@ export class TransactionService {
       for(let i in transaction.participation){
         if(!this.loadedUsers.get(transaction.participation[i].user)){
           await this.userService.findById(transaction.participation[i].user).then(user => {
-            console.log("lade aus DB");
             this.loadedUsers.set(transaction.participation[i].user, user);
             transaction.participation[i].user = user;
             transaction.paid[i].user = user;
@@ -190,13 +188,17 @@ export class TransactionService {
           });
         }
         else{
-          console.log("lade aus speicher");
-          transaction.participation[i].user = this.loadedUsers.get(transaction.participation[i].user);
-          transaction.paid[i].user = this.loadedUsers.get(transaction.participation[i].user);
-          transaction.accepted[i].user = this.loadedUsers.get(transaction.participation[i].user);
+          const u = this.loadedUsers.get(transaction.participation[i].user);
+          transaction.participation[i].user = u;
+          transaction.paid[i].user = u;
+          transaction.accepted[i].user = u;
         }
       }
     }));
+    transactions.sort(function(a,b): any{
+      // @ts-ignore
+      return new Date(b.purchaseDate) - new Date(a.purchaseDate);
+    });
     return transactions;
   }
 
@@ -220,9 +222,11 @@ export class TransactionService {
    * Function to delete all transactions of a certain user. Used for user deletion.
    * @param user: the user of which the transactions need to be deleted.
    */
-  deleteAllTransactionsByUser(user: User){
-    this.userService.findById("QWgrWPALVhaZPnB1ZCiqbOELYbJ2").then(deletedUser =>{
-      this.getAllTransactionByUser(user,true).then(transactions => {
+  async deleteAllTransactionsByUser(user: User){
+    await this.userService.findById("KeY9mrG3m7hPZIsSzAEgubTa89t2").then(async deletedUser =>{
+      console.log(deletedUser);
+      await this.getAllTransactionByUser(user,true).then(transactions => {
+        console.log(transactions);
         transactions.forEach(transaction => {
           if(transaction.creator.id === user.id){
             if(transaction.finished){
@@ -302,6 +306,7 @@ export class TransactionService {
    * @param transaction: the transaction to save.
    */
   saveLocally(transaction: Transaction) {
+    console.log(transaction);
     localStorage.setItem('transaction', JSON.stringify(transaction));
   }
 
