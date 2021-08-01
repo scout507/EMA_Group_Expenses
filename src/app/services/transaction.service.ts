@@ -33,7 +33,6 @@ export class TransactionService {
   constructor(private afs: AngularFirestore, private groupService: GroupService, private authService: AuthService, private userService: UserService) {
     this.transactionCollection = afs.collection<Transaction>('Transaction');
     this.transactionTrackerCollection = afs.collection<TransactionTracker>('TransactionTracker');
-
   }
 
   /**
@@ -132,6 +131,12 @@ export class TransactionService {
     await Promise.all(transactions.map(async (transaction) => {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
       await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
+      for(let i in transaction.participation){
+        await this.userService.findById(transaction.participation[i].user).then(user => {
+          transaction.participation[i].user = user;
+          transaction.paid[i].user = user;
+        });
+      }
     }));
     // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
     transactions.sort(function(b,a): any{
