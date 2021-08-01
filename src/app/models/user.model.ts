@@ -13,6 +13,7 @@ export class User {
     public paypal?: boolean,
     public imagePublic?: boolean,    
     public awardsPublic?: boolean,
+    public awardsPublicfriends?: boolean,
     public descriptionPublic?: boolean,
     ) {
   }

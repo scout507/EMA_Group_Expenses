@@ -138,4 +138,13 @@ export class PrivacyPage {
     }
   }
 
+  /**
+   * This function is needed when the value of user.awardsPublic changes to true, 
+   * to change the value user.awardsPublicfriends as well.
+   */
+  changeAwardsPublicfriends() {
+    if (this.user.awardsPublic)
+      this.user.awardsPublicfriends = true;
+  }
+
 }
