@@ -22,7 +22,7 @@ import {TransactionTracker} from "../models/transactionTracker.model";
 export class TransactionService {
   transactionCollection: AngularFirestoreCollection<Transaction>; //The collection of all transaction objects in the firebase database.
   transactionTrackerCollection: AngularFirestoreCollection<TransactionTracker>; //The collection of all transactionTracker objects in the firebase database.
-
+  loadedUsers: Map<string, User> = new Map<string, User>();
   /**
    * @ignore
    * @param afs
@@ -132,11 +132,21 @@ export class TransactionService {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
       await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);
       for(let i in transaction.participation){
-        await this.userService.findById(transaction.participation[i].user).then(user => {
-          transaction.participation[i].user = user;
-          transaction.paid[i].user = user;
-          transaction.accepted[i].user = user;
-        });
+        if(!this.loadedUsers.get(transaction.participation[i].user)){
+          await this.userService.findById(transaction.participation[i].user).then(user => {
+            console.log("lade aus DB");
+            this.loadedUsers.set(transaction.participation[i].user, user);
+            transaction.participation[i].user = user;
+            transaction.paid[i].user = user;
+            transaction.accepted[i].user = user;
+          });
+        }
+        else{
+          console.log("lade aus speicher");
+          transaction.participation[i].user = this.loadedUsers.get(transaction.participation[i].user);
+          transaction.paid[i].user = this.loadedUsers.get(transaction.participation[i].user);
+          transaction.accepted[i].user = this.loadedUsers.get(transaction.participation[i].user);
+        }
       }
     }));
     // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
@@ -170,11 +180,21 @@ export class TransactionService {
     await Promise.all(transactions.map(async (transaction) => {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
       for(let i in transaction.participation){
-        await this.userService.findById(transaction.participation[i].user).then(user => {
-          transaction.participation[i].user = user;
-          transaction.paid[i].user = user;
-          transaction.accepted[i].user = user;
-        });
+        if(!this.loadedUsers.get(transaction.participation[i].user)){
+          await this.userService.findById(transaction.participation[i].user).then(user => {
+            console.log("lade aus DB");
+            this.loadedUsers.set(transaction.participation[i].user, user);
+            transaction.participation[i].user = user;
+            transaction.paid[i].user = user;
+            transaction.accepted[i].user = user;
+          });
+        }
+        else{
+          console.log("lade aus speicher");
+          transaction.participation[i].user = this.loadedUsers.get(transaction.participation[i].user);
+          transaction.paid[i].user = this.loadedUsers.get(transaction.participation[i].user);
+          transaction.accepted[i].user = this.loadedUsers.get(transaction.participation[i].user);
+        }
       }
     }));
     return transactions;
