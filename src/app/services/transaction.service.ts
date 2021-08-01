@@ -86,7 +86,7 @@ export class TransactionService {
   /**
    * Function to get all transactions where the current user is either creator or participant.
    * @param user: The current user.
-   * @param withOld: ToDo
+   * @param withOld: Boolean to load finished transactions or not
    */
   async getAllTransactionByUser(user: User, withOld: boolean): Promise<Transaction[]> {
     const loading = document.createElement('ion-loading');
