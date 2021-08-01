@@ -32,8 +32,14 @@ export class TransactionCreatePage implements OnInit {
   maxDate = new Date().getFullYear() + 3;
   //Map for saving occuring errors and corresponding messages.
   errors: Map<string, string> = new Map<string, string>();
+  //Boolean to mark whether the user came via group menu or not
+  fromGroup: boolean = false;
 
   ionViewWillEnter(){
+    if (this.route.snapshot.paramMap.get('fromGroup')) {
+      this.fromGroup = true;
+      this.groupService.getGroupById(this.route.snapshot.paramMap.get('groupID')).then(group => {this.transaction.group = group});
+    }
   }
 
   /**
@@ -55,9 +61,6 @@ export class TransactionCreatePage implements OnInit {
       this.transaction.paid = [];
       this.transaction.accepted = [];
       this.transaction.participation = [];
-    if (this.route.snapshot.paramMap.get('fromGroup')) {
-      this.groupService.getGroupById(this.route.snapshot.paramMap.get('groupID')).then(group => {this.transaction.group = group});
-    }
     this.groupService.getGroupsByUserId(this.authService.currentUser.id).then(groups => {
       this.groups = groups;
     });
