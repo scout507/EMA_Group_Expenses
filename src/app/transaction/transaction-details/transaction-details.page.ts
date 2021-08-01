@@ -149,6 +149,7 @@ export class TransactionDetailsPage implements OnInit {
       resultType: CameraResultType.Base64
     }).then(data => {
       this.transaction.photo = "data:image/jpeg;base64, " + data.base64String;
+      console.log(this.transaction);
       this.transactionService.update(this.transaction)
     });
   }
