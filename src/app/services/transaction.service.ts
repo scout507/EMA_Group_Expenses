@@ -135,6 +135,7 @@ export class TransactionService {
         await this.userService.findById(transaction.participation[i].user).then(user => {
           transaction.participation[i].user = user;
           transaction.paid[i].user = user;
+          transaction.accepted[i].user = user;
         });
       }
     }));
@@ -168,6 +169,13 @@ export class TransactionService {
     });
     await Promise.all(transactions.map(async (transaction) => {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
+      for(let i in transaction.participation){
+        await this.userService.findById(transaction.participation[i].user).then(user => {
+          transaction.participation[i].user = user;
+          transaction.paid[i].user = user;
+          transaction.accepted[i].user = user;
+        });
+      }
     }));
     return transactions;
   }
