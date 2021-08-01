@@ -13,7 +13,7 @@
     <ion-icon name="people-outline"></ion-icon>
     <ion-label align="center">Mitglieder</ion-label>
   </ion-item>
-  <ion-item button (click)="createTransaction()">
+  <ion-item button (click)="createTransaction()" *ngIf="group">
     <ion-icon name="cash-outline"></ion-icon>
     <ion-label align="center">Transaktion anlegen</ion-label>
   </ion-item>
