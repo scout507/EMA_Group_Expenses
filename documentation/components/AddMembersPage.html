@@ -1,0 +1,1178 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>group-expenses documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">group-expenses documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  AddMembersPage</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/group/add-members/add-members.page.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This class is used to add new members to the group</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-add-members</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./add-members.page.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./add-members.page.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="##searchbar" >#searchbar</a>
+                            </li>
+                            <li>
+                                <a href="#currentUser" >currentUser</a>
+                            </li>
+                            <li>
+                                <a href="#filteredFriendsAndMembers" >filteredFriendsAndMembers</a>
+                            </li>
+                            <li>
+                                <a href="#friendsAndMembers" >friendsAndMembers</a>
+                            </li>
+                            <li>
+                                <a href="#group" >group</a>
+                            </li>
+                            <li>
+                                <a href="#newSelectedMembers" >newSelectedMembers</a>
+                            </li>
+                            <li>
+                                <a href="#searchbarVisible" >searchbarVisible</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#add" >add</a>
+                            </li>
+                            <li>
+                                <a href="#cancelSearch" >cancelSearch</a>
+                            </li>
+                            <li>
+                                <a href="#checkSelectedFriendsContainFriend" >checkSelectedFriendsContainFriend</a>
+                            </li>
+                            <li>
+                                <a href="#doSearch" >doSearch</a>
+                            </li>
+                            <li>
+                                <a href="#select" >select</a>
+                            </li>
+                            <li>
+                                <a href="#setVisible" >setVisible</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#searchbar" >searchbar</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="add"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>add</b></span>
+                        <a href="#add"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>add()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/app/group/add-members/add-members.page.ts:146</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This function adds the new selected user to the group</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelSearch"></a>
+                    <span class="name">
+                        <span ><b>cancelSearch</b></span>
+                        <a href="#cancelSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelSearch()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/group/add-members/add-members.page.ts:111</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This function deactivates the searchbar and hides it</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkSelectedFriendsContainFriend"></a>
+                    <span class="name">
+                        <span ><b>checkSelectedFriendsContainFriend</b></span>
+                        <a href="#checkSelectedFriendsContainFriend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkSelectedFriendsContainFriend(friend: <a href="../classes/User.html" target="_self">User</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/app/group/add-members/add-members.page.ts:133</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This function checks if the selected user is already a group member</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>friend</td>
+                                    <td>
+                                                <code><a href="../classes/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>the selected user</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="doSearch"></a>
+                    <span class="name">
+                        <span ><b>doSearch</b></span>
+                        <a href="#doSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>doSearch()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/app/group/add-members/add-members.page.ts:103</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this function filters the friends and members with the value in search bar</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="select"></a>
+                    <span class="name">
+                        <span ><b>select</b></span>
+                        <a href="#select"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>select(friend: <a href="../classes/User.html" target="_self">User</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/app/group/add-members/add-members.page.ts:121</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This function is used to push or deleted the selected friend</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>friend</td>
+                                    <td>
+                                                <code><a href="../classes/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>the selected user</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setVisible"></a>
+                    <span class="name">
+                        <span ><b>setVisible</b></span>
+                        <a href="#setVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setVisible()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/app/group/add-members/add-members.page.ts:96</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this function makes the searchbar visible</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="#searchbar"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>#searchbar</b></span>
+                        <a href="##searchbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>IonSearchbar</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/group/add-members/add-members.page.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUser"></a>
+                    <span class="name">
+                        <span ><b>currentUser</b></span>
+                        <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/group/add-members/add-members.page.ts:35</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>the user who currently uses the app</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredFriendsAndMembers"></a>
+                    <span class="name">
+                        <span ><b>filteredFriendsAndMembers</b></span>
+                        <a href="#filteredFriendsAndMembers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/group/add-members/add-members.page.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>array of all friends and members with filter from searchbar</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="friendsAndMembers"></a>
+                    <span class="name">
+                        <span ><b>friendsAndMembers</b></span>
+                        <a href="#friendsAndMembers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/group/add-members/add-members.page.ts:23</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>array of all friends and group members</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="group"></a>
+                    <span class="name">
+                        <span ><b>group</b></span>
+                        <a href="#group"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Group.html" target="_self" >Group</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/group/add-members/add-members.page.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>the selected group from user</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="newSelectedMembers"></a>
+                    <span class="name">
+                        <span ><b>newSelectedMembers</b></span>
+                        <a href="#newSelectedMembers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/group/add-members/add-members.page.ts:27</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>new selected user for group</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchbarVisible"></a>
+                    <span class="name">
+                        <span ><b>searchbarVisible</b></span>
+                        <a href="#searchbarVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/group/add-members/add-members.page.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>boolean if searchbar visible or not</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchbar"></a>
+                        <span class="name"><b>searchbar</b><a href="#searchbar"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>searchbar(sb: IonSearchbar)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/group/add-members/add-members.page.ts:86</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>sb</td>
+                                                    
+                                                            <td>
+                                                                        <code>IonSearchbar</code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, OnInit, ViewChild} from &#x27;@angular/core&#x27;;
+import {IonSearchbar, ModalController, NavParams} from &quot;@ionic/angular&quot;;
+import {UserService} from &#x27;src/app/services/user.service&#x27;;
+import {User} from &quot;../../models/user.model&quot;;
+import {AuthService} from &quot;../../services/auth.service&quot;;
+import {Group} from &quot;../../models/group.model&quot;;
+import {TransactionService} from &quot;../../services/transaction.service&quot;;
+
+/**
+ * This class is used to add new members to the group
+ */
+@Component({
+  selector: &#x27;app-add-members&#x27;,
+  templateUrl: &#x27;./add-members.page.html&#x27;,
+  styleUrls: [&#x27;./add-members.page.scss&#x27;],
+})
+
+export class AddMembersPage implements OnInit {
+
+  /**
+   array of all friends and group members
+   */
+  friendsAndMembers: User[] &#x3D; [];
+  /**
+   new selected user for group
+   */
+  newSelectedMembers: User[] &#x3D; [];
+  /**
+   the selected group from user
+   */
+  group: Group;
+  /**
+   the user who currently uses the app
+   */
+  currentUser: User;
+  /**
+   array of all friends and members with filter from searchbar
+   */
+  filteredFriendsAndMembers: User[] &#x3D; [];
+  /**
+   boolean if searchbar visible or not
+   */
+  searchbarVisible &#x3D; false;
+
+  /**
+   * @ignore
+   */
+  constructor(private modalController: ModalController,
+              public navParams: NavParams,
+              public authService: AuthService,
+              public transactionService: TransactionService,
+              public userService: UserService) {
+    this.group &#x3D; navParams.get(&#x27;groupParam&#x27;);
+    this.currentUser &#x3D; navParams.get(&#x27;currentUserParam&#x27;);
+    if (this.group.members) {
+      this.group.members.forEach(member &#x3D;&gt; {
+        if (this.currentUser.id !&#x3D; member.id) {
+          this.friendsAndMembers.push(member);
+          this.filteredFriendsAndMembers.push(member);
+        }
+      });
+      this.newSelectedMembers.splice(0, this.newSelectedMembers.length, ...this.group.members);
+    }
+    let friendIsMember;
+    for (let friend of this.currentUser.friends) {
+      friendIsMember &#x3D; false;
+      if (this.group.members) {
+        for (let member of this.group.members) {
+          if (friend.toString() &#x3D;&#x3D; member.id) {
+            friendIsMember &#x3D; true;
+            break;
+          }
+        }
+      }
+      if (!friendIsMember) {
+        this.userService.findById(friend.toString()).then(user &#x3D;&gt; {
+          this.friendsAndMembers.push(user);
+          this.filteredFriendsAndMembers.push(user);
+        });
+      }
+    }
+  }
+
+  #searchbar: IonSearchbar;
+  @ViewChild(IonSearchbar)
+  set searchbar(sb: IonSearchbar) {
+    if (sb) {
+      sb.setFocus();
+      this.#searchbar &#x3D; sb;
+    }
+  }
+
+  /**
+   * this function makes the searchbar visible
+   */
+  setVisible() {
+    this.searchbarVisible &#x3D; true;
+  }
+
+  /**
+   * this function filters the friends and members with the value in search bar
+   */
+  doSearch() {
+    this.filteredFriendsAndMembers &#x3D; this.friendsAndMembers.filter(r &#x3D;&gt;
+      r.displayName.toLowerCase().includes(this.#searchbar.value.toLowerCase()))
+  }
+
+  /**
+   * This function deactivates the searchbar and hides it
+   */
+  cancelSearch() {
+    this.#searchbar.value &#x3D; &quot;&quot;;
+    this.filteredFriendsAndMembers &#x3D; this.friendsAndMembers;
+    this.searchbarVisible &#x3D; false;
+  }
+
+  /**
+   * This function is used to push or deleted the selected friend
+   * @param friend - the selected user
+   */
+  select(friend: User) {
+    if (this.checkSelectedFriendsContainFriend(friend)) {
+      this.newSelectedMembers &#x3D; this.newSelectedMembers.filter(f &#x3D;&gt; f.id !&#x3D; friend.id);
+    } else {
+      this.newSelectedMembers.push(friend);
+    }
+  }
+
+  /**
+   * This function checks if the selected user is already a group member
+   * @param friend - the selected user
+   */
+  checkSelectedFriendsContainFriend(friend: User): boolean {
+    let ret &#x3D; false;
+    this.newSelectedMembers.forEach(f &#x3D;&gt; {
+      if (f.id &#x3D;&#x3D; friend.id) {
+        ret &#x3D; true;
+      }
+    });
+    return ret;
+  }
+
+  /**
+   * This function adds the new selected user to the group
+   */
+  async add() {
+    let removedFriend: User[] &#x3D; [];
+    let friendsWithOpenTransactions: User[] &#x3D; [];
+    let groupSizeGreaterOne: boolean &#x3D; true;
+    if (this.group.members) {
+      this.group.members.forEach(friend &#x3D;&gt; {
+        if (!this.newSelectedMembers.includes(friend)) {
+          removedFriend.push(friend);
+        }
+      });
+      for (const friend of removedFriend) {
+        let open &#x3D; await this.transactionService.checkTransactionsFinishedInGroupByUser(this.group, friend);
+        if (open) {
+          friendsWithOpenTransactions.push(friend);
+        }
+      }
+    } else {
+      groupSizeGreaterOne &#x3D; false;
+    }
+    if (groupSizeGreaterOne &amp;&amp; friendsWithOpenTransactions.length &gt; 0) {
+      let msg &#x3D; &#x60;Diese Auswahl kann nicht bestätigt werden, da noch folgende Freunde offene Transaktionen haben:\n&#x60;;
+      friendsWithOpenTransactions.forEach(friend &#x3D;&gt; {
+        msg +&#x3D; &#x60;${friend.displayName}\n&#x60;
+      });
+      this.newSelectedMembers &#x3D; this.group.members;
+      alert(msg)
+    } else {
+      await this.modalController.dismiss(this.newSelectedMembers);
+    }
+  }
+
+  /**
+   * @ignore
+   */
+  ngOnInit() {
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-header&gt;
+  &lt;ion-toolbar&gt;
+    &lt;ion-title *ngIf&#x3D;&quot;!searchbarVisible&quot;&gt;Freunde hinzufügen&lt;/ion-title&gt;
+    &lt;ion-button slot&#x3D;&quot;end&quot; (click)&#x3D;&quot;setVisible()&quot; fill&#x3D;&quot;clear&quot; *ngIf&#x3D;&quot;!searchbarVisible&quot;&gt;
+      &lt;ion-icon slot&#x3D;&quot;icon-only&quot; name&#x3D;&quot;search-outline&quot;&gt;&lt;/ion-icon&gt;
+    &lt;/ion-button&gt;
+    &lt;ion-searchbar *ngIf&#x3D;&quot;searchbarVisible&quot;
+                   (ionInput)&#x3D;&quot;doSearch()&quot;
+                   (ionCancel)&#x3D;&quot;cancelSearch()&quot;
+                   [showCancelButton]&#x3D;&quot;true&quot;
+                   placeholder&#x3D;&quot;Freund suchen&quot;&gt;
+    &lt;/ion-searchbar&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content&gt;
+  &lt;ion-list&gt;
+    &lt;ion-item *ngFor&#x3D;&quot;let friend of filteredFriendsAndMembers&quot; (click)&#x3D;&quot;select(friend)&quot;&gt;
+      &lt;ion-label&gt;
+        {{friend.displayName}}
+      &lt;/ion-label&gt;
+      &lt;ion-icon *ngIf&#x3D;&quot;checkSelectedFriendsContainFriend(friend)&quot; name&#x3D;&quot;checkmark-circle-outline&quot;&gt;&lt;/ion-icon&gt;
+    &lt;/ion-item&gt;
+  &lt;/ion-list&gt;
+  &lt;ion-buttons&gt;
+    &lt;ion-button (click)&#x3D;&quot;this.modalController.dismiss(this.group.members)&quot; color&#x3D;&quot;danger&quot;&gt;Abbrechen&lt;/ion-button&gt;
+    &lt;ion-button (click)&#x3D;&quot;add()&quot; color&#x3D;&quot;primary&quot;&gt;
+      Bestätigen
+    &lt;/ion-button&gt;
+  &lt;/ion-buttons&gt;
+
+
+&lt;/ion-content&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./add-members.page.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar>    <ion-title *ngIf="!searchbarVisible">Freunde hinzufügen</ion-title>    <ion-button slot="end" (click)="setVisible()" fill="clear" *ngIf="!searchbarVisible">      <ion-icon slot="icon-only" name="search-outline"></ion-icon>    </ion-button>    <ion-searchbar *ngIf="searchbarVisible"                   (ionInput)="doSearch()"                   (ionCancel)="cancelSearch()"                   [showCancelButton]="true"                   placeholder="Freund suchen">    </ion-searchbar>  </ion-toolbar></ion-header><ion-content>  <ion-list>    <ion-item *ngFor="let friend of filteredFriendsAndMembers" (click)="select(friend)">      <ion-label>        {{friend.displayName}}      </ion-label>      <ion-icon *ngIf="checkSelectedFriendsContainFriend(friend)" name="checkmark-circle-outline"></ion-icon>    </ion-item>  </ion-list>  <ion-buttons>    <ion-button (click)="this.modalController.dismiss(this.group.members)" color="danger">Abbrechen</ion-button>    <ion-button (click)="add()" color="primary">      Bestätigen    </ion-button>  </ion-buttons></ion-content></div>'
+    var COMPONENTS = [{'name': 'AddMembersPage', 'selector': 'app-add-members'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'FriendProfilePage', 'selector': 'app-friend-profile'},{'name': 'FriendsPage', 'selector': 'app-friends'},{'name': 'GroupCreatePage', 'selector': 'app-group-create'},{'name': 'GroupDetailsPage', 'selector': 'app-group-details'},{'name': 'GroupListPage', 'selector': 'app-group-list'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'InvitePage', 'selector': 'app-invite'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MemberViewPage', 'selector': 'app-member-view'},{'name': 'OptionsPage', 'selector': 'app-options'},{'name': 'PasswordPage', 'selector': 'app-password'},{'name': 'PaymentPage', 'selector': 'app-payment'},{'name': 'PaymentReminderPage', 'selector': 'app-payment-reminder'},{'name': 'PrivacyPage', 'selector': 'app-privacy'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'StatisticsPage', 'selector': 'app-statistics'},{'name': 'TransactionCreatePage', 'selector': 'app-transaction-create'},{'name': 'TransactionDetailsPage', 'selector': 'app-transaction-details'},{'name': 'TransactionParticipantsPage', 'selector': 'app-transaction-participants'},{'name': 'TransactionStakesPage', 'selector': 'app-transaction-stakes'},{'name': 'TutorialPage', 'selector': 'app-tutorial'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AddMembersPage'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AddMembersPage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

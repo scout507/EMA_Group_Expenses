@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {TransactionService} from "../../services/transaction.service";
 import {AuthService} from "../../services/auth.service";
 import {UserService} from "../../services/user.service";
-import {User} from "../../models/user.model";
 import {Camera, CameraResultType} from "@capacitor/camera";
 import {DomSanitizer} from "@angular/platform-browser";
 
@@ -14,12 +13,24 @@ import {DomSanitizer} from "@angular/platform-browser";
   templateUrl: './transaction-details.page.html',
   styleUrls: ['./transaction-details.page.scss'],
 })
+/**
+ * Class representing the logic for the transaction detal view.
+ */
 export class TransactionDetailsPage implements OnInit {
-  transaction: Transaction;
-  currentView: string = 'overview';
-  otherUserId: string;
-  hasStake: boolean = false;
+  transaction: Transaction; //transaction of which the details are shown
+  currentView: string = 'overview'; //tab which is shown
+  otherUserId: string; //ID of the user which is targeted (when the current user wants to pay out an income to all participants this helps with the payment for one specific participant)
+  hasStake: boolean = false; //Boolean whether the current user is involved in the transaction or not
 
+  /**
+   * @ignore
+   * @param route
+   * @param sanitizer
+   * @param transactionService
+   * @param router
+   * @param authService
+   * @param userService
+   */
   constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer, private transactionService : TransactionService, private router: Router, private authService: AuthService, private userService: UserService) {
     this.transaction = this.transactionService.getLocally();
     this.otherUserId = JSON.parse(localStorage.getItem('otherUser'));
@@ -34,6 +45,10 @@ export class TransactionDetailsPage implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Function to return a more readable format for the transaction type.
+   * @param type: the intern representation of the type.
+   */
   formatType(type: string): string{
     switch (type) {
       case 'cost': {
@@ -45,6 +60,10 @@ export class TransactionDetailsPage implements OnInit {
     }
   }
 
+  /**
+   * Function to return a more readable format for the transaction rhythm.
+   * @param rhythm: the intern representation of the rhythm.
+   */
   formatRhythm(rhythm: string): string{
     switch (rhythm) {
       case 'once': {
@@ -68,6 +87,9 @@ export class TransactionDetailsPage implements OnInit {
     }
   }
 
+  /**
+   * Function to delete the current viewed transaction after confirmation.
+   */
   delete(){
     let confirmation = confirm('Wollen Sie die Transaktion wirklich löschen?');
     if (confirmation) {
@@ -76,6 +98,9 @@ export class TransactionDetailsPage implements OnInit {
     }
   }
 
+  /**
+   * Function to delete the tracker of the current transaction after confirmation if there is one.
+   */
   deleteTracker(){
     let confirmation = confirm('Wollen Sie das Wiederkehren dieser Transaktion wirklich beenden?');
     if (confirmation) {
@@ -88,6 +113,9 @@ export class TransactionDetailsPage implements OnInit {
     }
   }
 
+  /**
+   * Function to send the information of payment to the owner of the transaction for confirmation.
+   */
   payTransaction(){
     if(this.authService.currentUser){
       if(this.transaction.creator.id !== this.authService.currentUser.id) {
@@ -111,12 +139,9 @@ export class TransactionDetailsPage implements OnInit {
     }
   }
 
-
-  editTransaction(){
-    this.transactionService.saveLocally(this.transaction);
-    this.router.navigate(['transaction-create', {editMode: true}]);
-  }
-
+  /**
+   * Function to upload a picture in the attachment tab.
+   */
   async takePicture() {
     await Camera.getPhoto({
       quality: 90,
@@ -124,7 +149,16 @@ export class TransactionDetailsPage implements OnInit {
       resultType: CameraResultType.Base64
     }).then(data => {
       this.transaction.photo = "data:image/jpeg;base64, " + data.base64String;
+      console.log(this.transaction);
       this.transactionService.update(this.transaction)
     });
+  }
+
+  /**
+   * Function to remove attachment from transaction.
+   */
+  removePicture(){
+    this.transaction.photo = null;
+    this.transactionService.update(this.transaction);
   }
 }

@@ -1,19 +1,18 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title *ngIf="!editMode">Neue Transaktion</ion-title>
-    <ion-title *ngIf="editMode">Transaktion bearbeiten</ion-title>
+    <ion-title>Neue Transaktion</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-select *ngIf="!editMode && groups.length !== 0" [(ngModel)]="transaction.group" placeholder="Gruppe auswählen" class="ion-text-center">
+  <ion-select *ngIf="!fromGroup && groups.length !== 0" [(ngModel)]="transaction.group" placeholder="Gruppe auswählen" class="ion-text-center">
     <ion-select-option *ngFor="let groupChoice of groups"
                        [value]="groupChoice">{{groupChoice.name}}</ion-select-option>
   </ion-select>
   <div *ngIf="groups.length === 0" class="center">
     <ion-text>Keine Gruppe gefunden.</ion-text>
   </div>
-  <ion-item *ngIf="editMode" class="ion-text-center">
+  <ion-item *ngIf="fromGroup && transaction.group" class="ion-text-center">
     <ion-label>{{transaction.group.name}}</ion-label>
   </ion-item>
   <ion-text color="danger" *ngIf="errors.get('group')">{{errors.get('group')}}</ion-text>

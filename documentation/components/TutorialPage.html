@@ -1,0 +1,396 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>group-expenses documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">group-expenses documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  TutorialPage</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/tutorial/tutorial.page.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This class is for the tutorial after you register a new account</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-tutorial</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./tutorial.page.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./tutorial.page.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import {Router} from &quot;@angular/router&quot;;
+
+/**
+ * This class is for the tutorial after you register a new account
+ */
+@Component({
+  selector: &#x27;app-tutorial&#x27;,
+  templateUrl: &#x27;./tutorial.page.html&#x27;,
+  styleUrls: [&#x27;./tutorial.page.scss&#x27;],
+})
+export class TutorialPage implements OnInit {
+
+  /**
+   * @ignore
+   * @param router
+   */
+  constructor(public router: Router) { }
+
+  /**
+   * @ignore
+   */
+  ngOnInit() {
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-content&gt;
+  &lt;ion-slides pager &gt;
+    &lt;ion-slide&gt;
+      &lt;ion-grid&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col&gt;
+            &lt;ion-icon name&#x3D;&quot;people-outline&quot; size&#x3D;&quot;large&quot;&gt;&lt;/ion-icon&gt;
+            &lt;ion-icon name&#x3D;&quot;cash-outline&quot; size&#x3D;&quot;large&quot;&gt;&lt;/ion-icon&gt;
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col&gt;
+            &lt;h3 style&#x3D;&quot;color: #42d77d&quot;&gt;Willkommen!&lt;/h3&gt;
+            &lt;p&gt;Unsere App ermöglicht Ihnen schnell und einfach Ausgaben und Einnahmen mit Ihren Freunden fair aufzuteilen&lt;/p&gt;
+            &lt;ion-buttons (click)&#x3D;&quot;router.navigate([&#x27;profile&#x27;])&quot; class&#x3D;&quot;ion-justify-content-center ion-margin-top&quot;&gt;
+              &lt;ion-button color&#x3D;&quot;primary&quot; fill&#x3D;&quot;solid&quot;&gt;
+                Tutorial Überspringen
+              &lt;/ion-button&gt;
+            &lt;/ion-buttons&gt;
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+      &lt;/ion-grid&gt;
+    &lt;/ion-slide&gt;
+    &lt;ion-slide&gt;
+      &lt;ion-grid&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col size&#x3D;&quot;6&quot; offset&#x3D;&quot;3&quot;&gt;
+            &lt;ion-img src&#x3D;&quot;../../assets/tutorial/Profil.png&quot;&gt;&lt;/ion-img&gt;
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col&gt;
+            &lt;p&gt;Schritt 1:&lt;/p&gt;
+            &lt;p&gt;Wenn Sie auf Ihrem Profil oben links auf das Icon klicken dann gelangen Sie zu Ihrer Freundesliste&lt;/p&gt;
+            &lt;p&gt;Dort können Sie neue Freunde mit der Email-Adresse hinzufügen, wie z.B. den andi@web.de&lt;/p&gt;
+            &lt;ion-buttons (click)&#x3D;&quot;router.navigate([&#x27;profile&#x27;])&quot; class&#x3D;&quot;ion-justify-content-center ion-margin-top&quot;&gt;
+              &lt;ion-button color&#x3D;&quot;primary&quot; fill&#x3D;&quot;solid&quot;&gt;
+                Tutorial Überspringen
+              &lt;/ion-button&gt;
+            &lt;/ion-buttons&gt;
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+      &lt;/ion-grid&gt;
+    &lt;/ion-slide&gt;
+    &lt;ion-slide&gt;
+      &lt;ion-grid&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col size&#x3D;&quot;6&quot; offset&#x3D;&quot;3&quot;&gt;
+            &lt;ion-img src&#x3D;&quot;../../assets/tutorial/Gruppenliste.png&quot;&gt;&lt;/ion-img&gt;
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col&gt;
+            &lt;p&gt;Schritt 2:&lt;/p&gt;
+            &lt;p&gt;Mit Ihren Freunden können Sie nun eine neue Gruppe erstellen&lt;/p&gt;
+            &lt;p&gt;Klicken Sie dafür auf das Plus Icon unten rechts&lt;/p&gt;
+            &lt;ion-buttons (click)&#x3D;&quot;router.navigate([&#x27;profile&#x27;])&quot; class&#x3D;&quot;ion-justify-content-center ion-margin-top&quot;&gt;
+              &lt;ion-button color&#x3D;&quot;primary&quot; fill&#x3D;&quot;solid&quot;&gt;
+                Tutorial Überspringen
+              &lt;/ion-button&gt;
+            &lt;/ion-buttons&gt;
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+      &lt;/ion-grid&gt;
+    &lt;/ion-slide&gt;
+    &lt;ion-slide&gt;
+      &lt;ion-grid&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col size&#x3D;&quot;6&quot; offset&#x3D;&quot;3&quot;&gt;
+            &lt;ion-img src&#x3D;&quot;../../assets/tutorial/Transaktion.png&quot;&gt;&lt;/ion-img&gt;
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col&gt;
+            &lt;p&gt;Schritt 3:&lt;/p&gt;
+            &lt;p&gt;Mit Ihrer neuen Gruppe können Sie nun eine Transaktion erstellen&lt;/p&gt;
+            &lt;p&gt;Klicken Sie dafür in der Bodenleiste auf das Icon in der Mitte links&lt;/p&gt;
+            &lt;p&gt;In dem Formular können Sie nun oben Ihre Gruppe auswählen und den Rest nach Belieben ausfüllen&lt;/p&gt;
+            &lt;ion-buttons (click)&#x3D;&quot;router.navigate([&#x27;profile&#x27;])&quot; class&#x3D;&quot;ion-justify-content-center ion-margin-top&quot;&gt;
+              &lt;ion-button color&#x3D;&quot;primary&quot; fill&#x3D;&quot;solid&quot;&gt;
+                Tutorial Überspringen
+              &lt;/ion-button&gt;
+            &lt;/ion-buttons&gt;
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+      &lt;/ion-grid&gt;
+    &lt;/ion-slide&gt;
+    &lt;ion-slide&gt;
+      &lt;ion-grid&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col size&#x3D;&quot;6&quot; offset&#x3D;&quot;3&quot;&gt;
+            &lt;ion-img src&#x3D;&quot;../../assets/tutorial/Transaktionsliste.png&quot;&gt;&lt;/ion-img&gt;
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+        &lt;ion-row&gt;
+          &lt;ion-col&gt;
+            &lt;p&gt;Super!&lt;/p&gt;
+            &lt;p&gt;Nun können Sie Ihre erstellte Transaktion auf Ihrer Startseite sehen&lt;/p&gt;
+            &lt;p&gt;Wenn ein Freund eine Transaktion mit Ihnen erstellt, dann sehen Sie das auch auf Ihrer Startseite&lt;/p&gt;
+            &lt;p&gt;Viel Spaß mit unserer App! :)&lt;/p&gt;
+            &lt;ion-buttons (click)&#x3D;&quot;router.navigate([&#x27;profile&#x27;])&quot; class&#x3D;&quot;ion-justify-content-center ion-margin-top&quot;&gt;
+              &lt;ion-button color&#x3D;&quot;primary&quot; fill&#x3D;&quot;solid&quot;&gt;
+                Fertig
+              &lt;/ion-button&gt;
+            &lt;/ion-buttons&gt;
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+      &lt;/ion-grid&gt;
+    &lt;/ion-slide&gt;
+  &lt;/ion-slides&gt;
+
+&lt;/ion-content&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./tutorial.page.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">ion-content{
+  ion-slides {
+    height: 100%
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-content>  <ion-slides pager >    <ion-slide>      <ion-grid>        <ion-row>          <ion-col>            <ion-icon name="people-outline" size="large"></ion-icon>            <ion-icon name="cash-outline" size="large"></ion-icon>          </ion-col>        </ion-row>        <ion-row>          <ion-col>            <h3 style="color: #42d77d">Willkommen!</h3>            <p>Unsere App ermöglicht Ihnen schnell und einfach Ausgaben und Einnahmen mit Ihren Freunden fair aufzuteilen</p>            <ion-buttons (click)="router.navigate([\'profile\'])" class="ion-justify-content-center ion-margin-top">              <ion-button color="primary" fill="solid">                Tutorial Überspringen              </ion-button>            </ion-buttons>          </ion-col>        </ion-row>      </ion-grid>    </ion-slide>    <ion-slide>      <ion-grid>        <ion-row>          <ion-col size="6" offset="3">            <ion-img src="../../assets/tutorial/Profil.png"></ion-img>          </ion-col>        </ion-row>        <ion-row>          <ion-col>            <p>Schritt 1:</p>            <p>Wenn Sie auf Ihrem Profil oben links auf das Icon klicken dann gelangen Sie zu Ihrer Freundesliste</p>            <p>Dort können Sie neue Freunde mit der Email-Adresse hinzufügen, wie z.B. den andi@web.de</p>            <ion-buttons (click)="router.navigate([\'profile\'])" class="ion-justify-content-center ion-margin-top">              <ion-button color="primary" fill="solid">                Tutorial Überspringen              </ion-button>            </ion-buttons>          </ion-col>        </ion-row>      </ion-grid>    </ion-slide>    <ion-slide>      <ion-grid>        <ion-row>          <ion-col size="6" offset="3">            <ion-img src="../../assets/tutorial/Gruppenliste.png"></ion-img>          </ion-col>        </ion-row>        <ion-row>          <ion-col>            <p>Schritt 2:</p>            <p>Mit Ihren Freunden können Sie nun eine neue Gruppe erstellen</p>            <p>Klicken Sie dafür auf das Plus Icon unten rechts</p>            <ion-buttons (click)="router.navigate([\'profile\'])" class="ion-justify-content-center ion-margin-top">              <ion-button color="primary" fill="solid">                Tutorial Überspringen              </ion-button>            </ion-buttons>          </ion-col>        </ion-row>      </ion-grid>    </ion-slide>    <ion-slide>      <ion-grid>        <ion-row>          <ion-col size="6" offset="3">            <ion-img src="../../assets/tutorial/Transaktion.png"></ion-img>          </ion-col>        </ion-row>        <ion-row>          <ion-col>            <p>Schritt 3:</p>            <p>Mit Ihrer neuen Gruppe können Sie nun eine Transaktion erstellen</p>            <p>Klicken Sie dafür in der Bodenleiste auf das Icon in der Mitte links</p>            <p>In dem Formular können Sie nun oben Ihre Gruppe auswählen und den Rest nach Belieben ausfüllen</p>            <ion-buttons (click)="router.navigate([\'profile\'])" class="ion-justify-content-center ion-margin-top">              <ion-button color="primary" fill="solid">                Tutorial Überspringen              </ion-button>            </ion-buttons>          </ion-col>        </ion-row>      </ion-grid>    </ion-slide>    <ion-slide>      <ion-grid>        <ion-row>          <ion-col size="6" offset="3">            <ion-img src="../../assets/tutorial/Transaktionsliste.png"></ion-img>          </ion-col>        </ion-row>        <ion-row>          <ion-col>            <p>Super!</p>            <p>Nun können Sie Ihre erstellte Transaktion auf Ihrer Startseite sehen</p>            <p>Wenn ein Freund eine Transaktion mit Ihnen erstellt, dann sehen Sie das auch auf Ihrer Startseite</p>            <p>Viel Spaß mit unserer App! :)</p>            <ion-buttons (click)="router.navigate([\'profile\'])" class="ion-justify-content-center ion-margin-top">              <ion-button color="primary" fill="solid">                Fertig              </ion-button>            </ion-buttons>          </ion-col>        </ion-row>      </ion-grid>    </ion-slide>  </ion-slides></ion-content></div>'
+    var COMPONENTS = [{'name': 'AddMembersPage', 'selector': 'app-add-members'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'FriendProfilePage', 'selector': 'app-friend-profile'},{'name': 'FriendsPage', 'selector': 'app-friends'},{'name': 'GroupCreatePage', 'selector': 'app-group-create'},{'name': 'GroupDetailsPage', 'selector': 'app-group-details'},{'name': 'GroupListPage', 'selector': 'app-group-list'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'InvitePage', 'selector': 'app-invite'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MemberViewPage', 'selector': 'app-member-view'},{'name': 'OptionsPage', 'selector': 'app-options'},{'name': 'PasswordPage', 'selector': 'app-password'},{'name': 'PaymentPage', 'selector': 'app-payment'},{'name': 'PaymentReminderPage', 'selector': 'app-payment-reminder'},{'name': 'PrivacyPage', 'selector': 'app-privacy'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'StatisticsPage', 'selector': 'app-statistics'},{'name': 'TransactionCreatePage', 'selector': 'app-transaction-create'},{'name': 'TransactionDetailsPage', 'selector': 'app-transaction-details'},{'name': 'TransactionParticipantsPage', 'selector': 'app-transaction-participants'},{'name': 'TransactionStakesPage', 'selector': 'app-transaction-stakes'},{'name': 'TutorialPage', 'selector': 'app-tutorial'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TutorialPage'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TutorialPage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
