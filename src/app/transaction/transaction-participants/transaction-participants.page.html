@@ -1,9 +1,6 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Teilnehmer auswählen</ion-title>
-    <ion-button slot="end">
-      <ion-icon name="search"></ion-icon>
-    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -17,7 +14,7 @@
       <ion-avatar slot="start">
         <img [src]="sanitizer.bypassSecurityTrustUrl(participant.user.profilePic)">
       </ion-avatar>
-      <ion-text>{{participant.user.displayName ? participant.user.displayName : participant.user.userName}}</ion-text>
+      <ion-text>{{participant.user.displayName}}</ion-text>
       <ion-toggle [(ngModel)]="participant.participates" slot="end"></ion-toggle>
     </ion-item>
   </ion-list>

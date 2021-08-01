@@ -394,6 +394,12 @@ export class TransactionService {
     copy.photo = transaction.photo || null;
     copy.group = transaction.group.id;
     copy.creator = transaction.creator.id;
+    for (let i = 0; i < copy.participation.length; i++) {
+      copy.participation[i].user = copy.participation[i].user.id;
+      copy.accepted[i].user = copy.accepted[i].user.id;
+      copy.paid[i].user = copy.paid[i].user.id;
+    }
+    console.log(copy);
     return copy;
   }
 
@@ -403,18 +409,14 @@ export class TransactionService {
   async createTransactionContinuation() {
     let currentDate = new Date().getTime();
     const tracker: TransactionTracker[] = await this.getAllTransactionTracker();
-    console.log(tracker);
     tracker.forEach((tracker: any) => {
       if (tracker.creator === this.authService.currentUser.id) {
-        console.log('Found tracker from user.');
         let transaction = tracker.originalTransaction;
         tracker.createDate = new Date(tracker.createDate.seconds * 1000);
         tracker.lastDate = new Date(tracker.lastDate.seconds * 1000);
-        console.log(tracker);
         if (tracker.lastDate.getTime() <= currentDate) {
           let missedEntries = Math.ceil((currentDate - tracker.lastDate.getTime()) / tracker.rhythm);
           if (missedEntries > 0) {
-            console.log(`There's ${missedEntries} transactions that need to be created...`);
             for (let i = 0; i < missedEntries; i++) {
               let transactionContinuation: Transaction = transaction;
               this.groupService.getGroupById(transaction.group).then(group => {
@@ -426,9 +428,6 @@ export class TransactionService {
                   transactionContinuation.dueDate = new Date(tracker.lastDate.getTime() + this.getRhythmMiliseconds(tracker.originalTransaction.rhythm)).toDateString();
                   tracker.lastDate = new Date(transactionContinuation.dueDate);
                   tracker.creator = creator;
-                  console.log(transactionContinuation.dueDate);
-                  console.log(tracker);
-                  console.log(transactionContinuation);
                   this.persist(transactionContinuation);
                   this.updateTracker(tracker);
                 });

@@ -77,7 +77,7 @@
     <ion-button *ngIf="!transaction.photo && authService.currentUser.id === transaction.creator.id" (click)="takePicture()">
       <ion-icon name="add"></ion-icon>
     </ion-button>
-    <ion-button *ngIf="transaction.photo && authService.currentUser.id === transaction.creator.id " (click)="transaction.photo = null; transactionService.update(transaction)">
+    <ion-button *ngIf="transaction.photo && authService.currentUser.id === transaction.creator.id " (click)="removePicture()">
       <ion-icon name="trash" ></ion-icon>
     </ion-button>
   </div>

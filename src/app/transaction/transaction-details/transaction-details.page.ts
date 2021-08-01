@@ -152,4 +152,12 @@ export class TransactionDetailsPage implements OnInit {
       this.transactionService.update(this.transaction)
     });
   }
+
+  /**
+   * Function to remove attachment from transaction.
+   */
+  removePicture(){
+    this.transaction.photo = null;
+    this.transactionService.update(this.transaction);
+  }
 }
