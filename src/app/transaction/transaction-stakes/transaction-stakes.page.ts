@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../../models/user.model";
 import {Router} from "@angular/router";
 import {TransactionService} from "../../services/transaction.service";
 import {Transaction} from "../../models/transaction.model";
@@ -10,10 +9,18 @@ import {TransactionTracker} from "../../models/transactionTracker.model";
   templateUrl: './transaction-stakes.page.html',
   styleUrls: ['./transaction-stakes.page.scss'],
 })
+/**
+ * Class representing the logic of the transaction stakes view.
+ */
 export class TransactionStakesPage implements OnInit {
   transaction: Transaction;
   errors: Map<string, string> = new Map<string, string>();
 
+  /**
+   * @ignore
+   * @param router
+   * @param transactionService
+   */
   constructor(private router: Router,
               private transactionService: TransactionService) {
     this.transaction = transactionService.getLocally();
@@ -29,12 +36,18 @@ export class TransactionStakesPage implements OnInit {
     }
   }
 
+  /**
+   * Function to calculate the current distributed amount in the input fields.
+   */
   getCurrentAmount(){
     let sum = 0;
     this.transaction.participation.forEach(participation => sum += participation.stake);
     return sum;
   }
 
+  /**
+   * Function to finish the transaction creation. Checks for input errors.
+   */
   handleSubmit() {
     this.errors.clear();
     if (this.getCurrentAmount() > this.transaction.amount) {

@@ -16,24 +16,46 @@ import {TransactionTracker} from "../models/transactionTracker.model";
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Class representing all logic regarding transactions and transactionTrackers.
+ */
 export class TransactionService {
-  transactionCollection: AngularFirestoreCollection<Transaction>;
-  transactionTrackerCollection: AngularFirestoreCollection<TransactionTracker>;
+  transactionCollection: AngularFirestoreCollection<Transaction>; //The collection of all transaction objects in the firebase database.
+  transactionTrackerCollection: AngularFirestoreCollection<TransactionTracker>; //The collection of all transactionTracker objects in the firebase database.
 
+  /**
+   * @ignore
+   * @param afs
+   * @param groupService
+   * @param authService
+   * @param userService
+   */
   constructor(private afs: AngularFirestore, private groupService: GroupService, private authService: AuthService, private userService: UserService) {
     this.transactionCollection = afs.collection<Transaction>('Transaction');
     this.transactionTrackerCollection = afs.collection<TransactionTracker>('TransactionTracker');
 
   }
 
+  /**
+   * Function to save a transaction to the database.
+   * @param transaction: the transaction to save.
+   */
   persist(transaction: Transaction) {
     return this.transactionCollection.add(this.copyAndPrepare(transaction));
   }
 
+  /**
+   * Function to update changes of a transaction to the database.
+   * @param transaction: The changed transaction.
+   */
   async update(transaction: Transaction): Promise<void> {
     await this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
+  /**
+   * Function to search through all transactions and find one with a given ID.
+   * @param id: the ID of the searched transaction.
+   */
   async getTransactionById(id: string) {
     let doc: any = await this.transactionCollection.doc(id).get().toPromise();
     let transaction = doc.data();
@@ -43,6 +65,9 @@ export class TransactionService {
     return transaction;
   }
 
+  /**
+   * Function to get all transactions.
+   */
   async getAllTransactions(): Promise<Transaction[]> {
     const snapshot = await this.transactionCollection.get().toPromise();
     const transactions = [];
@@ -59,6 +84,11 @@ export class TransactionService {
 
   }
 
+  /**
+   * Function to get all transactions where the current user is either creator or participant.
+   * @param user: The current user.
+   * @param withOld: ToDo
+   */
   async getAllTransactionByUser(user: User, withOld: boolean): Promise<Transaction[]> {
     const loading = document.createElement('ion-loading');
     loading.cssClass = 'loading';
@@ -113,6 +143,10 @@ export class TransactionService {
     return transactions;
   }
 
+  /**
+   * Function to find all transactions for a given group.
+   * @param group: The group of which the transactions are searched
+   */
   async getAllTransactionByGroup(group: Group): Promise<Transaction[]> {
     const snapshot = await this.transactionCollection.get().toPromise();
     const transactions = [];
@@ -133,15 +167,9 @@ export class TransactionService {
     return transactions;
   }
 
-  async getAllTransactionUser(id: string): Promise<User[]> {
-    let users = [];
-    let snapshot = await this.transactionCollection.doc(id).get().toPromise();
-    await snapshot.data().participation.forEach(entry => {
-      users.push(entry.user);
-    });
-    return users;
-  }
-
+  /**
+   * Function to find all transactionTracker.
+   */
   private async getAllTransactionTracker() {
     const snapshot = await this.transactionTrackerCollection.get().toPromise();
 
@@ -155,6 +183,10 @@ export class TransactionService {
     return tracker;
   }
 
+  /**
+   * Function to delete all transactions of a certain user. Used for user deletion.
+   * @param user: the user of which the transactions need to be deleted.
+   */
   deleteAllTransactionsByUser(user: User){
     this.userService.findById("QWgrWPALVhaZPnB1ZCiqbOELYbJ2").then(deletedUser =>{
       this.getAllTransactionByUser(user,true).then(transactions => {
@@ -195,18 +227,33 @@ export class TransactionService {
     });
   }
 
+  /**
+   * Function to create a subscribable object of the transaction entries in the database.
+   */
   findAllSync(): Observable<Transaction[]> {
     return this.transactionCollection.valueChanges({idField: 'id'});
   }
 
+  /**
+   * Function to delete a transaction via id.
+   * @param id: the id of the transaction to delete
+   */
   delete(id: string) {
     this.transactionCollection.doc(id).delete();
   }
 
+  /**
+   * Function to delete a transactionTracker.
+   * @param tracker: The tracker to delete.
+   */
   deleteTracker(tracker: TransactionTracker) {
     this.transactionTrackerCollection.doc(tracker.id).delete();
   }
 
+  /**
+   * Function to find a tracker via Transaction-ID.
+   * @param transactionID: The ID of the transaction.
+   */
   findTrackerById(transactionID: string){
     return this.getAllTransactionTracker().then(trackerList => {
       for (let tracker of trackerList){
@@ -217,14 +264,25 @@ export class TransactionService {
     })
   }
 
+  /**
+   * Function to save a transaction in the local storage.
+   * @param transaction: the transaction to save.
+   */
   saveLocally(transaction: Transaction) {
     localStorage.setItem('transaction', JSON.stringify(transaction));
   }
 
+  /**
+   * Function to load a transaction from the local storage.
+   */
   getLocally(): Transaction {
     return JSON.parse(localStorage.getItem('transaction'));
   }
 
+  /**
+   * Function to check if a transaction is finished.
+   * @param transaction: the transaction to check.
+   */
   checkTransactionFinish(transaction: Transaction): boolean {
     for (const a of transaction.accepted) {
       if (a.accepted === false) {
@@ -234,6 +292,11 @@ export class TransactionService {
     return true;
   }
 
+  /**
+   * Function to get the stakes of a certion user from a given transaction.
+   * @param member: the user of which stakes are searched
+   * @param transaction: the transaction for the search.
+   */
   getStakeForUser(member: User, transaction: Transaction): number {
     let stake: number = 0;
     transaction.participation.forEach(participation => {
@@ -242,6 +305,11 @@ export class TransactionService {
     return Math.round(stake * 100) / 100;
   }
 
+  /**
+   * Function to check whether the given user has paid the given transaction or not.
+   * @param member: user to check.
+   * @param transaction: transaction to check.
+   */
   hasUserPaid(member: string, transaction: Transaction): boolean {
     let paid: boolean = false;
     transaction.paid.forEach(payment => {
@@ -250,6 +318,11 @@ export class TransactionService {
     return paid;
   }
 
+  /**
+   * Function to check whether the given users payment in the given transaction has been accepted or not.
+   * @param member: user to check.
+   * @param transaction: transaction to check.
+   */
   wasPaymentAccepted(member: string, transaction: Transaction): boolean {
     let accepted: boolean = false;
     transaction.accepted.forEach(entry => {
@@ -258,12 +331,20 @@ export class TransactionService {
     return accepted;
   }
 
+  /**
+   * Function to return all participants of given transaction
+   * @param transaction: transaction to check for participants
+   */
   getParticipants(transaction: Transaction): User[] {
     let participants: User[] = [];
     transaction.participation.forEach(participant => participants.push(participant.user));
     return participants;
   }
 
+  /**
+   * Function to check whether all transactions of the given group are finished or not.
+   * @param group: the group to check.
+   */
   checkAllTransactionsFinishedInGroup(group: Group): Promise<boolean> {
     let transactions: Transaction[];
     let openTransactions = false;
@@ -278,6 +359,11 @@ export class TransactionService {
     });
   }
 
+  /**
+   * Function to check if all transactions of a certain user are finished in a certain group.
+   * @param group: group to check
+   * @param user: user to check
+   */
   checkTransactionsFinishedInGroupByUser(group: Group, user: User) {
     let transactions: Transaction[];
     let openTransactions: boolean = false;
@@ -296,6 +382,10 @@ export class TransactionService {
     })
   }
 
+  /**
+   * Function to redesign transaction data type for saving in database.
+   * @param transaction: the transaction that needs to be saved.
+   */
   private copyAndPrepare(transaction: Transaction) {
     const copy: any = {...transaction};
     delete copy.id;
@@ -307,6 +397,9 @@ export class TransactionService {
     return copy;
   }
 
+  /**
+   * Function to create reoccuring transactions.
+   */
   async createTransactionContinuation() {
     let currentDate = new Date().getTime();
     const tracker: TransactionTracker[] = await this.getAllTransactionTracker();
@@ -347,6 +440,10 @@ export class TransactionService {
     })
   }
 
+  /**
+   * Function to get the time in milliseconds that a rhythm needs in between occurrences.
+   * @param rhythm
+   */
   getRhythmMiliseconds(rhythm: string) {
     let rhythmMiliseconds = 0;
     if (rhythm === 'daily') {
@@ -364,15 +461,26 @@ export class TransactionService {
     return rhythmMiliseconds;
   }
 
-
+  /**
+   * Function to save a changed tracker.
+   * @param tracker: tracker to save.
+   */
   updateTracker(tracker: TransactionTracker) {
     this.transactionTrackerCollection.doc(tracker.id).update(this.copyAndPrepareTracker(tracker));
   }
 
+  /**
+   * Function to save a tracker to the database.
+   * @param tracker: tracker to save.
+   */
   persistTracker(tracker: TransactionTracker) {
     this.transactionTrackerCollection.add(this.copyAndPrepareTracker(tracker));
   }
 
+  /**
+   * Function to redesign tracker data model for saving in the database.
+   * @param tracker: the tracker to save.
+   */
   private copyAndPrepareTracker(tracker: TransactionTracker) {
     const copy: any = {...tracker};
     delete copy.id;

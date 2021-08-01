@@ -14,19 +14,37 @@ import {TransactionTracker} from "../../models/transactionTracker.model";
   templateUrl: './transaction-create.page.html',
   styleUrls: ['./transaction-create.page.scss'],
 })
+/**
+ * Class representing the logic for the transaction create view.
+ */
 export class TransactionCreatePage implements OnInit {
+  //The transaction that is going to be saved or passed later on.
   transaction: Transaction;
+  //The groups of the current user.
   groups: Group[] = [];
+  //Boolean to check whether the participants are picked individually or all at once.
   selectAllUsers: boolean = true;
+  //Boolean to check whether everyone pays the same or stakes are decided indiviudally.
   fairlyDistributedPrice: boolean = true;
-  editMode: boolean = false;
+  //String for the current date to prevent past dates in date pickers
   currentDate: string = new Date().toISOString();
+  //Calculation of max date; 3 years from now.
   maxDate = new Date().getFullYear() + 3;
+  //Map for saving occuring errors and corresponding messages.
   errors: Map<string, string> = new Map<string, string>();
 
   ionViewWillEnter(){
   }
 
+  /**
+   * @ignore
+   * @param router
+   * @param navCtrl
+   * @param route
+   * @param transactionService
+   * @param groupService
+   * @param authService
+   */
   constructor(private router: Router,
               private navCtrl: NavController,
               private route: ActivatedRoute,
@@ -45,6 +63,9 @@ export class TransactionCreatePage implements OnInit {
     });
   }
 
+  /**
+   * Function to calculate stakes for all participants.
+   */
   calculateStakes() {
     let stake: number = this.transaction.amount / this.transaction.group.members.length;
     for (let user of this.transaction.group.members) {
@@ -59,6 +80,9 @@ export class TransactionCreatePage implements OnInit {
     }
   }
 
+  /**
+   * Function to save the current data locally and navigate to the next creation page or finish the transaction creation. Checks for errors of inputs.
+   */
   nextPage(): void {
     this.errors.clear();
     if (!this.transaction.purpose){
@@ -78,7 +102,6 @@ export class TransactionCreatePage implements OnInit {
 
       if (this.selectAllUsers && this.fairlyDistributedPrice) {
         this.calculateStakes();
-        if(!this.editMode) {
           this.transactionService.persist(this.transaction).then(docRef => {
             if (this.transaction.rhythm !== 'once') {
               this.transactionService.getTransactionById(docRef.id).then((doc: any) => {
@@ -93,9 +116,6 @@ export class TransactionCreatePage implements OnInit {
               });
             }
           });
-        } else {
-          this.transactionService.update(this.transaction);
-        }
         this.navCtrl.pop();
         return;
       }
@@ -112,12 +132,16 @@ export class TransactionCreatePage implements OnInit {
     }
   }
 
-  cancel()
-    :
-    void {
+  /**
+   * Function to cancel transaction creation and navigate to last page.
+   */
+  cancel(): void {
     this.navCtrl.pop();
   }
 
+  /**
+   * Function to attach a picture to the transaction.
+   */
   async takePicture() {
     await Camera.getPhoto({
         quality: 90,
