@@ -479,21 +479,21 @@ export class RegisterPage implements OnInit {
              type&#x3D;&quot;text&quot;&gt;
   &lt;/ion-input&gt;
 
-  &lt;ion-label&gt;E-mail&lt;/ion-label&gt;
+  &lt;ion-label&gt;E-Mail&lt;/ion-label&gt;
   &lt;ion-input [(ngModel)]&#x3D;&quot;email&quot;
-             placeholder&#x3D;&quot;e-mail adresse&quot;
+             placeholder&#x3D;&quot;E-Mail Adresse&quot;
              type&#x3D;&quot;text&quot;&gt;
   &lt;/ion-input&gt;
 
-  &lt;ion-label&gt;Password&lt;/ion-label&gt;
+  &lt;ion-label&gt;Passwort&lt;/ion-label&gt;
   &lt;ion-input type&#x3D;&quot;password&quot;
-             placeholder&#x3D;&quot;password&quot;
+             placeholder&#x3D;&quot;Passwort&quot;
              [(ngModel)]&#x3D;&quot;password&quot;&gt;
   &lt;/ion-input&gt;
 
-  &lt;ion-label&gt;Password wiederholen&lt;/ion-label&gt;
+  &lt;ion-label&gt;Passwort wiederholen&lt;/ion-label&gt;
   &lt;ion-input type&#x3D;&quot;password&quot;
-             placeholder&#x3D;&quot;password&quot;
+             placeholder&#x3D;&quot;Passwort&quot;
              [(ngModel)]&#x3D;&quot;secondPassword&quot;&gt;
   &lt;/ion-input&gt;
 
@@ -502,7 +502,7 @@ export class RegisterPage implements OnInit {
     &lt;ion-button (click)&#x3D;&quot;this.register()&quot; fill&#x3D;&quot;solid&quot; color&#x3D;&quot;primary&quot;&gt;Registrieren&lt;/ion-button&gt;
   &lt;/ion-buttons&gt;
   &lt;ion-buttons class&#x3D;&quot;ion-justify-content-center &quot;&gt;
-    &lt;ion-button (click)&#x3D;&quot;router.navigate([&#x27;login&#x27;])&quot; fill&#x3D;&quot;solid&quot; color&#x3D;&quot;secondary&quot;&gt;zurück zu Login&lt;/ion-button&gt;
+    &lt;ion-button (click)&#x3D;&quot;router.navigate([&#x27;login&#x27;])&quot; fill&#x3D;&quot;solid&quot; color&#x3D;&quot;secondary&quot;&gt;Zurück zum Login&lt;/ion-button&gt;
   &lt;/ion-buttons&gt;
 
 &lt;/ion-content&gt;
@@ -565,7 +565,7 @@ export class RegisterPage implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ion-content>  <p>Registrieren</p>  <br>  <ion-label>Benutzername</ion-label>  <ion-input [(ngModel)]="username"             placeholder="Benutzername"             type="text">  </ion-input>  <ion-label>E-mail</ion-label>  <ion-input [(ngModel)]="email"             placeholder="e-mail adresse"             type="text">  </ion-input>  <ion-label>Password</ion-label>  <ion-input type="password"             placeholder="password"             [(ngModel)]="password">  </ion-input>  <ion-label>Password wiederholen</ion-label>  <ion-input type="password"             placeholder="password"             [(ngModel)]="secondPassword">  </ion-input>  <ion-label color="danger">{{errorMessage}}</ion-label>  <ion-buttons class="ion-justify-content-center ion-margin">    <ion-button (click)="this.register()" fill="solid" color="primary">Registrieren</ion-button>  </ion-buttons>  <ion-buttons class="ion-justify-content-center ">    <ion-button (click)="router.navigate([\'login\'])" fill="solid" color="secondary">zurück zu Login</ion-button>  </ion-buttons></ion-content></div>'
+        var COMPONENT_TEMPLATE = '<div><ion-content>  <p>Registrieren</p>  <br>  <ion-label>Benutzername</ion-label>  <ion-input [(ngModel)]="username"             placeholder="Benutzername"             type="text">  </ion-input>  <ion-label>E-Mail</ion-label>  <ion-input [(ngModel)]="email"             placeholder="E-Mail Adresse"             type="text">  </ion-input>  <ion-label>Passwort</ion-label>  <ion-input type="password"             placeholder="Passwort"             [(ngModel)]="password">  </ion-input>  <ion-label>Passwort wiederholen</ion-label>  <ion-input type="password"             placeholder="Passwort"             [(ngModel)]="secondPassword">  </ion-input>  <ion-label color="danger">{{errorMessage}}</ion-label>  <ion-buttons class="ion-justify-content-center ion-margin">    <ion-button (click)="this.register()" fill="solid" color="primary">Registrieren</ion-button>  </ion-buttons>  <ion-buttons class="ion-justify-content-center ">    <ion-button (click)="router.navigate([\'login\'])" fill="solid" color="secondary">Zurück zum Login</ion-button>  </ion-buttons></ion-content></div>'
     var COMPONENTS = [{'name': 'AddMembersPage', 'selector': 'app-add-members'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'FriendProfilePage', 'selector': 'app-friend-profile'},{'name': 'FriendsPage', 'selector': 'app-friends'},{'name': 'GroupCreatePage', 'selector': 'app-group-create'},{'name': 'GroupDetailsPage', 'selector': 'app-group-details'},{'name': 'GroupListPage', 'selector': 'app-group-list'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'InvitePage', 'selector': 'app-invite'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MemberViewPage', 'selector': 'app-member-view'},{'name': 'OptionsPage', 'selector': 'app-options'},{'name': 'PasswordPage', 'selector': 'app-password'},{'name': 'PaymentPage', 'selector': 'app-payment'},{'name': 'PaymentReminderPage', 'selector': 'app-payment-reminder'},{'name': 'PrivacyPage', 'selector': 'app-privacy'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'StatisticsPage', 'selector': 'app-statistics'},{'name': 'TransactionCreatePage', 'selector': 'app-transaction-create'},{'name': 'TransactionDetailsPage', 'selector': 'app-transaction-details'},{'name': 'TransactionParticipantsPage', 'selector': 'app-transaction-participants'},{'name': 'TransactionStakesPage', 'selector': 'app-transaction-stakes'},{'name': 'TutorialPage', 'selector': 'app-tutorial'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'RegisterPage'};

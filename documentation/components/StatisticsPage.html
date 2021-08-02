@@ -303,8 +303,8 @@ These are then stored in the respective variables and the data set of the pie ch
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/app/profile/statistics/statistics.page.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/app/profile/statistics/statistics.page.ts:90</a></div>
                 </td>
             </tr>
 
@@ -651,11 +651,11 @@ export class StatisticsPage implements OnInit {
 
   /**
    * @ignore
-   * @param router 
-   * @param af 
-   * @param transactionsservice 
-   * @param userService 
-   * @param stats 
+   * @param router
+   * @param af
+   * @param transactionsservice
+   * @param userService
+   * @param stats
    */
   constructor(
     public router: Router,
@@ -666,10 +666,10 @@ export class StatisticsPage implements OnInit {
   ) { }
 
   /**
-    * When the page is initialized, all the required information 
-    * is loaded from the services and stored in the variables 
-    * provided for this purpose. It is important that this is done 
-    * at initialization otherwise there will be problems with the pichart. 
+    * When the page is initialized, all the required information
+    * is loaded from the services and stored in the variables
+    * provided for this purpose. It is important that this is done
+    * at initialization otherwise there will be problems with the pichart.
     * Important here is the check whether the user is logged in, otherwise no data will be loaded.
     */
   ngOnInit() {
@@ -689,17 +689,16 @@ export class StatisticsPage implements OnInit {
   }
 
   /**
-   * This function calls the statistics functions to calculate data for a certain period of time. 
+   * This function calls the statistics functions to calculate data for a certain period of time.
    * These are then stored in the respective variables and the data set of the pie chart is also updated.
    * @param days Number of days for which the data should be loaded, -1 stands for the entire period.
    */
   async changeStats(days: number) {
-    this.income &#x3D; this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id);
-    this.outcome &#x3D; this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id);
+    this.income &#x3D; this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id)[0];
+    this.outcome &#x3D; this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)[0];
     this.self &#x3D; this.stats.getAllSelfmadeTransactionsOfTime(this.user.id, days, this.transactions);
-
     this.pie.data.datasets.forEach((dataset) &#x3D;&gt; {
-      dataset.data &#x3D; [this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id), this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)];
+      dataset.data &#x3D; [this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id)[0], this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)[0]];
     });
     this.pie.update();
   }
@@ -717,7 +716,7 @@ export class StatisticsPage implements OnInit {
         datasets: [
           {
             label: &#x27;Dataset 1&#x27;,
-            data: [this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id), this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)],
+            data: [this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id)[0], this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)[0]],
             backgroundColor: [&quot;rgba(104, 237, 136, 1)&quot;, &quot;rgba(237, 104, 104, 1)&quot;],
           }
         ]

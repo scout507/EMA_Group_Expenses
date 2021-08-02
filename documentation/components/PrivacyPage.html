@@ -157,6 +157,9 @@
                                 <a href="#backBtn" >backBtn</a>
                             </li>
                             <li>
+                                <a href="#changeAwardsPublicfriends" >changeAwardsPublicfriends</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteBtn" >deleteBtn</a>
                             </li>
@@ -227,6 +230,46 @@ it is simply navigated back.</p>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeAwardsPublicfriends"></a>
+                    <span class="name">
+                        <span ><b>changeAwardsPublicfriends</b></span>
+                        <a href="#changeAwardsPublicfriends"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeAwardsPublicfriends()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/app/profile/privacy/privacy.page.ts:140</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This function is needed when the value of user.awardsPublic changes to true,
+to change the value user.awardsPublicfriends as well.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                 </td>
@@ -463,13 +506,13 @@ export class PrivacyPage {
 
   /**
    * @ignore
-   * @param router 
-   * @param route 
-   * @param userService 
-   * @param af 
-   * @param groupService 
-   * @param transactionService 
-   * @param authService 
+   * @param router
+   * @param route
+   * @param userService
+   * @param af
+   * @param groupService
+   * @param transactionService
+   * @param authService
    */
   constructor(
     private router: Router,
@@ -482,9 +525,9 @@ export class PrivacyPage {
   ) { }
 
   /**
-    * When the page is opened, all the required information 
-    * is loaded from the services and stored in the variables 
-    * provided for this purpose. Important here is the check 
+    * When the page is opened, all the required information
+    * is loaded from the services and stored in the variables
+    * provided for this purpose. Important here is the check
     * whether the user is logged in, otherwise no data will be loaded.
     */
   ionViewWillEnter() {
@@ -499,9 +542,9 @@ export class PrivacyPage {
   }
 
   /**
-   * This function navigates back to the option page. It checks whether the user 
-   * has changed data, if this is the case, then an Ionic alert is created, which 
-   * asks again whether the changes should be discarded. If there are no changes, then 
+   * This function navigates back to the option page. It checks whether the user
+   * has changed data, if this is the case, then an Ionic alert is created, which
+   * asks again whether the changes should be discarded. If there are no changes, then
    * it is simply navigated back.
    */
   async backBtn() {
@@ -524,9 +567,9 @@ export class PrivacyPage {
   }
 
   /**
-    * This function navigates back to the option page. It checks whether the user 
-    * has changed data, if this is the case, then an Ionic alert is created, which 
-    * asks again whether the changes should be saved. If there are no changes, then 
+    * This function navigates back to the option page. It checks whether the user
+    * has changed data, if this is the case, then an Ionic alert is created, which
+    * asks again whether the changes should be saved. If there are no changes, then
     * it is simply navigated back.
     */
   async saveBtn() {
@@ -574,6 +617,15 @@ export class PrivacyPage {
     }
   }
 
+  /**
+   * This function is needed when the value of user.awardsPublic changes to true,
+   * to change the value user.awardsPublicfriends as well.
+   */
+  changeAwardsPublicfriends() {
+    if (this.user.awardsPublic)
+      this.user.awardsPublicfriends &#x3D; true;
+  }
+
 }
 </code></pre>
     </div>
@@ -598,7 +650,7 @@ export class PrivacyPage {
 &lt;ion-content&gt;
   &lt;ion-list lines&#x3D;&quot;full&quot;&gt;
     &lt;ion-item&gt;
-      &lt;ion-label class&#x3D;&quot;ion-text-center&quot;&gt;Öffentlich Anzeigen&lt;/ion-label&gt;
+      &lt;ion-label class&#x3D;&quot;ion-text-center&quot;&gt;Für Fremde sichtbar&lt;/ion-label&gt;
     &lt;/ion-item&gt;
 
     &lt;ion-item&gt;
@@ -608,7 +660,7 @@ export class PrivacyPage {
 
     &lt;ion-item&gt;
       &lt;ion-label&gt;Auszeichnungen&lt;/ion-label&gt;
-      &lt;ion-toggle [(ngModel)]&#x3D;&quot;user.awardsPublic&quot;&gt;&lt;/ion-toggle&gt;
+      &lt;ion-toggle [(ngModel)]&#x3D;&quot;user.awardsPublic&quot; (ionChange)&#x3D;&quot;changeAwardsPublicfriends()&quot;&gt;&lt;/ion-toggle&gt;
     &lt;/ion-item&gt;
 
     &lt;ion-item&gt;
@@ -617,7 +669,16 @@ export class PrivacyPage {
     &lt;/ion-item&gt;
 
     &lt;ion-item&gt;
-        &lt;ion-button (click)&#x3D;&quot;deleteBtn()&quot;&gt;Account Löschen&lt;/ion-button&gt;
+      &lt;ion-label class&#x3D;&quot;ion-text-center&quot;&gt;Für Freunde sichtbar&lt;/ion-label&gt;
+    &lt;/ion-item&gt;
+
+    &lt;ion-item&gt;
+      &lt;ion-label&gt;Auszeichnungen&lt;/ion-label&gt;
+      &lt;ion-toggle [(ngModel)]&#x3D;&quot;user.awardsPublicfriends&quot;&gt;&lt;/ion-toggle&gt;
+    &lt;/ion-item&gt;
+
+    &lt;ion-item &gt;
+        &lt;ion-button slot&#x3D;&quot;end&quot; (click)&#x3D;&quot;deleteBtn()&quot;&gt;Account Löschen&lt;/ion-button&gt;
     &lt;/ion-item&gt;
   &lt;/ion-list&gt;
 &lt;/ion-content&gt;
@@ -656,7 +717,7 @@ export class PrivacyPage {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar>    <ion-buttons slot="start">      <ion-button (click)="backBtn()">        <ion-icon name="arrow-back-outline"></ion-icon>      </ion-button>    </ion-buttons>    <ion-title class="ion-text-center">Privatsphäre Option</ion-title>    <ion-buttons slot="end">      <ion-button (click)="saveBtn()">        <ion-icon name="checkmark-outline"></ion-icon>      </ion-button>    </ion-buttons>  </ion-toolbar></ion-header><ion-content>  <ion-list lines="full">    <ion-item>      <ion-label class="ion-text-center">Öffentlich Anzeigen</ion-label>    </ion-item>    <ion-item>      <ion-label>Profilbild</ion-label>      <ion-toggle [(ngModel)]="user.imagePublic"></ion-toggle>    </ion-item>    <ion-item>      <ion-label>Auszeichnungen</ion-label>      <ion-toggle [(ngModel)]="user.awardsPublic"></ion-toggle>    </ion-item>    <ion-item>      <ion-label>Beschreibung</ion-label>      <ion-toggle [(ngModel)]="user.descriptionPublic"></ion-toggle>    </ion-item>    <ion-item>        <ion-button (click)="deleteBtn()">Account Löschen</ion-button>    </ion-item>  </ion-list></ion-content></div>'
+        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar>    <ion-buttons slot="start">      <ion-button (click)="backBtn()">        <ion-icon name="arrow-back-outline"></ion-icon>      </ion-button>    </ion-buttons>    <ion-title class="ion-text-center">Privatsphäre Option</ion-title>    <ion-buttons slot="end">      <ion-button (click)="saveBtn()">        <ion-icon name="checkmark-outline"></ion-icon>      </ion-button>    </ion-buttons>  </ion-toolbar></ion-header><ion-content>  <ion-list lines="full">    <ion-item>      <ion-label class="ion-text-center">Für Fremde sichtbar</ion-label>    </ion-item>    <ion-item>      <ion-label>Profilbild</ion-label>      <ion-toggle [(ngModel)]="user.imagePublic"></ion-toggle>    </ion-item>    <ion-item>      <ion-label>Auszeichnungen</ion-label>      <ion-toggle [(ngModel)]="user.awardsPublic" (ionChange)="changeAwardsPublicfriends()"></ion-toggle>    </ion-item>    <ion-item>      <ion-label>Beschreibung</ion-label>      <ion-toggle [(ngModel)]="user.descriptionPublic"></ion-toggle>    </ion-item>    <ion-item>      <ion-label class="ion-text-center">Für Freunde sichtbar</ion-label>    </ion-item>    <ion-item>      <ion-label>Auszeichnungen</ion-label>      <ion-toggle [(ngModel)]="user.awardsPublicfriends"></ion-toggle>    </ion-item>    <ion-item >        <ion-button slot="end" (click)="deleteBtn()">Account Löschen</ion-button>    </ion-item>  </ion-list></ion-content></div>'
     var COMPONENTS = [{'name': 'AddMembersPage', 'selector': 'app-add-members'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'FriendProfilePage', 'selector': 'app-friend-profile'},{'name': 'FriendsPage', 'selector': 'app-friends'},{'name': 'GroupCreatePage', 'selector': 'app-group-create'},{'name': 'GroupDetailsPage', 'selector': 'app-group-details'},{'name': 'GroupListPage', 'selector': 'app-group-list'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'InvitePage', 'selector': 'app-invite'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MemberViewPage', 'selector': 'app-member-view'},{'name': 'OptionsPage', 'selector': 'app-options'},{'name': 'PasswordPage', 'selector': 'app-password'},{'name': 'PaymentPage', 'selector': 'app-payment'},{'name': 'PaymentReminderPage', 'selector': 'app-payment-reminder'},{'name': 'PrivacyPage', 'selector': 'app-privacy'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'StatisticsPage', 'selector': 'app-statistics'},{'name': 'TransactionCreatePage', 'selector': 'app-transaction-create'},{'name': 'TransactionDetailsPage', 'selector': 'app-transaction-details'},{'name': 'TransactionParticipantsPage', 'selector': 'app-transaction-participants'},{'name': 'TransactionStakesPage', 'selector': 'app-transaction-stakes'},{'name': 'TutorialPage', 'selector': 'app-tutorial'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'PrivacyPage'};

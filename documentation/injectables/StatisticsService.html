@@ -214,7 +214,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                        <b>Returns : </b>    <code>{}</code>
 
                     </div>
                     <div class="io-description">
@@ -322,7 +322,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                        <b>Returns : </b>    <code>{}</code>
 
                     </div>
                     <div class="io-description">
@@ -704,7 +704,7 @@ export class StatisticsService {
         }
       }
     });
-    return Math.round(costs * 100) / 100, ammount;
+    return [Math.round(costs * 100) / 100, ammount];
   }
 
   /**
@@ -727,7 +727,7 @@ export class StatisticsService {
         }
       }
     });
-    return Math.round(costs * 100) / 100, ammount;
+    return [Math.round(costs * 100) / 100, ammount];
   }
 
   /**

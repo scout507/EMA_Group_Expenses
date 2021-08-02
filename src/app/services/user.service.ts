@@ -3,18 +3,29 @@ import { User } from '../models/user.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 
-
+/**
+ * This class has functions for the user
+ */
 @Injectable({
   providedIn: 'root'
 })
-
 export class UserService {
   userCollection: AngularFirestoreCollection<User>;
 
+  /**
+   * @ignore
+   * @param afs
+   */
   constructor(private afs: AngularFirestore) {
     this.userCollection = afs.collection<User>('User');
   }
 
+  /**
+   * add the user to the database
+   * @param id - id from the user
+   * @param email - email from the user
+   * @param username - username from the user
+   */
   persist(id: string, email:string, username:string) {
     var user = new User();
     user.displayName = username;
@@ -33,6 +44,10 @@ export class UserService {
     this.userCollection.doc(id).set(this.copyAndPrepare(user));
   }
 
+  /**
+   * finds user by ID
+   * @param id - id from user
+   */
   findById(id: string): Promise<User> {
     return this.userCollection.doc(id).get().toPromise().then(res => {
       const ret: User = res.data();
@@ -41,10 +56,18 @@ export class UserService {
     });
   }
 
+  /**
+   * updates existing user
+   * @param user
+   */
   update(user: User) {
     this.userCollection.doc(user.id).update(this.copyAndPrepare(user));
   }
 
+  /**
+   * deletes existing user
+   * @param id - id from user
+   */
   delete(id: string) {
     this.userCollection.doc(id).delete();
   }
@@ -65,12 +88,21 @@ export class UserService {
     });
   }
 
+  /**
+   * deletes the id from the user object
+   * @param user
+   * returns the user object without the id
+   */
   private copyAndPrepare(user: User): User {
     const copy = { ...user };
     delete copy.id;
     return copy;
   }
 
+  /**
+   * finds the user by email
+   * @param email - email from user
+   */
   findByEmail(email: string) {
     return this.userCollection.get()
       .toPromise()

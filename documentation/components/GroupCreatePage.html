@@ -411,7 +411,7 @@ export class GroupCreatePage implements OnInit {
    * adds the new created group to firebase
    */
   add(){
-    if(this.group.name &amp;&amp; this.group.name.length &gt; 2){
+    if(this.group.name &amp;&amp; this.group.name.length &gt; 1){
       if(this.group.members &amp;&amp; this.group.members.length &gt; 0){
         this.group.creator &#x3D; this.currentUser;
         this.group.members.push(this.currentUser);
@@ -421,7 +421,7 @@ export class GroupCreatePage implements OnInit {
         alert(&quot;Gruppe muss mind. 1 Mitglied enthalten.&quot;)
       }
     }else{
-      alert(&quot;Gruppenname muss mind. 3 Zeichen lang sein.&quot;)
+      alert(&quot;Gruppenname muss mind. 2 Zeichen lang sein.&quot;)
     }
   }
 

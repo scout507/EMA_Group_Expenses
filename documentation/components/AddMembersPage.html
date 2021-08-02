@@ -1038,7 +1038,7 @@ export class AddMembersPage implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ion-header&gt;
-  &lt;ion-toolbar&gt;
+  &lt;ion-toolbar color&#x3D;&quot;primary&quot;&gt;
     &lt;ion-title *ngIf&#x3D;&quot;!searchbarVisible&quot;&gt;Freunde hinzufügen&lt;/ion-title&gt;
     &lt;ion-button slot&#x3D;&quot;end&quot; (click)&#x3D;&quot;setVisible()&quot; fill&#x3D;&quot;clear&quot; *ngIf&#x3D;&quot;!searchbarVisible&quot;&gt;
       &lt;ion-icon slot&#x3D;&quot;icon-only&quot; name&#x3D;&quot;search-outline&quot;&gt;&lt;/ion-icon&gt;
@@ -1058,7 +1058,7 @@ export class AddMembersPage implements OnInit {
       &lt;ion-label&gt;
         {{friend.displayName}}
       &lt;/ion-label&gt;
-      &lt;ion-icon *ngIf&#x3D;&quot;checkSelectedFriendsContainFriend(friend)&quot; name&#x3D;&quot;checkmark-circle-outline&quot;&gt;&lt;/ion-icon&gt;
+      &lt;ion-icon *ngIf&#x3D;&quot;checkSelectedFriendsContainFriend(friend)&quot; name&#x3D;&quot;checkmark-circle-outline&quot; color&#x3D;&quot;black&quot;&gt;&lt;/ion-icon&gt;
     &lt;/ion-item&gt;
   &lt;/ion-list&gt;
   &lt;ion-buttons&gt;
@@ -1105,7 +1105,7 @@ export class AddMembersPage implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar>    <ion-title *ngIf="!searchbarVisible">Freunde hinzufügen</ion-title>    <ion-button slot="end" (click)="setVisible()" fill="clear" *ngIf="!searchbarVisible">      <ion-icon slot="icon-only" name="search-outline"></ion-icon>    </ion-button>    <ion-searchbar *ngIf="searchbarVisible"                   (ionInput)="doSearch()"                   (ionCancel)="cancelSearch()"                   [showCancelButton]="true"                   placeholder="Freund suchen">    </ion-searchbar>  </ion-toolbar></ion-header><ion-content>  <ion-list>    <ion-item *ngFor="let friend of filteredFriendsAndMembers" (click)="select(friend)">      <ion-label>        {{friend.displayName}}      </ion-label>      <ion-icon *ngIf="checkSelectedFriendsContainFriend(friend)" name="checkmark-circle-outline"></ion-icon>    </ion-item>  </ion-list>  <ion-buttons>    <ion-button (click)="this.modalController.dismiss(this.group.members)" color="danger">Abbrechen</ion-button>    <ion-button (click)="add()" color="primary">      Bestätigen    </ion-button>  </ion-buttons></ion-content></div>'
+        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar color="primary">    <ion-title *ngIf="!searchbarVisible">Freunde hinzufügen</ion-title>    <ion-button slot="end" (click)="setVisible()" fill="clear" *ngIf="!searchbarVisible">      <ion-icon slot="icon-only" name="search-outline"></ion-icon>    </ion-button>    <ion-searchbar *ngIf="searchbarVisible"                   (ionInput)="doSearch()"                   (ionCancel)="cancelSearch()"                   [showCancelButton]="true"                   placeholder="Freund suchen">    </ion-searchbar>  </ion-toolbar></ion-header><ion-content>  <ion-list>    <ion-item *ngFor="let friend of filteredFriendsAndMembers" (click)="select(friend)">      <ion-label>        {{friend.displayName}}      </ion-label>      <ion-icon *ngIf="checkSelectedFriendsContainFriend(friend)" name="checkmark-circle-outline" color="black"></ion-icon>    </ion-item>  </ion-list>  <ion-buttons>    <ion-button (click)="this.modalController.dismiss(this.group.members)" color="danger">Abbrechen</ion-button>    <ion-button (click)="add()" color="primary">      Bestätigen    </ion-button>  </ion-buttons></ion-content></div>'
     var COMPONENTS = [{'name': 'AddMembersPage', 'selector': 'app-add-members'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'FriendProfilePage', 'selector': 'app-friend-profile'},{'name': 'FriendsPage', 'selector': 'app-friends'},{'name': 'GroupCreatePage', 'selector': 'app-group-create'},{'name': 'GroupDetailsPage', 'selector': 'app-group-details'},{'name': 'GroupListPage', 'selector': 'app-group-list'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'InvitePage', 'selector': 'app-invite'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MemberViewPage', 'selector': 'app-member-view'},{'name': 'OptionsPage', 'selector': 'app-options'},{'name': 'PasswordPage', 'selector': 'app-password'},{'name': 'PaymentPage', 'selector': 'app-payment'},{'name': 'PaymentReminderPage', 'selector': 'app-payment-reminder'},{'name': 'PrivacyPage', 'selector': 'app-privacy'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'StatisticsPage', 'selector': 'app-statistics'},{'name': 'TransactionCreatePage', 'selector': 'app-transaction-create'},{'name': 'TransactionDetailsPage', 'selector': 'app-transaction-details'},{'name': 'TransactionParticipantsPage', 'selector': 'app-transaction-participants'},{'name': 'TransactionStakesPage', 'selector': 'app-transaction-stakes'},{'name': 'TutorialPage', 'selector': 'app-tutorial'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AddMembersPage'};

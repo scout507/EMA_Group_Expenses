@@ -204,7 +204,9 @@ export class GroupDetailsPage implements OnInit {
    * lets the user create a new transaction with the group
    */
   createTransaction(){
-    this.router.navigate(['transaction-create', {fromGroup: true, groupID: this.group.id}]);
+    if(this.group){
+      this.router.navigate(['transaction-create', {fromGroup: true, groupID: this.group.id}]);
+    }
   }
 
   /**

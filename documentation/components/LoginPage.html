@@ -573,31 +573,31 @@ export class LoginPage implements OnInit {
         <pre class="line-numbers"><code class="language-html">&lt;ion-content&gt;
   &lt;p class&#x3D;&quot;title&quot;&gt;Group Expense&lt;/p&gt;
   &lt;br&gt;
-  &lt;ion-label&gt;E-mail&lt;/ion-label&gt;
+  &lt;ion-label&gt;E-Mail&lt;/ion-label&gt;
   &lt;ion-input [(ngModel)]&#x3D;&quot;email&quot;
-             placeholder&#x3D;&quot;e-mail adresse&quot;
+             placeholder&#x3D;&quot;E-Mail Adresse&quot;
              type&#x3D;&quot;text&quot;&gt;
   &lt;/ion-input&gt;
 
-  &lt;ion-label&gt;Password&lt;/ion-label&gt;
+  &lt;ion-label&gt;Passwort&lt;/ion-label&gt;
   &lt;ion-input [type]&#x3D;&quot;inputType&quot;
-             placeholder&#x3D;&quot;password&quot;
+             placeholder&#x3D;&quot;Passwort&quot;
              [(ngModel)]&#x3D;&quot;password&quot;&gt;
     &lt;ion-button slot&#x3D;&quot;icon-only&quot; fill&#x3D;&quot;clear&quot; class&#x3D;&quot;hidePassword&quot; (click)&#x3D;&quot;changeInputType()&quot;&gt;
-      &lt;ion-icon [name]&#x3D;&quot;iconName&quot; &gt;&lt;/ion-icon&gt;
+      &lt;ion-icon color&#x3D;&quot;black&quot; [name]&#x3D;&quot;iconName&quot; &gt;&lt;/ion-icon&gt;
     &lt;/ion-button&gt;
   &lt;/ion-input&gt;
   &lt;ion-buttons class&#x3D;&quot;ion-justify-content-center&quot;&gt;
     &lt;ion-button class&#x3D;&quot;forgotPassword&quot; fill&#x3D;&quot;clear&quot; (click)&#x3D;&quot;this.router.navigate([&#x27;change-password&#x27;])&quot;&gt;
-      Password vergessen?
+      Passwort vergessen?
     &lt;/ion-button&gt;
   &lt;/ion-buttons&gt;
   &lt;ion-label color&#x3D;&quot;danger&quot;&gt;{{errorMessage}}&lt;/ion-label&gt;
   &lt;ion-buttons class&#x3D;&quot;ion-justify-content-center ion-margin&quot;&gt;
-    &lt;ion-button (click)&#x3D;&quot;this.login(email, password)&quot; fill&#x3D;&quot;solid&quot; color&#x3D;&quot;primary&quot;&gt;Login&lt;/ion-button&gt;
+    &lt;ion-button (click)&#x3D;&quot;this.login(email, password)&quot; fill&#x3D;&quot;solid&quot; color&#x3D;&quot;secondary&quot;&gt;Login&lt;/ion-button&gt;
   &lt;/ion-buttons&gt;
   &lt;ion-buttons class&#x3D;&quot;ion-justify-content-center &quot;&gt;
-    &lt;ion-button (click)&#x3D;&quot;router.navigate([&#x27;register&#x27;])&quot; fill&#x3D;&quot;solid&quot; color&#x3D;&quot;secondary&quot;&gt;neu anmelden&lt;/ion-button&gt;
+    &lt;ion-button (click)&#x3D;&quot;router.navigate([&#x27;register&#x27;])&quot; fill&#x3D;&quot;solid&quot; color&#x3D;&quot;primary&quot;&gt;Neu anmelden&lt;/ion-button&gt;
   &lt;/ion-buttons&gt;
 
 &lt;/ion-content&gt;
@@ -662,7 +662,7 @@ export class LoginPage implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ion-content>  <p class="title">Group Expense</p>  <br>  <ion-label>E-mail</ion-label>  <ion-input [(ngModel)]="email"             placeholder="e-mail adresse"             type="text">  </ion-input>  <ion-label>Password</ion-label>  <ion-input [type]="inputType"             placeholder="password"             [(ngModel)]="password">    <ion-button slot="icon-only" fill="clear" class="hidePassword" (click)="changeInputType()">      <ion-icon [name]="iconName" ></ion-icon>    </ion-button>  </ion-input>  <ion-buttons class="ion-justify-content-center">    <ion-button class="forgotPassword" fill="clear" (click)="this.router.navigate([\'change-password\'])">      Password vergessen?    </ion-button>  </ion-buttons>  <ion-label color="danger">{{errorMessage}}</ion-label>  <ion-buttons class="ion-justify-content-center ion-margin">    <ion-button (click)="this.login(email, password)" fill="solid" color="primary">Login</ion-button>  </ion-buttons>  <ion-buttons class="ion-justify-content-center ">    <ion-button (click)="router.navigate([\'register\'])" fill="solid" color="secondary">neu anmelden</ion-button>  </ion-buttons></ion-content></div>'
+        var COMPONENT_TEMPLATE = '<div><ion-content>  <p class="title">Group Expense</p>  <br>  <ion-label>E-Mail</ion-label>  <ion-input [(ngModel)]="email"             placeholder="E-Mail Adresse"             type="text">  </ion-input>  <ion-label>Passwort</ion-label>  <ion-input [type]="inputType"             placeholder="Passwort"             [(ngModel)]="password">    <ion-button slot="icon-only" fill="clear" class="hidePassword" (click)="changeInputType()">      <ion-icon color="black" [name]="iconName" ></ion-icon>    </ion-button>  </ion-input>  <ion-buttons class="ion-justify-content-center">    <ion-button class="forgotPassword" fill="clear" (click)="this.router.navigate([\'change-password\'])">      Passwort vergessen?    </ion-button>  </ion-buttons>  <ion-label color="danger">{{errorMessage}}</ion-label>  <ion-buttons class="ion-justify-content-center ion-margin">    <ion-button (click)="this.login(email, password)" fill="solid" color="secondary">Login</ion-button>  </ion-buttons>  <ion-buttons class="ion-justify-content-center ">    <ion-button (click)="router.navigate([\'register\'])" fill="solid" color="primary">Neu anmelden</ion-button>  </ion-buttons></ion-content></div>'
     var COMPONENTS = [{'name': 'AddMembersPage', 'selector': 'app-add-members'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'FriendProfilePage', 'selector': 'app-friend-profile'},{'name': 'FriendsPage', 'selector': 'app-friends'},{'name': 'GroupCreatePage', 'selector': 'app-group-create'},{'name': 'GroupDetailsPage', 'selector': 'app-group-details'},{'name': 'GroupListPage', 'selector': 'app-group-list'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'InvitePage', 'selector': 'app-invite'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MemberViewPage', 'selector': 'app-member-view'},{'name': 'OptionsPage', 'selector': 'app-options'},{'name': 'PasswordPage', 'selector': 'app-password'},{'name': 'PaymentPage', 'selector': 'app-payment'},{'name': 'PaymentReminderPage', 'selector': 'app-payment-reminder'},{'name': 'PrivacyPage', 'selector': 'app-privacy'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'StatisticsPage', 'selector': 'app-statistics'},{'name': 'TransactionCreatePage', 'selector': 'app-transaction-create'},{'name': 'TransactionDetailsPage', 'selector': 'app-transaction-details'},{'name': 'TransactionParticipantsPage', 'selector': 'app-transaction-participants'},{'name': 'TransactionStakesPage', 'selector': 'app-transaction-stakes'},{'name': 'TutorialPage', 'selector': 'app-tutorial'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginPage'};
