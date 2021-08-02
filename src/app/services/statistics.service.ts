@@ -89,7 +89,7 @@ export class StatisticsService {
         }
       }
     });
-    return Math.round(costs * 100) / 100, ammount;
+    return [Math.round(costs * 100) / 100, ammount];
   }
 
   /**
@@ -112,7 +112,7 @@ export class StatisticsService {
         }
       }
     });
-    return Math.round(costs * 100) / 100, ammount;
+    return [Math.round(costs * 100) / 100, ammount];
   }
 
   /**

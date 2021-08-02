@@ -73,12 +73,12 @@ export class StatisticsPage implements OnInit {
    * @param days Number of days for which the data should be loaded, -1 stands for the entire period.
    */
   async changeStats(days: number) {
-    this.income = this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id);
-    this.outcome = this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id);
+    this.income = this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id)[0];
+    this.outcome = this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)[0];
     this.self = this.stats.getAllSelfmadeTransactionsOfTime(this.user.id, days, this.transactions);
 
     this.pie.data.datasets.forEach((dataset) => {
-      dataset.data = [this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id), this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)];
+      dataset.data = [this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id)[0], this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)[0]];
     });
     this.pie.update();
   }
@@ -96,7 +96,7 @@ export class StatisticsPage implements OnInit {
         datasets: [
           {
             label: 'Dataset 1',
-            data: [this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id), this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)],
+            data: [this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id)[0], this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)[0]],
             backgroundColor: ["rgba(104, 237, 136, 1)", "rgba(237, 104, 104, 1)"],
           }
         ]
