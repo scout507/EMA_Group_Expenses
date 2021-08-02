@@ -30,11 +30,11 @@ export class StatisticsPage implements OnInit {
 
   /**
    * @ignore
-   * @param router 
-   * @param af 
-   * @param transactionsservice 
-   * @param userService 
-   * @param stats 
+   * @param router
+   * @param af
+   * @param transactionsservice
+   * @param userService
+   * @param stats
    */
   constructor(
     public router: Router,
@@ -45,10 +45,10 @@ export class StatisticsPage implements OnInit {
   ) { }
 
   /**
-    * When the page is initialized, all the required information 
-    * is loaded from the services and stored in the variables 
-    * provided for this purpose. It is important that this is done 
-    * at initialization otherwise there will be problems with the pichart. 
+    * When the page is initialized, all the required information
+    * is loaded from the services and stored in the variables
+    * provided for this purpose. It is important that this is done
+    * at initialization otherwise there will be problems with the pichart.
     * Important here is the check whether the user is logged in, otherwise no data will be loaded.
     */
   ngOnInit() {
@@ -68,7 +68,7 @@ export class StatisticsPage implements OnInit {
   }
 
   /**
-   * This function calls the statistics functions to calculate data for a certain period of time. 
+   * This function calls the statistics functions to calculate data for a certain period of time.
    * These are then stored in the respective variables and the data set of the pie chart is also updated.
    * @param days Number of days for which the data should be loaded, -1 stands for the entire period.
    */
@@ -76,7 +76,6 @@ export class StatisticsPage implements OnInit {
     this.income = this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id)[0];
     this.outcome = this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)[0];
     this.self = this.stats.getAllSelfmadeTransactionsOfTime(this.user.id, days, this.transactions);
-
     this.pie.data.datasets.forEach((dataset) => {
       dataset.data = [this.stats.getAllIncomeOfTime(days, this.transactions, this.user.id)[0], this.stats.getAllExpensesOfTime(days, this.transactions, this.user.id)[0]];
     });

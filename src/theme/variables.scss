@@ -4,7 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #009780;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -12,7 +12,7 @@
   --ion-color-primary-tint: #4c8dff;
 
   /** secondary **/
-  --ion-color-secondary: #3dc2ff;
+  --ion-color-secondary: #19c9af;
   --ion-color-secondary-rgb: 61, 194, 255;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
@@ -20,7 +20,7 @@
   --ion-color-secondary-tint: #50c8ff;
 
   /** tertiary **/
-  --ion-color-tertiary: #5260ff;
+  --ion-color-tertiary: #66fde1;
   --ion-color-tertiary-rgb: 82, 96, 255;
   --ion-color-tertiary-contrast: #ffffff;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
@@ -233,4 +233,50 @@
 
     --ion-card-background: #1e1e1e;
   }
+
 }
+
+ion-icon{
+  color:white;
+  .icon-green{
+    --color: green;
+  }
+  .icon-yellow{
+    --color: yellow;
+  }
+  .icon-red{
+    --color: red;
+  }
+}
+
+ion-toolbar{
+  --background: #009780;
+}
+
+ion-tab-bar{
+  --background: #009780;
+}
+
+ion-title{
+  color: white;
+}
+
+ion-searchbar{
+  --background:white;
+  --cancel-button-color: white;
+  --clear-button-color: white;
+  --icon-color: white;
+}
+
+ion-button{
+  --background-activated: #19c9af;
+}
+ion-fab-button{
+  --background-activated: #19c9af;
+}
+
+
+
+
+
+

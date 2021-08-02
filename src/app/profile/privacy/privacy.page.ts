@@ -125,21 +125,16 @@ export class PrivacyPage {
 
     if (rsl.role == "yes") {
       await this.userService.deleteUserFromFriends(this.user);
-      console.log("1");
       await this.groupService.deleteUserFromAllGroups(this.user);
-      console.log("2");
       await this.transactionService.deleteAllTransactionsByUser(this.user);
-      console.log("3");
       this.userService.delete(this.user.id);
-      console.log("4");
       this.authService.delete();
-      console.log("5");
       this.authService.logout();
     }
   }
 
   /**
-   * This function is needed when the value of user.awardsPublic changes to true, 
+   * This function is needed when the value of user.awardsPublic changes to true,
    * to change the value user.awardsPublicfriends as well.
    */
   changeAwardsPublicfriends() {

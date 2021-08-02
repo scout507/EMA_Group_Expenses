@@ -53,7 +53,7 @@ export class TransactionStakesPage implements OnInit {
   handleSubmit() {
     this.errors.clear();
     if (this.getCurrentAmount() > this.transaction.amount) {
-      this.errors.set('amount', 'Bitte nicht mehr als den Betrag auf die Teilnehmer verteilen.');
+      this.errors.set('amount', 'Aufgeteilter Betrag ist größer als der Gesamtbetrag');
     }
     if (this.getCurrentAmount() < this.transaction.amount) {
       this.errors.set('amount', 'Bitte den vollen Betrag auf die Teilnehmer verteilen');

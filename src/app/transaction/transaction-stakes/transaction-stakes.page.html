@@ -5,7 +5,6 @@
 </ion-header>
 
 <ion-content>
-<ion-text class="ion-text-right">{{getCurrentAmount()}}€ von {{transaction.amount}}€</ion-text>
   <ion-list>
     <ion-item *ngFor="let participant of transaction.participation">
       <ion-avatar>
@@ -16,6 +15,9 @@
       <ion-text>€</ion-text>
     </ion-item>
   </ion-list>
+  <ion-item>
+    <ion-label class="ion-text-right">Ausgewählt: {{getCurrentAmount()}}€ von {{transaction.amount}}€</ion-label>
+  </ion-item>
   <ion-text *ngIf="errors.get('amount')" color="danger">{{errors.get('amount')}}</ion-text>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
     <ion-fab-button (click)="handleSubmit()">

@@ -10,11 +10,11 @@
 <ion-content>
 
   <ion-item button (click)="viewMembers()">
-    <ion-icon name="people-outline"></ion-icon>
-    <ion-label align="center">Mitglieder</ion-label>
+    <ion-icon name="people-outline" color="black"></ion-icon>
+    <ion-label align="center" >Mitglieder</ion-label>
   </ion-item>
   <ion-item button (click)="createTransaction()" *ngIf="group">
-    <ion-icon name="cash-outline"></ion-icon>
+    <ion-icon name="cash-outline" color="black"></ion-icon>
     <ion-label align="center">Transaktion anlegen</ion-label>
   </ion-item>
 
@@ -73,9 +73,9 @@
     <ion-grid style="text-align:center">
       <ion-row style="justify-content: center; margin-left: auto; margin-right: auto;">
         <ion-col>
-          <ion-button (click)="statsButton(true)" fill="clear"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+          <ion-button (click)="statsButton(true)" fill="clear" color="black"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
           <ion-label>{{statsArray[currentStats]}}</ion-label>
-          <ion-button  (click)="statsButton(false)" fill="clear"><ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
+          <ion-button  (click)="statsButton(false)" fill="clear" color="black"><ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
         </ion-col>
       </ion-row>
       <ion-row>

@@ -2,8 +2,8 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title *ngIf="!searchbarVisible">Übersicht</ion-title>
-    <ion-button *ngIf="!searchbarVisible" (click)="startSearch()" slot="end">
-      <ion-icon slot="icon-only" name="search"></ion-icon>
+    <ion-button slot="end" (click)="startSearch()" fill="clear" *ngIf="!searchbarVisible">
+      <ion-icon slot="icon-only" name="search-outline"></ion-icon>
     </ion-button>
     <ion-searchbar [(ngModel)]="search" *ngIf="searchbarVisible"
                    (ionChange)="doSearch()"
