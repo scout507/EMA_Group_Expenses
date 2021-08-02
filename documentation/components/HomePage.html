@@ -1761,12 +1761,12 @@ export class HomePage {
     this.confirmView &#x3D; false;
     this.incomingView &#x3D; false;
     this.pendingView &#x3D; false;
-    this.transactionService.createTransactionContinuation();
     const sub &#x3D; this.af.authState.subscribe(user &#x3D;&gt; {
       if (user) {
         this.userService.findById(user.uid).then(result &#x3D;&gt; {
           this.currentUser &#x3D; result;
           this.updateTransactions();
+          this.transactionService.createTransactionContinuation(result);
           sub.unsubscribe();
         });
       }

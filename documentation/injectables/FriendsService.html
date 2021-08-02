@@ -61,6 +61,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This class is needed to manage friends, with linking of the database.</p>
+
+            </p>
 
 
 
@@ -100,22 +107,10 @@
                                 <a href="#copyAndPrepare" >copyAndPrepare</a>
                             </li>
                             <li>
-                                <a href="#delete" >delete</a>
-                            </li>
-                            <li>
-                                <a href="#findAll" >findAll</a>
-                            </li>
-                            <li>
-                                <a href="#findAllSync" >findAllSync</a>
-                            </li>
-                            <li>
                                 <a href="#findById" >findById</a>
                             </li>
                             <li>
                                 <a href="#isFriends" >isFriends</a>
-                            </li>
-                            <li>
-                                <a href="#persist" >persist</a>
                             </li>
                             <li>
                                 <a href="#update" >update</a>
@@ -132,78 +127,6 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(afs: AngularFirestore, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/services/friends.service.ts:12</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>afs</td>
-                                                  
-                                                        <td>
-                                                                    <code>AngularFirestore</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>userService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>authService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section>
     
@@ -232,14 +155,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/app/services/friends.service.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/services/friends.service.ts:58</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Add a friend and check if he exists.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -249,6 +174,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -263,6 +189,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Needed to find users by email.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>currentUserID</td>
@@ -275,6 +205,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Needed to find users by email.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -286,7 +220,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>String with feedback for user.</p>
+
                     </div>
                 </td>
             </tr>
@@ -314,14 +249,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/app/services/friends.service.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/app/services/friends.service.ts:113</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Copy a User.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -331,6 +268,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -345,6 +283,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Identifies user.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -356,148 +298,7 @@
 
                     </div>
                     <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="delete"></a>
-                    <span class="name">
-                        <span ><b>delete</b></span>
-                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>delete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/app/services/friends.service.ts:101</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findAll"></a>
-                    <span class="name">
-                        <span ><b>findAll</b></span>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>findAll()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/app/services/friends.service.ts:32</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findAllSync"></a>
-                    <span class="name">
-                        <span ><b>findAllSync</b></span>
-                        <a href="#findAllSync"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>findAllSync()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/app/services/friends.service.ts:111</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <p>Copy of User</p>
 
                     </div>
                 </td>
@@ -524,14 +325,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/services/friends.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/services/friends.service.ts:34</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>The function finds the friend and checks if he is a friend of the user.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -541,6 +344,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -555,6 +359,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Needed to identify friend.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>currentUser</td>
@@ -567,6 +375,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Needed to identify user.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -578,7 +390,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>User (the friend)</p>
+
                     </div>
                 </td>
             </tr>
@@ -604,14 +417,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/app/services/friends.service.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/app/services/friends.service.ts:92</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Checks if two users are friends.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -621,6 +436,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -635,6 +451,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Identifies user.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>user2</td>
@@ -647,6 +467,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Identifies the other user</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -658,75 +482,8 @@
 
                     </div>
                     <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="persist"></a>
-                    <span class="name">
-                        <span ><b>persist</b></span>
-                        <a href="#persist"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>persist(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
+                        <p>Boolean whether friend (true) or not (false).</p>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/app/services/friends.service.ts:18</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -752,14 +509,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/app/services/friends.service.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/app/services/friends.service.ts:104</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Updated user in the database</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -769,6 +528,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -783,6 +543,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>User to be updated in the database with the data</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -825,7 +589,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/services/friends.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/services/friends.service.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -844,6 +608,10 @@ import { AngularFirestore, AngularFirestoreCollection } from &#x27;@angular/fire
 import { UserService } from &quot;./user.service&quot;;
 import {AuthService} from &quot;./auth.service&quot;;
 
+/**
+ * This class is needed to manage friends, with linking of the database.
+ */
+
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
@@ -851,35 +619,22 @@ import {AuthService} from &quot;./auth.service&quot;;
 export class FriendsService {
   userCollection: AngularFirestoreCollection&lt;User&gt;;
 
+  /**
+   * @ignore
+   * @param afs 
+   * @param userService 
+   * @param authService 
+   */
   constructor(private afs: AngularFirestore, private userService: UserService, private authService: AuthService) {
     this.userCollection &#x3D; afs.collection&lt;User&gt;(&#x27;User&#x27;);
   }
 
-  persist(id: string) {
-    var user &#x3D; new User();
-    user.displayName &#x3D; &quot;Max Mustername&quot;;
-    user.profilePic &#x3D; &quot;https://bit.ly/2S904CS&quot;;
-    user.description &#x3D; &quot;Erstelle eine Beschreibung...&quot;;
-    user.cash &#x3D; false;
-    user.ec_card &#x3D; false;
-    user.paypal &#x3D; false;
-    user.kreditcard &#x3D; false;
-    user.imagePublic &#x3D; false;
-    user.awardsPublic &#x3D; false;
-    this.userCollection.doc(id).set(this.copyAndPrepare(user));
-  }
-
-  findAll() {
-    return this.userCollection.get()
-      .toPromise()
-      .then(snapshot &#x3D;&gt;
-        snapshot.docs.map(doc &#x3D;&gt; {
-          const user &#x3D; doc.data();
-          user.id &#x3D; doc.id;
-          return user;
-        }));
-  }
-
+  /**
+   * The function finds the friend and checks if he is a friend of the user.
+   * @param id Needed to identify friend.
+   * @param currentUser Needed to identify user.
+   * @returns User (the friend)
+   */
   findById(id: string, currentUser: User) {
     return this.userCollection.doc(id).get().toPromise().then(res &#x3D;&gt; {
       const ret &#x3D; res.data();
@@ -898,6 +653,12 @@ export class FriendsService {
     });
   }
 
+  /**
+   * Add a friend and check if he exists.
+   * @param email Needed to find users by email.
+   * @param currentUserID Needed to find users by email.
+   * @returns String with feedback for user.
+   */
   async addFriend(email: string, currentUserID: string): Promise&lt;string&gt;{
     let output &#x3D; &quot;Nutzer nicht vorhanden&quot;
     return await this.userService.findByEmail(email.toLocaleLowerCase()).then(async user &#x3D;&gt; {
@@ -926,6 +687,12 @@ export class FriendsService {
     return &quot;error&quot;;
   }
 
+  /**
+   * Checks if two users are friends.
+   * @param user1 Identifies user.
+   * @param user2 Identifies the other user
+   * @returns Boolean whether friend (true) or not (false).
+   */
   isFriends(user1: User, user2: User): boolean{
     if(user1.id &#x3D;&#x3D; user2.id) return true;
     for(let i in user1.friends){
@@ -934,22 +701,23 @@ export class FriendsService {
     return false;
   }
 
+  /**
+   * Updated user in the database
+   * @param user User to be updated in the database with the data
+   */
   update(user: User) {
     this.userCollection.doc(user.id).update(this.copyAndPrepare(user));
   }
 
-  delete(id: string) {
-    this.userCollection.doc(id).delete();
-  }
-
+  /**
+   * Copy a User.
+   * @param user Identifies user.
+   * @returns Copy of User
+   */
   private copyAndPrepare(user: User): User {
     const copy &#x3D; { ...user };
     delete copy.id;
     return copy;
-  }
-
-  findAllSync() {
-    return this.userCollection.valueChanges({ idField: &#x27;id&#x27; });
   }
 }
 </code></pre>
