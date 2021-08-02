@@ -79,8 +79,8 @@
       </ion-avatar>
       <ion-label>{{member.displayName}}</ion-label>
       <ion-text>{{transactionService.getStakeForUser(member, transaction)}}€</ion-text>
-      <ion-icon *ngIf="transactionService.hasUserPaid(member.id, transaction) && !transactionService.wasPaymentAccepted(member.id, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
-      <ion-icon *ngIf="transactionService.wasPaymentAccepted(member.id, transaction)" name="checkmark" color="green"></ion-icon>
+      <ion-icon *ngIf="transactionService.hasUserPaid(member.id, transaction) && transactionService.wasPaymentAccepted(member.id, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>
+      <ion-icon *ngIf="transactionService.hasUserPaid(member.id, transaction) && !transactionService.wasPaymentAccepted(member.id, transaction)" name="checkmark" color="green"></ion-icon>
       <ion-icon *ngIf="!transactionService.hasUserPaid(member.id, transaction)" name="close" color="red"></ion-icon>
     </ion-item>
   </div>
