@@ -32,7 +32,6 @@ export class AuthService {
    */
   async register(email: string, password: string, username: string): Promise<void | string>{
     let message: string;
-    console.log(email, password, username);
     await this.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.userservice.persist(result.user.uid, email.toLocaleLowerCase(), username);
