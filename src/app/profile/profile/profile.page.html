@@ -1,24 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="friendlist()">
-        <ion-icon name="people-outline"></ion-icon>
-      </ion-button>
-      <ion-button (click)="router.navigate(['statistics'])">
-        <ion-icon name="analytics-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+
+    <ion-button (click)="friendlist()" fill="clear" slot="start">
+      <ion-icon name="people-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="router.navigate(['statistics'])" fill="clear" slot="start">
+      <ion-icon name="analytics-outline"></ion-icon>
+    </ion-button>
 
     <ion-title class="ion-text-center">Profil</ion-title>
 
-    <ion-buttons slot="end">
-      <ion-button (click)="profileSettings()">
-        <ion-icon name="settings-outline"></ion-icon>
-      </ion-button>
-      <ion-button (click)="loggout()">
-        <ion-icon name="log-out-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-button slot="end" fill="clear" (click)="loggout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button slot="end" fill="clear" (click)="profileSettings()">
+      <ion-icon name="settings-outline"></ion-icon>
+    </ion-button>
+
   </ion-toolbar>
 </ion-header>
 
@@ -26,7 +26,7 @@
   <ion-grid class="grid">
     <ion-row class="row">
       <ion-col class="profileImgCol">
-        <img class="profileImg" [src]="sanitizer.bypassSecurityTrustUrl(user.profilePic)"> 
+        <img class="profileImg" [src]="sanitizer.bypassSecurityTrustUrl(user.profilePic)">
       </ion-col>
       <ion-col class="profileDescriptionCol">
         <ion-row>
