@@ -27,7 +27,7 @@ export class UserService {
    * @param username - username from the user
    */
   persist(id: string, email:string, username:string) {
-    var user = new User();
+    const user = new User();
     user.displayName = username;
     user.profilePic = "https://bit.ly/2S904CS";
     user.email = email;
@@ -40,6 +40,7 @@ export class UserService {
     user.kreditcard = false;
     user.imagePublic = false;
     user.awardsPublic = false;
+    user.awardsPublicfriends = false;
     user.friends = [];
     this.userCollection.doc(id).set(this.copyAndPrepare(user));
   }
