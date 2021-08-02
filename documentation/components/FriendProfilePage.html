@@ -214,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:116</a></div>
                 </td>
             </tr>
 
@@ -255,8 +255,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="127"
+                            class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:127</a></div>
                 </td>
             </tr>
 
@@ -387,8 +387,8 @@ whether the user is logged in, otherwise no data will be loaded.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="135"
-                            class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:135</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/app/profile/friend-profile/friend-profile.page.ts:145</a></div>
                 </td>
             </tr>
 
@@ -659,26 +659,36 @@ export class FriendProfilePage {
           this.currentUser &#x3D; result;
           this.route.params.subscribe(item &#x3D;&gt; {
             this.friendsService.findById(item[0], this.currentUser).then(item2 &#x3D;&gt; {
-              this.user &#x3D; {... item2};
+              this.user &#x3D; { ...item2 };
               this.badges &#x3D; [];
-              if(!this.user.descriptionPublic){
-                this.user.description &#x3D; &quot;&quot;;
-              }
-              if(!this.user.imagePublic){
-                this.user.profilePic &#x3D; &quot;https://bit.ly/2S904CS&quot;;
-              }
+
               this.transactionsservice.getAllTransactionByUser(item2, true).then(transactions &#x3D;&gt; {
                 this.badgeService.setBadges(item2, transactions);
-                if (this.user.awardsPublic) {
-                  this.user.awards.forEach(element &#x3D;&gt; {
-                    this.awardService.findById(element).then(item &#x3D;&gt; {
-                      this.badges.push(item);
+                this.isfriend &#x3D; this.friendsService.isFriends(this.user, this.currentUser);
+                if (this.isfriend) {
+                  if (this.user.awardsPublicfriends) {
+                    this.user.awards.forEach(element &#x3D;&gt; {
+                      this.awardService.findById(element).then(item &#x3D;&gt; {
+                        this.badges.push(item);
+                      });
                     });
-
-                  });
+                  }
+                } else {
+                  if (!this.user.descriptionPublic) {
+                    this.user.description &#x3D; &quot;&quot;;
+                  }
+                  if (!this.user.imagePublic) {
+                    this.user.profilePic &#x3D; &quot;https://bit.ly/2S904CS&quot;;
+                  }
+                  if (this.user.awardsPublic) {
+                    this.user.awards.forEach(element &#x3D;&gt; {
+                      this.awardService.findById(element).then(item &#x3D;&gt; {
+                        this.badges.push(item);
+                      });
+                    });
+                  }
                 }
               });
-              this.isfriend &#x3D; this.friendsService.isFriends(this.user, this.currentUser);
             });
           });
           sub.unsubscribe();
@@ -740,7 +750,7 @@ export class FriendProfilePage {
       &lt;ion-icon name&#x3D;&quot;arrow-back-outline&quot;&gt;&lt;/ion-icon&gt;
     &lt;/ion-button&gt;
     &lt;ion-title class&#x3D;&quot;ion-text-center&quot; style&#x3D;&quot;margin-right: 40px;&quot;&gt;Freunde&lt;/ion-title&gt;
-    &lt;ion-button *ngIf&#x3D;&quot;!isfriend&quot; slot&#x3D;&quot;end&quot; (click)&#x3D;&quot;addFriend()&quot;&gt;
+    &lt;ion-button *ngIf&#x3D;&quot;!isfriend&quot; slot&#x3D;&quot;end&quot; fill&#x3D;&quot;clear&quot; (click)&#x3D;&quot;addFriend()&quot;&gt;
       &lt;ion-icon name&#x3D;&quot;person-add-outline&quot;&gt;&lt;/ion-icon&gt;
     &lt;/ion-button&gt;
   &lt;/ion-toolbar&gt;
@@ -909,7 +919,7 @@ export class FriendProfilePage {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar>    <ion-button (click)="this.navCtrl.back()" fill="clear" slot="start">      <ion-icon name="arrow-back-outline"></ion-icon>    </ion-button>    <ion-title class="ion-text-center" style="margin-right: 40px;">Freunde</ion-title>    <ion-button *ngIf="!isfriend" slot="end" (click)="addFriend()">      <ion-icon name="person-add-outline"></ion-icon>    </ion-button>  </ion-toolbar></ion-header><ion-content class="global">  <ion-grid class="grid">    <ion-row class="row">      <ion-col class="profileImgCol">        <img class="profileImg" [src]="sanitizer.bypassSecurityTrustUrl(user.profilePic)">      </ion-col>      <ion-col class="profileDescriptionCol">        <ion-row>          <ion-col class="name">            {{user.displayName}}          </ion-col>        </ion-row>        <ion-row>          <ion-col>            {{user.description}}          </ion-col>        </ion-row>      </ion-col>    </ion-row>    <ion-row style="margin-top: 10px; justify-content: center;">      <ion-col *ngIf="this.user.cash" style="max-width: 50px; margin-right: 30px;"><img          (click)="paymentDescription(\'Bar\', \'Barzahlung ist möglich.\')"          src="https://cdn.discordapp.com/attachments/798632008569061446/859421641096560650/money.png">      </ion-col>      <ion-col *ngIf="!this.user.cash" style="max-width: 50px; margin-right: 30px;"><img          style="filter: grayscale(100%);" (click)="paymentDescription(\'Bar\', \'Barzahlung ist nicht möglich.\')"          src="https://cdn.discordapp.com/attachments/798632008569061446/859421641096560650/money.png">      </ion-col>      <ion-col *ngIf="this.user.ec_card" style="max-width: 50px; margin-right: 30px;"><img          (click)="paymentDescription(\'EC-Karte\', \'Bezahlung mit EC-Karte ist möglich.\')"          src="https://image.flaticon.com/icons/png/512/893/893081.png">      </ion-col>      <ion-col *ngIf="!this.user.ec_card" style="max-width: 50px; margin-right: 30px;"><img          style="filter: grayscale(100%);"          (click)="paymentDescription(\'EC-Karte\', \'Bezahlung mit EC-Karte ist nicht möglich.\')"          src="https://image.flaticon.com/icons/png/512/893/893081.png">      </ion-col>      <ion-col *ngIf="this.user.kreditcard" style="max-width: 50px; margin-right: 30px;"><img          (click)="paymentDescription(\'Kreditkarte\', \'Bezahlung mit Kreditkarte ist möglich.\')"          src="https://image.flaticon.com/icons/png/512/147/147258.png">      </ion-col>      <ion-col *ngIf="!this.user.kreditcard" style="max-width: 50px; margin-right: 30px;"><img          style="filter: grayscale(100%);"          (click)="paymentDescription(\'Kreditkarte\', \'Bezahlung mit Kreditkarte ist nicht möglich.\')"          src="https://image.flaticon.com/icons/png/512/147/147258.png">      </ion-col>      <ion-col *ngIf="this.user.paypal" style="max-width: 50px;"><img          (click)="paymentDescription(\'PayPal\', \'Bezahlung mit PayPal ist möglich.\')"          src="https://image.flaticon.com/icons/png/512/888/888870.png">      </ion-col>      <ion-col *ngIf="!this.user.paypal" style="max-width: 50px;"><img style="filter: grayscale(100%);"          (click)="paymentDescription(\'PayPal\', \'Bezahlung mit PayPal ist nicht möglich.\')"          src="https://image.flaticon.com/icons/png/512/888/888870.png">      </ion-col>    </ion-row>    <ion-row class="row">      <ion-col class="iconsCol icons" *ngFor="let i of badges">        <img class="icons" (click)="badgeDescription(i.name, i.description)" src={{i.image}}>      </ion-col>    </ion-row>  </ion-grid></ion-content><ion-footer>  <ion-toolbar>    <ion-tabs>      <ion-tab-bar>        <ion-tab-button (click)="router.navigate([\'home\'])">          <ion-icon name="home-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'transaction-create\'])">          <ion-icon name="cash-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'group-list\'])">          <ion-icon name="people-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'profile\'])">          <ion-icon name="person-outline"></ion-icon>        </ion-tab-button>      </ion-tab-bar>    </ion-tabs>  </ion-toolbar></ion-footer></div>'
+        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar>    <ion-button (click)="this.navCtrl.back()" fill="clear" slot="start">      <ion-icon name="arrow-back-outline"></ion-icon>    </ion-button>    <ion-title class="ion-text-center" style="margin-right: 40px;">Freunde</ion-title>    <ion-button *ngIf="!isfriend" slot="end" fill="clear" (click)="addFriend()">      <ion-icon name="person-add-outline"></ion-icon>    </ion-button>  </ion-toolbar></ion-header><ion-content class="global">  <ion-grid class="grid">    <ion-row class="row">      <ion-col class="profileImgCol">        <img class="profileImg" [src]="sanitizer.bypassSecurityTrustUrl(user.profilePic)">      </ion-col>      <ion-col class="profileDescriptionCol">        <ion-row>          <ion-col class="name">            {{user.displayName}}          </ion-col>        </ion-row>        <ion-row>          <ion-col>            {{user.description}}          </ion-col>        </ion-row>      </ion-col>    </ion-row>    <ion-row style="margin-top: 10px; justify-content: center;">      <ion-col *ngIf="this.user.cash" style="max-width: 50px; margin-right: 30px;"><img          (click)="paymentDescription(\'Bar\', \'Barzahlung ist möglich.\')"          src="https://cdn.discordapp.com/attachments/798632008569061446/859421641096560650/money.png">      </ion-col>      <ion-col *ngIf="!this.user.cash" style="max-width: 50px; margin-right: 30px;"><img          style="filter: grayscale(100%);" (click)="paymentDescription(\'Bar\', \'Barzahlung ist nicht möglich.\')"          src="https://cdn.discordapp.com/attachments/798632008569061446/859421641096560650/money.png">      </ion-col>      <ion-col *ngIf="this.user.ec_card" style="max-width: 50px; margin-right: 30px;"><img          (click)="paymentDescription(\'EC-Karte\', \'Bezahlung mit EC-Karte ist möglich.\')"          src="https://image.flaticon.com/icons/png/512/893/893081.png">      </ion-col>      <ion-col *ngIf="!this.user.ec_card" style="max-width: 50px; margin-right: 30px;"><img          style="filter: grayscale(100%);"          (click)="paymentDescription(\'EC-Karte\', \'Bezahlung mit EC-Karte ist nicht möglich.\')"          src="https://image.flaticon.com/icons/png/512/893/893081.png">      </ion-col>      <ion-col *ngIf="this.user.kreditcard" style="max-width: 50px; margin-right: 30px;"><img          (click)="paymentDescription(\'Kreditkarte\', \'Bezahlung mit Kreditkarte ist möglich.\')"          src="https://image.flaticon.com/icons/png/512/147/147258.png">      </ion-col>      <ion-col *ngIf="!this.user.kreditcard" style="max-width: 50px; margin-right: 30px;"><img          style="filter: grayscale(100%);"          (click)="paymentDescription(\'Kreditkarte\', \'Bezahlung mit Kreditkarte ist nicht möglich.\')"          src="https://image.flaticon.com/icons/png/512/147/147258.png">      </ion-col>      <ion-col *ngIf="this.user.paypal" style="max-width: 50px;"><img          (click)="paymentDescription(\'PayPal\', \'Bezahlung mit PayPal ist möglich.\')"          src="https://image.flaticon.com/icons/png/512/888/888870.png">      </ion-col>      <ion-col *ngIf="!this.user.paypal" style="max-width: 50px;"><img style="filter: grayscale(100%);"          (click)="paymentDescription(\'PayPal\', \'Bezahlung mit PayPal ist nicht möglich.\')"          src="https://image.flaticon.com/icons/png/512/888/888870.png">      </ion-col>    </ion-row>    <ion-row class="row">      <ion-col class="iconsCol icons" *ngFor="let i of badges">        <img class="icons" (click)="badgeDescription(i.name, i.description)" src={{i.image}}>      </ion-col>    </ion-row>  </ion-grid></ion-content><ion-footer>  <ion-toolbar>    <ion-tabs>      <ion-tab-bar>        <ion-tab-button (click)="router.navigate([\'home\'])">          <ion-icon name="home-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'transaction-create\'])">          <ion-icon name="cash-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'group-list\'])">          <ion-icon name="people-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'profile\'])">          <ion-icon name="person-outline"></ion-icon>        </ion-tab-button>      </ion-tab-bar>    </ion-tabs>  </ion-toolbar></ion-footer></div>'
     var COMPONENTS = [{'name': 'AddMembersPage', 'selector': 'app-add-members'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'FriendProfilePage', 'selector': 'app-friend-profile'},{'name': 'FriendsPage', 'selector': 'app-friends'},{'name': 'GroupCreatePage', 'selector': 'app-group-create'},{'name': 'GroupDetailsPage', 'selector': 'app-group-details'},{'name': 'GroupListPage', 'selector': 'app-group-list'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'InvitePage', 'selector': 'app-invite'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MemberViewPage', 'selector': 'app-member-view'},{'name': 'OptionsPage', 'selector': 'app-options'},{'name': 'PasswordPage', 'selector': 'app-password'},{'name': 'PaymentPage', 'selector': 'app-payment'},{'name': 'PaymentReminderPage', 'selector': 'app-payment-reminder'},{'name': 'PrivacyPage', 'selector': 'app-privacy'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'StatisticsPage', 'selector': 'app-statistics'},{'name': 'TransactionCreatePage', 'selector': 'app-transaction-create'},{'name': 'TransactionDetailsPage', 'selector': 'app-transaction-details'},{'name': 'TransactionParticipantsPage', 'selector': 'app-transaction-participants'},{'name': 'TransactionStakesPage', 'selector': 'app-transaction-stakes'},{'name': 'TutorialPage', 'selector': 'app-tutorial'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FriendProfilePage'};

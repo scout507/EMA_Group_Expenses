@@ -77,6 +77,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#loadedUsers" >loadedUsers</a>
+                            </li>
+                            <li>
                                 <a href="#transactionCollection" >transactionCollection</a>
                             </li>
                             <li>
@@ -119,6 +122,7 @@
                                 <a href="#delete" >delete</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#deleteAllTransactionsByUser" >deleteAllTransactionsByUser</a>
                             </li>
                             <li>
@@ -146,10 +150,6 @@
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Async</span>
                                 <a href="#getAllTransactionTracker" >getAllTransactionTracker</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#getAllTransactionUser" >getAllTransactionUser</a>
                             </li>
                             <li>
                                 <a href="#getLocally" >getLocally</a>
@@ -201,90 +201,6 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(afs: AngularFirestore, groupService: <a href="../injectables/GroupService.html" target="_self">GroupService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/services/transaction.service.ts:21</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>afs</td>
-                                                  
-                                                        <td>
-                                                                    <code>AngularFirestore</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>groupService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/GroupService.html" target="_self" >GroupService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>authService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>userService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section>
     
@@ -311,14 +227,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="267"
-                            class="link-to-prism">src/app/services/transaction.service.ts:267</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="386"
+                            class="link-to-prism">src/app/services/transaction.service.ts:386</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to check whether all transactions of the given group are finished or not.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -328,6 +246,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -342,6 +261,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: the group to check.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -379,14 +302,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="228"
-                            class="link-to-prism">src/app/services/transaction.service.ts:228</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="324"
+                            class="link-to-prism">src/app/services/transaction.service.ts:324</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to check if a transaction is finished.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -396,6 +321,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -410,6 +336,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: the transaction to check.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -447,14 +377,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="281"
-                            class="link-to-prism">src/app/services/transaction.service.ts:281</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="405"
+                            class="link-to-prism">src/app/services/transaction.service.ts:405</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to check if all transactions of a certain user are finished in a certain group.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -464,6 +396,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -478,6 +411,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: group to check</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>user</td>
@@ -490,6 +427,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: user to check</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -529,14 +470,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="299"
-                            class="link-to-prism">src/app/services/transaction.service.ts:299</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="427"
+                            class="link-to-prism">src/app/services/transaction.service.ts:427</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to redesign transaction data type for saving in database.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -546,6 +489,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -560,6 +504,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: the transaction that needs to be saved.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -599,14 +547,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="376"
-                            class="link-to-prism">src/app/services/transaction.service.ts:376</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="521"
+                            class="link-to-prism">src/app/services/transaction.service.ts:521</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to redesign tracker data model for saving in the database.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -616,6 +566,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -630,6 +581,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: the tracker to save.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -669,14 +624,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="310"
-                            class="link-to-prism">src/app/services/transaction.service.ts:310</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="447"
+                            class="link-to-prism">src/app/services/transaction.service.ts:447</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to create reoccuring transactions.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -706,14 +663,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="202"
-                            class="link-to-prism">src/app/services/transaction.service.ts:202</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="278"
+                            class="link-to-prism">src/app/services/transaction.service.ts:278</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to delete a transaction via id.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -723,6 +682,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -737,6 +697,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: the id of the transaction to delete</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -760,6 +724,7 @@
                 <td class="col-md-4">
                     <a name="deleteAllTransactionsByUser"></a>
                     <span class="name">
+                        <span class="modifier">Async</span>
                         <span ><b>deleteAllTransactionsByUser</b></span>
                         <a href="#deleteAllTransactionsByUser"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -767,21 +732,24 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>deleteAllTransactionsByUser(user: <a href="../classes/User.html" target="_self">User</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteAllTransactionsByUser(user: <a href="../classes/User.html" target="_self">User</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="158"
-                            class="link-to-prism">src/app/services/transaction.service.ts:158</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="225"
+                            class="link-to-prism">src/app/services/transaction.service.ts:225</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to delete all transactions of a certain user. Used for user deletion.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -791,6 +759,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -805,6 +774,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: the user of which the transactions need to be deleted.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -812,7 +785,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -842,14 +815,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="206"
-                            class="link-to-prism">src/app/services/transaction.service.ts:206</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="286"
+                            class="link-to-prism">src/app/services/transaction.service.ts:286</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to delete a transactionTracker.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -859,6 +834,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -873,6 +849,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: The tracker to delete.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -910,14 +890,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="198"
-                            class="link-to-prism">src/app/services/transaction.service.ts:198</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="270"
+                            class="link-to-prism">src/app/services/transaction.service.ts:270</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to create a subscribable object of the transaction entries in the database.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>    <code>Observable&lt;Transaction[]&gt;</code>
@@ -947,14 +929,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="210"
-                            class="link-to-prism">src/app/services/transaction.service.ts:210</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="294"
+                            class="link-to-prism">src/app/services/transaction.service.ts:294</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to find a tracker via Transaction-ID.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -964,6 +948,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -978,6 +963,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: The ID of the transaction.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1017,14 +1006,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/app/services/transaction.service.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="165"
+                            class="link-to-prism">src/app/services/transaction.service.ts:165</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to find all transactions for a given group.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1034,6 +1025,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1048,6 +1040,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: The group of which the transactions are searched</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1087,14 +1083,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/app/services/transaction.service.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/services/transaction.service.ts:91</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to get all transactions where the current user is either creator or participant.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1104,6 +1102,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1118,6 +1117,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: The current user.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>withOld</td>
@@ -1130,6 +1133,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: Boolean to load finished transactions or not</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1169,14 +1176,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/app/services/transaction.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/services/transaction.service.ts:70</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to get all transactions.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>    <code>Promise&lt;Transaction[]&gt;</code>
@@ -1209,88 +1218,20 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="145"
-                            class="link-to-prism">src/app/services/transaction.service.ts:145</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/app/services/transaction.service.ts:208</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to find all transactionTracker.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>    <code>unknown</code>
 
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getAllTransactionUser"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>getAllTransactionUser</b></span>
-                        <a href="#getAllTransactionUser"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getAllTransactionUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/services/transaction.service.ts:136</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;User[]&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -1316,14 +1257,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="224"
-                            class="link-to-prism">src/app/services/transaction.service.ts:224</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="316"
+                            class="link-to-prism">src/app/services/transaction.service.ts:316</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to load a transaction from the local storage.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="../classes/Transaction.html" target="_self" >Transaction</a></code>
@@ -1353,14 +1296,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="261"
-                            class="link-to-prism">src/app/services/transaction.service.ts:261</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="376"
+                            class="link-to-prism">src/app/services/transaction.service.ts:376</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to return all participants of given transaction</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1370,6 +1315,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1384,6 +1330,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: transaction to check for participants</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1421,14 +1371,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="350"
-                            class="link-to-prism">src/app/services/transaction.service.ts:350</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="484"
+                            class="link-to-prism">src/app/services/transaction.service.ts:484</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to get the time in milliseconds that a rhythm needs in between occurrences.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1489,14 +1441,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="237"
-                            class="link-to-prism">src/app/services/transaction.service.ts:237</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="338"
+                            class="link-to-prism">src/app/services/transaction.service.ts:338</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to get the stakes of a certion user from a given transaction.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1506,6 +1460,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1520,6 +1475,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: the user of which stakes are searched</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>transaction</td>
@@ -1532,6 +1491,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: the transaction for the search.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1571,14 +1534,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/app/services/transaction.service.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/services/transaction.service.ts:58</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to search through all transactions and find one with a given ID.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1588,6 +1553,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1602,6 +1568,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: the ID of the searched transaction.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1639,14 +1609,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="245"
-                            class="link-to-prism">src/app/services/transaction.service.ts:245</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="351"
+                            class="link-to-prism">src/app/services/transaction.service.ts:351</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to check whether the given user has paid the given transaction or not.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1656,6 +1628,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1670,6 +1643,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: user to check.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>transaction</td>
@@ -1682,6 +1659,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: transaction to check.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1719,14 +1700,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/app/services/transaction.service.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/app/services/transaction.service.ts:42</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to save a transaction to the database.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1736,6 +1719,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1750,6 +1734,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: the transaction to save.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1787,14 +1775,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="372"
-                            class="link-to-prism">src/app/services/transaction.service.ts:372</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="513"
+                            class="link-to-prism">src/app/services/transaction.service.ts:513</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to save a tracker to the database.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1804,6 +1794,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1818,6 +1809,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: tracker to save.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1855,14 +1850,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="220"
-                            class="link-to-prism">src/app/services/transaction.service.ts:220</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="308"
+                            class="link-to-prism">src/app/services/transaction.service.ts:308</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to save a transaction in the local storage.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1872,6 +1869,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1886,6 +1884,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: the transaction to save.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1925,14 +1927,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/app/services/transaction.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/services/transaction.service.ts:50</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to update changes of a transaction to the database.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1942,6 +1946,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1956,6 +1961,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: The changed transaction.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1993,14 +2002,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="368"
-                            class="link-to-prism">src/app/services/transaction.service.ts:368</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="505"
+                            class="link-to-prism">src/app/services/transaction.service.ts:505</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to save a changed tracker.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -2010,6 +2021,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -2024,6 +2036,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: tracker to save.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2061,14 +2077,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="253"
-                            class="link-to-prism">src/app/services/transaction.service.ts:253</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="364"
+                            class="link-to-prism">src/app/services/transaction.service.ts:364</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Function to check whether the given users payment in the given transaction has been accepted or not.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -2078,6 +2096,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -2092,6 +2111,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: user to check.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>transaction</td>
@@ -2104,6 +2127,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>: transaction to check.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2131,6 +2158,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="loadedUsers"></a>
+                    <span class="name">
+                        <span ><b>loadedUsers</b></span>
+                        <a href="#loadedUsers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >Map&lt;string | User&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;string, User&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/services/transaction.service.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="transactionCollection"></a>
                     <span class="name">
                         <span ><b>transactionCollection</b></span>
@@ -2146,7 +2204,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/services/transaction.service.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/services/transaction.service.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -2172,7 +2230,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/services/transaction.service.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/services/transaction.service.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -2203,24 +2261,45 @@ import {TransactionTracker} from &quot;../models/transactionTracker.model&quot;;
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
+/**
+ * Class representing all logic regarding transactions and transactionTrackers.
+ */
 export class TransactionService {
-  transactionCollection: AngularFirestoreCollection&lt;Transaction&gt;;
-  transactionTrackerCollection: AngularFirestoreCollection&lt;TransactionTracker&gt;;
-
+  transactionCollection: AngularFirestoreCollection&lt;Transaction&gt;; //The collection of all transaction objects in the firebase database.
+  transactionTrackerCollection: AngularFirestoreCollection&lt;TransactionTracker&gt;; //The collection of all transactionTracker objects in the firebase database.
+  loadedUsers: Map&lt;string, User&gt; &#x3D; new Map&lt;string, User&gt;();
+  /**
+   * @ignore
+   * @param afs
+   * @param groupService
+   * @param authService
+   * @param userService
+   */
   constructor(private afs: AngularFirestore, private groupService: GroupService, private authService: AuthService, private userService: UserService) {
     this.transactionCollection &#x3D; afs.collection&lt;Transaction&gt;(&#x27;Transaction&#x27;);
     this.transactionTrackerCollection &#x3D; afs.collection&lt;TransactionTracker&gt;(&#x27;TransactionTracker&#x27;);
-
   }
 
+  /**
+   * Function to save a transaction to the database.
+   * @param transaction: the transaction to save.
+   */
   persist(transaction: Transaction) {
     return this.transactionCollection.add(this.copyAndPrepare(transaction));
   }
 
+  /**
+   * Function to update changes of a transaction to the database.
+   * @param transaction: The changed transaction.
+   */
   async update(transaction: Transaction): Promise&lt;void&gt; {
     await this.transactionCollection.doc(transaction.id).update(this.copyAndPrepare(transaction));
   }
 
+  /**
+   * Function to search through all transactions and find one with a given ID.
+   * @param id: the ID of the searched transaction.
+   */
   async getTransactionById(id: string) {
     let doc: any &#x3D; await this.transactionCollection.doc(id).get().toPromise();
     let transaction &#x3D; doc.data();
@@ -2230,6 +2309,9 @@ export class TransactionService {
     return transaction;
   }
 
+  /**
+   * Function to get all transactions.
+   */
   async getAllTransactions(): Promise&lt;Transaction[]&gt; {
     const snapshot &#x3D; await this.transactionCollection.get().toPromise();
     const transactions &#x3D; [];
@@ -2246,11 +2328,16 @@ export class TransactionService {
 
   }
 
+  /**
+   * Function to get all transactions where the current user is either creator or participant.
+   * @param user: The current user.
+   * @param withOld: Boolean to load finished transactions or not
+   */
   async getAllTransactionByUser(user: User, withOld: boolean): Promise&lt;Transaction[]&gt; {
     const loading &#x3D; document.createElement(&#x27;ion-loading&#x27;);
     loading.cssClass &#x3D; &#x27;loading&#x27;;
     loading.message &#x3D; &#x27;Lade Daten&#x27;;
-    loading.duration &#x3D; 100000;
+    loading.duration &#x3D; 10000;
     document.body.appendChild(loading);
     await loading.present();
 
@@ -2264,22 +2351,22 @@ export class TransactionService {
     }).forEach(document &#x3D;&gt; {
       if(!withOld) {
         if (!document.finished) {
-          if (document.creator.toString() &#x3D;&#x3D;&#x3D; user.id) {
+          if (document.creator &#x3D;&#x3D;&#x3D; user.id) {
             transactions.push(document);
           } else {
             document.participation.forEach(part &#x3D;&gt; {
-              if (part.user.id &#x3D;&#x3D;&#x3D; user.id) {
+              if (part.user &#x3D;&#x3D;&#x3D; user.id) {
                 transactions.push(document);
               }
             });
           }
         }
       }else{
-        if (document.creator.toString() &#x3D;&#x3D;&#x3D; user.id) {
+        if (document.creator &#x3D;&#x3D;&#x3D; user.id) {
           transactions.push(document);
         } else {
           document.participation.forEach(part &#x3D;&gt; {
-            if (part.user.id &#x3D;&#x3D;&#x3D; user.id) {
+            if (part.user &#x3D;&#x3D;&#x3D; user.id) {
               transactions.push(document);
             }
           });
@@ -2289,6 +2376,22 @@ export class TransactionService {
     await Promise.all(transactions.map(async (transaction) &#x3D;&gt; {
       await this.userService.findById(transaction.creator).then(u &#x3D;&gt; transaction.creator &#x3D; u);
       await this.groupService.getGroupById(transaction.group).then(group &#x3D;&gt; transaction.group &#x3D; group);
+      for(let i in transaction.participation){
+        if(!this.loadedUsers.get(transaction.participation[i].user)){
+          await this.userService.findById(transaction.participation[i].user).then(user &#x3D;&gt; {
+            this.loadedUsers.set(transaction.participation[i].user, user);
+            transaction.participation[i].user &#x3D; user;
+            transaction.paid[i].user &#x3D; user;
+            transaction.accepted[i].user &#x3D; user;
+          });
+        }
+        else{
+          const u &#x3D; this.loadedUsers.get(transaction.participation[i].user);
+          transaction.participation[i].user &#x3D; u;
+          transaction.paid[i].user &#x3D; u;
+          transaction.accepted[i].user &#x3D; u;
+        }
+      }
     }));
     // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
     transactions.sort(function(b,a): any{
@@ -2300,6 +2403,10 @@ export class TransactionService {
     return transactions;
   }
 
+  /**
+   * Function to find all transactions for a given group.
+   * @param group: The group of which the transactions are searched
+   */
   async getAllTransactionByGroup(group: Group): Promise&lt;Transaction[]&gt; {
     const snapshot &#x3D; await this.transactionCollection.get().toPromise();
     const transactions &#x3D; [];
@@ -2316,19 +2423,33 @@ export class TransactionService {
     });
     await Promise.all(transactions.map(async (transaction) &#x3D;&gt; {
       await this.userService.findById(transaction.creator).then(u &#x3D;&gt; transaction.creator &#x3D; u);
+      for(let i in transaction.participation){
+        if(!this.loadedUsers.get(transaction.participation[i].user)){
+          await this.userService.findById(transaction.participation[i].user).then(user &#x3D;&gt; {
+            this.loadedUsers.set(transaction.participation[i].user, user);
+            transaction.participation[i].user &#x3D; user;
+            transaction.paid[i].user &#x3D; user;
+            transaction.accepted[i].user &#x3D; user;
+          });
+        }
+        else{
+          const u &#x3D; this.loadedUsers.get(transaction.participation[i].user);
+          transaction.participation[i].user &#x3D; u;
+          transaction.paid[i].user &#x3D; u;
+          transaction.accepted[i].user &#x3D; u;
+        }
+      }
     }));
+    transactions.sort(function(a,b): any{
+      // @ts-ignore
+      return new Date(b.purchaseDate) - new Date(a.purchaseDate);
+    });
     return transactions;
   }
 
-  async getAllTransactionUser(id: string): Promise&lt;User[]&gt; {
-    let users &#x3D; [];
-    let snapshot &#x3D; await this.transactionCollection.doc(id).get().toPromise();
-    await snapshot.data().participation.forEach(entry &#x3D;&gt; {
-      users.push(entry.user);
-    });
-    return users;
-  }
-
+  /**
+   * Function to find all transactionTracker.
+   */
   private async getAllTransactionTracker() {
     const snapshot &#x3D; await this.transactionTrackerCollection.get().toPromise();
 
@@ -2342,9 +2463,15 @@ export class TransactionService {
     return tracker;
   }
 
-  deleteAllTransactionsByUser(user: User){
-    this.userService.findById(&quot;QWgrWPALVhaZPnB1ZCiqbOELYbJ2&quot;).then(deletedUser &#x3D;&gt;{
-      this.getAllTransactionByUser(user,true).then(transactions &#x3D;&gt; {
+  /**
+   * Function to delete all transactions of a certain user. Used for user deletion.
+   * @param user: the user of which the transactions need to be deleted.
+   */
+  async deleteAllTransactionsByUser(user: User){
+    await this.userService.findById(&quot;KeY9mrG3m7hPZIsSzAEgubTa89t2&quot;).then(async deletedUser &#x3D;&gt;{
+      console.log(deletedUser);
+      await this.getAllTransactionByUser(user,true).then(transactions &#x3D;&gt; {
+        console.log(transactions);
         transactions.forEach(transaction &#x3D;&gt; {
           if(transaction.creator.id &#x3D;&#x3D;&#x3D; user.id){
             if(transaction.finished){
@@ -2382,18 +2509,33 @@ export class TransactionService {
     });
   }
 
+  /**
+   * Function to create a subscribable object of the transaction entries in the database.
+   */
   findAllSync(): Observable&lt;Transaction[]&gt; {
     return this.transactionCollection.valueChanges({idField: &#x27;id&#x27;});
   }
 
+  /**
+   * Function to delete a transaction via id.
+   * @param id: the id of the transaction to delete
+   */
   delete(id: string) {
     this.transactionCollection.doc(id).delete();
   }
 
+  /**
+   * Function to delete a transactionTracker.
+   * @param tracker: The tracker to delete.
+   */
   deleteTracker(tracker: TransactionTracker) {
     this.transactionTrackerCollection.doc(tracker.id).delete();
   }
 
+  /**
+   * Function to find a tracker via Transaction-ID.
+   * @param transactionID: The ID of the transaction.
+   */
   findTrackerById(transactionID: string){
     return this.getAllTransactionTracker().then(trackerList &#x3D;&gt; {
       for (let tracker of trackerList){
@@ -2404,14 +2546,26 @@ export class TransactionService {
     })
   }
 
+  /**
+   * Function to save a transaction in the local storage.
+   * @param transaction: the transaction to save.
+   */
   saveLocally(transaction: Transaction) {
+    console.log(transaction);
     localStorage.setItem(&#x27;transaction&#x27;, JSON.stringify(transaction));
   }
 
+  /**
+   * Function to load a transaction from the local storage.
+   */
   getLocally(): Transaction {
     return JSON.parse(localStorage.getItem(&#x27;transaction&#x27;));
   }
 
+  /**
+   * Function to check if a transaction is finished.
+   * @param transaction: the transaction to check.
+   */
   checkTransactionFinish(transaction: Transaction): boolean {
     for (const a of transaction.accepted) {
       if (a.accepted &#x3D;&#x3D;&#x3D; false) {
@@ -2421,6 +2575,11 @@ export class TransactionService {
     return true;
   }
 
+  /**
+   * Function to get the stakes of a certion user from a given transaction.
+   * @param member: the user of which stakes are searched
+   * @param transaction: the transaction for the search.
+   */
   getStakeForUser(member: User, transaction: Transaction): number {
     let stake: number &#x3D; 0;
     transaction.participation.forEach(participation &#x3D;&gt; {
@@ -2429,6 +2588,11 @@ export class TransactionService {
     return Math.round(stake * 100) / 100;
   }
 
+  /**
+   * Function to check whether the given user has paid the given transaction or not.
+   * @param member: user to check.
+   * @param transaction: transaction to check.
+   */
   hasUserPaid(member: string, transaction: Transaction): boolean {
     let paid: boolean &#x3D; false;
     transaction.paid.forEach(payment &#x3D;&gt; {
@@ -2437,6 +2601,11 @@ export class TransactionService {
     return paid;
   }
 
+  /**
+   * Function to check whether the given users payment in the given transaction has been accepted or not.
+   * @param member: user to check.
+   * @param transaction: transaction to check.
+   */
   wasPaymentAccepted(member: string, transaction: Transaction): boolean {
     let accepted: boolean &#x3D; false;
     transaction.accepted.forEach(entry &#x3D;&gt; {
@@ -2445,12 +2614,20 @@ export class TransactionService {
     return accepted;
   }
 
+  /**
+   * Function to return all participants of given transaction
+   * @param transaction: transaction to check for participants
+   */
   getParticipants(transaction: Transaction): User[] {
     let participants: User[] &#x3D; [];
     transaction.participation.forEach(participant &#x3D;&gt; participants.push(participant.user));
     return participants;
   }
 
+  /**
+   * Function to check whether all transactions of the given group are finished or not.
+   * @param group: the group to check.
+   */
   checkAllTransactionsFinishedInGroup(group: Group): Promise&lt;boolean&gt; {
     let transactions: Transaction[];
     let openTransactions &#x3D; false;
@@ -2465,6 +2642,11 @@ export class TransactionService {
     });
   }
 
+  /**
+   * Function to check if all transactions of a certain user are finished in a certain group.
+   * @param group: group to check
+   * @param user: user to check
+   */
   checkTransactionsFinishedInGroupByUser(group: Group, user: User) {
     let transactions: Transaction[];
     let openTransactions: boolean &#x3D; false;
@@ -2483,6 +2665,10 @@ export class TransactionService {
     })
   }
 
+  /**
+   * Function to redesign transaction data type for saving in database.
+   * @param transaction: the transaction that needs to be saved.
+   */
   private copyAndPrepare(transaction: Transaction) {
     const copy: any &#x3D; {...transaction};
     delete copy.id;
@@ -2491,24 +2677,29 @@ export class TransactionService {
     copy.photo &#x3D; transaction.photo || null;
     copy.group &#x3D; transaction.group.id;
     copy.creator &#x3D; transaction.creator.id;
+    for (let i &#x3D; 0; i &lt; copy.participation.length; i++) {
+      copy.participation[i].user &#x3D; copy.participation[i].user.id;
+      copy.accepted[i].user &#x3D; copy.accepted[i].user.id;
+      copy.paid[i].user &#x3D; copy.paid[i].user.id;
+    }
+    console.log(copy);
     return copy;
   }
 
+  /**
+   * Function to create reoccuring transactions.
+   */
   async createTransactionContinuation() {
     let currentDate &#x3D; new Date().getTime();
     const tracker: TransactionTracker[] &#x3D; await this.getAllTransactionTracker();
-    console.log(tracker);
     tracker.forEach((tracker: any) &#x3D;&gt; {
       if (tracker.creator &#x3D;&#x3D;&#x3D; this.authService.currentUser.id) {
-        console.log(&#x27;Found tracker from user.&#x27;);
         let transaction &#x3D; tracker.originalTransaction;
         tracker.createDate &#x3D; new Date(tracker.createDate.seconds * 1000);
         tracker.lastDate &#x3D; new Date(tracker.lastDate.seconds * 1000);
-        console.log(tracker);
         if (tracker.lastDate.getTime() &lt;&#x3D; currentDate) {
           let missedEntries &#x3D; Math.ceil((currentDate - tracker.lastDate.getTime()) / tracker.rhythm);
           if (missedEntries &gt; 0) {
-            console.log(&#x60;There&#x27;s ${missedEntries} transactions that need to be created...&#x60;);
             for (let i &#x3D; 0; i &lt; missedEntries; i++) {
               let transactionContinuation: Transaction &#x3D; transaction;
               this.groupService.getGroupById(transaction.group).then(group &#x3D;&gt; {
@@ -2520,9 +2711,6 @@ export class TransactionService {
                   transactionContinuation.dueDate &#x3D; new Date(tracker.lastDate.getTime() + this.getRhythmMiliseconds(tracker.originalTransaction.rhythm)).toDateString();
                   tracker.lastDate &#x3D; new Date(transactionContinuation.dueDate);
                   tracker.creator &#x3D; creator;
-                  console.log(transactionContinuation.dueDate);
-                  console.log(tracker);
-                  console.log(transactionContinuation);
                   this.persist(transactionContinuation);
                   this.updateTracker(tracker);
                 });
@@ -2534,6 +2722,10 @@ export class TransactionService {
     })
   }
 
+  /**
+   * Function to get the time in milliseconds that a rhythm needs in between occurrences.
+   * @param rhythm
+   */
   getRhythmMiliseconds(rhythm: string) {
     let rhythmMiliseconds &#x3D; 0;
     if (rhythm &#x3D;&#x3D;&#x3D; &#x27;daily&#x27;) {
@@ -2551,15 +2743,26 @@ export class TransactionService {
     return rhythmMiliseconds;
   }
 
-
+  /**
+   * Function to save a changed tracker.
+   * @param tracker: tracker to save.
+   */
   updateTracker(tracker: TransactionTracker) {
     this.transactionTrackerCollection.doc(tracker.id).update(this.copyAndPrepareTracker(tracker));
   }
 
+  /**
+   * Function to save a tracker to the database.
+   * @param tracker: tracker to save.
+   */
   persistTracker(tracker: TransactionTracker) {
     this.transactionTrackerCollection.add(this.copyAndPrepareTracker(tracker));
   }
 
+  /**
+   * Function to redesign tracker data model for saving in the database.
+   * @param tracker: the tracker to save.
+   */
   private copyAndPrepareTracker(tracker: TransactionTracker) {
     const copy: any &#x3D; {...tracker};
     delete copy.id;
