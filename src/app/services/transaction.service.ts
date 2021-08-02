@@ -443,12 +443,13 @@ export class TransactionService {
 
   /**
    * Function to create reoccuring transactions.
+   * @param currentUser the current user
    */
-  async createTransactionContinuation() {
+  async createTransactionContinuation(currentUser: User) {
     let currentDate = new Date().getTime();
     const tracker: TransactionTracker[] = await this.getAllTransactionTracker();
     tracker.forEach((tracker: any) => {
-      if (tracker.creator === this.authService.currentUser.id) {
+      if (tracker.creator === currentUser.id) {
         let transaction = tracker.originalTransaction;
         tracker.createDate = new Date(tracker.createDate.seconds * 1000);
         tracker.lastDate = new Date(tracker.lastDate.seconds * 1000);

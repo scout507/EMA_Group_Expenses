@@ -8,6 +8,9 @@ import {GroupService} from "../../services/group.service";
 import {AuthService} from "../../services/auth.service";
 import {Camera, CameraResultType} from "@capacitor/camera";
 import {TransactionTracker} from "../../models/transactionTracker.model";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {User} from "../../models/user.model";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-transaction-create',
@@ -34,6 +37,7 @@ export class TransactionCreatePage implements OnInit {
   errors: Map<string, string> = new Map<string, string>();
   //Boolean to mark whether the user came via group menu or not
   fromGroup: boolean = false;
+  currentUser: User;
 
   ionViewWillEnter(){
     if (this.route.snapshot.paramMap.get('fromGroup')) {
@@ -49,6 +53,8 @@ export class TransactionCreatePage implements OnInit {
    * @param route
    * @param transactionService
    * @param groupService
+   * @param userService
+   * @param af
    * @param authService
    */
   constructor(private router: Router,
@@ -56,13 +62,25 @@ export class TransactionCreatePage implements OnInit {
               private route: ActivatedRoute,
               private transactionService: TransactionService,
               private groupService: GroupService,
+              private userService: UserService,
+              private af: AngularFireAuth,
               private authService : AuthService) {
+
       this.transaction = new Transaction("", null, "", "cost", "once", authService.currentUser, new Date().toDateString(), new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toDateString());
       this.transaction.paid = [];
       this.transaction.accepted = [];
       this.transaction.participation = [];
-    this.groupService.getGroupsByUserId(this.authService.currentUser.id).then(groups => {
-      this.groups = groups;
+
+    const sub = this.af.authState.subscribe(user => {
+      if (user) {
+        this.userService.findById(user.uid).then(result => {
+          this.currentUser = result;
+          this.groupService.getGroupsByUserId(this.currentUser.id).then(groups => {
+            this.groups = groups;
+          });
+          sub.unsubscribe();
+        });
+      }
     });
   }
 

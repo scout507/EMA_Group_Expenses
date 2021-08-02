@@ -6,6 +6,9 @@ import {AuthService} from "../../services/auth.service";
 import {UserService} from "../../services/user.service";
 import {Camera, CameraResultType} from "@capacitor/camera";
 import {DomSanitizer} from "@angular/platform-browser";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {User} from "../../models/user.model";
+import {NavController} from "@ionic/angular";
 
 
 @Component({
@@ -21,7 +24,11 @@ export class TransactionDetailsPage implements OnInit {
   currentView: string = 'overview'; //tab which is shown
   otherUserId: string; //ID of the user which is targeted (when the current user wants to pay out an income to all participants this helps with the payment for one specific participant)
   hasStake: boolean = false; //Boolean whether the current user is involved in the transaction or not
-
+  currentUser: User;
+  stake: number;
+  paidAndNotAccepted: boolean;
+  accepted: boolean;
+  notPaid: boolean;
   /**
    * @ignore
    * @param route
@@ -30,15 +37,40 @@ export class TransactionDetailsPage implements OnInit {
    * @param router
    * @param authService
    * @param userService
+   * @param navCtrl
+   * @param af
    */
-  constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer, private transactionService : TransactionService, private router: Router, private authService: AuthService, private userService: UserService) {
+  constructor(private route: ActivatedRoute,
+              private sanitizer: DomSanitizer,
+              private transactionService : TransactionService,
+              private router: Router,
+              private authService: AuthService,
+              private userService: UserService,
+              private navCtrl: NavController,
+              private af: AngularFireAuth,) {
     this.transaction = this.transactionService.getLocally();
     this.otherUserId = JSON.parse(localStorage.getItem('otherUser'));
-    this.transaction.participation.forEach(entry => {
-      if (entry.user.id === authService.currentUser.id){
-        this.hasStake = true;
+  }
+
+  ionViewWillEnter() {
+
+    const sub = this.af.authState.subscribe(user => {
+      if (user) {
+        this.userService.findById(user.uid).then(result => {
+          this.currentUser = result;
+          this.transaction.participation.forEach(entry => {
+            if (entry.user.id === this.currentUser.id){
+              this.hasStake = true;
+            }
+          })
+          this.stake = this.transactionService.getStakeForUser(this.currentUser, this.transaction);
+          this.paidAndNotAccepted = (this.transactionService.hasUserPaid(this.currentUser.id, this.transaction) && !this.transactionService.wasPaymentAccepted(this.currentUser.id, this.transaction))
+          this.accepted = this.transactionService.wasPaymentAccepted(this.currentUser.id, this.transaction);
+          this.notPaid =  !this.transactionService.hasUserPaid(this.currentUser.id, this.transaction);
+          sub.unsubscribe();
+        });
       }
-    })
+    });
   }
 
 

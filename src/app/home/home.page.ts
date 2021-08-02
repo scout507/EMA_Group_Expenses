@@ -87,12 +87,12 @@ export class HomePage {
     this.confirmView = false;
     this.incomingView = false;
     this.pendingView = false;
-    this.transactionService.createTransactionContinuation();
     const sub = this.af.authState.subscribe(user => {
       if (user) {
         this.userService.findById(user.uid).then(result => {
           this.currentUser = result;
           this.updateTransactions();
+          this.transactionService.createTransactionContinuation(result);
           sub.unsubscribe();
         });
       }
