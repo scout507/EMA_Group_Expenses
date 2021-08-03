@@ -256,8 +256,8 @@ it is simply navigated back.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="140"
-                            class="link-to-prism">src/app/profile/privacy/privacy.page.ts:140</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="141"
+                            class="link-to-prism">src/app/profile/privacy/privacy.page.ts:141</a></div>
                 </td>
             </tr>
 
@@ -298,8 +298,8 @@ to change the value user.awardsPublicfriends as well.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/app/profile/privacy/privacy.page.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/app/profile/privacy/privacy.page.ts:118</a></div>
                 </td>
             </tr>
 
@@ -309,8 +309,9 @@ to change the value user.awardsPublicfriends as well.</p>
                     <div class="io-description"><p>Functionality for user deletion.
 Step by step:</p>
 <ol>
-<li>Delete user from friendlist, 2. delete user from groups, 3. Delete user from transactions</li>
-<li>delete user from User-Collection, 5. delete user from Auth, 6. Loggout</li>
+<li>Delete user from friendlist, 2. Delete user from transactions, 3. delete user from groups,</li>
+<li>delete user from User-Collection, 5. delete user from Auth, 6. Loggout
+It is important to keep this sequence, as it can cause nasty bugs if you switch these around.</li>
 </ol>
 </div>
 
@@ -595,8 +596,9 @@ export class PrivacyPage {
   /**
    * Functionality for user deletion.
    * Step by step:
-   * 1. Delete user from friendlist, 2. delete user from groups, 3. Delete user from transactions
+   * 1. Delete user from friendlist, 2. Delete user from transactions, 3. delete user from groups,
    * 4. delete user from User-Collection, 5. delete user from Auth, 6. Loggout
+   * It is important to keep this sequence, as it can cause nasty bugs if you switch these around.
    */
   async deleteBtn() {
     const alert &#x3D; document.createElement(&#x27;ion-alert&#x27;);
@@ -609,8 +611,8 @@ export class PrivacyPage {
 
     if (rsl.role &#x3D;&#x3D; &quot;yes&quot;) {
       await this.userService.deleteUserFromFriends(this.user);
-      await this.groupService.deleteUserFromAllGroups(this.user);
       await this.transactionService.deleteAllTransactionsByUser(this.user);
+      await this.groupService.deleteUserFromAllGroups(this.user);
       this.userService.delete(this.user.id);
       this.authService.delete();
       this.authService.logout();

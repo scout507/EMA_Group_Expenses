@@ -274,8 +274,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="231"
-                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:231</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="233"
+                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:233</a></div>
                 </td>
             </tr>
 
@@ -313,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="206"
-                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:206</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:208</a></div>
                 </td>
             </tr>
 
@@ -352,8 +352,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="315"
-                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:315</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="317"
+                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:317</a></div>
                 </td>
             </tr>
 
@@ -511,8 +511,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="264"
-                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:264</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:266</a></div>
                 </td>
             </tr>
 
@@ -588,8 +588,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="221"
-                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:221</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:223</a></div>
                 </td>
             </tr>
 
@@ -666,8 +666,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="199"
-                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:199</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="201"
+                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:201</a></div>
                 </td>
             </tr>
 
@@ -705,8 +705,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="191"
-                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:191</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/app/group/group-details/group-details.page.ts:193</a></div>
                 </td>
             </tr>
 
@@ -1401,10 +1401,12 @@ export class GroupDetailsPage implements OnInit {
             this.oldTransactions.push(transaction);
           }
         });
-        this.statistic &#x3D; this.statisticsService.getGroupStatistics(this.allTransactions);
-        this.currentTotal &#x3D; this.statistic.allTimeTotal;
-        this.currentCost &#x3D; this.statistic.allTimeCost;
-        this.currentIncome &#x3D; this.statistic.allTimeIncome;
+        if(this.allTransactions.length &gt;0){
+          this.statistic &#x3D; this.statisticsService.getGroupStatistics(this.allTransactions);
+          this.currentTotal &#x3D; this.statistic.allTimeTotal;
+          this.currentCost &#x3D; this.statistic.allTimeCost;
+          this.currentIncome &#x3D; this.statistic.allTimeIncome;
+        }
       });
     });
   }

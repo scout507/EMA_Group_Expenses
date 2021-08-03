@@ -115,6 +115,7 @@
                                 <a href="#findById" >findById</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#persist" >persist</a>
                             </li>
                             <li>
@@ -528,6 +529,7 @@ returns the user object without the id</p>
                 <td class="col-md-4">
                     <a name="persist"></a>
                     <span class="name">
+                        <span class="modifier">Async</span>
                         <span ><b>persist</b></span>
                         <a href="#persist"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -535,7 +537,8 @@ returns the user object without the id</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>persist(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>persist(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -625,7 +628,7 @@ returns the user object without the id</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -771,7 +774,7 @@ export class UserService {
    * @param email - email from the user
    * @param username - username from the user
    */
-  persist(id: string, email:string, username:string) {
+  async persist(id: string, email: string, username: string) {
     const user &#x3D; new User();
     user.displayName &#x3D; username;
     user.profilePic &#x3D; &quot;https://bit.ly/2S904CS&quot;;
@@ -787,7 +790,7 @@ export class UserService {
     user.awardsPublic &#x3D; false;
     user.awardsPublicfriends &#x3D; false;
     user.friends &#x3D; [];
-    this.userCollection.doc(id).set(this.copyAndPrepare(user));
+    await this.userCollection.doc(id).set(this.copyAndPrepare(user));
   }
 
   /**
