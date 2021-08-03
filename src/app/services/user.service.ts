@@ -26,7 +26,7 @@ export class UserService {
    * @param email - email from the user
    * @param username - username from the user
    */
-  persist(id: string, email:string, username:string) {
+  async persist(id: string, email: string, username: string) {
     const user = new User();
     user.displayName = username;
     user.profilePic = "https://bit.ly/2S904CS";
@@ -42,7 +42,7 @@ export class UserService {
     user.awardsPublic = false;
     user.awardsPublicfriends = false;
     user.friends = [];
-    this.userCollection.doc(id).set(this.copyAndPrepare(user));
+    await this.userCollection.doc(id).set(this.copyAndPrepare(user));
   }
 
   /**

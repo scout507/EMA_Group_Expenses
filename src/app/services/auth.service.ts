@@ -33,8 +33,8 @@ export class AuthService {
   async register(email: string, password: string, username: string): Promise<void | string>{
     let message: string;
     await this.auth.createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.userservice.persist(result.user.uid, email.toLocaleLowerCase(), username);
+      .then(async (result) => {
+        await this.userservice.persist(result.user.uid, email.toLocaleLowerCase(), username)
         this.userservice.findById(result.user.uid).then(user => {
           this.currentUser = user;
           if(this.platform.is('desktop')){

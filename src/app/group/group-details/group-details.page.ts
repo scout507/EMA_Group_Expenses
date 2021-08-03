@@ -176,10 +176,12 @@ export class GroupDetailsPage implements OnInit {
             this.oldTransactions.push(transaction);
           }
         });
-        this.statistic = this.statisticsService.getGroupStatistics(this.allTransactions);
-        this.currentTotal = this.statistic.allTimeTotal;
-        this.currentCost = this.statistic.allTimeCost;
-        this.currentIncome = this.statistic.allTimeIncome;
+        if(this.allTransactions.length >0){
+          this.statistic = this.statisticsService.getGroupStatistics(this.allTransactions);
+          this.currentTotal = this.statistic.allTimeTotal;
+          this.currentCost = this.statistic.allTimeCost;
+          this.currentIncome = this.statistic.allTimeIncome;
+        }
       });
     });
   }
