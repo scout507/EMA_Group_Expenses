@@ -547,8 +547,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="521"
-                            class="link-to-prism">src/app/services/transaction.service.ts:521</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="522"
+                            class="link-to-prism">src/app/services/transaction.service.ts:522</a></div>
                 </td>
             </tr>
 
@@ -617,15 +617,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createTransactionContinuation()</code>
+                    <code>createTransactionContinuation(currentUser: <a href="../classes/User.html" target="_self">User</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="447"
-                            class="link-to-prism">src/app/services/transaction.service.ts:447</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="448"
+                            class="link-to-prism">src/app/services/transaction.service.ts:448</a></div>
                 </td>
             </tr>
 
@@ -636,8 +636,44 @@
 </div>
 
                     <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>currentUser</td>
+                                    <td>
+                                                <code><a href="../classes/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the current user</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -1371,8 +1407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="484"
-                            class="link-to-prism">src/app/services/transaction.service.ts:484</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="485"
+                            class="link-to-prism">src/app/services/transaction.service.ts:485</a></div>
                 </td>
             </tr>
 
@@ -1775,8 +1811,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="513"
-                            class="link-to-prism">src/app/services/transaction.service.ts:513</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="514"
+                            class="link-to-prism">src/app/services/transaction.service.ts:514</a></div>
                 </td>
             </tr>
 
@@ -2002,8 +2038,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="505"
-                            class="link-to-prism">src/app/services/transaction.service.ts:505</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="506"
+                            class="link-to-prism">src/app/services/transaction.service.ts:506</a></div>
                 </td>
             </tr>
 
@@ -2688,12 +2724,13 @@ export class TransactionService {
 
   /**
    * Function to create reoccuring transactions.
+   * @param currentUser the current user
    */
-  async createTransactionContinuation() {
+  async createTransactionContinuation(currentUser: User) {
     let currentDate &#x3D; new Date().getTime();
     const tracker: TransactionTracker[] &#x3D; await this.getAllTransactionTracker();
     tracker.forEach((tracker: any) &#x3D;&gt; {
-      if (tracker.creator &#x3D;&#x3D;&#x3D; this.authService.currentUser.id) {
+      if (tracker.creator &#x3D;&#x3D;&#x3D; currentUser.id) {
         let transaction &#x3D; tracker.originalTransaction;
         tracker.createDate &#x3D; new Date(tracker.createDate.seconds * 1000);
         tracker.lastDate &#x3D; new Date(tracker.lastDate.seconds * 1000);

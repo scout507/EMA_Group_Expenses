@@ -412,7 +412,7 @@ export class TransactionStakesPage implements OnInit {
   getCurrentAmount(){
     let sum &#x3D; 0;
     this.transaction.participation.forEach(participation &#x3D;&gt; sum +&#x3D; participation.stake);
-    return sum;
+    return Math.round(sum*100)/100;
   }
 
   /**

@@ -160,8 +160,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/app/services/user.service.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/app/services/user.service.ts:97</a></div>
                 </td>
             </tr>
 
@@ -236,8 +236,8 @@ returns the user object without the id</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/app/services/user.service.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/services/user.service.ts:72</a></div>
                 </td>
             </tr>
 
@@ -313,8 +313,8 @@ returns the user object without the id</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/app/services/user.service.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/app/services/user.service.ts:80</a></div>
                 </td>
             </tr>
 
@@ -388,8 +388,8 @@ returns the user object without the id</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/app/services/user.service.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/services/user.service.ts:107</a></div>
                 </td>
             </tr>
 
@@ -465,8 +465,8 @@ returns the user object without the id</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/app/services/user.service.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/app/services/user.service.ts:52</a></div>
                 </td>
             </tr>
 
@@ -655,8 +655,8 @@ returns the user object without the id</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/app/services/user.service.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/services/user.service.ts:64</a></div>
                 </td>
             </tr>
 
@@ -772,7 +772,7 @@ export class UserService {
    * @param username - username from the user
    */
   persist(id: string, email:string, username:string) {
-    var user &#x3D; new User();
+    const user &#x3D; new User();
     user.displayName &#x3D; username;
     user.profilePic &#x3D; &quot;https://bit.ly/2S904CS&quot;;
     user.email &#x3D; email;
@@ -785,6 +785,7 @@ export class UserService {
     user.kreditcard &#x3D; false;
     user.imagePublic &#x3D; false;
     user.awardsPublic &#x3D; false;
+    user.awardsPublicfriends &#x3D; false;
     user.friends &#x3D; [];
     this.userCollection.doc(id).set(this.copyAndPrepare(user));
   }
@@ -795,9 +796,9 @@ export class UserService {
    */
   findById(id: string): Promise&lt;User&gt; {
     return this.userCollection.doc(id).get().toPromise().then(res &#x3D;&gt; {
-      const ret: User &#x3D; res.data();
-      ret.id &#x3D; id;
-      return ret;
+      const user: User &#x3D; res.data();
+      user.id &#x3D; id;
+      return user;
     });
   }
 

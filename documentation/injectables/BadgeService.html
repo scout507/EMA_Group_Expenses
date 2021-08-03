@@ -61,6 +61,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This class is needed to manage the allocation of awards, with linking of the database.</p>
+
+            </p>
 
 
 
@@ -92,66 +99,6 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(userservice: <a href="../injectables/UserService.html" target="_self">UserService</a>, stats: <a href="../injectables/StatisticsService.html" target="_self">StatisticsService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/services/badge.service.ts:11</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>userservice</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>stats</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/StatisticsService.html" target="_self" >StatisticsService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section>
     
@@ -178,14 +125,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/app/services/badge.service.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/app/services/badge.service.ts:30</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>This function checks which awards the user has and adds missing ones as needed.
+Awards will only be added if the requirements are met.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -195,6 +145,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -209,6 +160,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Needed to see which awards are present and add the missing ones.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>transactions</td>
@@ -221,6 +176,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Are needed to work with the satistics functions</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -250,14 +209,29 @@ import { User } from &quot;../models/user.model&quot;;
 import { StatisticsService } from &quot;./statistics.service&quot;;
 import { Transaction } from &quot;../models/transaction.model&quot;;
 
+/**
+ * This class is needed to manage the allocation of awards, with linking of the database.
+ */
+
 @Injectable({
     providedIn: &#x27;root&#x27;
 })
 
 export class BadgeService {
 
+    /**
+     * @ignore
+     * @param userservice 
+     * @param stats 
+     */
     constructor(private userservice: UserService, private stats:StatisticsService) { }
 
+    /**
+     * This function checks which awards the user has and adds missing ones as needed. 
+     * Awards will only be added if the requirements are met.
+     * @param user Needed to see which awards are present and add the missing ones.
+     * @param transactions Are needed to work with the satistics functions
+     */
     setBadges(user: User, transactions: Transaction[]) {
         if (this.stats.getAllSelfmadeTransactionsOfTime(user.id, -1, transactions) &gt;&#x3D; 50 &amp;&amp; !user.awards.includes(&quot;2jgBrLRTucI9CjxxWv5g&quot;)) {
             user.awards.push(&quot;2jgBrLRTucI9CjxxWv5g&quot;);
