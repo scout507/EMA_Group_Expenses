@@ -25,14 +25,14 @@ export class ProfilePage {
 
   /**
    * @ignore
-   * @param transactionsservice 
-   * @param sanitizer 
-   * @param router 
-   * @param userService 
-   * @param af 
-   * @param awardService 
-   * @param authService 
-   * @param badgeService 
+   * @param transactionsservice
+   * @param sanitizer
+   * @param router
+   * @param userService
+   * @param af
+   * @param awardService
+   * @param authService
+   * @param badgeService
    */
   constructor(
     private transactionsservice: TransactionService,
@@ -46,9 +46,9 @@ export class ProfilePage {
   ) { }
 
   /**
-   * When the page is opened, all the required information 
-   * is loaded from the services and stored in the variables 
-   * provided for this purpose. Important here is the check 
+   * When the page is opened, all the required information
+   * is loaded from the services and stored in the variables
+   * provided for this purpose. Important here is the check
    * whether the user is logged in, otherwise no data will be loaded.
    */
   ionViewWillEnter() {
@@ -64,7 +64,7 @@ export class ProfilePage {
                 this.badges.push(item);
               });
             });
-          }); 
+          });
         });
         sub.unsubscribe();
       }
@@ -86,8 +86,8 @@ export class ProfilePage {
   }
 
    /**
-   * This functionality creates an Ionic alert, this contains only a title and a description, 
-   * furthermore there is a close button to close the Ionic alert. Used when you click on 
+   * This functionality creates an Ionic alert, this contains only a title and a description,
+   * furthermore there is a close button to close the Ionic alert. Used when you click on
    * the badge icons.
    * @param badgename Required for the title.
    * @param badgeDescription Required for the description.
@@ -114,8 +114,8 @@ export class ProfilePage {
   }
 
   /**
-   * This functionality creates an Ionic alert, this contains only a title and a description, 
-   * furthermore there is a close button to close the Ionic alert. Used when clicking on 
+   * This functionality creates an Ionic alert, this contains only a title and a description,
+   * furthermore there is a close button to close the Ionic alert. Used when clicking on
    * the icons of the payment methods.
    * @param name Required for the title.
    * @param discription Required for the description.

@@ -128,6 +128,7 @@ export class TransactionService {
         }
       }
     });
+
     await Promise.all(transactions.map(async (transaction) => {
       await this.userService.findById(transaction.creator).then(u => transaction.creator = u);
       await this.groupService.getGroupById(transaction.group).then(group => transaction.group = group);

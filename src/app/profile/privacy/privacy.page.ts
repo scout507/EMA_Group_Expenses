@@ -111,8 +111,9 @@ export class PrivacyPage {
   /**
    * Functionality for user deletion.
    * Step by step:
-   * 1. Delete user from friendlist, 2. delete user from groups, 3. Delete user from transactions
+   * 1. Delete user from friendlist, 2. Delete user from transactions, 3. delete user from groups,
    * 4. delete user from User-Collection, 5. delete user from Auth, 6. Loggout
+   * It is important to keep this sequence, as it can cause nasty bugs if you switch these around.
    */
   async deleteBtn() {
     const alert = document.createElement('ion-alert');
@@ -125,8 +126,8 @@ export class PrivacyPage {
 
     if (rsl.role == "yes") {
       await this.userService.deleteUserFromFriends(this.user);
-      await this.groupService.deleteUserFromAllGroups(this.user);
       await this.transactionService.deleteAllTransactionsByUser(this.user);
+      await this.groupService.deleteUserFromAllGroups(this.user);
       this.userService.delete(this.user.id);
       this.authService.delete();
       this.authService.logout();
