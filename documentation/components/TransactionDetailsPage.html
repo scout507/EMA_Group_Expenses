@@ -8,59 +8,809 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+	    <link rel="stylesheet" href="../styles/style.css">
     </head>
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
             <a href="../" class="navbar-brand">group-expenses documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="../">group-expenses documentation</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="../overview.html" 
+                                         href="../overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./modules.html" >
+                            <span class="fa fa-archive"></span>
+                            <span>Modules</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            ></span>
+                        </a>
+                        <ul class="links collapse in"
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="../modules/AddMembersPageModule.html" >AddMembersPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/AddMembersPageRoutingModule.html" >AddMembersPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/AppModule.html" >AppModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ChangePasswordPageModule.html" >ChangePasswordPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ChangePasswordPageRoutingModule.html" >ChangePasswordPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendProfilePageModule.html" >FriendProfilePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendProfilePageRoutingModule.html" >FriendProfilePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendsPageModule.html" >FriendsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendsPageRoutingModule.html" >FriendsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupCreatePageModule.html" >GroupCreatePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupCreatePageRoutingModule.html" >GroupCreatePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupDetailsPageModule.html" >GroupDetailsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupDetailsPageRoutingModule.html" >GroupDetailsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupListPageModule.html" >GroupListPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupListPageRoutingModule.html" >GroupListPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/HomePageModule.html" >HomePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/InvitePageModule.html" >InvitePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/InvitePageRoutingModule.html" >InvitePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/LoginPageModule.html" >LoginPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/LoginPageRoutingModule.html" >LoginPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/MemberViewPageModule.html" >MemberViewPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/MemberViewPageRoutingModule.html" >MemberViewPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/OptionsPageModule.html" >OptionsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/OptionsPageRoutingModule.html" >OptionsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PasswordPageModule.html" >PasswordPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PasswordPageRoutingModule.html" >PasswordPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentPageModule.html" >PaymentPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentPageRoutingModule.html" >PaymentPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentReminderPageModule.html" >PaymentReminderPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentReminderPageRoutingModule.html" >PaymentReminderPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PrivacyPageModule.html" >PrivacyPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PrivacyPageRoutingModule.html" >PrivacyPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ProfilePageModule.html" >ProfilePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ProfilePageRoutingModule.html" >ProfilePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/RegisterPageModule.html" >RegisterPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/RegisterPageRoutingModule.html" >RegisterPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/StatisticsPageModule.html" >StatisticsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/StatisticsPageRoutingModule.html" >StatisticsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionCreatePageModule.html" >TransactionCreatePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionCreatePageRoutingModule.html" >TransactionCreatePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionDetailsPageModule.html" >TransactionDetailsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionDetailsPageRoutingModule.html" >TransactionDetailsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionParticipantsPageModule.html" >TransactionParticipantsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionParticipantsPageRoutingModule.html" >TransactionParticipantsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionStakesPageModule.html" >TransactionStakesPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionStakesPageRoutingModule.html" >TransactionStakesPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TutorialPageModule.html" >TutorialPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TutorialPageRoutingModule.html" >TutorialPageRoutingModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-components-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="../components/AddMembersPage.html" >AddMembersPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/AppComponent.html" >AppComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ChangePasswordPage.html" >ChangePasswordPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/FriendProfilePage.html" >FriendProfilePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/FriendsPage.html" >FriendsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/GroupCreatePage.html" >GroupCreatePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/GroupDetailsPage.html" >GroupDetailsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/GroupListPage.html" >GroupListPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/HomePage.html" >HomePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/InvitePage.html" >InvitePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/LoginPage.html" >LoginPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/MemberViewPage.html" >MemberViewPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/OptionsPage.html" >OptionsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PasswordPage.html" >PasswordPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PaymentPage.html" >PaymentPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PaymentReminderPage.html" >PaymentReminderPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PrivacyPage.html" >PrivacyPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ProfilePage.html" >ProfilePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/RegisterPage.html" >RegisterPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/StatisticsPage.html" >StatisticsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionCreatePage.html" >TransactionCreatePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionDetailsPage.html"  class="active" >TransactionDetailsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionParticipantsPage.html" >TransactionParticipantsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionStakesPage.html" >TransactionStakesPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TutorialPage.html" >TutorialPage</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-file-code-o"></span>
+                            <span>Classes</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-classes-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-classes-links"
+                            >
+                                <li class="link">
+                                    <a href="../classes/AppPage.html" >AppPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Award.html" >Award</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Group.html" >Group</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/SimpleTransaction.html" >SimpleTransaction</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Statistic.html" >Statistic</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Transaction.html" >Transaction</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Transaction.html" >Transaction</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/TransactionTracker.html" >TransactionTracker</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/User.html" >User</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-injectables-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/ArwardService.html" >ArwardService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/AuthService.html" >AuthService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/BadgeService.html" >BadgeService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/FriendsService.html" >FriendsService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/GroupService.html" >GroupService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/StatisticsService.html" >StatisticsService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/TransactionService.html" >TransactionService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/UserService.html" >UserService</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+                    <li class="divider"></li>
+                    <li class="copyright">
+                            Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                        <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                            </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
         </div>
 
         <div class="container-fluid main">
            <div class="row main">
                <div class="hidden-xs menu">
-                   <compodoc-menu mode="normal"></compodoc-menu>
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="../">group-expenses documentation</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="../overview.html" 
+                                                href="../overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./modules.html" >
+                                   <span class="fa fa-archive"></span>
+                                   <span>Modules</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   ></span>
+                               </a>
+                               <ul class="links collapse in"
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="../modules/AddMembersPageModule.html" >AddMembersPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/AddMembersPageRoutingModule.html" >AddMembersPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/AppModule.html" >AppModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ChangePasswordPageModule.html" >ChangePasswordPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ChangePasswordPageRoutingModule.html" >ChangePasswordPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendProfilePageModule.html" >FriendProfilePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendProfilePageRoutingModule.html" >FriendProfilePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendsPageModule.html" >FriendsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendsPageRoutingModule.html" >FriendsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupCreatePageModule.html" >GroupCreatePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupCreatePageRoutingModule.html" >GroupCreatePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupDetailsPageModule.html" >GroupDetailsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupDetailsPageRoutingModule.html" >GroupDetailsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupListPageModule.html" >GroupListPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupListPageRoutingModule.html" >GroupListPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/HomePageModule.html" >HomePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/InvitePageModule.html" >InvitePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/InvitePageRoutingModule.html" >InvitePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/LoginPageModule.html" >LoginPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/LoginPageRoutingModule.html" >LoginPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/MemberViewPageModule.html" >MemberViewPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/MemberViewPageRoutingModule.html" >MemberViewPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/OptionsPageModule.html" >OptionsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/OptionsPageRoutingModule.html" >OptionsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PasswordPageModule.html" >PasswordPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PasswordPageRoutingModule.html" >PasswordPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentPageModule.html" >PaymentPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentPageRoutingModule.html" >PaymentPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentReminderPageModule.html" >PaymentReminderPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentReminderPageRoutingModule.html" >PaymentReminderPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PrivacyPageModule.html" >PrivacyPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PrivacyPageRoutingModule.html" >PrivacyPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ProfilePageModule.html" >ProfilePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ProfilePageRoutingModule.html" >ProfilePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/RegisterPageModule.html" >RegisterPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/RegisterPageRoutingModule.html" >RegisterPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/StatisticsPageModule.html" >StatisticsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/StatisticsPageRoutingModule.html" >StatisticsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionCreatePageModule.html" >TransactionCreatePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionCreatePageRoutingModule.html" >TransactionCreatePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionDetailsPageModule.html" >TransactionDetailsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionDetailsPageRoutingModule.html" >TransactionDetailsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionParticipantsPageModule.html" >TransactionParticipantsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionParticipantsPageRoutingModule.html" >TransactionParticipantsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionStakesPageModule.html" >TransactionStakesPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionStakesPageRoutingModule.html" >TransactionStakesPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TutorialPageModule.html" >TutorialPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TutorialPageRoutingModule.html" >TutorialPageRoutingModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#components-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="../components/AddMembersPage.html" >AddMembersPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/AppComponent.html" >AppComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ChangePasswordPage.html" >ChangePasswordPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/FriendProfilePage.html" >FriendProfilePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/FriendsPage.html" >FriendsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/GroupCreatePage.html" >GroupCreatePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/GroupDetailsPage.html" >GroupDetailsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/GroupListPage.html" >GroupListPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/HomePage.html" >HomePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/InvitePage.html" >InvitePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/LoginPage.html" >LoginPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/MemberViewPage.html" >MemberViewPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/OptionsPage.html" >OptionsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PasswordPage.html" >PasswordPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PaymentPage.html" >PaymentPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PaymentReminderPage.html" >PaymentReminderPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PrivacyPage.html" >PrivacyPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ProfilePage.html" >ProfilePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/RegisterPage.html" >RegisterPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/StatisticsPage.html" >StatisticsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionCreatePage.html" >TransactionCreatePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionDetailsPage.html"  class="active" >TransactionDetailsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionParticipantsPage.html" >TransactionParticipantsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionStakesPage.html" >TransactionStakesPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TutorialPage.html" >TutorialPage</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-file-code-o"></span>
+                                   <span>Classes</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#classes-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="classes-links"
+                   >
+                                       <li class="link">
+                                           <a href="../classes/AppPage.html" >AppPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Award.html" >Award</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Group.html" >Group</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/SimpleTransaction.html" >SimpleTransaction</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Statistic.html" >Statistic</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Transaction.html" >Transaction</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Transaction.html" >Transaction</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/TransactionTracker.html" >TransactionTracker</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/User.html" >User</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#injectables-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/ArwardService.html" >ArwardService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/AuthService.html" >AuthService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/BadgeService.html" >BadgeService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/FriendsService.html" >FriendsService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/GroupService.html" >GroupService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/StatisticsService.html" >StatisticsService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/TransactionService.html" >TransactionService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/UserService.html" >UserService</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                           <li class="copyright">
+                                   Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                               <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                                   </a>
+                           </li>
+                   
+                       </ul>
+                   
+                   </nav>
                </div>
-               <!-- START CONTENT -->
                <div class="content component">
                    <div class="content-data">
 
 
-
-
 <ol class="breadcrumb">
   <li>Components</li>
-  <li
-  >
-  TransactionDetailsPage</li>
+  <li>TransactionDetailsPage</li>
 </ol>
 
-<ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
-        </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-        </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
-        </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
-        </li>
-</ul>
 
-<div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+        </li>
+        <li>
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab">Source</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="infos"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -69,19 +819,11 @@
 
 
 
-
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
-
-
 <section>
     <h3>Metadata</h3>
     <table class="table table-sm table-hover">
         <tbody>
+
 
 
 
@@ -100,806 +842,508 @@
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./transaction-details.page.scss</code></td>
+                <td class="col-md-9"><code>transaction-details.page.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./transaction-details.page.html</code></td>
+                <td class="col-md-9"><code>transaction-details.page.html</code></td>
             </tr>
 
 
-
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#accepted" >accepted</a>
-                            </li>
-                            <li>
-                                <a href="#currentUser" >currentUser</a>
-                            </li>
-                            <li>
-                                <a href="#currentView" >currentView</a>
-                            </li>
-                            <li>
-                                <a href="#hasStake" >hasStake</a>
-                            </li>
-                            <li>
-                                <a href="#notPaid" >notPaid</a>
-                            </li>
-                            <li>
-                                <a href="#otherUserId" >otherUserId</a>
-                            </li>
-                            <li>
-                                <a href="#paidAndNotAccepted" >paidAndNotAccepted</a>
-                            </li>
-                            <li>
-                                <a href="#stake" >stake</a>
-                            </li>
-                            <li>
-                                <a href="#transaction" >transaction</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#delete" >delete</a>
-                            </li>
-                            <li>
-                                <a href="#deleteTracker" >deleteTracker</a>
-                            </li>
-                            <li>
-                                <a href="#formatRhythm" >formatRhythm</a>
-                            </li>
-                            <li>
-                                <a href="#formatType" >formatType</a>
-                            </li>
-                            <li>
-                                <a href="#ionViewWillEnter" >ionViewWillEnter</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                            <li>
-                                <a href="#payTransaction" >payTransaction</a>
-                            </li>
-                            <li>
-                                <a href="#removePicture" >removePicture</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#takePicture" >takePicture</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-
-
-
-
         </tbody>
     </table>
 </section>
 
 
 
-
-
-
     <section>
+        <h3 id="constructor">Constructor</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>constructor(route: <a href="https://angular.io/docs/ts/latest/api/router/index/ActivatedRoute-interface.html" target="_blank" >ActivatedRoute</a>, sanitizer: <a href="https://angular.io/docs/ts/latest/api/platform-browser/index/DomSanitizer-class.html" target="_blank" >DomSanitizer</a>, transactionService: <a href="../injectables/TransactionService.html" >TransactionService</a>, router: <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank" >Router</a>, authService: <a href="../injectables/AuthService.html" >AuthService</a>, userService: <a href="../injectables/UserService.html" >UserService</a>, navCtrl: NavController, af: AngularFireAuth)</code>
+                        </td>
+                    </tr>
     
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="delete"></a>
-                    <span class="name">
-                        <span ><b>delete</b></span>
-                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>delete()</code>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <ul class="jsdoc-params">
+                                                <li>
+                                                    <div>
+                                                        <b>route</b>
+                                                    </div>
+                                                    <div>
+                                                        
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <b>sanitizer</b>
+                                                    </div>
+                                                    <div>
+                                                        
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <b>transactionService</b>
+                                                    </div>
+                                                    <div>
+                                                        
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <b>router</b>
+                                                    </div>
+                                                    <div>
+                                                        
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <b>authService</b>
+                                                    </div>
+                                                    <div>
+                                                        
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <b>userService</b>
+                                                    </div>
+                                                    <div>
+                                                        
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <b>navCtrl</b>
+                                                    </div>
+                                                    <div>
+                                                        
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <b>af</b>
+                                                    </div>
+                                                    <div>
+                                                        
+                                                    </div>
+                                                </li>
+                                        </ul>
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:125</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Function to delete the current viewed transaction after confirmation.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="deleteTracker"></a>
-                    <span class="name">
-                        <span ><b>deleteTracker</b></span>
-                        <a href="#deleteTracker"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>deleteTracker()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:136</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Function to delete the tracker of the current transaction after confirmation if there is one.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="formatRhythm"></a>
-                    <span class="name">
-                        <span ><b>formatRhythm</b></span>
-                        <a href="#formatRhythm"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>formatRhythm(rhythm: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:99</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Function to return a more readable format for the transaction rhythm.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>rhythm</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>: the intern representation of the rhythm.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="formatType"></a>
-                    <span class="name">
-                        <span ><b>formatType</b></span>
-                        <a href="#formatType"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>formatType(type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="84"
-                            class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:84</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Function to return a more readable format for the transaction type.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>type</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>: the intern representation of the type.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ionViewWillEnter"></a>
-                    <span class="name">
-                        <span ><b>ionViewWillEnter</b></span>
-                        <a href="#ionViewWillEnter"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ionViewWillEnter()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:55</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:77</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="payTransaction"></a>
-                    <span class="name">
-                        <span ><b>payTransaction</b></span>
-                        <a href="#payTransaction"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>payTransaction()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="151"
-                            class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:151</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Function to send the information of payment to the owner of the transaction for confirmation.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="removePicture"></a>
-                    <span class="name">
-                        <span ><b>removePicture</b></span>
-                        <a href="#removePicture"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>removePicture()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="192"
-                            class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:192</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Function to remove attachment from transaction.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="takePicture"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>takePicture</b></span>
-                        <a href="#takePicture"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>takePicture()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="177"
-                            class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:177</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Function to upload a picture in the attachment tab.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
     <section>
+        <h3 id="methods">Methods</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> ionViewWillEnter</b>
+                        </td>
+                    </tr>
     
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="accepted"></a>
-                    <span class="name">
-                        <span ><b>accepted</b></span>
-                        <a href="#accepted"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:30</a></div>
+    <code>ionViewWillEnter()</code>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="currentUser"></a>
-                    <span class="name">
-                        <span ><b>currentUser</b></span>
-                        <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User</a></code>
-
-                    </td>
-                </tr>
+    
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:27</a></div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="currentView"></a>
-                    <span class="name">
-                        <span ><b>currentView</b></span>
-                        <a href="#currentView"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;overview&#x27;</code>
-                    </td>
-                </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:24</a></div>
+                            <b> formatType</b>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="hasStake"></a>
-                    <span class="name">
-                        <span ><b>hasStake</b></span>
-                        <a href="#hasStake"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
-                    </td>
-                </tr>
+    
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:26</a></div>
+    <code>formatType(type: string)</code>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="notPaid"></a>
-                    <span class="name">
-                        <span ><b>notPaid</b></span>
-                        <a href="#notPaid"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
+    
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:31</a></div>
+                                <div class="io-description"><p>Function to return a more readable format for the transaction type.</p>
+    </div>
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <ul class="jsdoc-params">
+                                                <li>
+                                                    <div>
+                                                        <b>type</b>
+                                                    </div>
+                                                    <div>
+                                                        <p>: the intern representation of the type.</p>
+    
+                                                    </div>
+                                                </li>
+                                        </ul>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>string</code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="otherUserId"></a>
-                    <span class="name">
-                        <span ><b>otherUserId</b></span>
-                        <a href="#otherUserId"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:25</a></div>
+                            <b> formatRhythm</b>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="paidAndNotAccepted"></a>
-                    <span class="name">
-                        <span ><b>paidAndNotAccepted</b></span>
-                        <a href="#paidAndNotAccepted"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
+    
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:29</a></div>
+    <code>formatRhythm(rhythm: string)</code>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="stake"></a>
-                    <span class="name">
-                        <span ><b>stake</b></span>
-                        <a href="#stake"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
+    
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:28</a></div>
+                                <div class="io-description"><p>Function to return a more readable format for the transaction rhythm.</p>
+    </div>
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <ul class="jsdoc-params">
+                                                <li>
+                                                    <div>
+                                                        <b>rhythm</b>
+                                                    </div>
+                                                    <div>
+                                                        <p>: the intern representation of the rhythm.</p>
+    
+                                                    </div>
+                                                </li>
+                                        </ul>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>string</code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="transaction"></a>
-                    <span class="name">
-                        <span ><b>transaction</b></span>
-                        <a href="#transaction"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Transaction.html" target="_self" >Transaction</a></code>
-
-                    </td>
-                </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/transaction/transaction-details/transaction-details.page.ts:23</a></div>
+                            <b> delete</b>
                         </td>
                     </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>delete()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Function to delete the current viewed transaction after confirmation.</p>
+    </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> deleteTracker</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>deleteTracker()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Function to delete the tracker of the current transaction after confirmation if there is one.</p>
+    </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> payTransaction</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>payTransaction()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Function to send the information of payment to the owner of the transaction for confirmation.</p>
+    </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier"></span> takePicture</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon method fa fa-play ">
+                                    <span class="fa fa-"></span>
+                                </span>
+                            <code>takePicture()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Function to upload a picture in the attachment tab.</p>
+    </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> removePicture</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>removePicture()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Function to remove attachment from transaction.</p>
+    </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
-
-        </tbody>
-    </table>
-</section>
-
+    <section>
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> accepted</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>accepted:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> currentUser</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>currentUser:     <code><a href="../classes/User.html" target="_self" >User</a></code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> currentView</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>currentView:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>overview</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> hasStake</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>hasStake:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> notPaid</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>notPaid:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> otherUserId</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>otherUserId:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> paidAndNotAccepted</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>paidAndNotAccepted:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> stake</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>stake:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> transaction</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>transaction:     <code><a href="../classes/Transaction.html" target="_self" >Transaction</a></code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
-
-
-    <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <div class="tab-pane fade tab-source-code" id="source">
+            <pre><code class="hljs javascript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import {Transaction} from &quot;../../models/transaction.model&quot;;
 import {ActivatedRoute, Router} from &quot;@angular/router&quot;;
 import {TransactionService} from &quot;../../services/transaction.service&quot;;
@@ -1096,185 +1540,21 @@ export class TransactionDetailsPage implements OnInit {
   }
 }
 </code></pre>
-    </div>
-
-    <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;ion-header&gt;
-  &lt;ion-toolbar&gt;
-    &lt;ion-button (click)&#x3D;&quot;this.navCtrl.back()&quot; fill&#x3D;&quot;clear&quot; slot&#x3D;&quot;start&quot;&gt;
-      &lt;ion-icon name&#x3D;&quot;arrow-back-outline&quot;&gt;&lt;/ion-icon&gt;
-    &lt;/ion-button&gt;
-    &lt;ion-title&gt;{{transaction.purpose}}&lt;/ion-title&gt;
-    &lt;ion-button slot&#x3D;&quot;end&quot; (click)&#x3D;&quot;deleteTracker()&quot; *ngIf&#x3D;&quot;currentUser &amp;&amp; (transaction.rhythm !&#x3D; &#x27;once&#x27; &amp;&amp; transaction.rhythm !&#x3D; &#x27;deleted&#x27;) &amp;&amp; transaction.creator.id &#x3D;&#x3D;&#x3D; currentUser.id&quot;&gt;
-      &lt;ion-icon name&#x3D;&quot;remove-circle&quot;&gt;&lt;/ion-icon&gt;
-    &lt;/ion-button&gt;
-    &lt;ion-button slot&#x3D;&quot;end&quot; (click)&#x3D;&quot;delete()&quot; *ngIf&#x3D;&quot;currentUser &amp;&amp; transaction.creator.id &#x3D;&#x3D;&#x3D; currentUser.id&quot;&gt;
-      &lt;ion-icon name&#x3D;&quot;trash&quot;&gt;&lt;/ion-icon&gt;
-    &lt;/ion-button&gt;
-  &lt;/ion-toolbar&gt;
-&lt;/ion-header&gt;
-
-&lt;ion-content&gt;
-  &lt;ion-grid&gt;
-    &lt;ion-row class&#x3D;&quot;ion-justify-content-evenly&quot;&gt;
-      &lt;ion-col style&#x3D;&quot;justify-content: center&quot;&gt;
-    &lt;ion-button expand&#x3D;&quot;full&quot; align (click)&#x3D;&quot;currentView &#x3D; &#x27;overview&#x27;&quot;&gt;
-      &lt;ion-icon name&#x3D;&quot;information-circle-outline&quot;&gt;&lt;/ion-icon&gt;
-    &lt;/ion-button&gt;
-      &lt;/ion-col&gt;
-      &lt;ion-col style&#x3D;&quot;justify-content: center&quot;&gt;
-    &lt;ion-button expand&#x3D;&quot;full&quot; (click)&#x3D;&quot;currentView &#x3D; &#x27;members&#x27;&quot;&gt;
-      &lt;ion-icon name&#x3D;&quot;people&quot;&gt;&lt;/ion-icon&gt;
-    &lt;/ion-button&gt;
-      &lt;/ion-col&gt;
-      &lt;ion-col style&#x3D;&quot;justify-content: center&quot;&gt;
-    &lt;ion-button expand&#x3D;&quot;full&quot; (click)&#x3D;&quot;currentView &#x3D; &#x27;attachment&#x27;&quot;&gt;
-      &lt;ion-icon name&#x3D;&quot;attach&quot;&gt;&lt;/ion-icon&gt;
-    &lt;/ion-button&gt;
-      &lt;/ion-col&gt;
-    &lt;/ion-row&gt;
-  &lt;/ion-grid&gt;
-  &lt;div *ngIf&#x3D;&quot;currentView &#x3D;&#x3D;&#x3D; &#x27;overview&#x27;&quot;&gt;
-    &lt;ion-item&gt;
-      &lt;ion-label&gt;Gruppe&lt;/ion-label&gt;
-      &lt;ion-text class&#x3D;&quot;ion-text-right&quot;&gt;{{ transaction.group.name }}&lt;/ion-text&gt;
-    &lt;/ion-item&gt;
-    &lt;ion-item&gt;
-      &lt;ion-label&gt;Typ&lt;/ion-label&gt;
-      &lt;ion-text class&#x3D;&quot;ion-text-right&quot;&gt;{{ formatType(transaction.type)}}&lt;/ion-text&gt;
-    &lt;/ion-item&gt;
-    &lt;ion-item&gt;
-      &lt;ion-label&gt;Betrag&lt;/ion-label&gt;
-      &lt;ion-text class&#x3D;&quot;ion-text-right&quot;&gt;{{ transaction.amount}}€&lt;/ion-text&gt;
-    &lt;/ion-item&gt;
-    &lt;ion-item *ngIf&#x3D;&quot;hasStake&quot;&gt;
-      &lt;ion-label&gt;Eigener Anteil&lt;/ion-label&gt;
-      &lt;ion-text class&#x3D;&quot;ion-text-right&quot;&gt;{{stake}}€&lt;/ion-text&gt;
-      &lt;ion-icon class&#x3D;&quot;icon-yellow&quot; *ngIf&#x3D;&quot;paidAndNotAccepted&quot; name&#x3D;&quot;checkmark-circle-outline&quot; color&#x3D;&quot;yellow&quot;&gt;&lt;/ion-icon&gt;
-      &lt;ion-icon class&#x3D;&quot;icon-green&quot; *ngIf&#x3D;&quot;accepted&quot; name&#x3D;&quot;checkmark&quot; color&#x3D;&quot;green&quot;&gt;&lt;/ion-icon&gt;
-      &lt;ion-icon class&#x3D;&quot;icon-red&quot; *ngIf&#x3D;&quot;notPaid&quot; name&#x3D;&quot;close&quot; color&#x3D;&quot;red&quot;&gt;&lt;/ion-icon&gt;
-    &lt;/ion-item&gt;
-    &lt;ion-item&gt;
-      &lt;ion-label&gt;Ersteller&lt;/ion-label&gt;
-      &lt;ion-text
-        class&#x3D;&quot;ion-text-right&quot;&gt;{{ transaction.creator.displayName}}&lt;/ion-text&gt;
-    &lt;/ion-item&gt;
-    &lt;ion-item&gt;
-      &lt;ion-label&gt;Rechnungsdatum&lt;/ion-label&gt;
-      &lt;ion-datetime [(ngModel)]&#x3D;&quot;transaction.purchaseDate&quot; displayFormat&#x3D;&quot;DD.MM.YYYY&quot; readonly&#x3D;&quot;true&quot;&gt;&lt;/ion-datetime&gt;
-    &lt;/ion-item&gt;
-    &lt;ion-item&gt;
-      &lt;ion-label&gt;Fälligkeitsdatum&lt;/ion-label&gt;
-      &lt;ion-datetime [(ngModel)]&#x3D;&quot;transaction.dueDate&quot; displayFormat&#x3D;&quot;DD.MM.YYYY&quot; readonly&#x3D;&quot;true&quot;&gt;&lt;/ion-datetime&gt;
-    &lt;/ion-item&gt;    &lt;ion-item&gt;
-      &lt;ion-label&gt;Rhythmus&lt;/ion-label&gt;
-      &lt;ion-text class&#x3D;&quot;ion-text-right&quot;&gt;{{ formatRhythm(transaction.rhythm)}}&lt;/ion-text&gt;
-    &lt;/ion-item&gt;
-    &lt;ion-button *ngIf&#x3D;&quot;currentUser &amp;&amp; transaction.type &#x3D;&#x3D;&#x3D; &#x27;cost&#x27; &amp;&amp; !transactionService.hasUserPaid(currentUser.id, transaction)&quot; (click)&#x3D;&quot;payTransaction()&quot;&gt;Bezahlen&lt;/ion-button&gt;
-    &lt;ion-button *ngIf&#x3D;&quot;currentUser &amp;&amp; transaction.type &#x3D;&#x3D;&#x3D; &#x27;income&#x27; &amp;&amp; transaction.creator.id &#x3D;&#x3D;&#x3D; currentUser.id &amp;&amp; !transactionService.hasUserPaid(otherUserId, transaction)&quot; (click)&#x3D;&quot;payTransaction()&quot;&gt;Bezahlen&lt;/ion-button&gt;
-  &lt;/div&gt;
-  &lt;div *ngIf&#x3D;&quot;currentView &#x3D;&#x3D;&#x3D; &#x27;members&#x27;&quot;&gt;
-    &lt;ion-item *ngFor&#x3D;&quot;let member of transactionService.getParticipants(transaction)&quot;&gt;
-      &lt;ion-avatar&gt;
-        &lt;img [src]&#x3D;&quot;sanitizer.bypassSecurityTrustUrl(member.profilePic)&quot;&gt;
-      &lt;/ion-avatar&gt;
-      &lt;ion-label&gt;{{member.displayName}}&lt;/ion-label&gt;
-      &lt;ion-text&gt;{{transactionService.getStakeForUser(member, transaction)}}€&lt;/ion-text&gt;
-      &lt;ion-icon *ngIf&#x3D;&quot;transactionService.hasUserPaid(member.id, transaction) &amp;&amp; transactionService.wasPaymentAccepted(member.id, transaction)&quot; name&#x3D;&quot;checkmark-circle-outline&quot; color&#x3D;&quot;yellow&quot;&gt;&lt;/ion-icon&gt;
-      &lt;ion-icon *ngIf&#x3D;&quot;transactionService.hasUserPaid(member.id, transaction) &amp;&amp; !transactionService.wasPaymentAccepted(member.id, transaction)&quot; name&#x3D;&quot;checkmark&quot; color&#x3D;&quot;green&quot;&gt;&lt;/ion-icon&gt;
-      &lt;ion-icon *ngIf&#x3D;&quot;!transactionService.hasUserPaid(member.id, transaction)&quot; name&#x3D;&quot;close&quot; color&#x3D;&quot;red&quot;&gt;&lt;/ion-icon&gt;
-    &lt;/ion-item&gt;
-  &lt;/div&gt;
-  &lt;div *ngIf&#x3D;&quot;currentView &#x3D;&#x3D;&#x3D; &#x27;attachment&#x27;&quot;&gt;
-    &lt;ion-img *ngIf&#x3D;&quot;transaction.photo&quot; src&#x3D;&quot;{{transaction.photo}}&quot;&gt;&lt;/ion-img&gt;
-    &lt;ion-button *ngIf&#x3D;&quot;currentUser &amp;&amp; !transaction.photo &amp;&amp; currentUser.id &#x3D;&#x3D;&#x3D; transaction.creator.id&quot; (click)&#x3D;&quot;takePicture()&quot;&gt;
-      &lt;ion-icon name&#x3D;&quot;add&quot;&gt;&lt;/ion-icon&gt;
-    &lt;/ion-button&gt;
-    &lt;ion-button *ngIf&#x3D;&quot;currentUser &amp;&amp; transaction.photo &amp;&amp; currentUser.id &#x3D;&#x3D;&#x3D; transaction.creator.id &quot; (click)&#x3D;&quot;removePicture()&quot;&gt;
-      &lt;ion-icon name&#x3D;&quot;trash&quot; &gt;&lt;/ion-icon&gt;
-    &lt;/ion-button&gt;
-  &lt;/div&gt;
-&lt;/ion-content&gt;
-
-&lt;ion-footer&gt;
-  &lt;ion-toolbar&gt;
-    &lt;ion-tabs&gt;
-      &lt;ion-tab-bar&gt;
-        &lt;ion-tab-button (click)&#x3D;&quot;router.navigate([&#x27;home&#x27;])&quot;&gt;
-          &lt;ion-icon name&#x3D;&quot;home-outline&quot;&gt;&lt;/ion-icon&gt;
-        &lt;/ion-tab-button&gt;
-        &lt;ion-tab-button (click)&#x3D;&quot;router.navigate([&#x27;transaction-create&#x27;])&quot;&gt;
-          &lt;ion-icon name&#x3D;&quot;cash-outline&quot;&gt;&lt;/ion-icon&gt;
-        &lt;/ion-tab-button&gt;
-        &lt;ion-tab-button (click)&#x3D;&quot;router.navigate([&#x27;group-list&#x27;])&quot;&gt;
-          &lt;ion-icon name&#x3D;&quot;people-outline&quot;&gt;&lt;/ion-icon&gt;
-        &lt;/ion-tab-button&gt;
-        &lt;ion-tab-button (click)&#x3D;&quot;router.navigate([&#x27;profile&#x27;])&quot;&gt;
-          &lt;ion-icon name&#x3D;&quot;person-outline&quot;&gt;&lt;/ion-icon&gt;
-        &lt;/ion-tab-button&gt;
-      &lt;/ion-tab-bar&gt;
-    &lt;/ion-tabs&gt;
-  &lt;/ion-toolbar&gt;
-&lt;/ion-footer&gt;
-</code></pre>
-    </div>
-
-    <div class="tab-pane fade " id="c-styleData">
-                <p class="comment">
-                    <code>./transaction-details.page.scss</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
-    </div>
-
-    <div class="tab-pane fade " id="c-tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
         </div>
     </div>
 
-    
-</div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar>    <ion-button (click)="this.navCtrl.back()" fill="clear" slot="start">      <ion-icon name="arrow-back-outline"></ion-icon>    </ion-button>    <ion-title>{{transaction.purpose}}</ion-title>    <ion-button slot="end" (click)="deleteTracker()" *ngIf="currentUser && (transaction.rhythm != \'once\' && transaction.rhythm != \'deleted\') && transaction.creator.id === currentUser.id">      <ion-icon name="remove-circle"></ion-icon>    </ion-button>    <ion-button slot="end" (click)="delete()" *ngIf="currentUser && transaction.creator.id === currentUser.id">      <ion-icon name="trash"></ion-icon>    </ion-button>  </ion-toolbar></ion-header><ion-content>  <ion-grid>    <ion-row class="ion-justify-content-evenly">      <ion-col style="justify-content: center">    <ion-button expand="full" align (click)="currentView = \'overview\'">      <ion-icon name="information-circle-outline"></ion-icon>    </ion-button>      </ion-col>      <ion-col style="justify-content: center">    <ion-button expand="full" (click)="currentView = \'members\'">      <ion-icon name="people"></ion-icon>    </ion-button>      </ion-col>      <ion-col style="justify-content: center">    <ion-button expand="full" (click)="currentView = \'attachment\'">      <ion-icon name="attach"></ion-icon>    </ion-button>      </ion-col>    </ion-row>  </ion-grid>  <div *ngIf="currentView === \'overview\'">    <ion-item>      <ion-label>Gruppe</ion-label>      <ion-text class="ion-text-right">{{ transaction.group.name }}</ion-text>    </ion-item>    <ion-item>      <ion-label>Typ</ion-label>      <ion-text class="ion-text-right">{{ formatType(transaction.type)}}</ion-text>    </ion-item>    <ion-item>      <ion-label>Betrag</ion-label>      <ion-text class="ion-text-right">{{ transaction.amount}}€</ion-text>    </ion-item>    <ion-item *ngIf="hasStake">      <ion-label>Eigener Anteil</ion-label>      <ion-text class="ion-text-right">{{stake}}€</ion-text>      <ion-icon class="icon-yellow" *ngIf="paidAndNotAccepted" name="checkmark-circle-outline" color="yellow"></ion-icon>      <ion-icon class="icon-green" *ngIf="accepted" name="checkmark" color="green"></ion-icon>      <ion-icon class="icon-red" *ngIf="notPaid" name="close" color="red"></ion-icon>    </ion-item>    <ion-item>      <ion-label>Ersteller</ion-label>      <ion-text        class="ion-text-right">{{ transaction.creator.displayName}}</ion-text>    </ion-item>    <ion-item>      <ion-label>Rechnungsdatum</ion-label>      <ion-datetime [(ngModel)]="transaction.purchaseDate" displayFormat="DD.MM.YYYY" readonly="true"></ion-datetime>    </ion-item>    <ion-item>      <ion-label>Fälligkeitsdatum</ion-label>      <ion-datetime [(ngModel)]="transaction.dueDate" displayFormat="DD.MM.YYYY" readonly="true"></ion-datetime>    </ion-item>    <ion-item>      <ion-label>Rhythmus</ion-label>      <ion-text class="ion-text-right">{{ formatRhythm(transaction.rhythm)}}</ion-text>    </ion-item>    <ion-button *ngIf="currentUser && transaction.type === \'cost\' && !transactionService.hasUserPaid(currentUser.id, transaction)" (click)="payTransaction()">Bezahlen</ion-button>    <ion-button *ngIf="currentUser && transaction.type === \'income\' && transaction.creator.id === currentUser.id && !transactionService.hasUserPaid(otherUserId, transaction)" (click)="payTransaction()">Bezahlen</ion-button>  </div>  <div *ngIf="currentView === \'members\'">    <ion-item *ngFor="let member of transactionService.getParticipants(transaction)">      <ion-avatar>        <img [src]="sanitizer.bypassSecurityTrustUrl(member.profilePic)">      </ion-avatar>      <ion-label>{{member.displayName}}</ion-label>      <ion-text>{{transactionService.getStakeForUser(member, transaction)}}€</ion-text>      <ion-icon *ngIf="transactionService.hasUserPaid(member.id, transaction) && transactionService.wasPaymentAccepted(member.id, transaction)" name="checkmark-circle-outline" color="yellow"></ion-icon>      <ion-icon *ngIf="transactionService.hasUserPaid(member.id, transaction) && !transactionService.wasPaymentAccepted(member.id, transaction)" name="checkmark" color="green"></ion-icon>      <ion-icon *ngIf="!transactionService.hasUserPaid(member.id, transaction)" name="close" color="red"></ion-icon>    </ion-item>  </div>  <div *ngIf="currentView === \'attachment\'">    <ion-img *ngIf="transaction.photo" src="{{transaction.photo}}"></ion-img>    <ion-button *ngIf="currentUser && !transaction.photo && currentUser.id === transaction.creator.id" (click)="takePicture()">      <ion-icon name="add"></ion-icon>    </ion-button>    <ion-button *ngIf="currentUser && transaction.photo && currentUser.id === transaction.creator.id " (click)="removePicture()">      <ion-icon name="trash" ></ion-icon>    </ion-button>  </div></ion-content><ion-footer>  <ion-toolbar>    <ion-tabs>      <ion-tab-bar>        <ion-tab-button (click)="router.navigate([\'home\'])">          <ion-icon name="home-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'transaction-create\'])">          <ion-icon name="cash-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'group-list\'])">          <ion-icon name="people-outline"></ion-icon>        </ion-tab-button>        <ion-tab-button (click)="router.navigate([\'profile\'])">          <ion-icon name="person-outline"></ion-icon>        </ion-tab-button>      </ion-tab-bar>    </ion-tabs>  </ion-toolbar></ion-footer></div>'
-    var COMPONENTS = [{'name': 'AddMembersPage', 'selector': 'app-add-members'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChangePasswordPage', 'selector': 'app-change-password'},{'name': 'FriendProfilePage', 'selector': 'app-friend-profile'},{'name': 'FriendsPage', 'selector': 'app-friends'},{'name': 'GroupCreatePage', 'selector': 'app-group-create'},{'name': 'GroupDetailsPage', 'selector': 'app-group-details'},{'name': 'GroupListPage', 'selector': 'app-group-list'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'InvitePage', 'selector': 'app-invite'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MemberViewPage', 'selector': 'app-member-view'},{'name': 'OptionsPage', 'selector': 'app-options'},{'name': 'PasswordPage', 'selector': 'app-password'},{'name': 'PaymentPage', 'selector': 'app-payment'},{'name': 'PaymentReminderPage', 'selector': 'app-payment-reminder'},{'name': 'PrivacyPage', 'selector': 'app-privacy'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'StatisticsPage', 'selector': 'app-statistics'},{'name': 'TransactionCreatePage', 'selector': 'app-transaction-create'},{'name': 'TransactionDetailsPage', 'selector': 'app-transaction-details'},{'name': 'TransactionParticipantsPage', 'selector': 'app-transaction-participants'},{'name': 'TransactionStakesPage', 'selector': 'app-transaction-stakes'},{'name': 'TutorialPage', 'selector': 'app-tutorial'}];
-    var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'TransactionDetailsPage'};
-</script>
-<script src="../js/tree.js"></script>
 
 
 
 
 
-
-
-
-
-
-                   
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -1282,22 +1562,8 @@ export class TransactionDetailsPage implements OnInit {
     </div>
 </div>
 </div>
-               <!-- END CONTENT -->
            </div>
        </div>
-
-       <script>
-            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'TransactionDetailsPage.html';
-            var MAX_SEARCH_RESULTS = 15;
-       </script>
-
-       <script src="../js/libs/custom-elements.min.js"></script>
-       <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 
@@ -1308,17 +1574,20 @@ export class TransactionDetailsPage implements OnInit {
 
        <script src="../js/compodoc.js"></script>
 
-       <script src="../js/tabs.js"></script>
-       <script src="../js/menu.js"></script>
-       <script src="../js/libs/clipboard.min.js"></script>
-       <script src="../js/libs/prism.js"></script>
-       <script src="../js/sourceCode.js"></script>
-          <script src="../js/search/search.js"></script>
-          <script src="../js/search/lunr.min.js"></script>
-          <script src="../js/search/search-lunr.js"></script>
-          <script src="../js/search/search_index.js"></script>
-       <script src="../js/lazy-load-graphs.js"></script>
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
 
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/highlight.pack.js"></script>
+       <script src="../js/libs/highlightjs-line-numbers.min.js"></script>
+       <script src="../js/search/search_index.js"></script>
+       <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                hljs.initHighlightingOnLoad();
+                hljs.initLineNumbersOnLoad();
+            });
+       </script>
 
     </body>
 </html>

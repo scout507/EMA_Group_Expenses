@@ -8,26 +8,788 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+	    <link rel="stylesheet" href="../styles/style.css">
     </head>
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
             <a href="../" class="navbar-brand">group-expenses documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="../">group-expenses documentation</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="../overview.html" 
+                                         href="../overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./modules.html" >
+                            <span class="fa fa-archive"></span>
+                            <span>Modules</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            ></span>
+                        </a>
+                        <ul class="links collapse in"
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="../modules/AddMembersPageModule.html" >AddMembersPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/AddMembersPageRoutingModule.html" >AddMembersPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/AppModule.html" >AppModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ChangePasswordPageModule.html" >ChangePasswordPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ChangePasswordPageRoutingModule.html" >ChangePasswordPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendProfilePageModule.html" >FriendProfilePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendProfilePageRoutingModule.html" >FriendProfilePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendsPageModule.html" >FriendsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendsPageRoutingModule.html" >FriendsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupCreatePageModule.html" >GroupCreatePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupCreatePageRoutingModule.html" >GroupCreatePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupDetailsPageModule.html" >GroupDetailsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupDetailsPageRoutingModule.html" >GroupDetailsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupListPageModule.html" >GroupListPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupListPageRoutingModule.html" >GroupListPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/HomePageModule.html" >HomePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/InvitePageModule.html" >InvitePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/InvitePageRoutingModule.html" >InvitePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/LoginPageModule.html" >LoginPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/LoginPageRoutingModule.html" >LoginPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/MemberViewPageModule.html" >MemberViewPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/MemberViewPageRoutingModule.html" >MemberViewPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/OptionsPageModule.html" >OptionsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/OptionsPageRoutingModule.html" >OptionsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PasswordPageModule.html" >PasswordPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PasswordPageRoutingModule.html" >PasswordPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentPageModule.html" >PaymentPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentPageRoutingModule.html" >PaymentPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentReminderPageModule.html" >PaymentReminderPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentReminderPageRoutingModule.html" >PaymentReminderPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PrivacyPageModule.html" >PrivacyPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PrivacyPageRoutingModule.html" >PrivacyPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ProfilePageModule.html" >ProfilePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ProfilePageRoutingModule.html" >ProfilePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/RegisterPageModule.html" >RegisterPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/RegisterPageRoutingModule.html" >RegisterPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/StatisticsPageModule.html" >StatisticsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/StatisticsPageRoutingModule.html" >StatisticsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionCreatePageModule.html" >TransactionCreatePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionCreatePageRoutingModule.html" >TransactionCreatePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionDetailsPageModule.html" >TransactionDetailsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionDetailsPageRoutingModule.html" >TransactionDetailsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionParticipantsPageModule.html" >TransactionParticipantsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionParticipantsPageRoutingModule.html" >TransactionParticipantsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionStakesPageModule.html" >TransactionStakesPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionStakesPageRoutingModule.html" >TransactionStakesPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TutorialPageModule.html" >TutorialPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TutorialPageRoutingModule.html" >TutorialPageRoutingModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-components-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="../components/AddMembersPage.html" >AddMembersPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/AppComponent.html" >AppComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ChangePasswordPage.html" >ChangePasswordPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/FriendProfilePage.html" >FriendProfilePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/FriendsPage.html" >FriendsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/GroupCreatePage.html" >GroupCreatePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/GroupDetailsPage.html" >GroupDetailsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/GroupListPage.html" >GroupListPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/HomePage.html" >HomePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/InvitePage.html" >InvitePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/LoginPage.html" >LoginPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/MemberViewPage.html" >MemberViewPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/OptionsPage.html" >OptionsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PasswordPage.html" >PasswordPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PaymentPage.html" >PaymentPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PaymentReminderPage.html" >PaymentReminderPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PrivacyPage.html" >PrivacyPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ProfilePage.html" >ProfilePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/RegisterPage.html" >RegisterPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/StatisticsPage.html" >StatisticsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionCreatePage.html" >TransactionCreatePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionDetailsPage.html" >TransactionDetailsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionParticipantsPage.html" >TransactionParticipantsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionStakesPage.html" >TransactionStakesPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TutorialPage.html" >TutorialPage</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-file-code-o"></span>
+                            <span>Classes</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-classes-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-classes-links"
+                            >
+                                <li class="link">
+                                    <a href="../classes/AppPage.html" >AppPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Award.html" >Award</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Group.html" >Group</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/SimpleTransaction.html"  class="active" >SimpleTransaction</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Statistic.html" >Statistic</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Transaction.html" >Transaction</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Transaction.html" >Transaction</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/TransactionTracker.html" >TransactionTracker</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/User.html" >User</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-injectables-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/ArwardService.html" >ArwardService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/AuthService.html" >AuthService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/BadgeService.html" >BadgeService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/FriendsService.html" >FriendsService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/GroupService.html" >GroupService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/StatisticsService.html" >StatisticsService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/TransactionService.html" >TransactionService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/UserService.html" >UserService</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+                    <li class="divider"></li>
+                    <li class="copyright">
+                            Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                        <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                            </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
         </div>
 
         <div class="container-fluid main">
            <div class="row main">
                <div class="hidden-xs menu">
-                   <compodoc-menu mode="normal"></compodoc-menu>
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="../">group-expenses documentation</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="../overview.html" 
+                                                href="../overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./modules.html" >
+                                   <span class="fa fa-archive"></span>
+                                   <span>Modules</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   ></span>
+                               </a>
+                               <ul class="links collapse in"
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="../modules/AddMembersPageModule.html" >AddMembersPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/AddMembersPageRoutingModule.html" >AddMembersPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/AppModule.html" >AppModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ChangePasswordPageModule.html" >ChangePasswordPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ChangePasswordPageRoutingModule.html" >ChangePasswordPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendProfilePageModule.html" >FriendProfilePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendProfilePageRoutingModule.html" >FriendProfilePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendsPageModule.html" >FriendsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendsPageRoutingModule.html" >FriendsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupCreatePageModule.html" >GroupCreatePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupCreatePageRoutingModule.html" >GroupCreatePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupDetailsPageModule.html" >GroupDetailsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupDetailsPageRoutingModule.html" >GroupDetailsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupListPageModule.html" >GroupListPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupListPageRoutingModule.html" >GroupListPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/HomePageModule.html" >HomePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/InvitePageModule.html" >InvitePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/InvitePageRoutingModule.html" >InvitePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/LoginPageModule.html" >LoginPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/LoginPageRoutingModule.html" >LoginPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/MemberViewPageModule.html" >MemberViewPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/MemberViewPageRoutingModule.html" >MemberViewPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/OptionsPageModule.html" >OptionsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/OptionsPageRoutingModule.html" >OptionsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PasswordPageModule.html" >PasswordPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PasswordPageRoutingModule.html" >PasswordPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentPageModule.html" >PaymentPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentPageRoutingModule.html" >PaymentPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentReminderPageModule.html" >PaymentReminderPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentReminderPageRoutingModule.html" >PaymentReminderPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PrivacyPageModule.html" >PrivacyPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PrivacyPageRoutingModule.html" >PrivacyPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ProfilePageModule.html" >ProfilePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ProfilePageRoutingModule.html" >ProfilePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/RegisterPageModule.html" >RegisterPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/RegisterPageRoutingModule.html" >RegisterPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/StatisticsPageModule.html" >StatisticsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/StatisticsPageRoutingModule.html" >StatisticsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionCreatePageModule.html" >TransactionCreatePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionCreatePageRoutingModule.html" >TransactionCreatePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionDetailsPageModule.html" >TransactionDetailsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionDetailsPageRoutingModule.html" >TransactionDetailsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionParticipantsPageModule.html" >TransactionParticipantsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionParticipantsPageRoutingModule.html" >TransactionParticipantsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionStakesPageModule.html" >TransactionStakesPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionStakesPageRoutingModule.html" >TransactionStakesPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TutorialPageModule.html" >TutorialPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TutorialPageRoutingModule.html" >TutorialPageRoutingModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#components-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="../components/AddMembersPage.html" >AddMembersPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/AppComponent.html" >AppComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ChangePasswordPage.html" >ChangePasswordPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/FriendProfilePage.html" >FriendProfilePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/FriendsPage.html" >FriendsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/GroupCreatePage.html" >GroupCreatePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/GroupDetailsPage.html" >GroupDetailsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/GroupListPage.html" >GroupListPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/HomePage.html" >HomePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/InvitePage.html" >InvitePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/LoginPage.html" >LoginPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/MemberViewPage.html" >MemberViewPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/OptionsPage.html" >OptionsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PasswordPage.html" >PasswordPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PaymentPage.html" >PaymentPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PaymentReminderPage.html" >PaymentReminderPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PrivacyPage.html" >PrivacyPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ProfilePage.html" >ProfilePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/RegisterPage.html" >RegisterPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/StatisticsPage.html" >StatisticsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionCreatePage.html" >TransactionCreatePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionDetailsPage.html" >TransactionDetailsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionParticipantsPage.html" >TransactionParticipantsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionStakesPage.html" >TransactionStakesPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TutorialPage.html" >TutorialPage</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-file-code-o"></span>
+                                   <span>Classes</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#classes-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="classes-links"
+                   >
+                                       <li class="link">
+                                           <a href="../classes/AppPage.html" >AppPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Award.html" >Award</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Group.html" >Group</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/SimpleTransaction.html"  class="active" >SimpleTransaction</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Statistic.html" >Statistic</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Transaction.html" >Transaction</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Transaction.html" >Transaction</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/TransactionTracker.html" >TransactionTracker</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/User.html" >User</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#injectables-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/ArwardService.html" >ArwardService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/AuthService.html" >AuthService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/BadgeService.html" >BadgeService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/FriendsService.html" >FriendsService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/GroupService.html" >GroupService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/StatisticsService.html" >StatisticsService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/TransactionService.html" >TransactionService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/UserService.html" >UserService</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                           <li class="copyright">
+                                   Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                               <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                                   </a>
+                           </li>
+                   
+                       </ul>
+                   
+                   </nav>
                </div>
-               <!-- START CONTENT -->
                <div class="content class">
                    <div class="content-data">
 
@@ -36,27 +798,22 @@
 
 
 
-
-
-
-
-
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >SimpleTransaction</li>
+  <li>SimpleTransaction</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
-        </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-        </li>
+    <li class="active">
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+    </li>
+    <li>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab">Source</a>
+    </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="infos">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -64,457 +821,235 @@
             <code>src/app/models/simpleTransaction.model.ts</code>
         </p>
 
-
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>SimpleTransactions are used for the home view.
-It&#39;s a simple version of the Transaction model and is used to display a part of an Transaction between the current user and another user.
-This class is fit for usage in the home-view and should probably not be used anywhere else.</p>
+                <p>SimpleTransactions are used for the home view.<br>It&#39;s a simple version of the Transaction model and is used to display a part of an Transaction between the current user and another user.<br>This class is fit for usage in the home-view and should probably not be used anywhere else.</p>
 
             </p>
 
+            <section>
+                <h3 id="constructor">Constructor</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>constructor(id: string, amount: number, purpose: string, outgoing: boolean, pending: boolean, otherUser: <a href="../classes/User.html" >User</a>, groupName: string, dueDate: string)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <ul class="jsdoc-params">
+                                                        <li>
+                                                            <div>
+                                                                <b>id</b>
+                                                            </div>
+                                                            <div>
+                                                                <p>transaction.id</p>
+            
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div>
+                                                                <b>amount</b>
+                                                            </div>
+                                                            <div>
+                                                                <p>Amount from transaction.participation (amount per user)</p>
+            
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div>
+                                                                <b>purpose</b>
+                                                            </div>
+                                                            <div>
+                                                                <p>transaction.purpose</p>
+            
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div>
+                                                                <b>outgoing</b>
+                                                            </div>
+                                                            <div>
+                                                                <p>Whether the transaction is a cost or an income for the current user</p>
+            
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div>
+                                                                <b>pending</b>
+                                                            </div>
+                                                            <div>
+                                                                <p>If the transaction is still pending. Check if transaction.paid == true and transaction.accepted == false</p>
+            
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div>
+                                                                <b>otherUser</b>
+                                                            </div>
+                                                            <div>
+                                                                <p>The other user tied to this Transaction</p>
+            
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div>
+                                                                <b>groupName</b>
+                                                            </div>
+                                                            <div>
+                                                                
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div>
+                                                                <b>dueDate</b>
+                                                            </div>
+                                                            <div>
+                                                                
+                                                            </div>
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
 
 
 
             <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#amount" >amount</a>
-                            </li>
-                            <li>
-                                <a href="#dueDate" >dueDate</a>
-                            </li>
-                            <li>
-                                <a href="#groupName" >groupName</a>
-                            </li>
-                            <li>
-                                <a href="#id" >id</a>
-                            </li>
-                            <li>
-                                <a href="#otherUser" >otherUser</a>
-                            </li>
-                            <li>
-                                <a href="#outgoing" >outgoing</a>
-                            </li>
-                            <li>
-                                <a href="#pending" >pending</a>
-                            </li>
-                            <li>
-                                <a href="#purpose" >purpose</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, amount: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, purpose: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, outgoing: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, pending: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, otherUser: <a href="../classes/User.html" target="_self">User</a>, groupName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, dueDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/models/simpleTransaction.model.ts:17</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>id</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>transaction.id</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>amount</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>Amount from transaction.participation (amount per user)</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>purpose</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>transaction.purpose</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>outgoing</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>Whether the transaction is a cost or an income for the current user</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>pending</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>If the transaction is still pending. Check if transaction.paid == true and transaction.accepted == false</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>otherUser</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../classes/User.html" target="_self" >User</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>The other user tied to this Transaction</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>groupName</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>dueDate</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
-
-            <section>
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="amount"></a>
-                    <span class="name">
-                        <span ><b>amount</b></span>
-                        <a href="#amount"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/models/simpleTransaction.model.ts:11</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="dueDate"></a>
-                    <span class="name">
-                        <span ><b>dueDate</b></span>
-                        <a href="#dueDate"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/models/simpleTransaction.model.ts:17</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="groupName"></a>
-                    <span class="name">
-                        <span ><b>groupName</b></span>
-                        <a href="#groupName"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/models/simpleTransaction.model.ts:16</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="id"></a>
-                    <span class="name">
-                        <span ><b>id</b></span>
-                        <a href="#id"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/models/simpleTransaction.model.ts:10</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="otherUser"></a>
-                    <span class="name">
-                        <span ><b>otherUser</b></span>
-                        <a href="#otherUser"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/models/simpleTransaction.model.ts:15</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="outgoing"></a>
-                    <span class="name">
-                        <span ><b>outgoing</b></span>
-                        <a href="#outgoing"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/models/simpleTransaction.model.ts:14</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="pending"></a>
-                    <span class="name">
-                        <span ><b>pending</b></span>
-                        <a href="#pending"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/models/simpleTransaction.model.ts:13</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="purpose"></a>
-                    <span class="name">
-                        <span ><b>purpose</b></span>
-                        <a href="#purpose"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/models/simpleTransaction.model.ts:12</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-</section>
-
-
-
-
-
-
-
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> amount</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>amount:     <code>number</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> dueDate</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>dueDate:     <code>string</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> groupName</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>groupName:     <code>string</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> id</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>id:     <code>string</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> otherUser</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>otherUser:     <code><a href="../classes/User.html" target="_self" >User</a></code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> outgoing</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>outgoing:     <code>boolean</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> pending</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>pending:     <code>boolean</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> purpose</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>purpose:     <code>string</code>
+            </bcode>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
     </div>
-
-
-    <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {User} from &#x27;./user.model&#x27;;
+    <div class="tab-pane fade tab-source-code" id="source">
+        <pre><code class="hljs javascript">import {User} from &#x27;./user.model&#x27;;
 
 /**
  * SimpleTransactions are used for the home view.
@@ -561,14 +1096,11 @@ export class SimpleTransaction{
 
 
 
-                   
-
-
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -576,22 +1108,8 @@ export class SimpleTransaction{
     </div>
 </div>
 </div>
-               <!-- END CONTENT -->
            </div>
        </div>
-
-       <script>
-            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'SimpleTransaction.html';
-            var MAX_SEARCH_RESULTS = 15;
-       </script>
-
-       <script src="../js/libs/custom-elements.min.js"></script>
-       <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 
@@ -602,17 +1120,20 @@ export class SimpleTransaction{
 
        <script src="../js/compodoc.js"></script>
 
-       <script src="../js/tabs.js"></script>
-       <script src="../js/menu.js"></script>
-       <script src="../js/libs/clipboard.min.js"></script>
-       <script src="../js/libs/prism.js"></script>
-       <script src="../js/sourceCode.js"></script>
-          <script src="../js/search/search.js"></script>
-          <script src="../js/search/lunr.min.js"></script>
-          <script src="../js/search/search-lunr.js"></script>
-          <script src="../js/search/search_index.js"></script>
-       <script src="../js/lazy-load-graphs.js"></script>
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
 
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/highlight.pack.js"></script>
+       <script src="../js/libs/highlightjs-line-numbers.min.js"></script>
+       <script src="../js/search/search_index.js"></script>
+       <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                hljs.initHighlightingOnLoad();
+                hljs.initLineNumbersOnLoad();
+            });
+       </script>
 
     </body>
 </html>

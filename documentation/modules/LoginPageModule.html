@@ -8,98 +8,801 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+	    <link rel="stylesheet" href="../styles/style.css">
     </head>
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
             <a href="../" class="navbar-brand">group-expenses documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="../">group-expenses documentation</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="../overview.html" 
+                                         href="../overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./modules.html" >
+                            <span class="fa fa-archive"></span>
+                            <span>Modules</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            ></span>
+                        </a>
+                        <ul class="links collapse in"
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="../modules/AddMembersPageModule.html" >AddMembersPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/AddMembersPageRoutingModule.html" >AddMembersPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/AppModule.html" >AppModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ChangePasswordPageModule.html" >ChangePasswordPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ChangePasswordPageRoutingModule.html" >ChangePasswordPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendProfilePageModule.html" >FriendProfilePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendProfilePageRoutingModule.html" >FriendProfilePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendsPageModule.html" >FriendsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/FriendsPageRoutingModule.html" >FriendsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupCreatePageModule.html" >GroupCreatePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupCreatePageRoutingModule.html" >GroupCreatePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupDetailsPageModule.html" >GroupDetailsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupDetailsPageRoutingModule.html" >GroupDetailsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupListPageModule.html" >GroupListPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/GroupListPageRoutingModule.html" >GroupListPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/HomePageModule.html" >HomePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/InvitePageModule.html" >InvitePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/InvitePageRoutingModule.html" >InvitePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/LoginPageModule.html"  class="active" >LoginPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/LoginPageRoutingModule.html" >LoginPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/MemberViewPageModule.html" >MemberViewPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/MemberViewPageRoutingModule.html" >MemberViewPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/OptionsPageModule.html" >OptionsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/OptionsPageRoutingModule.html" >OptionsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PasswordPageModule.html" >PasswordPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PasswordPageRoutingModule.html" >PasswordPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentPageModule.html" >PaymentPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentPageRoutingModule.html" >PaymentPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentReminderPageModule.html" >PaymentReminderPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PaymentReminderPageRoutingModule.html" >PaymentReminderPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PrivacyPageModule.html" >PrivacyPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PrivacyPageRoutingModule.html" >PrivacyPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ProfilePageModule.html" >ProfilePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/ProfilePageRoutingModule.html" >ProfilePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/RegisterPageModule.html" >RegisterPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/RegisterPageRoutingModule.html" >RegisterPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/StatisticsPageModule.html" >StatisticsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/StatisticsPageRoutingModule.html" >StatisticsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionCreatePageModule.html" >TransactionCreatePageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionCreatePageRoutingModule.html" >TransactionCreatePageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionDetailsPageModule.html" >TransactionDetailsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionDetailsPageRoutingModule.html" >TransactionDetailsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionParticipantsPageModule.html" >TransactionParticipantsPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionParticipantsPageRoutingModule.html" >TransactionParticipantsPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionStakesPageModule.html" >TransactionStakesPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TransactionStakesPageRoutingModule.html" >TransactionStakesPageRoutingModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TutorialPageModule.html" >TutorialPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/TutorialPageRoutingModule.html" >TutorialPageRoutingModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-components-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="../components/AddMembersPage.html" >AddMembersPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/AppComponent.html" >AppComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ChangePasswordPage.html" >ChangePasswordPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/FriendProfilePage.html" >FriendProfilePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/FriendsPage.html" >FriendsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/GroupCreatePage.html" >GroupCreatePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/GroupDetailsPage.html" >GroupDetailsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/GroupListPage.html" >GroupListPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/HomePage.html" >HomePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/InvitePage.html" >InvitePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/LoginPage.html" >LoginPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/MemberViewPage.html" >MemberViewPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/OptionsPage.html" >OptionsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PasswordPage.html" >PasswordPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PaymentPage.html" >PaymentPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PaymentReminderPage.html" >PaymentReminderPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PrivacyPage.html" >PrivacyPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ProfilePage.html" >ProfilePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/RegisterPage.html" >RegisterPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/StatisticsPage.html" >StatisticsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionCreatePage.html" >TransactionCreatePage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionDetailsPage.html" >TransactionDetailsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionParticipantsPage.html" >TransactionParticipantsPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TransactionStakesPage.html" >TransactionStakesPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TutorialPage.html" >TutorialPage</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-file-code-o"></span>
+                            <span>Classes</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-classes-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-classes-links"
+                            >
+                                <li class="link">
+                                    <a href="../classes/AppPage.html" >AppPage</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Award.html" >Award</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Group.html" >Group</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/SimpleTransaction.html" >SimpleTransaction</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Statistic.html" >Statistic</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Transaction.html" >Transaction</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Transaction.html" >Transaction</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/TransactionTracker.html" >TransactionTracker</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/User.html" >User</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-injectables-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/ArwardService.html" >ArwardService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/AuthService.html" >AuthService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/BadgeService.html" >BadgeService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/FriendsService.html" >FriendsService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/GroupService.html" >GroupService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/StatisticsService.html" >StatisticsService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/TransactionService.html" >TransactionService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/UserService.html" >UserService</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+                    <li class="divider"></li>
+                    <li class="copyright">
+                            Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                        <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                            </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
         </div>
 
         <div class="container-fluid main">
            <div class="row main">
                <div class="hidden-xs menu">
-                   <compodoc-menu mode="normal"></compodoc-menu>
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="../">group-expenses documentation</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="../overview.html" 
+                                                href="../overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./modules.html" >
+                                   <span class="fa fa-archive"></span>
+                                   <span>Modules</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   ></span>
+                               </a>
+                               <ul class="links collapse in"
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="../modules/AddMembersPageModule.html" >AddMembersPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/AddMembersPageRoutingModule.html" >AddMembersPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/AppModule.html" >AppModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ChangePasswordPageModule.html" >ChangePasswordPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ChangePasswordPageRoutingModule.html" >ChangePasswordPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendProfilePageModule.html" >FriendProfilePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendProfilePageRoutingModule.html" >FriendProfilePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendsPageModule.html" >FriendsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/FriendsPageRoutingModule.html" >FriendsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupCreatePageModule.html" >GroupCreatePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupCreatePageRoutingModule.html" >GroupCreatePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupDetailsPageModule.html" >GroupDetailsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupDetailsPageRoutingModule.html" >GroupDetailsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupListPageModule.html" >GroupListPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/GroupListPageRoutingModule.html" >GroupListPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/HomePageModule.html" >HomePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/InvitePageModule.html" >InvitePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/InvitePageRoutingModule.html" >InvitePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/LoginPageModule.html"  class="active" >LoginPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/LoginPageRoutingModule.html" >LoginPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/MemberViewPageModule.html" >MemberViewPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/MemberViewPageRoutingModule.html" >MemberViewPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/OptionsPageModule.html" >OptionsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/OptionsPageRoutingModule.html" >OptionsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PasswordPageModule.html" >PasswordPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PasswordPageRoutingModule.html" >PasswordPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentPageModule.html" >PaymentPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentPageRoutingModule.html" >PaymentPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentReminderPageModule.html" >PaymentReminderPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PaymentReminderPageRoutingModule.html" >PaymentReminderPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PrivacyPageModule.html" >PrivacyPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PrivacyPageRoutingModule.html" >PrivacyPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ProfilePageModule.html" >ProfilePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/ProfilePageRoutingModule.html" >ProfilePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/RegisterPageModule.html" >RegisterPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/RegisterPageRoutingModule.html" >RegisterPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/StatisticsPageModule.html" >StatisticsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/StatisticsPageRoutingModule.html" >StatisticsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionCreatePageModule.html" >TransactionCreatePageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionCreatePageRoutingModule.html" >TransactionCreatePageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionDetailsPageModule.html" >TransactionDetailsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionDetailsPageRoutingModule.html" >TransactionDetailsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionParticipantsPageModule.html" >TransactionParticipantsPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionParticipantsPageRoutingModule.html" >TransactionParticipantsPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionStakesPageModule.html" >TransactionStakesPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TransactionStakesPageRoutingModule.html" >TransactionStakesPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TutorialPageModule.html" >TutorialPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/TutorialPageRoutingModule.html" >TutorialPageRoutingModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#components-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="../components/AddMembersPage.html" >AddMembersPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/AppComponent.html" >AppComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ChangePasswordPage.html" >ChangePasswordPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/FriendProfilePage.html" >FriendProfilePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/FriendsPage.html" >FriendsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/GroupCreatePage.html" >GroupCreatePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/GroupDetailsPage.html" >GroupDetailsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/GroupListPage.html" >GroupListPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/HomePage.html" >HomePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/InvitePage.html" >InvitePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/LoginPage.html" >LoginPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/MemberViewPage.html" >MemberViewPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/OptionsPage.html" >OptionsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PasswordPage.html" >PasswordPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PaymentPage.html" >PaymentPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PaymentReminderPage.html" >PaymentReminderPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PrivacyPage.html" >PrivacyPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ProfilePage.html" >ProfilePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/RegisterPage.html" >RegisterPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/StatisticsPage.html" >StatisticsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionCreatePage.html" >TransactionCreatePage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionDetailsPage.html" >TransactionDetailsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionParticipantsPage.html" >TransactionParticipantsPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TransactionStakesPage.html" >TransactionStakesPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TutorialPage.html" >TutorialPage</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-file-code-o"></span>
+                                   <span>Classes</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#classes-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="classes-links"
+                   >
+                                       <li class="link">
+                                           <a href="../classes/AppPage.html" >AppPage</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Award.html" >Award</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Group.html" >Group</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/SimpleTransaction.html" >SimpleTransaction</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Statistic.html" >Statistic</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Transaction.html" >Transaction</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Transaction.html" >Transaction</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/TransactionTracker.html" >TransactionTracker</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/User.html" >User</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#injectables-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/ArwardService.html" >ArwardService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/AuthService.html" >AuthService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/BadgeService.html" >BadgeService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/FriendsService.html" >FriendsService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/GroupService.html" >GroupService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/StatisticsService.html" >StatisticsService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/TransactionService.html" >TransactionService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/UserService.html" >UserService</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                           <li class="copyright">
+                                   Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                               <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                                   </a>
+                           </li>
+                   
+                       </ul>
+                   
+                   </nav>
                </div>
-               <!-- START CONTENT -->
                <div class="content module">
                    <div class="content-data">
 
-
-
 <ol class="breadcrumb">
-    <li>Modules</li>
-    <li >LoginPageModule</li>
+  <li>Modules</li>
+  <li>LoginPageModule</li>
 </ol>
 
-<div class="text-center module-graph-container">
-    <div id="module-graph-svg">
-        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.47.3 (20210619.1520)
- -->
-<!-- Title: dependencies Pages: 1 -->
-<svg width="322pt" height="174pt"
- viewBox="0.00 0.00 322.00 173.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 169.8)">
-<title>dependencies</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-169.8 318,-169.8 318,4 -4,4"/>
-<text text-anchor="middle" x="157" y="-8.2" font-family="sans-serif" font-size="14.00">dependencies</text>
-<g id="clust1" class="cluster">
-<title>cluster_LoginPageModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-157.8 306,-157.8 306,-32.8 8,-32.8"/>
-</g>
-<g id="clust2" class="cluster">
-<title>cluster_LoginPageModule_declarations</title>
-<polygon fill="none" stroke="black" points="206,-40.8 206,-92.8 298,-92.8 298,-40.8 206,-40.8"/>
-</g>
-<g id="clust4" class="cluster">
-<title>cluster_LoginPageModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 198,-92.8 198,-40.8 16,-40.8"/>
-</g>
-<!-- LoginPage -->
-<g id="node1" class="node">
-<title>LoginPage</title>
-<polygon fill="#ffffb3" stroke="black" points="290.16,-84.8 213.84,-84.8 213.84,-48.8 290.16,-48.8 290.16,-84.8"/>
-<text text-anchor="middle" x="252" y="-62.6" font-family="Times,serif" font-size="14.00">LoginPage</text>
-</g>
-<!-- LoginPageModule -->
-<g id="node2" class="node">
-<title>LoginPageModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="232.2,-149.8 229.2,-153.8 208.2,-153.8 205.2,-149.8 111.8,-149.8 111.8,-113.8 232.2,-113.8 232.2,-149.8"/>
-<text text-anchor="middle" x="172" y="-127.6" font-family="Times,serif" font-size="14.00">LoginPageModule</text>
-</g>
-<!-- LoginPage&#45;&gt;LoginPageModule -->
-<g id="edge1" class="edge">
-<title>LoginPage&#45;&gt;LoginPageModule</title>
-<path fill="none" stroke="black" d="M222.89,-84.91C222.89,-84.91 222.89,-103.79 222.89,-103.79"/>
-<polygon fill="black" stroke="black" points="219.39,-103.79 222.89,-113.79 226.39,-103.79 219.39,-103.79"/>
-</g>
-<!-- LoginPageRoutingModule -->
-<g id="node3" class="node">
-<title>LoginPageRoutingModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="189.82,-84.8 186.82,-88.8 165.82,-88.8 162.82,-84.8 24.18,-84.8 24.18,-48.8 189.82,-48.8 189.82,-84.8"/>
-<text text-anchor="middle" x="107" y="-62.6" font-family="Times,serif" font-size="14.00">LoginPageRoutingModule</text>
-</g>
-<!-- LoginPageRoutingModule&#45;&gt;LoginPageModule -->
-<g id="edge2" class="edge">
-<title>LoginPageRoutingModule&#45;&gt;LoginPageModule</title>
-<path fill="none" stroke="black" d="M150.78,-84.91C150.78,-84.91 150.78,-103.79 150.78,-103.79"/>
-<polygon fill="black" stroke="black" points="147.28,-103.79 150.78,-113.79 154.28,-103.79 147.28,-103.79"/>
-</g>
-</g>
-</svg>
-
-    </div>
-    <i id="fullscreen" class="icon ion-ios-resize module-graph-fullscreen-btn" aria-hidden="true"></i>
-    <div class="btn-group size-buttons">
+<div class="text-center">
+    <object id="demo-svg" type="image/svg+xml" data="../modules/LoginPageModule/dependencies.svg" style="width: 100%; height: 250px;">
+            Your browser does not support SVG
+    </object>
+    <div class="btn-group">
         <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
         <button id="reset" class="btn btn-default btn-sm">Reset</button>
         <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
@@ -109,17 +812,16 @@
 <script src="../js/svg-pan-zoom.controls.js"></script>
 
 <ul class="nav nav-tabs" role="tablist">
-    <li  class="active" >
-        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+    <li class="active">
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
     </li>
-    <li >
-        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    <li>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab">Source</a>
     </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
-
+    <div class="tab-pane fade active in" id="infos">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -128,38 +830,29 @@
         </p>
 
 
-
-
-
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank"
-                            title="Official documentation about module declarations"><span class="icon ion-ios-information-circle-outline"></span></a></h3>
+                    <h3>Declarations<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#declarations-anchor" target="_blank"><span class="fa fa-info-circle"></span></a></h3>
                     <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="../components/LoginPage.html">LoginPage</a>
-                        </li>
+                            <li class="list-group-item">
+                                <a href="../s/LoginPage.html">LoginPage</a>
+                            </li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
-                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" title="Official documentation about module imports"><span
-                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <h3>Imports<a href="https://angular.io/docs/ts/latest/api/core/index/NgModule-interface.html#!#imports-anchor" target="_blank"><span class="fa fa-info-circle"></a></h3>
                     <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="../modules/LoginPageRoutingModule.html">LoginPageRoutingModule</a>
-                        </li>
+                            <li class="list-group-item">
+                                    <a href="../modules/LoginPageRoutingModule.html" >LoginPageRoutingModule</a>
+                            </li>
                     </ul>
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
-    <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
+    <div class="tab-pane fade tab-source-code" id="source">
+        <pre><code class="hljs javascript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { FormsModule } from &#x27;@angular/forms&#x27;;
 
@@ -192,14 +885,9 @@ export class LoginPageModule {}
 
 
 
-                   
-
-
-
-
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -207,22 +895,8 @@ export class LoginPageModule {}
     </div>
 </div>
 </div>
-               <!-- END CONTENT -->
            </div>
        </div>
-
-       <script>
-            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'LoginPageModule.html';
-            var MAX_SEARCH_RESULTS = 15;
-       </script>
-
-       <script src="../js/libs/custom-elements.min.js"></script>
-       <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 
@@ -233,17 +907,20 @@ export class LoginPageModule {}
 
        <script src="../js/compodoc.js"></script>
 
-       <script src="../js/tabs.js"></script>
-       <script src="../js/menu.js"></script>
-       <script src="../js/libs/clipboard.min.js"></script>
-       <script src="../js/libs/prism.js"></script>
-       <script src="../js/sourceCode.js"></script>
-          <script src="../js/search/search.js"></script>
-          <script src="../js/search/lunr.min.js"></script>
-          <script src="../js/search/search-lunr.js"></script>
-          <script src="../js/search/search_index.js"></script>
-       <script src="../js/lazy-load-graphs.js"></script>
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
 
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/highlight.pack.js"></script>
+       <script src="../js/libs/highlightjs-line-numbers.min.js"></script>
+       <script src="../js/search/search_index.js"></script>
+       <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                hljs.initHighlightingOnLoad();
+                hljs.initLineNumbersOnLoad();
+            });
+       </script>
 
     </body>
 </html>
