@@ -17,14 +17,11 @@
   <ion-grid>
     <ion-row class="ion-justify-content-evenly">
       <ion-col class="ion-no-padding">
-        <ion-button expand="full" (click)="buttonHandler(0); filterTransaction(this.search)">
-          <ion-text></ion-text>
-          <ion-text>{{outgoing}}€ Ausgaben</ion-text>
-        </ion-button>
-        <ion-button expand="full" (click)="buttonHandler(1); filterTransaction(this.search)">{{incoming}}€ Einnahmen</ion-button>
+        <ion-button expand="full" (click)="buttonHandler(0); filterTransaction(this.search)"><ion-text>{{outgoing}}€ Ausgaben</ion-text></ion-button>
+        <ion-button expand="full" (click)="buttonHandler(2); filterTransaction(this.search)">{{pending}} Ausstehend</ion-button>
       </ion-col>
       <ion-col class="ion-no-padding">
-        <ion-button expand="full" (click)="buttonHandler(2); filterTransaction(this.search)">{{pending}} Ausstehend</ion-button>
+        <ion-button expand="full" (click)="buttonHandler(1); filterTransaction(this.search)">{{incoming}}€ Einnahmen</ion-button>
         <ion-button expand="full" (click)="buttonHandler(3); filterTransaction(this.search)">{{confirm}} Bestätigen</ion-button>
       </ion-col>
     </ion-row>
